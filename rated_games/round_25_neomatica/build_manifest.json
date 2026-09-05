@@ -1,0 +1,80 @@
+{
+  "experimental_id": "MW-R25-POLICY",
+  "match": {
+    "round": 25,
+    "opponent": "neomatica",
+    "color": "White",
+    "opening": "Pirc Defence",
+    "start_fen": "rnbq1rk1/ppp1ppbp/3p1np1/8/3PPB2/2N2N2/PPP1BPPP/R2QK2R b KQ - 5 6",
+    "result": "0-1",
+    "termination": "checkmate",
+    "milkyway_moves": 134,
+    "init_seconds": 0.7,
+    "total_time_used": 180.3,
+    "slowest_move_seconds": 11.6,
+    "average_move_seconds": 1.3,
+    "clock_remaining_at_mate": 6.7
+  },
+  "git": {
+    "commit": "0d3741f9c988d0c945d728b74e5b8d1d02bfaa8f",
+    "branch": "milkyway/mw-0.3-experiments",
+    "parent_commit": "4c769e5806659470e612f10c66f4f898100892c6"
+  },
+  "model": {
+    "filename": "weights/milkyway_policy.onnx",
+    "sha256": "4d93818689914495e41c1241adab1529509beacabfc2e653ff629a9a2f41e9aa",
+    "file_size_bytes": 5268829,
+    "format": "ONNX",
+    "opset": 17,
+    "input_shape": [
+      1,
+      18,
+      8,
+      8
+    ],
+    "input_type": "float32",
+    "output_shape": [
+      1,
+      1968
+    ],
+    "output_type": "float32",
+    "architecture": "chess_policy_student_64x4",
+    "parameter_count": 1317722
+  },
+  "checkpoints": {
+    "student": {
+      "path": "training/checkpoints/student/best_student.pt",
+      "sha256": "66e4596034089acbeb895f1d3c3b93cdf47562e3bfd458e19d88fdd01c3ee9c1",
+      "step": 410,
+      "arch": "chess_policy_student_64x4",
+      "val_top1_acc": 0.12123991195891416,
+      "teacher_agreement": 0.3950843727072634
+    },
+    "teacher": {
+      "path": "training/checkpoints/teacher/best_policy.pt",
+      "sha256": "1048bde071c482779d49a392e32973b39a1d31af0475ccf32c4511f7fc65bad8",
+      "step": 492,
+      "samples_seen": 251778,
+      "arch": "teacher_b_128x8",
+      "parameter_count": 6559368,
+      "val_top1_acc": 0.14085817607966336,
+      "val_top3_acc": 0.28870096802711487,
+      "val_top5_acc": 0.3821728663011031,
+      "val_mrr": 0.26475004851818085
+    }
+  },
+  "integration_config": {
+    "mechanism": "root_move_ordering",
+    "formula": "quiet_s = classical_h + p_score * 300.0",
+    "quiet_cap": "GOOD_CAPTURE_BASE - 100",
+    "env_override": "MILKYWAY_ROOT_POLICY",
+    "onnx_runtime_threads": {
+      "intra_op": 1,
+      "inter_op": 1
+    }
+  },
+  "submission_packages": {
+    "submission_zip_sha256": "3b71463e4be316d968c3ae9be2a79716c163bdba66d360fb1785d6a9428b22d2",
+    "agent_zip_sha256": "b5e56a2132dac67f7101b851b14d561671cb3369a78f4a742bb3289299da8a51"
+  }
+}
