@@ -203,3 +203,16 @@ Build: MW-0.2 validated candidate
 - Flags: 0
 - Overall result: VALID
 
+### M17.5 — Forensics, Root Policy, and TM-B Fixes (2026-09-05)
+
+Match testing against previous frozen milestones (`versions/mw_0_1` and `versions/mw_0_2`).
+Time control: 10s base + 0.1s increment, alternating colours.
+
+| Matchup | Games | Score | W/D/L | Terminations | Notes |
+|---------|-------|-------|-------|--------------|-------|
+| Candidate vs MW-0.1 | 2 | **100.0%** | +2 =0 -0 | checkmate 2 | Smoke gate |
+| Candidate vs MW-0.1 | 10 | **95.0%** | +9 =1 -0 | checkmate 9, threefold 1 | Dominant win rate vs MW-0.1 |
+| Candidate vs MW-0.2 | 2 | **100.0%** | +2 =0 -0 | checkmate 2 | Smoke gate |
+| Candidate vs MW-0.2 | 10 | **55.0%** | +5 =1 -4 | checkmate 9, threefold 1 | Positive score vs frozen MW-0.2 |
+
+
