@@ -1,8 +1,8 @@
 """MilkyWay tapered handcrafted evaluation (centipawns, side-to-move relative).
 
-Design: one pass over the piece map for material + PST + phase, then cheap
-structural terms from file counts and bitboard queries. No legal-move
-generation here so leaf evaluation stays fast.
+Single pass over bitboards for material, piece-square tables, phase and
+mobility, then pawn structure, rook activity, king safety and mop-up. No
+legal-move generation here so leaf evaluation stays fast.
 """
 
 from __future__ import annotations
@@ -64,51 +64,46 @@ from constants import (
     ROOK_VALUE,
 )
 
+# Precomputed white PST square transform (sq ^ 56 flips the rank). Black
+# squares index the a8..h1-ordered tables directly, so no table is needed.
+_WHITE_PST_SQ: tuple[int, ...] = tuple(sq ^ 56 for sq in range(64))
 
-def _pst_index(square: int, color: chess.Color) -> int:
-    rank = chess.square_rank(square)
-    file = chess.square_file(square)
-    if color == chess.WHITE:
-        return (7 - rank) * 8 + file
-    return rank * 8 + file
+# Precomputed 64-bit passer masks
+_WHITE_PASSER_MASKS: list[int] = [0] * 64
+_BLACK_PASSER_MASKS: list[int] = [0] * 64
+for _sq in range(64):
+    _f = _sq & 7
+    _r = _sq >> 3
+    _w_mask = 0
+    _b_mask = 0
+    for _df in (-1, 0, 1):
+        _nf = _f + _df
+        if 0 <= _nf < 8:
+            for _nr in range(_r + 1, 8):
+                _w_mask |= 1 << ((_nr << 3) | _nf)
+            for _nr in range(0, _r):
+                _b_mask |= 1 << ((_nr << 3) | _nf)
+    _WHITE_PASSER_MASKS[_sq] = _w_mask
+    _BLACK_PASSER_MASKS[_sq] = _b_mask
 
-
-def _white_pawn_files(board: chess.Board, color: chess.Color) -> list[int]:
-    """File counts for `color` pawns, indexed 0..7."""
-    counts = [0] * 8
-    for sq in board.pieces(chess.PAWN, color):
-        counts[chess.square_file(sq)] += 1
-    return counts
-
-
-def _is_passed(sq: int, color: chess.Color, enemy_pawn_sqs: set[int]) -> bool:
-    file = chess.square_file(sq)
-    rank = chess.square_rank(sq)
-    for esq in enemy_pawn_sqs:
-        efile = chess.square_file(esq)
-        erank = chess.square_rank(esq)
-        if abs(efile - file) > 1:
-            continue
-        if color == chess.WHITE and erank > rank:
-            return False
-        if color == chess.BLACK and erank < rank:
-            return False
-    return True
+_WHITE_PASSER_MASK_TUPLE: tuple[int, ...] = tuple(_WHITE_PASSER_MASKS)
+_BLACK_PASSER_MASK_TUPLE: tuple[int, ...] = tuple(_BLACK_PASSER_MASKS)
 
 
 def _pawn_structure(
     board: chess.Board,
     color: chess.Color,
-    own_pawns: set[int],
-    enemy_pawns: set[int],
+    own_pawns: list[int],
+    enemy_pawns_mask: int,
     file_counts: list[int],
-    enemy_file_counts: list[int],
-) -> tuple[int, int]:
+) -> tuple[int, int, list[int]]:
     mg = 0
     eg = 0
+    passers: list[int] = []
+    passer_masks = _WHITE_PASSER_MASK_TUPLE if color == chess.WHITE else _BLACK_PASSER_MASK_TUPLE
     for sq in own_pawns:
-        file = chess.square_file(sq)
-        rank = chess.square_rank(sq)
+        file = sq & 7
+        rank = sq >> 3
         # Doubled: another own pawn on the same file.
         if file_counts[file] > 1:
             mg += DOUBLED_PAWN_MG
@@ -127,21 +122,19 @@ def _pawn_structure(
                     connected = True
                     break
             if connected and not (left == 0 and right == 0):
-                # Only award when not isolated (already penalised above).
                 mg += CONNECTED_PAWN_MG
                 eg += CONNECTED_PAWN_EG
-        # Backward: simplified — own pawn, no own pawn behind on neighbouring
-        # files, and an enemy pawn ahead on a neighbouring file could attack.
-        # Keep it cheap and conservative.
+
+        # Backward
         if left == 0 and right == 0:
-            pass  # already isolated; skip extra backward penalty
+            pass
         else:
             behind_rank_ok = False
             for nfile in (file - 1, file + 1):
                 if 0 <= nfile < 8:
                     for osq in own_pawns:
-                        if chess.square_file(osq) == nfile:
-                            orank = chess.square_rank(osq)
+                        if (osq & 7) == nfile:
+                            orank = osq >> 3
                             if color == chess.WHITE and orank < rank:
                                 behind_rank_ok = True
                             if color == chess.BLACK and orank > rank:
@@ -149,8 +142,10 @@ def _pawn_structure(
             if not behind_rank_ok:
                 mg += BACKWARD_PAWN_MG // 2
                 eg += BACKWARD_PAWN_EG // 2
-        # Passed pawns.
-        if _is_passed(sq, color, enemy_pawns):
+
+        # Passed pawns via precomputed mask
+        if (enemy_pawns_mask & passer_masks[sq]) == 0:
+            passers.append(sq)
             adv = rank if color == chess.WHITE else 7 - rank
             adv = max(0, min(7, adv))
             mg += PASSED_PAWN_MG[adv]
@@ -158,26 +153,21 @@ def _pawn_structure(
             if board.is_attacked_by(color, sq):
                 mg += PROTECTED_PASSER_MG
                 eg += PROTECTED_PASSER_EG
-    # Silence unused-arg warning shape (kept for future tuning hooks).
-    _ = enemy_file_counts
-    return mg, eg
+    return mg, eg, passers
 
 
 def _rook_terms(
-    board: chess.Board,
     color: chess.Color,
     rook_sqs: list[int],
     own_pawn_files: list[int],
     enemy_pawn_files: list[int],
-    enemy_pawns: set[int],
-    own_pawns: set[int],
+    passers: list[int],
 ) -> tuple[int, int]:
     mg = 0
     eg = 0
-    rook_set = set(rook_sqs)
     for sq in rook_sqs:
-        file = chess.square_file(sq)
-        rank = chess.square_rank(sq)
+        file = sq & 7
+        rank = sq >> 3
         own = own_pawn_files[file] > 0
         enemy = enemy_pawn_files[file] > 0
         if not own and not enemy:
@@ -186,64 +176,42 @@ def _rook_terms(
         elif not own and enemy:
             mg += ROOK_SEMI_OPEN_MG
             eg += ROOK_SEMI_OPEN_EG
-        # Seventh rank (white: rank index 6; black: rank index 1).
         if (color == chess.WHITE and rank == 6) or (color == chess.BLACK and rank == 1):
             mg += ROOK_SEVENTH_MG
             eg += ROOK_SEVENTH_EG
-        # Connected rooks: another rook aligned on rank/file (cheap check).
         for other in rook_sqs:
-            if other == sq:
-                continue
-            if chess.square_rank(other) == rank or chess.square_file(other) == file:
+            if other != sq and ((other >> 3) == rank or (other & 7) == file):
                 mg += ROOK_CONNECTED_MG
                 break
-        # Rook behind passed pawn (own passer on same file).
-        for psq in own_pawns:
-            if chess.square_file(psq) != file:
-                continue
-            if not _is_passed(psq, color, enemy_pawns):
-                continue
-            prank = chess.square_rank(psq)
-            if color == chess.WHITE and rank < prank:
-                mg += ROOK_BEHIND_PASSER_MG
-                eg += ROOK_BEHIND_PASSER_EG
-                break
-            if color == chess.BLACK and rank > prank:
-                mg += ROOK_BEHIND_PASSER_MG
-                eg += ROOK_BEHIND_PASSER_EG
-                break
-    _ = rook_set
+        for psq in passers:
+            if (psq & 7) == file:
+                prank = psq >> 3
+                if color == chess.WHITE and rank < prank:
+                    mg += ROOK_BEHIND_PASSER_MG
+                    eg += ROOK_BEHIND_PASSER_EG
+                    break
+                if color == chess.BLACK and rank > prank:
+                    mg += ROOK_BEHIND_PASSER_MG
+                    eg += ROOK_BEHIND_PASSER_EG
+                    break
     return mg, eg
 
 
-def _mobility(board: chess.Board, color: chess.Color) -> int:
-    total = 0
-    for sq, piece in board.piece_map().items():
-        if piece.color != color:
-            continue
-        if piece.piece_type == chess.KNIGHT:
-            total += MOBILITY_KNIGHT * len(board.attacks(sq))
-        elif piece.piece_type == chess.BISHOP:
-            total += MOBILITY_BISHOP * len(board.attacks(sq))
-        elif piece.piece_type == chess.ROOK:
-            total += MOBILITY_ROOK * len(board.attacks(sq))
-        elif piece.piece_type == chess.QUEEN:
-            total += MOBILITY_QUEEN * len(board.attacks(sq))
-    return total
-
-
-def _king_safety(board: chess.Board, color: chess.Color) -> int:
-    try:
-        king_sq = board.king(color)
-    except ValueError:
-        return 0
+def _king_safety(
+    board: chess.Board,
+    color: chess.Color,
+    king_sq: int | None,
+    own_pawns_mask: int,
+    own_pawn_files: list[int],
+    enemy_queens_mask: int,
+) -> int:
     if king_sq is None:
         return 0
     enemy = not color
     score = 0
-    kfile = chess.square_file(king_sq)
-    krank = chess.square_rank(king_sq)
-    # Pawn shield: expected pawn squares in front of the king.
+    kfile = king_sq & 7
+    krank = king_sq >> 3
+    # Pawn shield
     shield_ranks: list[int] = []
     if color == chess.WHITE:
         if krank <= 1:
@@ -256,46 +224,40 @@ def _king_safety(board: chess.Board, color: chess.Color) -> int:
             if 0 <= f < 8:
                 shielded = False
                 for r in shield_ranks:
-                    psq = chess.square(f, r)
-                    piece = board.piece_at(psq)
-                    if (
-                        piece is not None
-                        and piece.piece_type == chess.PAWN
-                        and piece.color == color
-                    ):
+                    psq = (r << 3) | f
+                    if (own_pawns_mask & (1 << psq)) != 0:
                         shielded = True
                         break
                 if not shielded:
                     score += KING_SHIELD_MISSING
-    # Open files near the king (only when king is on its side of the board).
+    # Open files near the king
     home = krank <= 1 if color == chess.WHITE else krank >= 6
     if home:
         for dfile in (-1, 0, 1):
             f = kfile + dfile
-            if 0 <= f < 8:
-                has_own_pawn = any(
-                    chess.square_file(sq) == f for sq in board.pieces(chess.PAWN, color)
-                )
-                if not has_own_pawn:
-                    score += KING_OPEN_FILE_NEAR // 2
-    # Enemy attacks near the king.
+            if 0 <= f < 8 and own_pawn_files[f] == 0:
+                score += KING_OPEN_FILE_NEAR // 2
+    # Enemy attacks near the king
     attacks = 0
     for dfile in (-1, 0, 1):
         for drank in (-1, 0, 1):
             f = kfile + dfile
             r = krank + drank
-            if 0 <= f < 8 and 0 <= r < 8 and board.is_attacked_by(enemy, chess.square(f, r)):
+            if 0 <= f < 8 and 0 <= r < 8 and board.is_attacked_by(enemy, (r << 3) | f):
                 attacks += 1
     score += KING_ATTACK_UNIT * attacks
-    # Enemy queen proximity (cheap distance term).
-    enemy_queens = list(board.pieces(chess.QUEEN, enemy))
-    if enemy_queens:
-        qdist = min(
-            abs(chess.square_file(q) - kfile) + abs(chess.square_rank(q) - krank)
-            for q in enemy_queens
-        )
-        if qdist <= 3:
-            score += KING_ATTACK_UNIT * (4 - qdist)
+    # Enemy queen proximity
+    if enemy_queens_mask:
+        q_bb = enemy_queens_mask
+        min_qdist = 999
+        while q_bb:
+            q = (q_bb & -q_bb).bit_length() - 1
+            q_bb ^= q_bb & -q_bb
+            d = abs((q & 7) - kfile) + abs((q >> 3) - krank)
+            if d < min_qdist:
+                min_qdist = d
+        if min_qdist <= 3:
+            score += KING_ATTACK_UNIT * (4 - min_qdist)
     return max(score, KING_MAX_SAFETY * 2)
 
 
@@ -313,13 +275,10 @@ def _mop_up(board: chess.Board, white_relative: int) -> int:
     winning_white = white_relative > 0
     loser_king = bk if winning_white else wk
     winner_king = wk if winning_white else bk
-    lfile = chess.square_file(loser_king)
-    lrank = chess.square_rank(loser_king)
+    lfile = loser_king & 7
+    lrank = loser_king >> 3
     edge = min(lfile, 7 - lfile) + min(lrank, 7 - lrank)
-    proximity = abs(chess.square_file(winner_king) - lfile) + abs(
-        chess.square_rank(winner_king) - lrank
-    )
-    # Smaller edge distance (near edge) is good; smaller proximity is good.
+    proximity = abs((winner_king & 7) - lfile) + abs((winner_king >> 3) - lrank)
     bonus = (6 - edge) * MOP_EDGE_WEIGHT + (14 - proximity) * MOP_PROXIMITY_WEIGHT
     return bonus if winning_white else -bonus
 
@@ -330,108 +289,200 @@ def evaluate_white_relative(board: chess.Board) -> int:
     eg = 0
     phase = 0
 
-    piece_map = board.piece_map()
-    white_pawns: set[int] = set()
-    black_pawns: set[int] = set()
-    white_rooks: list[int] = []
-    black_rooks: list[int] = []
-    white_bishops = 0
-    black_bishops = 0
+    # Bitboards directly
+    w_pawns_mask = board.pieces_mask(chess.PAWN, chess.WHITE)
+    b_pawns_mask = board.pieces_mask(chess.PAWN, chess.BLACK)
+    w_knights_mask = board.pieces_mask(chess.KNIGHT, chess.WHITE)
+    b_knights_mask = board.pieces_mask(chess.KNIGHT, chess.BLACK)
+    w_bishops_mask = board.pieces_mask(chess.BISHOP, chess.WHITE)
+    b_bishops_mask = board.pieces_mask(chess.BISHOP, chess.BLACK)
+    w_rooks_mask = board.pieces_mask(chess.ROOK, chess.WHITE)
+    b_rooks_mask = board.pieces_mask(chess.ROOK, chess.BLACK)
+    w_queens_mask = board.pieces_mask(chess.QUEEN, chess.WHITE)
+    b_queens_mask = board.pieces_mask(chess.QUEEN, chess.BLACK)
+    w_king_mask = board.pieces_mask(chess.KING, chess.WHITE)
+    b_king_mask = board.pieces_mask(chess.KING, chess.BLACK)
 
-    for sq, piece in piece_map.items():
-        pt = piece.piece_type
-        color = piece.color
-        sign = 1 if color == chess.WHITE else -1
-        if pt == chess.PAWN:
-            mg += sign * (PAWN_VALUE + PAWN_MG[_pst_index(sq, color)])
-            eg += sign * (PAWN_VALUE + PAWN_EG[_pst_index(sq, color)])
-            if color == chess.WHITE:
-                white_pawns.add(sq)
-            else:
-                black_pawns.add(sq)
-        elif pt == chess.KNIGHT:
-            mg += sign * (KNIGHT_VALUE + KNIGHT_PST[_pst_index(sq, color)])
-            eg += sign * (KNIGHT_VALUE + KNIGHT_PST[_pst_index(sq, color)])
-            phase += PHASE_WEIGHT_KNIGHT
-        elif pt == chess.BISHOP:
-            mg += sign * (BISHOP_VALUE + BISHOP_PST[_pst_index(sq, color)])
-            eg += sign * (BISHOP_VALUE + BISHOP_PST[_pst_index(sq, color)])
-            phase += PHASE_WEIGHT_BISHOP
-            if color == chess.WHITE:
-                white_bishops += 1
-            else:
-                black_bishops += 1
-        elif pt == chess.ROOK:
-            mg += sign * (ROOK_VALUE + ROOK_PST[_pst_index(sq, color)])
-            eg += sign * (ROOK_VALUE + ROOK_PST[_pst_index(sq, color)])
-            phase += PHASE_WEIGHT_ROOK
-            if color == chess.WHITE:
-                white_rooks.append(sq)
-            else:
-                black_rooks.append(sq)
-        elif pt == chess.QUEEN:
-            mg += sign * (QUEEN_VALUE + QUEEN_PST[_pst_index(sq, color)])
-            eg += sign * (QUEEN_VALUE + QUEEN_PST[_pst_index(sq, color)])
-            phase += PHASE_WEIGHT_QUEEN
-        elif pt == chess.KING:
-            mg += sign * KING_MG[_pst_index(sq, color)]
-            eg += sign * KING_EG[_pst_index(sq, color)]
+    # Collections
+    w_pawns: list[int] = []
+    b_pawns: list[int] = []
+    w_rooks: list[int] = []
+    b_rooks: list[int] = []
+    w_pawn_files = [0] * 8
+    b_pawn_files = [0] * 8
+
+    # White pawns
+    bb = w_pawns_mask
+    while bb:
+        sq = (bb & -bb).bit_length() - 1
+        bb ^= bb & -bb
+        w_pawns.append(sq)
+        idx = _WHITE_PST_SQ[sq]
+        mg += PAWN_VALUE + PAWN_MG[idx]
+        eg += PAWN_VALUE + PAWN_EG[idx]
+        w_pawn_files[sq & 7] += 1
+
+    # Black pawns
+    bb = b_pawns_mask
+    while bb:
+        sq = (bb & -bb).bit_length() - 1
+        bb ^= bb & -bb
+        b_pawns.append(sq)
+        idx = sq
+        mg -= PAWN_VALUE + PAWN_MG[idx]
+        eg -= PAWN_VALUE + PAWN_EG[idx]
+        b_pawn_files[sq & 7] += 1
+
+    # White knights
+    w_mob = 0
+    bb = w_knights_mask
+    while bb:
+        sq = (bb & -bb).bit_length() - 1
+        bb ^= bb & -bb
+        idx = _WHITE_PST_SQ[sq]
+        mg += KNIGHT_VALUE + KNIGHT_PST[idx]
+        eg += KNIGHT_VALUE + KNIGHT_PST[idx]
+        phase += PHASE_WEIGHT_KNIGHT
+        w_mob += MOBILITY_KNIGHT * board.attacks_mask(sq).bit_count()
+
+    # Black knights
+    b_mob = 0
+    bb = b_knights_mask
+    while bb:
+        sq = (bb & -bb).bit_length() - 1
+        bb ^= bb & -bb
+        idx = sq
+        mg -= KNIGHT_VALUE + KNIGHT_PST[idx]
+        eg -= KNIGHT_VALUE + KNIGHT_PST[idx]
+        phase += PHASE_WEIGHT_KNIGHT
+        b_mob += MOBILITY_KNIGHT * board.attacks_mask(sq).bit_count()
+
+    # White bishops
+    w_bishops = 0
+    bb = w_bishops_mask
+    while bb:
+        sq = (bb & -bb).bit_length() - 1
+        bb ^= bb & -bb
+        w_bishops += 1
+        idx = _WHITE_PST_SQ[sq]
+        mg += BISHOP_VALUE + BISHOP_PST[idx]
+        eg += BISHOP_VALUE + BISHOP_PST[idx]
+        phase += PHASE_WEIGHT_BISHOP
+        w_mob += MOBILITY_BISHOP * board.attacks_mask(sq).bit_count()
+
+    # Black bishops
+    b_bishops = 0
+    bb = b_bishops_mask
+    while bb:
+        sq = (bb & -bb).bit_length() - 1
+        bb ^= bb & -bb
+        b_bishops += 1
+        idx = sq
+        mg -= BISHOP_VALUE + BISHOP_PST[idx]
+        eg -= BISHOP_VALUE + BISHOP_PST[idx]
+        phase += PHASE_WEIGHT_BISHOP
+        b_mob += MOBILITY_BISHOP * board.attacks_mask(sq).bit_count()
+
+    # White rooks
+    bb = w_rooks_mask
+    while bb:
+        sq = (bb & -bb).bit_length() - 1
+        bb ^= bb & -bb
+        w_rooks.append(sq)
+        idx = _WHITE_PST_SQ[sq]
+        mg += ROOK_VALUE + ROOK_PST[idx]
+        eg += ROOK_VALUE + ROOK_PST[idx]
+        phase += PHASE_WEIGHT_ROOK
+        w_mob += MOBILITY_ROOK * board.attacks_mask(sq).bit_count()
+
+    # Black rooks
+    bb = b_rooks_mask
+    while bb:
+        sq = (bb & -bb).bit_length() - 1
+        bb ^= bb & -bb
+        b_rooks.append(sq)
+        idx = sq
+        mg -= ROOK_VALUE + ROOK_PST[idx]
+        eg -= ROOK_VALUE + ROOK_PST[idx]
+        phase += PHASE_WEIGHT_ROOK
+        b_mob += MOBILITY_ROOK * board.attacks_mask(sq).bit_count()
+
+    # White queens
+    bb = w_queens_mask
+    while bb:
+        sq = (bb & -bb).bit_length() - 1
+        bb ^= bb & -bb
+        idx = _WHITE_PST_SQ[sq]
+        mg += QUEEN_VALUE + QUEEN_PST[idx]
+        eg += QUEEN_VALUE + QUEEN_PST[idx]
+        phase += PHASE_WEIGHT_QUEEN
+        w_mob += MOBILITY_QUEEN * board.attacks_mask(sq).bit_count()
+
+    # Black queens
+    bb = b_queens_mask
+    while bb:
+        sq = (bb & -bb).bit_length() - 1
+        bb ^= bb & -bb
+        idx = sq
+        mg -= QUEEN_VALUE + QUEEN_PST[idx]
+        eg -= QUEEN_VALUE + QUEEN_PST[idx]
+        phase += PHASE_WEIGHT_QUEEN
+        b_mob += MOBILITY_QUEEN * board.attacks_mask(sq).bit_count()
+
+    # Kings
+    if w_king_mask:
+        w_king_sq = (w_king_mask & -w_king_mask).bit_length() - 1
+        idx = _WHITE_PST_SQ[w_king_sq]
+        mg += KING_MG[idx]
+        eg += KING_EG[idx]
+    else:
+        w_king_sq = None
+
+    if b_king_mask:
+        b_king_sq = (b_king_mask & -b_king_mask).bit_length() - 1
+        idx = b_king_sq
+        mg -= KING_MG[idx]
+        eg -= KING_EG[idx]
+    else:
+        b_king_sq = None
 
     phase = max(0, min(MAX_PHASE, phase))
     mg_weight = phase / MAX_PHASE
     eg_weight = 1.0 - mg_weight
 
-    # Bishop pair.
-    if white_bishops >= 2:
+    # Bishop pair
+    if w_bishops >= 2:
         mg += BISHOP_PAIR_MG
         eg += BISHOP_PAIR_EG
-    if black_bishops >= 2:
+    if b_bishops >= 2:
         mg -= BISHOP_PAIR_MG
         eg -= BISHOP_PAIR_EG
 
-    white_pawn_files = _white_pawn_files(board, chess.WHITE)
-    black_pawn_files = _white_pawn_files(board, chess.BLACK)
-
-    wpmg, wpeg = _pawn_structure(
-        board, chess.WHITE, white_pawns, black_pawns, white_pawn_files, black_pawn_files
+    # Pawn structure
+    wpmg, wpeg, w_passers = _pawn_structure(
+        board, chess.WHITE, w_pawns, b_pawns_mask, w_pawn_files
     )
-    bpmg, bpeg = _pawn_structure(
-        board, chess.BLACK, black_pawns, white_pawns, black_pawn_files, white_pawn_files
+    bpmg, bpeg, b_passers = _pawn_structure(
+        board, chess.BLACK, b_pawns, w_pawns_mask, b_pawn_files
     )
     mg += wpmg - bpmg
     eg += wpeg - bpeg
 
-    wrmg, wreg = _rook_terms(
-        board,
-        chess.WHITE,
-        white_rooks,
-        white_pawn_files,
-        black_pawn_files,
-        black_pawns,
-        white_pawns,
-    )
-    brmg, breg = _rook_terms(
-        board,
-        chess.BLACK,
-        black_rooks,
-        black_pawn_files,
-        white_pawn_files,
-        white_pawns,
-        black_pawns,
-    )
+    # Rook terms
+    wrmg, wreg = _rook_terms(chess.WHITE, w_rooks, w_pawn_files, b_pawn_files, w_passers)
+    brmg, breg = _rook_terms(chess.BLACK, b_rooks, b_pawn_files, w_pawn_files, b_passers)
     mg += wrmg - brmg
     eg += wreg - breg
 
-    # Mobility (tapered lightly toward middlegame).
-    mob = _mobility(board, chess.WHITE) - _mobility(board, chess.BLACK)
+    # Mobility
+    mob = w_mob - b_mob
     mg += int(mob * 0.7)
     eg += int(mob * 0.3)
 
-    # King safety fades in the endgame.
-    wks = _king_safety(board, chess.WHITE)
-    bks = _king_safety(board, chess.BLACK)
+    # King safety
+    wks = _king_safety(board, chess.WHITE, w_king_sq, w_pawns_mask, w_pawn_files, b_queens_mask)
+    bks = _king_safety(board, chess.BLACK, b_king_sq, b_pawns_mask, b_pawn_files, w_queens_mask)
     mg += wks - bks
-    # eg gets only 20% of the king-safety term.
     eg += int((wks - bks) * 0.2)
 
     tapered = int(mg * mg_weight + eg * eg_weight)

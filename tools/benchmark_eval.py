@@ -4,11 +4,17 @@ from __future__ import annotations
 
 import argparse
 import random
+import sys
 import time
+from pathlib import Path
 
-import chess
+ROOT = Path(__file__).resolve().parent.parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
-from evaluation import evaluate
+import chess  # noqa: E402
+
+from evaluation import evaluate  # noqa: E402
 
 
 def random_position(rng: random.Random, plies: int) -> chess.Board:
