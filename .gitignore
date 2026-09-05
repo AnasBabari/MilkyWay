@@ -3,8 +3,11 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 submission.zip
+agent.zip
 *.pgn
 training/datasets/
 training/output/
 *.jsonl
 *.npz
+stockfish*
+scratch/

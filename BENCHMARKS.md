@@ -188,3 +188,18 @@ LABEL OFFLINE → FIT COEFFICIENTS → VALIDATE OUT OF SAMPLE → PLAY PAIRED AR
 - Per Section 38 promotion criteria: candidate must convincingly clear >55% over a substantial sample. While M16-huber-01 achieved a positive score (53.0%, +6 game margin), it did not clear the 55% threshold. KS-C (+36.5% eval speed, 57.5% screen) and standardized Huber tuning provide sound foundations, but MW-0.2 remains the standing competition release.
 - Production engine code remains 100% bit-for-bit identical to MW-0.2.
 
+### AI Chessathon platform validation — 2026-09-05
+
+Build: MW-0.2 validated candidate
+
+- Build: PASS
+- Uncompressed package: 71,835 bytes
+- Init: 0.7 s as White / 0.5 s as Black
+- White smoke: PASS, adjudication
+- Black smoke: PASS, adjudication
+- Slowest move: 12.0 s
+- Illegal moves: 0
+- Crashes: 0
+- Flags: 0
+- Overall result: VALID
+
