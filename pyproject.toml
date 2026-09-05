@@ -30,7 +30,7 @@ target-version = "py312"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "N", "UP", "B", "SIM", "RUF"]
-ignore = ["N818"]
+ignore = ["N818", "N803", "N806"]
 
 [tool.mypy]
 strict = true
@@ -47,4 +47,5 @@ files = [
     "harness",
     "tests",
     "tools",
+    "training",
 ]

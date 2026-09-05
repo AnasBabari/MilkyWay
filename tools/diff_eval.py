@@ -12,8 +12,8 @@ import random
 import subprocess
 import sys
 import tempfile
+from collections.abc import Callable
 from pathlib import Path
-from typing import Any, Callable
 
 import chess
 
@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from constants import MW_0_2_EVAL  # noqa: E402
 from evaluation import evaluate as new_evaluate  # noqa: E402
 
 
@@ -110,7 +111,7 @@ def main() -> None:
         fen = random_fen(rng, 90)
         board = chess.Board(fen)
         old: int = old_evaluate(board)
-        new: int = new_evaluate(board)
+        new: int = new_evaluate(board, MW_0_2_EVAL)
         if old != new:
             mismatches += 1
             if mismatches <= 10:

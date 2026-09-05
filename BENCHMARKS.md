@@ -118,3 +118,68 @@ Official Stockfish (local binary, 1 thread, ~1.05M NPS bench) vs MW-0.2
 Reading: MW-0.2 splits with weak-club play and is outgunned by strong-club
 play at rapid TC. Competition TC (120 s + 0.5 s, ~4x thinking time) favors
 deeper search and should read better than this rapid calibration.
+
+### M16 — Offline Handcrafted Evaluation Tuning (2026-09-05, local Windows, uv sync)
+
+**Rule for the phase**: FREEZE SEARCH → BUILD DATASET → EXTRACT EXPLAINABLE FEATURES →
+LABEL OFFLINE → FIT COEFFICIENTS → VALIDATE OUT OF SAMPLE → PLAY PAIRED ARENAS → KEEP OR REJECT.
+
+**Search Freeze Guard**:
+- Non-evaluation modules (`agent.py`, `engine.py`, `engine_types.py`, `move_ordering.py`, `search.py`, `time_manager.py`, `transposition.py`) audited by `tools/verify_search_freeze.py` and `tests/test_search_freeze.py`.
+- Result: **Bit-for-bit identical to `versions/mw_0_2`** (all SHA-256 hashes match).
+- Fixed-depth search parity: 51,879 nodes, 123,116 qnodes, 174,995 total nodes (10,132 NPS) identical between MW-0.2 and parameter-refactored evaluator using `MW_0_2_EVAL`.
+
+**Evaluation Refactoring & Parity Gate**:
+- Evaluation constants codified into immutable `EvalParameters` dataclass.
+- Baseline preserved as `MW_0_2_EVAL`.
+- Differential evaluation gate (`tools/diff_eval.py`) across **10,000 legal random positions**: **0 mismatches (100% exact integer equality)**.
+
+**Feature Extraction & Canonical Representation**:
+- 50 explainable first-stage features matching `TUNABLE_PARAM_NAMES` (material MG/EG, mobility, pawn structure, rank 2..7 passed pawns, rook activity, king safety).
+- All features strictly canonical White-perspective.
+- Verified exact colour symmetry on `board.mirror()` across all 50 features and evaluation scores (`tests/test_feature_extraction.py`).
+- Linear reconstruction fidelity: within ±1..3 cp of integer evaluation on quiet positions.
+
+**Dataset & Provenance**:
+- 25,000 unique legal positions collected across public ECO openings and curated benchmark suite rollouts.
+- Deduplicated by 4-tuple canonical board key (piece placement, turn, castling, en-passant).
+- Distribution: 12.4% opening (phase >= 20), 46.3% middlegame (8 <= phase < 20), 41.2% endgame (phase < 8); average phase 10.1 / 24.
+- Split strictly by `source_game_id` (zero position leakage between splits):
+  - Train: 20,037 positions (80%)
+  - Validation: 2,482 positions (10%)
+  - Held-out Test: 2,481 positions (10%)
+- Labeled with canonical White-perspective centipawns, forced mates flagged and isolated, scores clamped to [-1500, +1500] cp.
+
+**Fitting Experiments**:
+- `M16-ridge-01`: Ridge regression regularized toward `MW_0_2_EVAL`.
+- `M16-huber-01`: Robust Huber regression (delta = 25.0 cp, lambda = 5000.0) via Iteratively Reweighted Least Squares (IRLS).
+
+**Held-out Test Metrics (2,481 positions)**:
+| Metric | MW-0.2 Baseline | M16-huber-01 Tuned | Delta |
+|--------|-----------------|--------------------|-------|
+| MAE | 60.48 cp | **59.41 cp** | **-1.07 cp** |
+| Median AE | 18.37 cp | **15.08 cp** | **-3.29 cp** |
+| RMSE | 180.34 cp | **176.52 cp** | **-3.82 cp** |
+| Sign Accuracy | 99.4% | **99.5%** | **+0.1%** |
+| Pearson r | 0.9833 | **0.9834** | +0.0001 |
+| Pairwise Order Acc | 99.4% | 99.4% | +0.0% |
+| Middlegame MAE | 93.8 cp | **91.4 cp** | **-2.4 cp** |
+
+**King Safety Ablation (Section 32)**:
+- Profiling revealed king-safety attack checks (9 `is_attacked_by` calls per king) consume ~18% of eval runtime.
+- Evaluated KS-A (full attacks) vs KS-B (simplified king safety: pawn shield, open files near king, queen proximity; zero `is_attacked_by` loops):
+  - Standalone eval throughput: 14,065 eval/s $\to$ **20,837 eval/s (+48.1% speedup)**.
+  - Search NPS (depth 4): 10,132 NPS $\to$ **11,913 NPS (+17.6% speedup)**.
+  - Paired arena screen (20 games vs MW-0.2): **+9 =4 -7 (55.0%)**.
+
+**Paired Candidate Arena Results (vs frozen MW-0.2 control, FAST TC 500ms+50ms)**:
+| Candidate | Games | Score | W/D/L | Terminations | Notes |
+|-----------|-------|-------|-------|--------------|-------|
+| M16-huber-01 | 20 | 42.5% | +7 =3 -10 | checkmate 17, threefold 3 | Tuned mobility was too passive (-100% queen, -68% rook); rejected |
+| KS-B ablation | 20 | 55.0% | +9 =4 -7 | checkmate 16, threefold 3, insufficient 1 | Faster search (+17.6% NPS) yields positive screen; valuable finding |
+
+**MW-0.3 Decision**:
+- **REJECT promotion; RETAIN MW-0.2 as competition build.**
+- Per M16 criteria: offline tuned coefficients did not convincingly beat MW-0.2 in game play (42.5%). KS-B (+48% eval speed, 55.0% screen) is a promising finding documented for future search integration, but does not justify replacing the proven 96%-over-MW-0.1 MW-0.2 competition release without a massive (200+ game) confirmation.
+- Working tree remains clean with MW-0.2 as default runtime evaluator.
+

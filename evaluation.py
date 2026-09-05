@@ -19,7 +19,7 @@ from constants import (
     EvalParameters,
 )
 
-# Active parameters; defaults to immutable MW-0.2 baseline.
+# Active parameters: defaults to immutable MW-0.2 baseline.
 ACTIVE_PARAMS: EvalParameters = MW_0_2_EVAL
 
 
@@ -239,14 +239,15 @@ def _king_safety(
             if 0 <= f < 8 and own_pawn_files[f] == 0:
                 score += p.king_open_file_near // 2
     # Enemy attacks near the king
-    attacks = 0
-    for dfile in (-1, 0, 1):
-        for drank in (-1, 0, 1):
-            f = kfile + dfile
-            r = krank + drank
-            if 0 <= f < 8 and 0 <= r < 8 and board.is_attacked_by(enemy, (r << 3) | f):
-                attacks += 1
-    score += p.king_attack_unit * attacks
+    if p.king_safety_variant == "A":
+        attacks = 0
+        for dfile in (-1, 0, 1):
+            for drank in (-1, 0, 1):
+                f = kfile + dfile
+                r = krank + drank
+                if 0 <= f < 8 and 0 <= r < 8 and board.is_attacked_by(enemy, (r << 3) | f):
+                    attacks += 1
+        score += p.king_attack_unit * attacks
     # Enemy queen proximity
     if enemy_queens_mask:
         q_bb = enemy_queens_mask

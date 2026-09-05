@@ -742,6 +742,7 @@ class EvalParameters:
     king_open_file_near: int = KING_OPEN_FILE_NEAR
     king_attack_unit: int = KING_ATTACK_UNIT
     king_max_safety: int = KING_MAX_SAFETY
+    king_safety_variant: str = "A"
 
     # Mop-up
     mop_edge_weight: int = MOP_EDGE_WEIGHT
@@ -863,6 +864,7 @@ class EvalParameters:
             king_open_file_near=iv[48],
             king_attack_unit=iv[49],
             king_max_safety=self.king_max_safety,
+            king_safety_variant=self.king_safety_variant,
             mop_edge_weight=self.mop_edge_weight,
             mop_proximity_weight=self.mop_proximity_weight,
             mop_threshold=self.mop_threshold,
@@ -902,4 +904,23 @@ class EvalParameters:
 
 
 MW_0_2_EVAL: EvalParameters = EvalParameters()
+
+# Candidate M16-huber-01: Tuned offline grouped parameters via robust Huber regression
+M16_HUBER_01: EvalParameters = EvalParameters(
+    bishop_value_mg=329,
+    bishop_value_eg=329,
+    rook_value_mg=499,
+    rook_value_eg=499,
+    mobility_knight=3,
+    mobility_bishop=2,
+    mobility_rook=1,
+    mobility_queen=0,
+    doubled_pawn_mg=-11,
+    rook_semi_open_mg=8,
+    rook_semi_open_eg=5,
+)
+
+# Ablation candidate: KS-B (simplified king safety without 9 is_attacked_by loops)
+MW_0_2_KS_B: EvalParameters = EvalParameters(king_safety_variant="B")
+
 
