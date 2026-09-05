@@ -1,0 +1,1032 @@
+{
+  "promotion_decision": "REJECT_AND_RETAIN_MW02",
+  "gates": {
+    "gate_0_reliability": {
+      "name": "Reliability (zero crashes/flags/illegals across all matches)",
+      "passed": true,
+      "failures": {}
+    },
+    "gate_1_screen": {
+      "name": "200-Game Screen (>=55% target, >=52% conditional)",
+      "score": 0.52,
+      "passed": true,
+      "strong": false
+    },
+    "gate_2_confirmation": {
+      "name": "Untouched 200-Game Holdout Confirmation (>50% required)",
+      "score": 0.5225,
+      "passed": true,
+      "supportive": false,
+      "strong": false
+    },
+    "gate_3_combined": {
+      "name": "Combined 400 Games (target >=55%, paired bootstrap supportive)",
+      "score": 0.52125,
+      "bootstrap_ci": [
+        0.4875,
+        0.555
+      ],
+      "passed": false
+    },
+    "gate_4_policy_ablation": {
+      "name": "Policy ON vs OFF (positive benefit required)",
+      "score": 0.5,
+      "passed": true
+    },
+    "gate_5_tc_scaling": {
+      "name": "Medium & Full TC scaling (no direction reversal)",
+      "medium_score": 0.5125,
+      "full_score": 0.45,
+      "passed": false
+    },
+    "gate_6_rated_regressions": {
+      "name": "Rated regressions preserved (R20 & R25)",
+      "passed": true
+    },
+    "gate_7_package": {
+      "name": "Package verification & extraction smoke",
+      "passed": true
+    }
+  },
+  "screen": {
+    "pairs": 100,
+    "games": 200,
+    "score": 0.52,
+    "record": "+86 =36 -78",
+    "white": {
+      "score": 0.455,
+      "record": "+36 =19 -45"
+    },
+    "black": {
+      "score": 0.585,
+      "record": "+50 =17 -33"
+    },
+    "phases": {
+      "opening": {
+        "pairs": 25,
+        "games": 50,
+        "score": 0.6,
+        "wins": 27,
+        "draws": 6,
+        "losses": 17
+      },
+      "middlegame": {
+        "pairs": 50,
+        "games": 100,
+        "score": 0.465,
+        "wins": 41,
+        "draws": 11,
+        "losses": 48
+      },
+      "endgame": {
+        "pairs": 25,
+        "games": 50,
+        "score": 0.55,
+        "wins": 18,
+        "draws": 19,
+        "losses": 13
+      }
+    },
+    "terminations": {
+      "checkmate": 164,
+      "insufficient_material": 9,
+      "threefold_repetition": 15,
+      "stalemate": 6,
+      "fifty_moves": 6
+    },
+    "bootstrap": {
+      "pairs_count": 100,
+      "games_count": 200,
+      "point_score": 0.52,
+      "score_95_ci": [
+        0.47,
+        0.57
+      ],
+      "point_elo": 13.904842503684808,
+      "elo_95_ci": [
+        -20.871204666028625,
+        48.96256003716192
+      ],
+      "pair_distribution": {
+        "2.0": 12,
+        "1.5": 12,
+        "1.0": 58,
+        "0.5": 8,
+        "0.0": 10
+      },
+      "supportive": false,
+      "strong": false
+    },
+    "failed_terminations": {}
+  },
+  "confirmation": {
+    "pairs": 100,
+    "games": 200,
+    "score": 0.5225,
+    "record": "+90 =29 -81",
+    "white": {
+      "score": 0.44,
+      "record": "+35 =18 -47"
+    },
+    "black": {
+      "score": 0.605,
+      "record": "+55 =11 -34"
+    },
+    "phases": {
+      "opening": {
+        "pairs": 25,
+        "games": 50,
+        "score": 0.52,
+        "wins": 25,
+        "draws": 2,
+        "losses": 23
+      },
+      "middlegame": {
+        "pairs": 50,
+        "games": 100,
+        "score": 0.525,
+        "wins": 46,
+        "draws": 13,
+        "losses": 41
+      },
+      "endgame": {
+        "pairs": 25,
+        "games": 50,
+        "score": 0.52,
+        "wins": 19,
+        "draws": 14,
+        "losses": 17
+      }
+    },
+    "terminations": {
+      "checkmate": 171,
+      "threefold_repetition": 15,
+      "fifty_moves": 7,
+      "insufficient_material": 7
+    },
+    "bootstrap": {
+      "pairs_count": 100,
+      "games_count": 200,
+      "point_score": 0.5225,
+      "score_95_ci": [
+        0.4775,
+        0.57
+      ],
+      "point_elo": 15.645167545330544,
+      "elo_95_ci": [
+        -15.645167545330585,
+        48.96256003716192
+      ],
+      "pair_distribution": {
+        "2.0": 11,
+        "1.5": 10,
+        "1.0": 62,
+        "0.5": 11,
+        "0.0": 6
+      },
+      "supportive": false,
+      "strong": false
+    },
+    "failed_terminations": {}
+  },
+  "combined_400": {
+    "pairs": 200,
+    "games": 400,
+    "score": 0.52125,
+    "record": "+176 =65 -159",
+    "white": {
+      "score": 0.4475,
+      "record": "+71 =37 -92"
+    },
+    "black": {
+      "score": 0.595,
+      "record": "+105 =28 -67"
+    },
+    "phases": {
+      "opening": {
+        "pairs": 50,
+        "games": 100,
+        "score": 0.56,
+        "wins": 52,
+        "draws": 8,
+        "losses": 40
+      },
+      "middlegame": {
+        "pairs": 100,
+        "games": 200,
+        "score": 0.495,
+        "wins": 87,
+        "draws": 24,
+        "losses": 89
+      },
+      "endgame": {
+        "pairs": 50,
+        "games": 100,
+        "score": 0.535,
+        "wins": 37,
+        "draws": 33,
+        "losses": 30
+      }
+    },
+    "terminations": {
+      "checkmate": 335,
+      "insufficient_material": 16,
+      "threefold_repetition": 30,
+      "stalemate": 6,
+      "fifty_moves": 13
+    },
+    "bootstrap": {
+      "pairs_count": 200,
+      "games_count": 400,
+      "point_score": 0.52125,
+      "score_95_ci": [
+        0.4875,
+        0.555
+      ],
+      "point_elo": 14.7749124020539,
+      "elo_95_ci": [
+        -8.687699877294557,
+        38.3731888566979
+      ],
+      "pair_distribution": {
+        "2.0": 23,
+        "1.5": 22,
+        "1.0": 120,
+        "0.5": 19,
+        "0.0": 16
+      },
+      "supportive": false,
+      "strong": false
+    },
+    "failed_terminations": {}
+  },
+  "policy_ablation": {
+    "pairs": 20,
+    "games": 40,
+    "score": 0.5,
+    "record": "+18 =4 -18",
+    "white": {
+      "score": 0.475,
+      "record": "+9 =1 -10"
+    },
+    "black": {
+      "score": 0.525,
+      "record": "+9 =3 -8"
+    },
+    "phases": {
+      "opening": {
+        "pairs": 20,
+        "games": 40,
+        "score": 0.5,
+        "wins": 18,
+        "draws": 4,
+        "losses": 18
+      }
+    },
+    "terminations": {
+      "checkmate": 36,
+      "stalemate": 1,
+      "threefold_repetition": 2,
+      "insufficient_material": 1
+    },
+    "bootstrap": {
+      "pairs_count": 20,
+      "games_count": 40,
+      "point_score": 0.5,
+      "score_95_ci": [
+        0.35,
+        0.65
+      ],
+      "point_elo": -0.0,
+      "elo_95_ci": [
+        -107.53812491703198,
+        107.53812491703204
+      ],
+      "pair_distribution": {
+        "2.0": 4,
+        "1.5": 2,
+        "1.0": 8,
+        "0.5": 2,
+        "0.0": 4
+      },
+      "supportive": false,
+      "strong": false
+    },
+    "failed_terminations": {}
+  },
+  "time_manager_ablation": {
+    "pairs": 20,
+    "games": 40,
+    "score": 0.475,
+    "record": "+16 =6 -18",
+    "white": {
+      "score": 0.425,
+      "record": "+7 =3 -10"
+    },
+    "black": {
+      "score": 0.525,
+      "record": "+9 =3 -8"
+    },
+    "phases": {
+      "opening": {
+        "pairs": 20,
+        "games": 40,
+        "score": 0.475,
+        "wins": 16,
+        "draws": 6,
+        "losses": 18
+      }
+    },
+    "terminations": {
+      "checkmate": 34,
+      "threefold_repetition": 6
+    },
+    "bootstrap": {
+      "pairs_count": 20,
+      "games_count": 40,
+      "point_score": 0.475,
+      "score_95_ci": [
+        0.3625,
+        0.5875
+      ],
+      "point_elo": -17.386277512436106,
+      "elo_95_ci": [
+        -98.06887127959213,
+        61.43356722313199
+      ],
+      "pair_distribution": {
+        "2.0": 2,
+        "1.5": 1,
+        "1.0": 12,
+        "0.5": 3,
+        "0.0": 2
+      },
+      "supportive": false,
+      "strong": false
+    },
+    "failed_terminations": {}
+  },
+  "medium_tc": {
+    "pairs": 20,
+    "games": 40,
+    "score": 0.5125,
+    "record": "+18 =5 -17",
+    "white": {
+      "score": 0.35,
+      "record": "+6 =2 -12"
+    },
+    "black": {
+      "score": 0.675,
+      "record": "+12 =3 -5"
+    },
+    "phases": {
+      "opening": {
+        "pairs": 20,
+        "games": 40,
+        "score": 0.5125,
+        "wins": 18,
+        "draws": 5,
+        "losses": 17
+      }
+    },
+    "terminations": {
+      "checkmate": 35,
+      "threefold_repetition": 5
+    },
+    "bootstrap": {
+      "pairs_count": 20,
+      "games_count": 40,
+      "point_score": 0.5125,
+      "score_95_ci": [
+        0.3875,
+        0.6375
+      ],
+      "point_elo": 8.687699877294483,
+      "elo_95_ci": [
+        -79.53375447769638,
+        98.06887127959205
+      ],
+      "pair_distribution": {
+        "2.0": 3,
+        "1.5": 2,
+        "1.0": 10,
+        "0.5": 3,
+        "0.0": 2
+      },
+      "supportive": false,
+      "strong": false
+    },
+    "failed_terminations": {}
+  },
+  "full_tc": {
+    "pairs": 10,
+    "games": 20,
+    "score": 0.45,
+    "record": "+7 =4 -9",
+    "white": {
+      "score": 0.3,
+      "record": "+2 =2 -6"
+    },
+    "black": {
+      "score": 0.6,
+      "record": "+5 =2 -3"
+    },
+    "phases": {
+      "opening": {
+        "pairs": 10,
+        "games": 20,
+        "score": 0.45,
+        "wins": 7,
+        "draws": 4,
+        "losses": 9
+      }
+    },
+    "terminations": {
+      "checkmate": 16,
+      "threefold_repetition": 4
+    },
+    "bootstrap": {
+      "pairs_count": 10,
+      "games_count": 20,
+      "point_score": 0.45,
+      "score_95_ci": [
+        0.3,
+        0.575
+      ],
+      "point_elo": -34.86007028756008,
+      "elo_95_ci": [
+        -147.19071411783779,
+        52.51156585572754
+      ],
+      "pair_distribution": {
+        "2.0": 0,
+        "1.5": 2,
+        "1.0": 5,
+        "0.5": 2,
+        "0.0": 1
+      },
+      "supportive": false,
+      "strong": false
+    },
+    "failed_terminations": {}
+  },
+  "long_game_stress": {
+    "decisions_tested": 5,
+    "checkpoints": [
+      {
+        "decision": 50,
+        "board_ply": 35,
+        "starting_board_ply": 27,
+        "remaining_clock_s": 100.24,
+        "last_move_used_ms": 4758.1,
+        "tt_entries": 14051,
+        "emergency": false
+      },
+      {
+        "decision": 100,
+        "board_ply": 21,
+        "starting_board_ply": 17,
+        "remaining_clock_s": 110.51,
+        "last_move_used_ms": 3969.7,
+        "tt_entries": 7382,
+        "emergency": false
+      },
+      {
+        "decision": 150,
+        "board_ply": 160,
+        "starting_board_ply": 108,
+        "remaining_clock_s": 42.95,
+        "last_move_used_ms": 4012.9,
+        "tt_entries": 14522,
+        "emergency": false
+      },
+      {
+        "decision": 200,
+        "board_ply": 41,
+        "starting_board_ply": 36,
+        "remaining_clock_s": 110.91,
+        "last_move_used_ms": 268.9,
+        "tt_entries": 9883,
+        "emergency": false
+      },
+      {
+        "decision": 250,
+        "board_ply": 33,
+        "starting_board_ply": 13,
+        "remaining_clock_s": 88.03,
+        "last_move_used_ms": 365.0,
+        "tt_entries": 25953,
+        "emergency": false
+      }
+    ],
+    "games_info": [
+      {
+        "game_index": 1,
+        "starting_ply": 47,
+        "ending_ply": 68,
+        "moves_played": 11,
+        "termination": "CHECKMATE"
+      },
+      {
+        "game_index": 2,
+        "starting_ply": 83,
+        "ending_ply": 92,
+        "moves_played": 5,
+        "termination": "CHECKMATE"
+      },
+      {
+        "game_index": 3,
+        "starting_ply": 10,
+        "ending_ply": 27,
+        "moves_played": 9,
+        "termination": "CHECKMATE"
+      },
+      {
+        "game_index": 4,
+        "starting_ply": 74,
+        "ending_ply": 103,
+        "moves_played": 15,
+        "termination": "CHECKMATE"
+      },
+      {
+        "game_index": 5,
+        "starting_ply": 20,
+        "ending_ply": 31,
+        "moves_played": 6,
+        "termination": "CHECKMATE"
+      },
+      {
+        "game_index": 6,
+        "starting_ply": 27,
+        "ending_ply": 46,
+        "moves_played": 10,
+        "termination": "CHECKMATE"
+      },
+      {
+        "game_index": 7,
+        "starting_ply": 29,
+        "ending_ply": 44,
+        "moves_played": 8,
+        "termination": "CHECKMATE"
+      },
+      {
+        "game_index": 8,
+        "starting_ply": 41,
+        "ending_ply": 58,
+        "moves_played": 9,
+        "termination": "CHECKMATE"
+      },
+      {
+        "game_index": 9,
+        "starting_ply": 77,
+        "ending_ply": 100,
+        "moves_played": 12,
+        "termination": "CHECKMATE"
+      },
+      {
+        "game_index": 10,
+        "starting_ply": 42,
+        "ending_ply": 67,
+        "moves_played": 13,
+        "termination": "CHECKMATE"
+      },
+      {
+        "game_index": 11,
+        "starting_ply": 17,
+        "ending_ply": 46,
+        "moves_played": 15,
+        "termination": "CHECKMATE"
+      },
+      {
+        "game_index": 12,
+        "starting_ply": 39,
+        "ending_ply": 60,
+        "moves_played": 11,
+        "termination": "CHECKMATE"
+      },
+      {
+        "game_index": 13,
+        "starting_ply": 108,
+        "ending_ply": 219,
+        "moves_played": 56,
+        "termination": "FIVEFOLD_REPETITION"
+      },
+      {
+        "game_index": 14,
+        "starting_ply": 31,
+        "ending_ply": 38,
+        "moves_played": 4,
+        "termination": "CHECKMATE"
+      },
+      {
+        "game_index": 15,
+        "starting_ply": 143,
+        "ending_ply": 156,
+        "moves_played": 7,
+        "termination": "CHECKMATE"
+      },
+      {
+        "game_index": 16,
+        "starting_ply": 28,
+        "ending_ply": 39,
+        "moves_played": 6,
+        "termination": "CHECKMATE"
+      },
+      {
+        "game_index": 17,
+        "starting_ply": 36,
+        "ending_ply": 41,
+        "moves_played": 3,
+        "termination": "CHECKMATE"
+      },
+      {
+        "game_index": 18,
+        "starting_ply": 31,
+        "ending_ply": 58,
+        "moves_played": 14,
+        "termination": "CHECKMATE"
+      },
+      {
+        "game_index": 19,
+        "starting_ply": 11,
+        "ending_ply": 16,
+        "moves_played": 3,
+        "termination": "CHECKMATE"
+      },
+      {
+        "game_index": 20,
+        "starting_ply": 38,
+        "ending_ply": 83,
+        "moves_played": 23,
+        "termination": "CHECKMATE"
+      },
+      {
+        "game_index": 21,
+        "starting_ply": 13,
+        "ending_ply": 33,
+        "moves_played": 10,
+        "termination": "in_progress"
+      }
+    ],
+    "zero_flags": true,
+    "zero_crashes": true,
+    "zero_illegals": true,
+    "asymptotic_equilibrium_stable": true
+  },
+  "rated_regressions": {
+    "tests_run": 4,
+    "was_successful": true,
+    "failures_count": 0,
+    "errors_count": 0
+  },
+  "package_audit": {
+    "deterministic_packaging": true,
+    "build_sha1": "af55cb1777778141b0b1de26bb8c8c08445a5c59280c01fcdb152be3366de063",
+    "build_sha2": "af55cb1777778141b0b1de26bb8c8c08445a5c59280c01fcdb152be3366de063",
+    "uncompressed_bytes": 5353731,
+    "compressed_bytes": 4875602,
+    "under_50mb_limit": true,
+    "payload_files_count": 11,
+    "payload_mismatches": [],
+    "extraction_smoke_games": [
+      {
+        "game": "1",
+        "result": "white",
+        "term": "checkmate"
+      },
+      {
+        "game": "2",
+        "result": "black",
+        "term": "checkmate"
+      }
+    ],
+    "smoke_passed": true
+  },
+  "bank_audit": {
+    "total_positions": 200,
+    "categories": {
+      "middlegame": 100,
+      "endgame": 50,
+      "opening": 50
+    },
+    "fullmove_number": {
+      "min": 3,
+      "max": 77,
+      "median": 21,
+      "mean": 22.985,
+      "p10": 8,
+      "p90": 42
+    },
+    "halfmove_clock": {
+      "min": 0,
+      "max": 88,
+      "median": 1,
+      "mean": 5.615,
+      "p10": 0,
+      "p90": 13
+    },
+    "starting_ply": {
+      "min": 4,
+      "max": 152,
+      "median": 41,
+      "mean": 44.5,
+      "p10": 15,
+      "p90": 83
+    },
+    "max_starting_ply_vs_cap": {
+      "max_ply": 152,
+      "ply_cap": 600,
+      "min_remaining_plies": 448,
+      "pathological_near_cap_present": false
+    }
+  },
+  "manifest": {
+    "candidate": "MilkyWay RC1 (commit e252106)",
+    "freeze_commit": "e252106c3b4dc6d60b72e822673641c894be9d49",
+    "split_seed": 20260905,
+    "bank_sha256": "505bdd4860bab9fc20c4b43ae38bafc1693e5d07ad758dacbd56d6ae0ec1fac1",
+    "screen_fen_ids": [
+      "bank_063",
+      "bank_008",
+      "bank_134",
+      "bank_195",
+      "bank_021",
+      "bank_113",
+      "bank_050",
+      "bank_139",
+      "bank_147",
+      "bank_092",
+      "bank_084",
+      "bank_125",
+      "bank_179",
+      "bank_064",
+      "bank_109",
+      "bank_160",
+      "bank_031",
+      "bank_096",
+      "bank_052",
+      "bank_142",
+      "bank_005",
+      "bank_114",
+      "bank_123",
+      "bank_032",
+      "bank_172",
+      "bank_047",
+      "bank_095",
+      "bank_194",
+      "bank_001",
+      "bank_094",
+      "bank_020",
+      "bank_065",
+      "bank_192",
+      "bank_049",
+      "bank_135",
+      "bank_056",
+      "bank_151",
+      "bank_036",
+      "bank_156",
+      "bank_108",
+      "bank_078",
+      "bank_080",
+      "bank_097",
+      "bank_089",
+      "bank_087",
+      "bank_068",
+      "bank_118",
+      "bank_177",
+      "bank_061",
+      "bank_037",
+      "bank_168",
+      "bank_103",
+      "bank_055",
+      "bank_038",
+      "bank_140",
+      "bank_112",
+      "bank_075",
+      "bank_174",
+      "bank_004",
+      "bank_115",
+      "bank_116",
+      "bank_149",
+      "bank_024",
+      "bank_157",
+      "bank_034",
+      "bank_035",
+      "bank_026",
+      "bank_191",
+      "bank_197",
+      "bank_146",
+      "bank_171",
+      "bank_042",
+      "bank_154",
+      "bank_148",
+      "bank_105",
+      "bank_018",
+      "bank_013",
+      "bank_162",
+      "bank_180",
+      "bank_069",
+      "bank_088",
+      "bank_163",
+      "bank_182",
+      "bank_058",
+      "bank_199",
+      "bank_039",
+      "bank_093",
+      "bank_138",
+      "bank_101",
+      "bank_110",
+      "bank_077",
+      "bank_188",
+      "bank_185",
+      "bank_126",
+      "bank_155",
+      "bank_122",
+      "bank_086",
+      "bank_181",
+      "bank_170",
+      "bank_090"
+    ],
+    "confirmation_fen_ids": [
+      "bank_165",
+      "bank_107",
+      "bank_189",
+      "bank_166",
+      "bank_079",
+      "bank_067",
+      "bank_187",
+      "bank_003",
+      "bank_161",
+      "bank_164",
+      "bank_007",
+      "bank_030",
+      "bank_057",
+      "bank_074",
+      "bank_006",
+      "bank_062",
+      "bank_019",
+      "bank_124",
+      "bank_076",
+      "bank_130",
+      "bank_196",
+      "bank_183",
+      "bank_016",
+      "bank_066",
+      "bank_150",
+      "bank_173",
+      "bank_040",
+      "bank_169",
+      "bank_073",
+      "bank_175",
+      "bank_053",
+      "bank_083",
+      "bank_143",
+      "bank_176",
+      "bank_141",
+      "bank_051",
+      "bank_190",
+      "bank_133",
+      "bank_099",
+      "bank_009",
+      "bank_028",
+      "bank_010",
+      "bank_098",
+      "bank_158",
+      "bank_120",
+      "bank_111",
+      "bank_119",
+      "bank_045",
+      "bank_121",
+      "bank_072",
+      "bank_127",
+      "bank_132",
+      "bank_184",
+      "bank_129",
+      "bank_070",
+      "bank_033",
+      "bank_048",
+      "bank_012",
+      "bank_100",
+      "bank_178",
+      "bank_082",
+      "bank_081",
+      "bank_186",
+      "bank_102",
+      "bank_060",
+      "bank_017",
+      "bank_025",
+      "bank_128",
+      "bank_054",
+      "bank_136",
+      "bank_106",
+      "bank_071",
+      "bank_029",
+      "bank_137",
+      "bank_144",
+      "bank_085",
+      "bank_193",
+      "bank_043",
+      "bank_198",
+      "bank_044",
+      "bank_145",
+      "bank_117",
+      "bank_059",
+      "bank_011",
+      "bank_153",
+      "bank_023",
+      "bank_002",
+      "bank_046",
+      "bank_131",
+      "bank_104",
+      "bank_167",
+      "bank_152",
+      "bank_027",
+      "bank_159",
+      "bank_015",
+      "bank_091",
+      "bank_041",
+      "bank_014",
+      "bank_022",
+      "bank_200"
+    ],
+    "runtime_artifacts": {
+      "agent.py": {
+        "sha256": "019f0d62991cbbdac35715ee7da8ce0395d098163437550acb2fa97d22e739b7",
+        "size_bytes": 1111
+      },
+      "constants.py": {
+        "sha256": "1feb0bc0b6d4cd1f9b44cdcad2e4d9107b34f527ff9acd0466025f614b36cc68",
+        "size_bytes": 18739
+      },
+      "engine.py": {
+        "sha256": "89486acfc84ba9e4fb17023004c006a9c0ddd68a14b2016ab0130d83b7732ba5",
+        "size_bytes": 6445
+      },
+      "engine_types.py": {
+        "sha256": "16cf6db9903be9f38da6a880927a1779457fe284499b1e4fdd4fdf775c795ae5",
+        "size_bytes": 934
+      },
+      "evaluation.py": {
+        "sha256": "2bae45d3e31d9a714fd8783fece9bb9cda00deb1497185fe1f2b51b3ed24f88e",
+        "size_bytes": 19324
+      },
+      "move_ordering.py": {
+        "sha256": "5d0bc60763bfdfc8a0075b09395a9b761af7b990ab3f9d681ea60be18943b487",
+        "size_bytes": 5507
+      },
+      "root_policy.py": {
+        "sha256": "901595954d200955079eeb10c035713b8ffec173d805ab22832243d4289b740a",
+        "size_bytes": 7340
+      },
+      "search.py": {
+        "sha256": "0251e33a8574ec738f016a41803818aa801df86990341a8c15d18dceee0c8406",
+        "size_bytes": 19637
+      },
+      "time_manager.py": {
+        "sha256": "fd6dcf7db882ba53295529332815c628bbb26a813a7930eb38182a23f27586ea",
+        "size_bytes": 3340
+      },
+      "transposition.py": {
+        "sha256": "49d956a7f374475488aa75e78873b009dce69c2756a314b25c367fa99bc372f2",
+        "size_bytes": 2525
+      },
+      "weights/milkyway_policy.onnx": {
+        "sha256": "4d93818689914495e41c1241adab1529509beacabfc2e653ff629a9a2f41e9aa",
+        "size_bytes": 5268829
+      }
+    },
+    "package_artifacts": {
+      "agent.zip": {
+        "sha256": "1df559181e6fb59cba708103e4e60995bed7a5e1589feac63a3b5731b61996b9",
+        "size_bytes": 4875599
+      },
+      "submission.zip": {
+        "sha256": "af55cb1777778141b0b1de26bb8c8c08445a5c59280c01fcdb152be3366de063",
+        "size_bytes": 4875602
+      }
+    },
+    "environment_and_harness": {
+      "harness/referee.py": "122ff19324392714add2321149f70cd13768e612e588b95c56216f4cdef2522d",
+      "harness/rules.py": "5cea675db20d0e6a39bca93027fea912dfc0c97da26bca337c888ca6a487e2a1",
+      "tools/test_bank.py": "505bdd4860bab9fc20c4b43ae38bafc1693e5d07ad758dacbd56d6ae0ec1fac1",
+      "upstream_harness_commit": "91f70e54be07e1bf56311962044a08b822c3af50",
+      "python_version": "3.14.5",
+      "python_chess_version": "1.11.2",
+      "onnxruntime_version": "1.29.0"
+    },
+    "ablation_switches": {
+      "MILKYWAY_ROOT_POLICY": {
+        "present_in_e252106": true,
+        "location": "root_policy.py:148",
+        "values": [
+          "1",
+          "0"
+        ]
+      },
+      "MILKYWAY_TIME_MANAGER": {
+        "present_in_e252106": false,
+        "status": "Separate variant directory required (RC1-TMA vs RC1-TMB)"
+      }
+    }
+  }
+}

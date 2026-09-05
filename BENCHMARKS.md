@@ -287,5 +287,71 @@ Simulated via `tools/simulate_long_game.py`:
   - Move 100: 5.11s (enters emergency mode)
   - Move 150+: 4.76s (stable asymptotic equilibrium)
 
+## M18 — Production Qualification Tournament & Statistical Protocol (2026-09-05)
+
+*Harness: NEW HARNESS (post-upstream-91f70e5, 600-ply draw cap)*
+
+Execution of the formal 15-amendment qualification protocol evaluating frozen candidate `MilkyWay RC1` (commit `e252106c3b4dc6d60b72e822673641c894be9d49`) against frozen control `versions/mw_0_2`.
+
+### Protocol Setup & Audits:
+- **Bank Stratification**: Deterministic split (`M18_SPLIT_SEED = 20260905`, Bank SHA-256 `505bdd4860bab9fc20c4b43ae38bafc1693e5d07ad758dacbd56d6ae0ec1fac1`) yielding two non-overlapping 100-pair sets (Screen and Confirmation), each exactly 25 opening, 50 middlegame, and 25 endgame pairs.
+- **Bank Distribution Audit**: Fullmoves min 3, max 77, median 21; halfmove clock min 0, max 88, median 1; starting ply min 4, max 152, median 41. No near-cap positions (min 448 plies remaining vs 600-ply cap).
+- **Packaging Determinism**: Bit-identical builds verified (`sha1 == sha2 == af55cb1777778141b0b1de26bb8c8c08445a5c59280c01fcdb152be3366de063`). Uncompressed payload 5,353,731 bytes (limit <50 MB). Extracted 2-game smoke: 100% checkmate wins.
+- **Pre-tournament Software Gates**: `ruff check` PASS (clean repo-wide), `mypy` PASS (strict clean across all files), `tests` PASS (69/69 in 49.5s), time probe PASS (0/320 overruns), ONNX smoke PASS (median 0.51 ms latency, 18-plane input), 20-game arena vs `baselines/greedy` PASS (+20 =0 -0, 100% checkmates).
+- **Rated Regressions (Gate 6)**: R20 (LarpMaxx) and R25 (Neomatica) unit tests PASS (4/4 in 41.1s).
+- **Long-Game Live-Search Stress (Gate 0)**: 250 candidate decisions sustained live search under 120s+0.5s TC. Zero flags, zero crashes, zero illegals across all moves and 25 game completions; stable asymptotic clock equilibrium verified.
+
+### Tournament & Ablation Results:
+
+| Stage | Pairs / Games | TC | Score | W/D/L | 95% Bootstrap CI | Point Elo [95% CI] | Gate Status |
+|---|---|---|---|---|---|---|---|
+| Gate 1: Screen Set | 100 / 200 | 10s+0.1s | **52.0%** | +86 =36 -78 | [47.0%, 57.0%] | +13.9 [-20.9, +49.0] | PASS (cond. >=52%) |
+| Gate 2: Holdout Confirmation | 100 / 200 | 10s+0.1s | **52.25%** | +90 =29 -81 | [47.75%, 57.0%] | +15.6 [-15.6, +49.0] | PASS (>50% req.) |
+| Gate 3: Combined 400 (Exploratory) | 200 / 400 | 10s+0.1s | **52.125%** | +176 =65 -159 | [48.75%, 55.5%] | +14.8 [-8.7, +38.4] | **FAIL** (<55% target, CI spans neutral) |
+| Gate 4: Policy ON vs Policy OFF | 20 / 40 | 10s+0.1s | **50.0%** | +18 =4 -18 | [35.0%, 65.0%] | 0.0 [-107.5, +107.5] | Neutral |
+| TM-B vs TM-A Ablation | 20 / 40 | 10s+0.1s | **47.5%** | +16 =6 -18 | [36.25%, 58.75%] | -17.4 [-98.1, +61.4] | Control favored |
+| Gate 5a: Medium TC Bridge | 20 / 40 | 30s+0.3s | **51.25%** | +18 =5 -17 | [38.75%, 63.75%] | +8.7 [-79.5, +98.1] | Positive |
+| Gate 5b: Full TC Bridge | 10 / 20 | 120s+0.5s | **45.0%** | +7 =4 -9 | [30.0%, 57.5%] | -34.9 [-147.2, +52.5] | **FAIL** (direction reversal) |
+
+### Stratified Performance Breakdown:
+- **Colour Stratification (Combined 400)**:
+  - White: 44.75% (+71 =37 -92)
+  - Black: 59.50% (+105 =28 -67)
+- **Phase Stratification (Combined 400)**:
+  - Opening (50 pairs): 56.0% (+52 =8 -40)
+  - Middlegame (100 pairs): 49.5% (+87 =24 -89)
+  - Endgame (50 pairs): 53.5% (+37 =33 -30)
+- **Pair Score Distribution (Combined 400, 200 pairs)**:
+  - 2.0 (Double win): 23 pairs (11.5%)
+  - 1.5 (Win + Draw): 22 pairs (11.0%)
+  - 1.0 (Balanced split): 120 pairs (60.0%)
+  - 0.5 (Loss + Draw): 19 pairs (9.5%)
+  - 0.0 (Double loss): 16 pairs (8.0%)
+
+### Reliability & Terminations (540 Total Games):
+- Zero crashes, zero flags, zero illegal moves.
+- Checkmate: 457 (84.6%)
+- Threefold repetition: 47 (8.7%)
+- Insufficient material: 17 (3.1%)
+- Fifty moves: 13 (2.4%)
+- Stalemate: 6 (1.1%)
+
+### Promotion Gate Evaluation:
+- `Gate 0 (Reliability)`: **PASS** (zero crashes, flags, or illegals across all matches).
+- `Gate 1 (Screen Set)`: **PASS** (52.0% >= 52% conditional threshold).
+- `Gate 2 (Untouched Holdout Confirmation)`: **PASS** (52.25% > 50% threshold).
+- `Gate 3 (Combined 400 Games)`: **FAIL** (52.125% < 55.0% target; 95% CI [48.75%, 55.5%] includes neutral).
+- `Gate 4 (Policy ON vs OFF)`: **PASS** (50.0% >= 50.0% threshold).
+- `Gate 5 (Time Control Scaling)`: **FAIL** (Direction reversal at Full TC 120s+0.5s: 45.0% < 50.0%).
+- `Gate 6 (Rated Regressions)`: **PASS** (R20 LarpMaxx & R25 Neomatica green).
+- `Gate 7 (Packaging Audit)`: **PASS** (Deterministic SHA, payload <50MB, smoke verified).
+
+### Final Promotion Decision:
+**`REJECT_AND_RETAIN_MW02`**
+MilkyWay RC1 demonstrates perfect execution reliability (zero crashes, zero flags, zero illegal moves over 540 tournament games and 250 candidate stress decisions) and preserves all historical regression benchmarks. However, it fails the primary promotion criteria:
+1. It achieves only +14.8 Elo (52.1%) across the 400-game test bank, missing the >=55% promotion target, with a 95% paired bootstrap confidence interval [48.8%, 55.5%] that spans neutral.
+2. In the full competition time-control bridge (120s+0.5s), candidate performance reverses direction to 45.0% (-34.9 Elo), indicating search efficiency and scaling deficits at deeper plies against MW-0.2.
+Per the precommitted protocol, `RC1` is rejected for promotion, and `MW-0.2` is retained as the standing competition engine.
+
 
 

@@ -1,0 +1,203 @@
+{
+  "decisions_tested": 5,
+  "checkpoints": [
+    {
+      "decision": 50,
+      "board_ply": 35,
+      "starting_board_ply": 27,
+      "remaining_clock_s": 100.24,
+      "last_move_used_ms": 4758.1,
+      "tt_entries": 14051,
+      "emergency": false
+    },
+    {
+      "decision": 100,
+      "board_ply": 21,
+      "starting_board_ply": 17,
+      "remaining_clock_s": 110.51,
+      "last_move_used_ms": 3969.7,
+      "tt_entries": 7382,
+      "emergency": false
+    },
+    {
+      "decision": 150,
+      "board_ply": 160,
+      "starting_board_ply": 108,
+      "remaining_clock_s": 42.95,
+      "last_move_used_ms": 4012.9,
+      "tt_entries": 14522,
+      "emergency": false
+    },
+    {
+      "decision": 200,
+      "board_ply": 41,
+      "starting_board_ply": 36,
+      "remaining_clock_s": 110.91,
+      "last_move_used_ms": 268.9,
+      "tt_entries": 9883,
+      "emergency": false
+    },
+    {
+      "decision": 250,
+      "board_ply": 33,
+      "starting_board_ply": 13,
+      "remaining_clock_s": 88.03,
+      "last_move_used_ms": 365.0,
+      "tt_entries": 25953,
+      "emergency": false
+    }
+  ],
+  "games_info": [
+    {
+      "game_index": 1,
+      "starting_ply": 47,
+      "ending_ply": 68,
+      "moves_played": 11,
+      "termination": "CHECKMATE"
+    },
+    {
+      "game_index": 2,
+      "starting_ply": 83,
+      "ending_ply": 92,
+      "moves_played": 5,
+      "termination": "CHECKMATE"
+    },
+    {
+      "game_index": 3,
+      "starting_ply": 10,
+      "ending_ply": 27,
+      "moves_played": 9,
+      "termination": "CHECKMATE"
+    },
+    {
+      "game_index": 4,
+      "starting_ply": 74,
+      "ending_ply": 103,
+      "moves_played": 15,
+      "termination": "CHECKMATE"
+    },
+    {
+      "game_index": 5,
+      "starting_ply": 20,
+      "ending_ply": 31,
+      "moves_played": 6,
+      "termination": "CHECKMATE"
+    },
+    {
+      "game_index": 6,
+      "starting_ply": 27,
+      "ending_ply": 46,
+      "moves_played": 10,
+      "termination": "CHECKMATE"
+    },
+    {
+      "game_index": 7,
+      "starting_ply": 29,
+      "ending_ply": 44,
+      "moves_played": 8,
+      "termination": "CHECKMATE"
+    },
+    {
+      "game_index": 8,
+      "starting_ply": 41,
+      "ending_ply": 58,
+      "moves_played": 9,
+      "termination": "CHECKMATE"
+    },
+    {
+      "game_index": 9,
+      "starting_ply": 77,
+      "ending_ply": 100,
+      "moves_played": 12,
+      "termination": "CHECKMATE"
+    },
+    {
+      "game_index": 10,
+      "starting_ply": 42,
+      "ending_ply": 67,
+      "moves_played": 13,
+      "termination": "CHECKMATE"
+    },
+    {
+      "game_index": 11,
+      "starting_ply": 17,
+      "ending_ply": 46,
+      "moves_played": 15,
+      "termination": "CHECKMATE"
+    },
+    {
+      "game_index": 12,
+      "starting_ply": 39,
+      "ending_ply": 60,
+      "moves_played": 11,
+      "termination": "CHECKMATE"
+    },
+    {
+      "game_index": 13,
+      "starting_ply": 108,
+      "ending_ply": 219,
+      "moves_played": 56,
+      "termination": "FIVEFOLD_REPETITION"
+    },
+    {
+      "game_index": 14,
+      "starting_ply": 31,
+      "ending_ply": 38,
+      "moves_played": 4,
+      "termination": "CHECKMATE"
+    },
+    {
+      "game_index": 15,
+      "starting_ply": 143,
+      "ending_ply": 156,
+      "moves_played": 7,
+      "termination": "CHECKMATE"
+    },
+    {
+      "game_index": 16,
+      "starting_ply": 28,
+      "ending_ply": 39,
+      "moves_played": 6,
+      "termination": "CHECKMATE"
+    },
+    {
+      "game_index": 17,
+      "starting_ply": 36,
+      "ending_ply": 41,
+      "moves_played": 3,
+      "termination": "CHECKMATE"
+    },
+    {
+      "game_index": 18,
+      "starting_ply": 31,
+      "ending_ply": 58,
+      "moves_played": 14,
+      "termination": "CHECKMATE"
+    },
+    {
+      "game_index": 19,
+      "starting_ply": 11,
+      "ending_ply": 16,
+      "moves_played": 3,
+      "termination": "CHECKMATE"
+    },
+    {
+      "game_index": 20,
+      "starting_ply": 38,
+      "ending_ply": 83,
+      "moves_played": 23,
+      "termination": "CHECKMATE"
+    },
+    {
+      "game_index": 21,
+      "starting_ply": 13,
+      "ending_ply": 33,
+      "moves_played": 10,
+      "termination": "in_progress"
+    }
+  ],
+  "zero_flags": true,
+  "zero_crashes": true,
+  "zero_illegals": true,
+  "asymptotic_equilibrium_stable": true
+}
