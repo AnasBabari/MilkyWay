@@ -5,24 +5,26 @@ Competition: 120s + 0.5s, 1 CPU core, 2 GB RAM, 90s init, 50 MB zip.
 Submission API: `get_move(fen, time_left_ms) -> uci`.
 
 - [x] M0 — Baseline (unmodified starter, random mover)
-- [ ] M1 — Module architecture (`agent.py` thin + root engine modules)
-- [ ] M2 — Handcrafted tapered evaluation (material, PST, pawn, rook, mobility, king safety, mop-up)
-- [ ] M3 — Alpha-beta negamax (mate-distance scores, push/pop integrity)
-- [ ] M4 — Iterative deepening (keep last completed iteration)
-- [ ] M5 — Robust time manager (soft/hard deadlines, emergency mode)
-- [ ] M6 — Transposition table (EXACT/LOWER/UPPER, generations, cross-move persistence)
-- [ ] M7 — Move ordering (TT move, promotions, MVV-LVA captures, killers, history)
-- [ ] M8 — Quiescence search (stand-pat, captures/promotions, evasions, qply cap)
-- [ ] M9 — Killers + history heuristic
-- [ ] M10 — Principal Variation Search
-- [ ] M11 — Aspiration windows
-- [ ] M12 — Late Move Reductions
-- [ ] M13 — Null-move pruning (conservative, zugzwang-aware)
-- [ ] M14 — Futility / reverse futility / check extensions (conservative)
-- [ ] M15 — Profiling / Numba optimisation (only if measured end-to-end win)
+- [x] M1 — Module architecture (`agent.py` thin + root engine modules)
+- [x] M2 — Handcrafted tapered evaluation (material, PST, pawn, rook, mobility, king safety, mop-up)
+- [x] M3 — Alpha-beta negamax (mate-distance scores, push/pop integrity)
+- [x] M4 — Iterative deepening (keep last completed iteration)
+- [x] M5 — Robust time manager (soft/hard deadlines, emergency mode)
+- [x] M6 — Transposition table (EXACT/LOWER/UPPER, generations, cross-move persistence)
+- [x] M7 — Move ordering (TT move, promotions, MVV-LVA captures, killers, history)
+- [x] M8 — Quiescence search (stand-pat, captures/promotions, evasions, qply cap)
+- [x] M9 — Killers + history heuristic
+- [x] M10 — Principal Variation Search
+- [x] M11 — Aspiration windows
+- [x] M12 — Late Move Reductions
+- [x] M13 — Null-move pruning (conservative, zugzwang-aware)
+- [x] M14 — Futility / reverse futility / check extensions (conservative)
+- [ ] M15 — Profiling / Numba optimisation (only if measured end-to-end win; eval 5.2k/s baseline recorded)
 - [ ] M16 — Classical evaluation tuning (offline engine-labelled regression, ship coefficients only)
 - [ ] M17 — Optional learned evaluation / policy (only if stronger than M16 in arena)
-- [ ] M18 — Production hardening (fuzzing, reliability gates, packaging)
+- [x] M18 (partial) — Production hardening: 32 unit tests, 200-position fuzz clean, gate green, zip 57 KB verified
+
+Next: M15 profiling/Numba decision, then M16 eval tuning, then larger arenas (100+ games MW-0.1 vs MW-0.2 for every later change).
 
 ## Order of work
 

@@ -34,4 +34,17 @@ ignore = ["N818"]
 
 [tool.mypy]
 strict = true
-files = ["agent.py", "harness"]
+files = [
+    "agent.py",
+    "constants.py",
+    "engine.py",
+    "engine_types.py",
+    "evaluation.py",
+    "move_ordering.py",
+    "search.py",
+    "time_manager.py",
+    "transposition.py",
+    "harness",
+    "tests",
+    "tools",
+]

@@ -81,3 +81,48 @@ happens on the platform, and the validation log on your dashboard is the authori
 
 [aichessathon.com/docs](https://aichessathon.com/docs) is canonical and changes. Read it before
 you upload.
+
+## MilkyWay (our agent)
+
+Classical competition engine, no network. `agent.py` is a thin wrapper that
+validates the FEN, calls the persistent `MilkyWayEngine`, and re-validates the
+returned UCI so an engine bug can never surface as an illegal move.
+
+```
+agent.py            competition entrypoint (get_move)
+engine.py           persistent game state, fallback move, repetition avoidance
+search.py           iterative deepening + PVS alpha-beta + quiescence + pruning
+evaluation.py       tapered handcrafted eval (centipawns, side-to-move relative)
+move_ordering.py    TT move, promotions, MVV-LVA, killers, history, checks
+transposition.py    bounded TT with generations (EXACT/LOWER/UPPER)
+time_manager.py     soft/hard deadlines + emergency mode (time.monotonic)
+constants.py        scores, PSTs, tunable eval coefficients
+engine_types.py     TTEntry, SearchStats, SearchTimeout
+tests/              32 unit tests (contract, eval, search, tactics, time, TT)
+tools/              eval/search benchmarks, fuzzing, arena matrix
+```
+
+Search details: negamax with mate-distance scores (`MATE - ply`), TT cutoffs
+with mate adjustment, null-move pruning (not in check, non-pawn material,
+depth >= 3), LMR on late quiet moves with re-search, futility/reverse-futility
+at shallow depths, limited check extensions, aspiration windows from depth 4,
+delta pruning in quiescence, repetition/fifty-move/insufficient-material draws.
+TT, killers, history and game history persist across moves in a game.
+
+Time control: 120 s + 0.5 s. Soft deadline stops new iterations, hard deadline
+aborts search; emergency mode (<6 s, critically <1.2 s) caps depth and
+quiescence width. A mating/capturing fallback is chosen before search starts.
+
+Local testing:
+
+```
+uv run python -m unittest discover -s tests
+uv run python -m tools.fuzz_positions --positions 500 --time-ms 200
+uv run python -m tools.benchmark_eval --positions 2000
+uv run python -m harness.arena --opponent baselines/numba --games 20
+uv run python -m harness.package  # submission.zip, agent.py at root
+```
+
+Constraints honoured: only `chess` (+ stdlib) at runtime, single thread, no
+network, no native binaries, deterministic move selection, readable source.
+Milestones and results live in `IMPLEMENTATION_PLAN.md` / `BENCHMARKS.md`.

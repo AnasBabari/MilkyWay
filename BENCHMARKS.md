@@ -22,4 +22,22 @@ No crashes / illegal moves / flags in M0 baseline runs.
 
 ## Milestone results (append below)
 
-<!-- New entries: MW-x.y vs opponent, games, TC, W/D/L, score, change description -->
+### MW-0.1 — first competition engine (2026-09-05, local Windows, uv sync)
+
+Classical engine, no network. Tapered eval (material, PST, pawn structure,
+bishop pair, rooks, mobility, king safety, mop-up) + ID + PVS alpha-beta +
+TT + MVV-LVA/killer/history ordering + quiescence + aspiration + LMR +
+null-move + futility/reverse-futility + check extensions. Eval ~5.2k/s
+(`tools/benchmark_eval.py`, 2000 positions). Fuzz 200/200 clean @200ms.
+Unit tests 32/32. ruff + mypy strict clean (30 files). Zip 57 KB unzipped.
+
+| Date | Matchup | Games | TC | Score | W/D/L | Terminations | Notes |
+|------|---------|-------|----|-------|-------|--------------|-------|
+| 2026-09-05 | MW-0.1 vs baselines/random | 2 | 5s+0.1s | 100% | +2 =0 -0 | checkmate 2 | gate smoke |
+| 2026-09-05 | MW-0.1 vs baselines/greedy | 6 | 10s+0.1s | 100% | +6 =0 -0 | checkmate 6 | |
+| 2026-09-05 | MW-0.1 vs baselines/greedy | 20 | 10s+0.1s | 100% | +20 =0 -0 | checkmate 20 | wins both colours |
+| 2026-09-05 | MW-0.1 vs baselines/minimax | 6 | 10s+0.1s | 100% | +6 =0 -0 | checkmate 6 | |
+| 2026-09-05 | MW-0.1 vs baselines/numba | 6 | 10s+0.1s | 91.7% | +5 =1 -0 | checkmate 5, threefold 1 | |
+| 2026-09-05 | MW-0.1 vs baselines/numba | 20 | 10s+0.1s | 97.5% | +19 =1 -0 | checkmate 19, threefold 1 | strongest baseline beaten |
+
+Zero illegal moves / crashes / flags across all MW-0.1 games (58 games total).
