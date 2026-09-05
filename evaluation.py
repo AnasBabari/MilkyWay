@@ -10,59 +10,34 @@ from __future__ import annotations
 import chess
 
 from constants import (
-    BACKWARD_PAWN_EG,
-    BACKWARD_PAWN_MG,
-    BISHOP_PAIR_EG,
-    BISHOP_PAIR_MG,
-    BISHOP_PST,
-    BISHOP_VALUE,
-    CONNECTED_PAWN_EG,
-    CONNECTED_PAWN_MG,
-    DOUBLED_PAWN_EG,
-    DOUBLED_PAWN_MG,
-    ISOLATED_PAWN_EG,
-    ISOLATED_PAWN_MG,
-    KING_ATTACK_UNIT,
-    KING_EG,
-    KING_MAX_SAFETY,
-    KING_MG,
-    KING_OPEN_FILE_NEAR,
-    KING_SHIELD_MISSING,
-    KNIGHT_PST,
-    KNIGHT_VALUE,
     MAX_PHASE,
-    MOBILITY_BISHOP,
-    MOBILITY_KNIGHT,
-    MOBILITY_QUEEN,
-    MOBILITY_ROOK,
-    MOP_EDGE_WEIGHT,
-    MOP_PROXIMITY_WEIGHT,
-    MOP_THRESHOLD,
-    PASSED_PAWN_EG,
-    PASSED_PAWN_MG,
-    PAWN_EG,
-    PAWN_MG,
-    PAWN_VALUE,
+    MW_0_2_EVAL,
     PHASE_WEIGHT_BISHOP,
     PHASE_WEIGHT_KNIGHT,
     PHASE_WEIGHT_QUEEN,
     PHASE_WEIGHT_ROOK,
-    PROTECTED_PASSER_EG,
-    PROTECTED_PASSER_MG,
-    QUEEN_PST,
-    QUEEN_VALUE,
-    ROOK_BEHIND_PASSER_EG,
-    ROOK_BEHIND_PASSER_MG,
-    ROOK_CONNECTED_MG,
-    ROOK_OPEN_FILE_EG,
-    ROOK_OPEN_FILE_MG,
-    ROOK_PST,
-    ROOK_SEMI_OPEN_EG,
-    ROOK_SEMI_OPEN_MG,
-    ROOK_SEVENTH_EG,
-    ROOK_SEVENTH_MG,
-    ROOK_VALUE,
+    EvalParameters,
 )
+
+# Active parameters; defaults to immutable MW-0.2 baseline.
+ACTIVE_PARAMS: EvalParameters = MW_0_2_EVAL
+
+
+def get_active_params() -> EvalParameters:
+    """Return the currently active evaluation parameter set."""
+    return ACTIVE_PARAMS
+
+
+def set_active_params(params: EvalParameters) -> None:
+    """Set the active evaluation parameters."""
+    global ACTIVE_PARAMS
+    ACTIVE_PARAMS = params
+
+
+def reset_active_params() -> None:
+    """Reset the active evaluation parameters to MW-0.2 baseline."""
+    set_active_params(MW_0_2_EVAL)
+
 
 # Precomputed white PST square transform (sq ^ 56 flips the rank). Black
 # squares index the a8..h1-ordered tables directly, so no table is needed.
@@ -96,24 +71,38 @@ def _pawn_structure(
     own_pawns: list[int],
     enemy_pawns_mask: int,
     file_counts: list[int],
+    p: EvalParameters,
 ) -> tuple[int, int, list[int]]:
     mg = 0
     eg = 0
     passers: list[int] = []
     passer_masks = _WHITE_PASSER_MASK_TUPLE if color == chess.WHITE else _BLACK_PASSER_MASK_TUPLE
+    doubled_mg = p.doubled_pawn_mg
+    doubled_eg = p.doubled_pawn_eg
+    isolated_mg = p.isolated_pawn_mg
+    isolated_eg = p.isolated_pawn_eg
+    connected_mg = p.connected_pawn_mg
+    connected_eg = p.connected_pawn_eg
+    backward_mg = p.backward_pawn_mg // 2
+    backward_eg = p.backward_pawn_eg // 2
+    passed_mg = p.passed_pawn_mg
+    passed_eg = p.passed_pawn_eg
+    prot_mg = p.protected_passer_mg
+    prot_eg = p.protected_passer_eg
+
     for sq in own_pawns:
         file = sq & 7
         rank = sq >> 3
         # Doubled: another own pawn on the same file.
         if file_counts[file] > 1:
-            mg += DOUBLED_PAWN_MG
-            eg += DOUBLED_PAWN_EG
+            mg += doubled_mg
+            eg += doubled_eg
         # Isolated: no own pawn on neighbouring files.
         left = file_counts[file - 1] if file > 0 else 0
         right = file_counts[file + 1] if file < 7 else 0
         if left == 0 and right == 0:
-            mg += ISOLATED_PAWN_MG
-            eg += ISOLATED_PAWN_EG
+            mg += isolated_mg
+            eg += isolated_eg
         else:
             # Connected: own pawn beside/behind on a neighbouring file.
             connected = False
@@ -122,8 +111,8 @@ def _pawn_structure(
                     connected = True
                     break
             if connected and not (left == 0 and right == 0):
-                mg += CONNECTED_PAWN_MG
-                eg += CONNECTED_PAWN_EG
+                mg += connected_mg
+                eg += connected_eg
 
         # Backward
         if left == 0 and right == 0:
@@ -140,19 +129,19 @@ def _pawn_structure(
                             if color == chess.BLACK and orank > rank:
                                 behind_rank_ok = True
             if not behind_rank_ok:
-                mg += BACKWARD_PAWN_MG // 2
-                eg += BACKWARD_PAWN_EG // 2
+                mg += backward_mg
+                eg += backward_eg
 
         # Passed pawns via precomputed mask
         if (enemy_pawns_mask & passer_masks[sq]) == 0:
             passers.append(sq)
             adv = rank if color == chess.WHITE else 7 - rank
             adv = max(0, min(7, adv))
-            mg += PASSED_PAWN_MG[adv]
-            eg += PASSED_PAWN_EG[adv]
+            mg += passed_mg[adv]
+            eg += passed_eg[adv]
             if board.is_attacked_by(color, sq):
-                mg += PROTECTED_PASSER_MG
-                eg += PROTECTED_PASSER_EG
+                mg += prot_mg
+                eg += prot_eg
     return mg, eg, passers
 
 
@@ -162,37 +151,48 @@ def _rook_terms(
     own_pawn_files: list[int],
     enemy_pawn_files: list[int],
     passers: list[int],
+    p: EvalParameters,
 ) -> tuple[int, int]:
     mg = 0
     eg = 0
+    open_mg = p.rook_open_file_mg
+    open_eg = p.rook_open_file_eg
+    semi_mg = p.rook_semi_open_mg
+    semi_eg = p.rook_semi_open_eg
+    seventh_mg = p.rook_seventh_mg
+    seventh_eg = p.rook_seventh_eg
+    conn_mg = p.rook_connected_mg
+    behind_mg = p.rook_behind_passer_mg
+    behind_eg = p.rook_behind_passer_eg
+
     for sq in rook_sqs:
         file = sq & 7
         rank = sq >> 3
         own = own_pawn_files[file] > 0
         enemy = enemy_pawn_files[file] > 0
         if not own and not enemy:
-            mg += ROOK_OPEN_FILE_MG
-            eg += ROOK_OPEN_FILE_EG
+            mg += open_mg
+            eg += open_eg
         elif not own and enemy:
-            mg += ROOK_SEMI_OPEN_MG
-            eg += ROOK_SEMI_OPEN_EG
+            mg += semi_mg
+            eg += semi_eg
         if (color == chess.WHITE and rank == 6) or (color == chess.BLACK and rank == 1):
-            mg += ROOK_SEVENTH_MG
-            eg += ROOK_SEVENTH_EG
+            mg += seventh_mg
+            eg += seventh_eg
         for other in rook_sqs:
             if other != sq and ((other >> 3) == rank or (other & 7) == file):
-                mg += ROOK_CONNECTED_MG
+                mg += conn_mg
                 break
         for psq in passers:
             if (psq & 7) == file:
                 prank = psq >> 3
                 if color == chess.WHITE and rank < prank:
-                    mg += ROOK_BEHIND_PASSER_MG
-                    eg += ROOK_BEHIND_PASSER_EG
+                    mg += behind_mg
+                    eg += behind_eg
                     break
                 if color == chess.BLACK and rank > prank:
-                    mg += ROOK_BEHIND_PASSER_MG
-                    eg += ROOK_BEHIND_PASSER_EG
+                    mg += behind_mg
+                    eg += behind_eg
                     break
     return mg, eg
 
@@ -204,6 +204,7 @@ def _king_safety(
     own_pawns_mask: int,
     own_pawn_files: list[int],
     enemy_queens_mask: int,
+    p: EvalParameters,
 ) -> int:
     if king_sq is None:
         return 0
@@ -229,14 +230,14 @@ def _king_safety(
                         shielded = True
                         break
                 if not shielded:
-                    score += KING_SHIELD_MISSING
+                    score += p.king_shield_missing
     # Open files near the king
     home = krank <= 1 if color == chess.WHITE else krank >= 6
     if home:
         for dfile in (-1, 0, 1):
             f = kfile + dfile
             if 0 <= f < 8 and own_pawn_files[f] == 0:
-                score += KING_OPEN_FILE_NEAR // 2
+                score += p.king_open_file_near // 2
     # Enemy attacks near the king
     attacks = 0
     for dfile in (-1, 0, 1):
@@ -245,7 +246,7 @@ def _king_safety(
             r = krank + drank
             if 0 <= f < 8 and 0 <= r < 8 and board.is_attacked_by(enemy, (r << 3) | f):
                 attacks += 1
-    score += KING_ATTACK_UNIT * attacks
+    score += p.king_attack_unit * attacks
     # Enemy queen proximity
     if enemy_queens_mask:
         q_bb = enemy_queens_mask
@@ -257,13 +258,13 @@ def _king_safety(
             if d < min_qdist:
                 min_qdist = d
         if min_qdist <= 3:
-            score += KING_ATTACK_UNIT * (4 - min_qdist)
-    return max(score, KING_MAX_SAFETY * 2)
+            score += p.king_attack_unit * (4 - min_qdist)
+    return max(score, p.king_max_safety * 2)
 
 
-def _mop_up(board: chess.Board, white_relative: int) -> int:
+def _mop_up(board: chess.Board, white_relative: int, p: EvalParameters) -> int:
     """Encourage efficient conversion when clearly winning."""
-    if abs(white_relative) < MOP_THRESHOLD:
+    if abs(white_relative) < p.mop_threshold:
         return 0
     try:
         wk = board.king(chess.WHITE)
@@ -279,15 +280,41 @@ def _mop_up(board: chess.Board, white_relative: int) -> int:
     lrank = loser_king >> 3
     edge = min(lfile, 7 - lfile) + min(lrank, 7 - lrank)
     proximity = abs((winner_king & 7) - lfile) + abs((winner_king >> 3) - lrank)
-    bonus = (6 - edge) * MOP_EDGE_WEIGHT + (14 - proximity) * MOP_PROXIMITY_WEIGHT
+    bonus = (6 - edge) * p.mop_edge_weight + (14 - proximity) * p.mop_proximity_weight
     return bonus if winning_white else -bonus
 
 
-def evaluate_white_relative(board: chess.Board) -> int:
+def evaluate_white_relative(board: chess.Board, params: EvalParameters | None = None) -> int:
     """White-relative static evaluation in centipawns (no mate scores)."""
+    p = params if params is not None else ACTIVE_PARAMS
     mg = 0
     eg = 0
     phase = 0
+
+    pawn_v_mg = p.pawn_value_mg
+    pawn_v_eg = p.pawn_value_eg
+    knight_v_mg = p.knight_value_mg
+    knight_v_eg = p.knight_value_eg
+    bishop_v_mg = p.bishop_value_mg
+    bishop_v_eg = p.bishop_value_eg
+    rook_v_mg = p.rook_value_mg
+    rook_v_eg = p.rook_value_eg
+    queen_v_mg = p.queen_value_mg
+    queen_v_eg = p.queen_value_eg
+
+    pawn_mg_pst = p.pawn_mg_pst
+    pawn_eg_pst = p.pawn_eg_pst
+    knight_pst = p.knight_pst
+    bishop_pst = p.bishop_pst
+    rook_pst = p.rook_pst
+    queen_pst = p.queen_pst
+    king_mg_pst = p.king_mg_pst
+    king_eg_pst = p.king_eg_pst
+
+    mob_n = p.mobility_knight
+    mob_b = p.mobility_bishop
+    mob_r = p.mobility_rook
+    mob_q = p.mobility_queen
 
     # Bitboards directly
     w_pawns_mask = board.pieces_mask(chess.PAWN, chess.WHITE)
@@ -318,8 +345,8 @@ def evaluate_white_relative(board: chess.Board) -> int:
         bb ^= bb & -bb
         w_pawns.append(sq)
         idx = _WHITE_PST_SQ[sq]
-        mg += PAWN_VALUE + PAWN_MG[idx]
-        eg += PAWN_VALUE + PAWN_EG[idx]
+        mg += pawn_v_mg + pawn_mg_pst[idx]
+        eg += pawn_v_eg + pawn_eg_pst[idx]
         w_pawn_files[sq & 7] += 1
 
     # Black pawns
@@ -329,8 +356,8 @@ def evaluate_white_relative(board: chess.Board) -> int:
         bb ^= bb & -bb
         b_pawns.append(sq)
         idx = sq
-        mg -= PAWN_VALUE + PAWN_MG[idx]
-        eg -= PAWN_VALUE + PAWN_EG[idx]
+        mg -= pawn_v_mg + pawn_mg_pst[idx]
+        eg -= pawn_v_eg + pawn_eg_pst[idx]
         b_pawn_files[sq & 7] += 1
 
     # White knights
@@ -340,10 +367,10 @@ def evaluate_white_relative(board: chess.Board) -> int:
         sq = (bb & -bb).bit_length() - 1
         bb ^= bb & -bb
         idx = _WHITE_PST_SQ[sq]
-        mg += KNIGHT_VALUE + KNIGHT_PST[idx]
-        eg += KNIGHT_VALUE + KNIGHT_PST[idx]
+        mg += knight_v_mg + knight_pst[idx]
+        eg += knight_v_eg + knight_pst[idx]
         phase += PHASE_WEIGHT_KNIGHT
-        w_mob += MOBILITY_KNIGHT * board.attacks_mask(sq).bit_count()
+        w_mob += mob_n * board.attacks_mask(sq).bit_count()
 
     # Black knights
     b_mob = 0
@@ -352,10 +379,10 @@ def evaluate_white_relative(board: chess.Board) -> int:
         sq = (bb & -bb).bit_length() - 1
         bb ^= bb & -bb
         idx = sq
-        mg -= KNIGHT_VALUE + KNIGHT_PST[idx]
-        eg -= KNIGHT_VALUE + KNIGHT_PST[idx]
+        mg -= knight_v_mg + knight_pst[idx]
+        eg -= knight_v_eg + knight_pst[idx]
         phase += PHASE_WEIGHT_KNIGHT
-        b_mob += MOBILITY_KNIGHT * board.attacks_mask(sq).bit_count()
+        b_mob += mob_n * board.attacks_mask(sq).bit_count()
 
     # White bishops
     w_bishops = 0
@@ -365,10 +392,10 @@ def evaluate_white_relative(board: chess.Board) -> int:
         bb ^= bb & -bb
         w_bishops += 1
         idx = _WHITE_PST_SQ[sq]
-        mg += BISHOP_VALUE + BISHOP_PST[idx]
-        eg += BISHOP_VALUE + BISHOP_PST[idx]
+        mg += bishop_v_mg + bishop_pst[idx]
+        eg += bishop_v_eg + bishop_pst[idx]
         phase += PHASE_WEIGHT_BISHOP
-        w_mob += MOBILITY_BISHOP * board.attacks_mask(sq).bit_count()
+        w_mob += mob_b * board.attacks_mask(sq).bit_count()
 
     # Black bishops
     b_bishops = 0
@@ -378,10 +405,10 @@ def evaluate_white_relative(board: chess.Board) -> int:
         bb ^= bb & -bb
         b_bishops += 1
         idx = sq
-        mg -= BISHOP_VALUE + BISHOP_PST[idx]
-        eg -= BISHOP_VALUE + BISHOP_PST[idx]
+        mg -= bishop_v_mg + bishop_pst[idx]
+        eg -= bishop_v_eg + bishop_pst[idx]
         phase += PHASE_WEIGHT_BISHOP
-        b_mob += MOBILITY_BISHOP * board.attacks_mask(sq).bit_count()
+        b_mob += mob_b * board.attacks_mask(sq).bit_count()
 
     # White rooks
     bb = w_rooks_mask
@@ -390,10 +417,10 @@ def evaluate_white_relative(board: chess.Board) -> int:
         bb ^= bb & -bb
         w_rooks.append(sq)
         idx = _WHITE_PST_SQ[sq]
-        mg += ROOK_VALUE + ROOK_PST[idx]
-        eg += ROOK_VALUE + ROOK_PST[idx]
+        mg += rook_v_mg + rook_pst[idx]
+        eg += rook_v_eg + rook_pst[idx]
         phase += PHASE_WEIGHT_ROOK
-        w_mob += MOBILITY_ROOK * board.attacks_mask(sq).bit_count()
+        w_mob += mob_r * board.attacks_mask(sq).bit_count()
 
     # Black rooks
     bb = b_rooks_mask
@@ -402,10 +429,10 @@ def evaluate_white_relative(board: chess.Board) -> int:
         bb ^= bb & -bb
         b_rooks.append(sq)
         idx = sq
-        mg -= ROOK_VALUE + ROOK_PST[idx]
-        eg -= ROOK_VALUE + ROOK_PST[idx]
+        mg -= rook_v_mg + rook_pst[idx]
+        eg -= rook_v_eg + rook_pst[idx]
         phase += PHASE_WEIGHT_ROOK
-        b_mob += MOBILITY_ROOK * board.attacks_mask(sq).bit_count()
+        b_mob += mob_r * board.attacks_mask(sq).bit_count()
 
     # White queens
     bb = w_queens_mask
@@ -413,10 +440,10 @@ def evaluate_white_relative(board: chess.Board) -> int:
         sq = (bb & -bb).bit_length() - 1
         bb ^= bb & -bb
         idx = _WHITE_PST_SQ[sq]
-        mg += QUEEN_VALUE + QUEEN_PST[idx]
-        eg += QUEEN_VALUE + QUEEN_PST[idx]
+        mg += queen_v_mg + queen_pst[idx]
+        eg += queen_v_eg + queen_pst[idx]
         phase += PHASE_WEIGHT_QUEEN
-        w_mob += MOBILITY_QUEEN * board.attacks_mask(sq).bit_count()
+        w_mob += mob_q * board.attacks_mask(sq).bit_count()
 
     # Black queens
     bb = b_queens_mask
@@ -424,25 +451,25 @@ def evaluate_white_relative(board: chess.Board) -> int:
         sq = (bb & -bb).bit_length() - 1
         bb ^= bb & -bb
         idx = sq
-        mg -= QUEEN_VALUE + QUEEN_PST[idx]
-        eg -= QUEEN_VALUE + QUEEN_PST[idx]
+        mg -= queen_v_mg + queen_pst[idx]
+        eg -= queen_v_eg + queen_pst[idx]
         phase += PHASE_WEIGHT_QUEEN
-        b_mob += MOBILITY_QUEEN * board.attacks_mask(sq).bit_count()
+        b_mob += mob_q * board.attacks_mask(sq).bit_count()
 
     # Kings
     if w_king_mask:
         w_king_sq = (w_king_mask & -w_king_mask).bit_length() - 1
         idx = _WHITE_PST_SQ[w_king_sq]
-        mg += KING_MG[idx]
-        eg += KING_EG[idx]
+        mg += king_mg_pst[idx]
+        eg += king_eg_pst[idx]
     else:
         w_king_sq = None
 
     if b_king_mask:
         b_king_sq = (b_king_mask & -b_king_mask).bit_length() - 1
         idx = b_king_sq
-        mg -= KING_MG[idx]
-        eg -= KING_EG[idx]
+        mg -= king_mg_pst[idx]
+        eg -= king_eg_pst[idx]
     else:
         b_king_sq = None
 
@@ -452,25 +479,25 @@ def evaluate_white_relative(board: chess.Board) -> int:
 
     # Bishop pair
     if w_bishops >= 2:
-        mg += BISHOP_PAIR_MG
-        eg += BISHOP_PAIR_EG
+        mg += p.bishop_pair_mg
+        eg += p.bishop_pair_eg
     if b_bishops >= 2:
-        mg -= BISHOP_PAIR_MG
-        eg -= BISHOP_PAIR_EG
+        mg -= p.bishop_pair_mg
+        eg -= p.bishop_pair_eg
 
     # Pawn structure
     wpmg, wpeg, w_passers = _pawn_structure(
-        board, chess.WHITE, w_pawns, b_pawns_mask, w_pawn_files
+        board, chess.WHITE, w_pawns, b_pawns_mask, w_pawn_files, p
     )
     bpmg, bpeg, b_passers = _pawn_structure(
-        board, chess.BLACK, b_pawns, w_pawns_mask, b_pawn_files
+        board, chess.BLACK, b_pawns, w_pawns_mask, b_pawn_files, p
     )
     mg += wpmg - bpmg
     eg += wpeg - bpeg
 
     # Rook terms
-    wrmg, wreg = _rook_terms(chess.WHITE, w_rooks, w_pawn_files, b_pawn_files, w_passers)
-    brmg, breg = _rook_terms(chess.BLACK, b_rooks, b_pawn_files, w_pawn_files, b_passers)
+    wrmg, wreg = _rook_terms(chess.WHITE, w_rooks, w_pawn_files, b_pawn_files, w_passers, p)
+    brmg, breg = _rook_terms(chess.BLACK, b_rooks, b_pawn_files, w_pawn_files, b_passers, p)
     mg += wrmg - brmg
     eg += wreg - breg
 
@@ -480,17 +507,17 @@ def evaluate_white_relative(board: chess.Board) -> int:
     eg += int(mob * 0.3)
 
     # King safety
-    wks = _king_safety(board, chess.WHITE, w_king_sq, w_pawns_mask, w_pawn_files, b_queens_mask)
-    bks = _king_safety(board, chess.BLACK, b_king_sq, b_pawns_mask, b_pawn_files, w_queens_mask)
+    wks = _king_safety(board, chess.WHITE, w_king_sq, w_pawns_mask, w_pawn_files, b_queens_mask, p)
+    bks = _king_safety(board, chess.BLACK, b_king_sq, b_pawns_mask, b_pawn_files, w_queens_mask, p)
     mg += wks - bks
     eg += int((wks - bks) * 0.2)
 
     tapered = int(mg * mg_weight + eg * eg_weight)
-    tapered += _mop_up(board, tapered)
+    tapered += _mop_up(board, tapered, p)
     return tapered
 
 
-def evaluate(board: chess.Board) -> int:
+def evaluate(board: chess.Board, params: EvalParameters | None = None) -> int:
     """Side-to-move-relative evaluation in centipawns."""
-    white_rel = evaluate_white_relative(board)
+    white_rel = evaluate_white_relative(board, params)
     return white_rel if board.turn == chess.WHITE else -white_rel
