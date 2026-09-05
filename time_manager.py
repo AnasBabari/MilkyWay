@@ -43,7 +43,8 @@ def allocate_time(
         hard = time_left * 0.25
         emergency = True
     else:
-        # TM-B: Conservative 40-move divisor with up to 15.0s emergency reserve floor (scaled for short arena time controls).
+        # TM-B: Conservative 40-move divisor with up to 15.0s emergency reserve floor
+        # (scaled for short arena time controls).
         reserve_floor = min(15000.0, time_left * 0.15)
         usable = max(0.0, time_left - reserve_floor)
         soft = usable / 40.0 + float(increment_ms) * 0.7

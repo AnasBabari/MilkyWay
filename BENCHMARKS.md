@@ -10,12 +10,14 @@ Time controls noted per row. Harness: `harness/arena.py` / `harness/play.py`.
 
 ## M0 — Unmodified starter baseline (random mover, 2026-09-05, local Windows, uv sync)
 
+*Harness: LEGACY HARNESS (pre-upstream-91f70e5, 300-ply material adjudication)*
+
 Environment: Python 3.14.5 (local; platform is 3.12), chess 1.11.2, numpy 2.5.2,
 numba 0.67.0, torch 2.13.0+cpu, onnxruntime 1.29.0. Local machine (not EPYC 9V74).
 
 | Date | Matchup | Games | TC | Score | W/D/L | Terminations | Notes |
 |------|---------|-------|----|-------|-------|--------------|-------|
-| 2026-09-05 | starter(random) vs baselines/random | 2 | 5s+0.1s(?) `--base-ms 5000` | 50.0% | +1 =0 -1 | adjudication 2 | `make gate` smoke: ruff OK, mypy OK |
+| 2026-09-05 | starter(random) vs baselines/random | 2 | 5s+0.1s(?) `--base-ms 5000` | 50.0% | +1 =0 -1 | adjudication 2 | `make gate` smoke: ruff OK, mypy OK (obsolete termination under 600-ply draw cap) |
 | 2026-09-05 | starter(random) vs baselines/greedy | 20 | 10s+0.1s (arena default) | 10.0% | +0 =4 -16 | stalemate 4, checkmate 16 | matches README (~10%) |
 | 2026-09-05 | starter(random) vs baselines/minimax | 6 | 10s+0.1s | 8.3% | +0 =1 -5 | checkmate 5, threefold 1 | expected: random loses |
 | 2026-09-05 | starter(random, White) vs greedy(Black), single `harness.play` | 1 | 120s+0.5s | draw | =1 | threefold_repetition | sanity: full-TC game finishes cleanly |
@@ -28,6 +30,8 @@ No crashes / illegal moves / flags in M0 baseline runs.
 ## Milestone results (append below)
 
 ### MW-0.1 — first competition engine (2026-09-05, local Windows, uv sync)
+
+*Harness: LEGACY HARNESS (pre-upstream-91f70e5, 300-ply material adjudication)*
 
 Classical engine, no network. Tapered eval (material, PST, pawn structure,
 bishop pair, rooks, mobility, king safety, mop-up) + ID + PVS alpha-beta +
@@ -48,6 +52,8 @@ Unit tests 32/32. ruff + mypy strict clean (30 files). Zip 57 KB unzipped.
 Zero illegal moves / crashes / flags across all MW-0.1 games (58 games total).
 
 ### MW-0.2 — performance release (2026-09-05, local Windows, uv sync)
+
+*Harness: LEGACY HARNESS (pre-upstream-91f70e5, 300-ply material adjudication)*
 
 Rule for the release: PROFILE → HYPOTHESIS → ONE CHANGE → MEASURE →
 ARENA → KEEP OR REVERT. No new search features; no neural network.
@@ -126,6 +132,8 @@ deeper search and should read better than this rapid calibration.
 
 ### M16 — Offline Handcrafted Evaluation Tuning (2026-09-05, local Windows, uv sync)
 
+*Harness: LEGACY HARNESS (pre-upstream-91f70e5, 300-ply material adjudication)*
+
 **Rule for the phase**: FREEZE SEARCH → BUILD DATASET → EXTRACT EXPLAINABLE FEATURES →
 LABEL OFFLINE → FIT COEFFICIENTS → VALIDATE OUT OF SAMPLE → PLAY PAIRED ARENAS → KEEP OR REJECT.
 
@@ -195,13 +203,15 @@ LABEL OFFLINE → FIT COEFFICIENTS → VALIDATE OUT OF SAMPLE → PLAY PAIRED AR
 
 ### AI Chessathon platform validation — 2026-09-05
 
+*Harness: LEGACY HARNESS (pre-upstream-91f70e5, 300-ply material adjudication)*
+
 Build: MW-0.2 validated candidate
 
 - Build: PASS
 - Uncompressed package: 71,835 bytes
 - Init: 0.7 s as White / 0.5 s as Black
-- White smoke: PASS, adjudication
-- Black smoke: PASS, adjudication
+- White smoke: PASS, adjudication (obsolete termination under 600-ply draw cap)
+- Black smoke: PASS, adjudication (obsolete termination under 600-ply draw cap)
 - Slowest move: 12.0 s
 - Illegal moves: 0
 - Crashes: 0
@@ -209,6 +219,8 @@ Build: MW-0.2 validated candidate
 - Overall result: VALID
 
 ### M17.5 — Forensics, Root Policy, and TM-B Fixes (2026-09-05)
+
+*Harness: LEGACY HARNESS (pre-upstream-91f70e5, 300-ply material adjudication)*
 
 Match testing against previous frozen milestones (`versions/mw_0_1` and `versions/mw_0_2`).
 Time control: 10s base + 0.1s increment, alternating colours.

@@ -52,56 +52,68 @@ class HarnessRulesRegressionTests(unittest.TestCase):
         """Verify PLY_CAP was updated from 300 to 600."""
         self.assertEqual(PLY_CAP, 600)
 
-    def test_300_plies_does_not_terminate(self) -> None:
+    def test_300_ply_position_does_not_end(self) -> None:
         """A game reaching 300 plies must not terminate under 600-ply cap."""
-        # Start at fullmove 150 Black to move -> ply 299.
-        # White has king and queen, Black has king.
-        # Next move reaches ply 300.
-        # Under the old harness (PLY_CAP=300), this would terminate by adjudication.
-        # Under new harness (PLY_CAP=600), it continues.
-        fen = "8/8/8/8/8/4k3/4Q3/4K3 b - - 0 150"
+        # Fullmove 150 Black to move -> (150-1)*2 + 1 = 299 plies.
+        # Position: White King e1, Queen d1; Black King e7. Valid board.
+        fen = "8/4k3/8/8/8/8/8/3QK3 b - - 0 150"
         board = chess.Board(fen)
+        self.assertTrue(board.is_valid())
         self.assertEqual(board.ply(), 299)
 
-        black = ScriptedAgent(moves=["e3d4"])
-        white = ScriptedAgent(moves=["e2e3"])
+        # Move 1 (Black): e7e6 brings ply to 300.
+        # Move 2 (White): d1d2 at ply 300. Under old 300-ply cap, this would be blocked.
+        # Move 3 (Black): e6e5 at ply 301.
+        black = ScriptedAgent(moves=["e7e6", "e6e5"])
+        white = ScriptedAgent(moves=["d1d2"])
 
-        # Run with default ply_cap (600) and ample clock.
+        # Under ply_cap=300, game would terminate at ply 300 before White moves.
+        outcome_capped_300 = play_match(
+            white, black, base_ms=10000, increment_ms=1000, ply_cap=300, start_fen=fen
+        )
+        self.assertEqual(outcome_capped_300.termination, "ply_cap")
+        self.assertEqual(white.move_idx, 0)
+
+        # Under new default ply_cap=600, game does not end at ply 300; White moves.
+        white.move_idx = 0
+        black.move_idx = 0
         outcome = play_match(white, black, base_ms=10000, increment_ms=1000, start_fen=fen)
-
-        # Black played 1 move (ply 300 reached and passed).
-        # The game should NOT have ended at ply 300.
-        # In fact, white should have moved at ply 300 to e2e3.
         self.assertNotIn(outcome.termination, ("adjudication", "ply_cap"))
+        self.assertGreaterEqual(white.move_idx, 1)
+
+    def test_300_plies_does_not_terminate(self) -> None:
+        """Alias for test_300_ply_position_does_not_end."""
+        self.test_300_ply_position_does_not_end()
 
     def test_599_plies_does_not_trigger_cap(self) -> None:
         """At 599 plies the game is not yet capped; the next move is allowed."""
-        # Fullmove 300, Black to move -> (300-1)*2 + 1 = 599 plies.
-        fen = "8/8/8/8/8/4k3/4Q3/4K3 b - - 0 300"
+        # Fullmove 300, Black to move -> (300-1)*2 + 1 = 599 plies. Valid board.
+        fen = "8/4k3/8/8/8/8/8/3QK3 b - - 0 300"
         board = chess.Board(fen)
+        self.assertTrue(board.is_valid())
         self.assertEqual(board.ply(), 599)
 
-        # Black makes move at 599 plies, bringing ply to 600.
-        # Then next iteration at 600 plies triggers ply_cap.
-        black = ScriptedAgent(moves=["e3d4"])
-        white = ScriptedAgent(moves=["e2e3"])
+        # Black makes legal move at 599 plies (e7e6), bringing ply to 600.
+        # Then next iteration at 600 plies triggers ply_cap before White moves.
+        black = ScriptedAgent(moves=["e7e6"])
+        white = ScriptedAgent(moves=["d1d2"])
 
         outcome = play_match(white, black, base_ms=10000, increment_ms=1000, start_fen=fen)
         self.assertEqual(outcome.result, "draw")
         self.assertEqual(outcome.termination, "ply_cap")
-        # Ensure black actually executed the move at ply 599
         self.assertEqual(black.move_idx, 1)
         self.assertEqual(white.move_idx, 0)
 
-    def test_600_plies_triggers_draw_by_ply_cap(self) -> None:
+    def test_600_ply_cap_is_draw(self) -> None:
         """At 600 plies referee returns result='draw', termination='ply_cap'."""
-        # Fullmove 301, White to move -> (301-1)*2 = 600 plies.
-        fen = "8/8/8/8/8/4k3/4Q3/4K3 w - - 0 301"
+        # Fullmove 301, White to move -> (301-1)*2 = 600 plies. Valid board.
+        fen = "8/4k3/8/8/8/8/8/3QK3 w - - 0 301"
         board = chess.Board(fen)
+        self.assertTrue(board.is_valid())
         self.assertEqual(board.ply(), 600)
 
-        white = ScriptedAgent(moves=["e2e3"])
-        black = ScriptedAgent(moves=["e3d4"])
+        white = ScriptedAgent(moves=["d1d2"])
+        black = ScriptedAgent(moves=["e7e6"])
 
         outcome = play_match(white, black, base_ms=10000, increment_ms=1000, start_fen=fen)
         self.assertEqual(outcome.result, "draw")
@@ -110,17 +122,18 @@ class HarnessRulesRegressionTests(unittest.TestCase):
         self.assertEqual(white.move_idx, 0)
         self.assertEqual(black.move_idx, 0)
 
+    def test_600_plies_triggers_draw_by_ply_cap(self) -> None:
+        """Alias for test_600_ply_cap_is_draw."""
+        self.test_600_ply_cap_is_draw()
+
     def test_opening_fen_ply_contributes_correctly_through_board_ply(self) -> None:
         """Verify board.ply() counts FEN fullmove number and turn towards cap."""
         # Contrast with old harness which used len(board.move_stack) >= ply_cap.
-        # Here we test a custom ply_cap=10 from an opening FEN already at ply 8.
+        # Test custom ply_cap=10 from an opening FEN already at ply 8.
         fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 5"  # White move 5 -> ply 8
         board = chess.Board(fen)
         self.assertEqual(board.ply(), 8)
 
-        # Move 1 (White): ply 8 -> 9
-        # Move 2 (Black): ply 9 -> 10
-        # Reaching ply 10 triggers cap.
         white = ScriptedAgent(moves=["e2e4"])
         black = ScriptedAgent(moves=["e7e5"])
 
@@ -132,36 +145,63 @@ class HarnessRulesRegressionTests(unittest.TestCase):
         self.assertEqual(white.move_idx, 1)
         self.assertEqual(black.move_idx, 1)
 
-    def test_flag_normally_loses_when_opponent_has_mating_material(self) -> None:
-        """When mover flags and opponent has mating material, mover loses."""
-        # White has bare King, Black has King + Queen. Not in check/checkmate. White flags.
-        fen = "q7/8/8/8/8/4k3/8/4K3 w - - 0 1"
+    def test_curated_deep_fen_reaches_600_ply_cap(self) -> None:
+        """A game starting at move 296 (ply 590) terminates at ply 600 after 10 plies."""
+        fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 296"  # ply 590
         board = chess.Board(fen)
-        self.assertIsNone(board.outcome())
-        self.assertFalse(board.has_insufficient_material(chess.BLACK))
+        self.assertEqual(board.ply(), 590)
 
-        # Base clock is 0 ms with 0 increment, causing White to flag immediately.
-        white = ScriptedAgent(moves=["e1d1"])
-        black = ScriptedAgent()
+        # 5 quiet pawn moves each = 10 plies -> reaches ply 600
+        white_moves = ["a2a3", "b2b3", "c2c3", "d2d3", "e2e3"]
+        black_moves = ["a7a6", "b7b6", "c7c6", "d7d6", "e7e6"]
+        white = ScriptedAgent(moves=white_moves)
+        black = ScriptedAgent(moves=black_moves)
+
+        outcome = play_match(white, black, base_ms=10000, increment_ms=1000, start_fen=fen)
+        self.assertEqual(outcome.result, "draw")
+        self.assertEqual(outcome.termination, "ply_cap")
+        self.assertEqual(white.move_idx, 5)
+        self.assertEqual(black.move_idx, 5)
+
+    def test_flag_vs_mating_material_is_loss(self) -> None:
+        """When mover flags and opponent has mating material, mover loses."""
+        # White has Queen + King, Black has bare King. Black to move.
+        fen = "8/4k3/8/8/8/8/8/3QK3 b - - 0 1"
+        board = chess.Board(fen)
+        self.assertTrue(board.is_valid())
+        self.assertIsNone(board.outcome())
+        self.assertFalse(board.has_insufficient_material(chess.WHITE))
+
+        white = ScriptedAgent()
+        black = ScriptedAgent(moves=["e7e6"])
 
         outcome = play_match(white, black, base_ms=0, increment_ms=0, start_fen=fen)
-        self.assertEqual(outcome.result, "black")
+        self.assertEqual(outcome.result, "white")
         self.assertEqual(outcome.termination, "flag")
 
-    def test_flag_is_draw_when_opponent_has_insufficient_mating_material(self) -> None:
-        """When mover flags but opponent has insufficient mating material, it is a draw."""
-        # White has King + Queen, Black has bare King. White flags.
-        fen = "8/8/8/8/8/4k3/4Q3/4K3 w - - 0 1"
+    def test_flag_normally_loses_when_opponent_has_mating_material(self) -> None:
+        """Alias for test_flag_vs_mating_material_is_loss."""
+        self.test_flag_vs_mating_material_is_loss()
+
+    def test_flag_vs_bare_king_is_draw_when_opponent_cannot_mate(self) -> None:
+        """When mover flags but opponent has bare king (insufficient material), it is a draw."""
+        # White has King + Queen, Black has bare King. White to move.
+        fen = "8/4k3/8/8/8/8/8/3QK3 w - - 0 1"
         board = chess.Board(fen)
+        self.assertTrue(board.is_valid())
         self.assertIsNone(board.outcome())
         self.assertTrue(board.has_insufficient_material(chess.BLACK))
 
-        white = ScriptedAgent(moves=["e2e3"])
+        white = ScriptedAgent(moves=["d1d2"])
         black = ScriptedAgent()
 
         outcome = play_match(white, black, base_ms=0, increment_ms=0, start_fen=fen)
         self.assertEqual(outcome.result, "draw")
         self.assertEqual(outcome.termination, "flag")
+
+    def test_flag_is_draw_when_opponent_has_insufficient_mating_material(self) -> None:
+        """Alias for test_flag_vs_bare_king_is_draw_when_opponent_cannot_mate."""
+        self.test_flag_vs_bare_king_is_draw_when_opponent_cannot_mate()
 
     def test_existing_checkmate_preserved(self) -> None:
         """Checkmate terminates with winning side."""
