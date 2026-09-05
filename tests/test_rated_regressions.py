@@ -19,6 +19,10 @@ ROUND20_LARPMAXX_MATE = (
     "1r3r2/1p5k/2np2pb/p1p5/P3P1qP/2NP1p2/1PPQ1P1K/R2R4 w - - 0 23"
 )
 
+ROUND25_NEOMATICA_MOVE18 = (
+    "5rk1/p5bp/b5p1/5pN1/P3N3/2PnK3/q2B1PPP/1R1Q3R w - - 0 24"
+)
+
 
 class TestRatedRegressions(unittest.TestCase):
     def setUp(self) -> None:
@@ -72,6 +76,21 @@ class TestRatedRegressions(unittest.TestCase):
         # Unpruned search must NOT choose g3g4
         self.assertNotEqual(pv[0].uci(), "g3g4")
         self.assertEqual(pv[0].uci(), "d2c3")
+
+    def test_round25_move18_rejects_ra1(self) -> None:
+        """Position 18: White faces a tactical crisis with king on e3 and queen on a2.
+
+        18. Ra1?? (-552 cp) is the fatal blunder.
+        Search must reject Ra1 and prefer equalizing defenses like 18. g4 or 18. Qb3+.
+        """
+        board = chess.Board(ROUND25_NEOMATICA_MOVE18)
+        self.searcher.new_search(self.clock, emergency=False)
+        _score, pv = self.searcher._search_root(board, 4, -INF, INF)
+        self.assertTrue(len(pv) > 0)
+        self.assertNotEqual(
+            pv[0].uci(), "b1a1", "Search must reject the catastrophic fatal blunder 18. Ra1??"
+        )
+
 
 
 if __name__ == "__main__":

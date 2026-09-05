@@ -43,12 +43,23 @@ def allocate_time(
         hard = time_left * 0.25
         emergency = True
     else:
-        # Baseline: ~1/25th of remaining + most of the increment.
-        soft = time_left / 25.0 + float(increment_ms) * 0.7
+        # TM-B: Conservative 40-move divisor with 15.0s emergency reserve floor.
+        reserve_floor = 15000.0
+        usable = max(0.0, time_left - reserve_floor)
+        if usable > 0.0:
+            soft = usable / 40.0 + float(increment_ms) * 0.7
+        else:
+            # Dipping into reserve: pace gently with increment
+            soft = (time_left / 40.0) * 0.6 + float(increment_ms) * 0.5
         hard = soft * 3.0
-        # Cap so one move never risks the whole game.
-        soft = min(soft, 5000.0, time_left * 0.20)
-        hard = min(hard, 12000.0, time_left * 0.35)
+
+        # Cap opening moves so early play never risks the whole game.
+        if time_left > 90000.0:
+            soft = min(soft, 3500.0)
+            hard = min(hard, 6500.0)
+        else:
+            soft = min(soft, 5000.0, time_left * 0.15)
+            hard = min(hard, 12000.0, time_left * 0.30)
         emergency = False
 
     # Single legal move: barely think.

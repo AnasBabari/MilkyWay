@@ -119,10 +119,14 @@ def order_root_moves(
             mvv = capture_mvv_lva(board, move)
             s = float(GOOD_CAPTURE_BASE + mvv)
         else:
+            gives_check = board.gives_check(move)
+            check_s = float(CHECK_BONUS) if gives_check else 0.0
             h = history[stm][move.from_square][move.to_square]
             classical_h = float(min(h, HISTORY_MAX_BONUS))
             p_score = policy_scores.get(move, -50.0) if policy_scores else 0.0
-            quiet_s = classical_h + p_score * 300.0
+            clamped_p = max(-5.0, min(5.0, p_score))
+            p_bonus = clamped_p * 150.0
+            quiet_s = check_s + classical_h + p_bonus
             s = min(float(GOOD_CAPTURE_BASE - 100), quiet_s)
 
         tie = (move.from_square << 6) | move.to_square | ((move.promotion or 0) << 12)
