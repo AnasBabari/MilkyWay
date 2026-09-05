@@ -50,11 +50,13 @@ class MilkyWayEngine:
         except Exception:
             fallback = legal_sorted[0]
 
-        if len(legal_sorted) == 1:
+        if len(legal_sorted) == 1 or time_left_ms < 20:
+            # One reply, or a clock that cannot afford even a shallow search:
+            # play the precomputed fallback immediately instead of searching.
             self._track_position(board)
-            board.push(legal_sorted[0])
+            board.push(fallback)
             self._track_position(board)
-            return legal_sorted[0].uci()
+            return fallback.uci()
 
         self._track_position(board)
 

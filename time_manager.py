@@ -14,8 +14,9 @@ class TimeBudget:
 
 
 SAFETY_MARGIN_MS: float = 300.0
-MIN_HARD_MS: float = 60.0
-MIN_SOFT_MS: float = 25.0
+# Floor for protocol overhead (runner IPC, referee accounting). The hard
+# deadline may approach this but must never exceed the remaining clock.
+PROTOCOL_FLOOR_MS: float = 20.0
 
 
 def allocate_time(
@@ -23,16 +24,21 @@ def allocate_time(
     legal_move_count: int,
     increment_ms: int = 500,
 ) -> TimeBudget:
-    """Compute per-move soft/hard budgets in milliseconds."""
+    """Compute per-move soft/hard budgets in milliseconds.
+
+    Invariant: hard_ms never exceeds the remaining clock. The safety margin
+    scales down with the clock instead of being an absolute floor, because an
+    absolute floor is itself a flag risk when the clock is nearly gone.
+    """
     time_left = max(1.0, float(time_left_ms))
     moves = max(1, legal_move_count)
 
     # Emergency: critically low clock — move almost immediately.
     if time_left < 1200.0:
-        soft = max(MIN_SOFT_MS, min(60.0, time_left * 0.06))
-        hard = max(MIN_HARD_MS, min(180.0, time_left * 0.20))
-        return TimeBudget(soft_ms=soft, hard_ms=hard, emergency=True)
-    if time_left < 6000.0:
+        soft = min(60.0, time_left * 0.06)
+        hard = min(180.0, time_left * 0.20)
+        emergency = True
+    elif time_left < 6000.0:
         soft = time_left * 0.07
         hard = time_left * 0.25
         emergency = True
@@ -55,14 +61,10 @@ def allocate_time(
     elif moves >= 35:
         soft *= 1.15
 
-    soft = max(MIN_SOFT_MS, soft)
-    hard = max(MIN_HARD_MS, hard)
-
-    # Always leave a safety margin so wall-clock jitter cannot flag us.
-    hard = min(hard, max(MIN_HARD_MS, time_left - SAFETY_MARGIN_MS))
-    soft = min(soft, max(MIN_SOFT_MS, time_left - SAFETY_MARGIN_MS - 50.0))
-    if soft > hard:
-        soft = hard * 0.5
+    # Never consume the whole clock: leave a margin that scales with it.
+    margin = min(SAFETY_MARGIN_MS, time_left * 0.5)
+    hard = min(hard, max(PROTOCOL_FLOOR_MS, time_left - margin))
+    soft = min(soft, hard)
     return TimeBudget(soft_ms=soft, hard_ms=hard, emergency=emergency)
 
 
