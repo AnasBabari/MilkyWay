@@ -24,21 +24,36 @@ from harness.referee import FAILED_TERMINATIONS, play_match  # noqa: E402
 from harness.rules import PLY_CAP  # noqa: E402
 from harness.sandbox import local  # noqa: E402
 from tools.benchmark_positions import BENCHMARK_SUITE  # noqa: E402
+from tools.test_bank import PAIRED_TEST_BANK  # noqa: E402
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Paired FEN-bank arena.")
     parser.add_argument("--agent", type=Path, default=Path("."))
     parser.add_argument("--opponent", type=Path, required=True)
-    parser.add_argument("--positions", type=int, default=len(BENCHMARK_SUITE))
+    parser.add_argument(
+        "--bank",
+        choices=["suite", "neutral"],
+        default="suite",
+        help="Position bank: 'suite' (40 benchmark FENs) or 'neutral' (200 balanced FENs)",
+    )
+    parser.add_argument("--candidate-eval", type=str, default=None,
+                        help="Eval candidate preset: MW_0_2_EVAL, M16_HUBER_01, KS_B, KS_C")
+    parser.add_argument("--positions", type=int, default=None)
     parser.add_argument("--base-ms", type=int, default=FAST_BASE_MS)
     parser.add_argument("--increment-ms", type=int, default=FAST_INCREMENT_MS)
     parser.add_argument("--ply-cap", type=int, default=PLY_CAP)
     args = parser.parse_args()
 
+    import os
+    if args.candidate_eval:
+        os.environ["MILKYWAY_EVAL_PARAM"] = args.candidate_eval
+
     agent = args.agent.resolve()
     opponent = args.opponent.resolve()
-    positions = BENCHMARK_SUITE[: args.positions]
+    bank_positions = PAIRED_TEST_BANK if args.bank == "neutral" else BENCHMARK_SUITE
+    pos_count = args.positions if args.positions is not None else len(bank_positions)
+    positions = bank_positions[: pos_count]
     wins = draws = losses = 0
     terminations: dict[str, int] = {}
     total = 0

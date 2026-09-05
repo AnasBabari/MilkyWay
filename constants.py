@@ -905,22 +905,37 @@ class EvalParameters:
 
 MW_0_2_EVAL: EvalParameters = EvalParameters()
 
-# Candidate M16-huber-01: Tuned offline grouped parameters via robust Huber regression
+# Candidate M16-huber-01: Tuned offline grouped parameters via standardized robust Huber regression
 M16_HUBER_01: EvalParameters = EvalParameters(
-    bishop_value_mg=329,
-    bishop_value_eg=329,
-    rook_value_mg=499,
-    rook_value_eg=499,
-    mobility_knight=3,
-    mobility_bishop=2,
-    mobility_rook=1,
-    mobility_queen=0,
+    pawn_value_mg=101,
+    knight_value_mg=319,
+    knight_value_eg=318,
+    bishop_value_mg=328,
+    bishop_value_eg=328,
+    rook_value_mg=493,
+    rook_value_eg=498,
+    queen_value_mg=892,
+    queen_value_eg=889,
+    bishop_pair_mg=24,
+    bishop_pair_eg=42,
     doubled_pawn_mg=-11,
-    rook_semi_open_mg=8,
-    rook_semi_open_eg=5,
+    backward_pawn_mg=-9,
+    passed_pawn_mg=(0, 4, 11, 19, 38, 62, 113, 0),
+    passed_pawn_eg=(0, 10, 22, 40, 71, 110, 161, 0),
+    protected_passer_mg=10,
+    rook_open_file_mg=12,
+    rook_semi_open_mg=6,
+    rook_semi_open_eg=0,
+    rook_seventh_mg=15,
+    rook_behind_passer_mg=15,
+    rook_behind_passer_eg=18,
+    king_attack_unit=-8,
 )
 
 # Ablation candidate: KS-B (simplified king safety without 9 is_attacked_by loops)
 MW_0_2_KS_B: EvalParameters = EvalParameters(king_safety_variant="B")
+
+# Ablation candidate: KS-C (cheaper bitboard king zone attacks without is_attacked_by loops)
+MW_0_2_KS_C: EvalParameters = EvalParameters(king_safety_variant="C")
 
 

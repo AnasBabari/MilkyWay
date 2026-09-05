@@ -14,7 +14,7 @@ import argparse
 import json
 import sys
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 import numpy as np
 
@@ -41,10 +41,10 @@ PARAM_BOUNDS: dict[str, tuple[float, float]] = {
     "queen_value_eg": (750.0, 1200.0),
     "bishop_pair_mg": (0.0, 80.0),
     "bishop_pair_eg": (0.0, 100.0),
-    "mobility_knight": (0.0, 8.0),
-    "mobility_bishop": (0.0, 8.0),
-    "mobility_rook": (0.0, 6.0),
-    "mobility_queen": (0.0, 4.0),
+    "mobility_knight": (1.0, 8.0),
+    "mobility_bishop": (1.0, 8.0),
+    "mobility_rook": (1.0, 6.0),
+    "mobility_queen": (1.0, 4.0),
     "doubled_pawn_mg": (-35.0, 0.0),
     "doubled_pawn_eg": (-45.0, 0.0),
     "isolated_pawn_mg": (-40.0, 0.0),
@@ -76,13 +76,17 @@ def fit_ridge(
     fixed_train: np.ndarray,
     beta_0: np.ndarray,
     reg_lambda: float,
+    scales: np.ndarray | None = None,
 ) -> np.ndarray:
-    """Solve min ||X (beta_0 + d_beta) + fixed - y||^2 + lambda ||d_beta||^2."""
+    """Solve regularized ridge regression with feature standardization toward beta_0."""
+    if scales is None:
+        scales = np.maximum(np.std(X_train, axis=0), 1e-4)
+    Z_train = X_train / scales
     r_base = (y_train - fixed_train) - X_train @ beta_0
-    XtX = X_train.T @ X_train
+    ZtZ = Z_train.T @ Z_train
     I_mat = np.eye(X_train.shape[1], dtype=np.float32)
-    d_beta = np.linalg.solve(XtX + reg_lambda * I_mat, X_train.T @ r_base)
-    return beta_0 + d_beta
+    d_beta_z = np.linalg.solve(ZtZ + reg_lambda * I_mat, Z_train.T @ r_base)
+    return cast(np.ndarray, beta_0 + d_beta_z / scales)
 
 
 def fit_huber(
@@ -91,10 +95,14 @@ def fit_huber(
     fixed_train: np.ndarray,
     beta_0: np.ndarray,
     reg_lambda: float,
-    delta: float = 100.0,
+    delta: float = 25.0,
     max_iter: int = 10,
+    scales: np.ndarray | None = None,
 ) -> np.ndarray:
-    """Iteratively Reweighted Least Squares (IRLS) for Huber loss."""
+    """Iteratively Reweighted Least Squares (IRLS) for Huber loss with feature standardization."""
+    if scales is None:
+        scales = np.maximum(np.std(X_train, axis=0), 1e-4)
+    Z_train = X_train / scales
     beta = beta_0.copy()
     I_mat = np.eye(X_train.shape[1], dtype=np.float32)
 
@@ -104,12 +112,12 @@ def fit_huber(
         abs_e = np.abs(errors)
         weights = np.where(abs_e <= delta, 1.0, delta / np.maximum(abs_e, 1e-6))
 
-        # Weighted least squares
-        WX = X_train * weights[:, None]
+        # Weighted least squares with standardized features
+        WZ = Z_train * weights[:, None]
         r_base = (y_train - fixed_train) - X_train @ beta_0
-        XtWX = X_train.T @ WX
-        d_beta = np.linalg.solve(XtWX + reg_lambda * I_mat, X_train.T @ (weights * r_base))
-        beta = beta_0 + d_beta
+        ZtWZ = Z_train.T @ WZ
+        d_beta_z = np.linalg.solve(ZtWZ + reg_lambda * I_mat, Z_train.T @ (weights * r_base))
+        beta = beta_0 + d_beta_z / scales
 
     return beta
 
@@ -167,35 +175,45 @@ def tune_pipeline(
     beta_0 = np.array(MW_0_2_EVAL.get_tunable_vector(), dtype=np.float32)
     baseline_val_mae = compute_mae(X_val, y_val, fixed_val, beta_0)
 
+    scales = np.maximum(np.std(X_train, axis=0), 1e-4)
+
     # Lambda selection via validation MAE if not specified
-    candidate_lambdas = [10.0, 50.0, 100.0, 250.0, 500.0, 1000.0, 2500.0, 5000.0]
+    candidate_lambdas = [1000.0, 5000.0, 10000.0, 25000.0, 50000.0, 100000.0, 250000.0, 500000.0]
     candidate_deltas = [15.0, 25.0, 50.0] if method == "huber" else [100.0]
     best_delta = 25.0
 
     if reg_lambda is not None:
         best_lambda = reg_lambda
     else:
-        best_lambda = 500.0
-        best_val_mae = float("inf")
+        best_lambda = 50000.0
+        best_val_mae = baseline_val_mae
+        improved = False
         for d in candidate_deltas:
             for lam in candidate_lambdas:
                 if method == "ridge":
-                    cand_beta = fit_ridge(X_train, y_train, fixed_train, beta_0, lam)
+                    cand_beta = fit_ridge(
+                        X_train, y_train, fixed_train, beta_0, lam, scales=scales
+                    )
                 else:
-                    cand_beta = fit_huber(X_train, y_train, fixed_train, beta_0, lam, delta=d)
+                    cand_beta = fit_huber(
+                        X_train, y_train, fixed_train, beta_0, lam, delta=d, scales=scales
+                    )
                 cand_beta = enforce_sanity_bounds(cand_beta)
                 val_mae = compute_mae(X_val, y_val, fixed_val, cand_beta)
                 if val_mae < best_val_mae:
                     best_val_mae = val_mae
                     best_lambda = lam
                     best_delta = d
+                    improved = True
 
     # Final fit on train
-    if method == "ridge":
-        fitted_beta = fit_ridge(X_train, y_train, fixed_train, beta_0, best_lambda)
+    if reg_lambda is None and not improved:
+        fitted_beta = beta_0.copy()
+    elif method == "ridge":
+        fitted_beta = fit_ridge(X_train, y_train, fixed_train, beta_0, best_lambda, scales=scales)
     else:
         fitted_beta = fit_huber(
-            X_train, y_train, fixed_train, beta_0, best_lambda, delta=best_delta
+            X_train, y_train, fixed_train, beta_0, best_lambda, delta=best_delta, scales=scales
         )
 
     bounded_beta = enforce_sanity_bounds(fitted_beta)

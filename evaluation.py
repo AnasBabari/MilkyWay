@@ -7,11 +7,16 @@ legal-move generation here so leaf evaluation stays fast.
 
 from __future__ import annotations
 
+import os
+
 import chess
 
 from constants import (
+    M16_HUBER_01,
     MAX_PHASE,
     MW_0_2_EVAL,
+    MW_0_2_KS_B,
+    MW_0_2_KS_C,
     PHASE_WEIGHT_BISHOP,
     PHASE_WEIGHT_KNIGHT,
     PHASE_WEIGHT_QUEEN,
@@ -19,8 +24,22 @@ from constants import (
     EvalParameters,
 )
 
+_CANDIDATE_REGISTRY: dict[str, EvalParameters] = {
+    "MW_0_2_EVAL": MW_0_2_EVAL,
+    "M16_HUBER_01": M16_HUBER_01,
+    "MW_0_2_KS_B": MW_0_2_KS_B,
+    "MW_0_2_KS_C": MW_0_2_KS_C,
+    "KS_B": MW_0_2_KS_B,
+    "KS_C": MW_0_2_KS_C,
+}
+
+_ENV_PARAM_NAME = os.environ.get("MILKYWAY_EVAL_PARAM")
 # Active parameters: defaults to immutable MW-0.2 baseline.
-ACTIVE_PARAMS: EvalParameters = MW_0_2_EVAL
+ACTIVE_PARAMS: EvalParameters = (
+    _CANDIDATE_REGISTRY[_ENV_PARAM_NAME]
+    if _ENV_PARAM_NAME and _ENV_PARAM_NAME in _CANDIDATE_REGISTRY
+    else MW_0_2_EVAL
+)
 
 
 def get_active_params() -> EvalParameters:
@@ -205,6 +224,8 @@ def _king_safety(
     own_pawn_files: list[int],
     enemy_queens_mask: int,
     p: EvalParameters,
+    enemy_attacks_bb: int = 0,
+    enemy_pawns_mask: int = 0,
 ) -> int:
     if king_sq is None:
         return 0
@@ -247,6 +268,20 @@ def _king_safety(
                 r = krank + drank
                 if 0 <= f < 8 and 0 <= r < 8 and board.is_attacked_by(enemy, (r << 3) | f):
                     attacks += 1
+        score += p.king_attack_unit * attacks
+    elif p.king_safety_variant == "C":
+        kzone = chess.BB_KING_ATTACKS[king_sq] | (1 << king_sq)
+        if color == chess.BLACK:
+            patt = (
+                ((enemy_pawns_mask & 0x7F7F7F7F7F7F7F7F) << 7)
+                | ((enemy_pawns_mask & 0xFEFEFEFEFEFEFEFE) << 9)
+            )
+        else:
+            patt = (
+                ((enemy_pawns_mask & 0x7F7F7F7F7F7F7F7F) >> 9)
+                | ((enemy_pawns_mask & 0xFEFEFEFEFEFEFEFE) >> 7)
+            )
+        attacks = ((enemy_attacks_bb | patt) & kzone).bit_count()
         score += p.king_attack_unit * attacks
     # Enemy queen proximity
     if enemy_queens_mask:
@@ -361,6 +396,10 @@ def evaluate_white_relative(board: chess.Board, params: EvalParameters | None = 
         eg -= pawn_v_eg + pawn_eg_pst[idx]
         b_pawn_files[sq & 7] += 1
 
+    is_ks_c = p.king_safety_variant == "C"
+    w_attacks_bb = 0
+    b_attacks_bb = 0
+
     # White knights
     w_mob = 0
     bb = w_knights_mask
@@ -371,7 +410,10 @@ def evaluate_white_relative(board: chess.Board, params: EvalParameters | None = 
         mg += knight_v_mg + knight_pst[idx]
         eg += knight_v_eg + knight_pst[idx]
         phase += PHASE_WEIGHT_KNIGHT
-        w_mob += mob_n * board.attacks_mask(sq).bit_count()
+        att = board.attacks_mask(sq)
+        if is_ks_c:
+            w_attacks_bb |= att
+        w_mob += mob_n * att.bit_count()
 
     # Black knights
     b_mob = 0
@@ -383,7 +425,10 @@ def evaluate_white_relative(board: chess.Board, params: EvalParameters | None = 
         mg -= knight_v_mg + knight_pst[idx]
         eg -= knight_v_eg + knight_pst[idx]
         phase += PHASE_WEIGHT_KNIGHT
-        b_mob += mob_n * board.attacks_mask(sq).bit_count()
+        att = board.attacks_mask(sq)
+        if is_ks_c:
+            b_attacks_bb |= att
+        b_mob += mob_n * att.bit_count()
 
     # White bishops
     w_bishops = 0
@@ -396,7 +441,10 @@ def evaluate_white_relative(board: chess.Board, params: EvalParameters | None = 
         mg += bishop_v_mg + bishop_pst[idx]
         eg += bishop_v_eg + bishop_pst[idx]
         phase += PHASE_WEIGHT_BISHOP
-        w_mob += mob_b * board.attacks_mask(sq).bit_count()
+        att = board.attacks_mask(sq)
+        if is_ks_c:
+            w_attacks_bb |= att
+        w_mob += mob_b * att.bit_count()
 
     # Black bishops
     b_bishops = 0
@@ -409,7 +457,10 @@ def evaluate_white_relative(board: chess.Board, params: EvalParameters | None = 
         mg -= bishop_v_mg + bishop_pst[idx]
         eg -= bishop_v_eg + bishop_pst[idx]
         phase += PHASE_WEIGHT_BISHOP
-        b_mob += mob_b * board.attacks_mask(sq).bit_count()
+        att = board.attacks_mask(sq)
+        if is_ks_c:
+            b_attacks_bb |= att
+        b_mob += mob_b * att.bit_count()
 
     # White rooks
     bb = w_rooks_mask
@@ -421,7 +472,10 @@ def evaluate_white_relative(board: chess.Board, params: EvalParameters | None = 
         mg += rook_v_mg + rook_pst[idx]
         eg += rook_v_eg + rook_pst[idx]
         phase += PHASE_WEIGHT_ROOK
-        w_mob += mob_r * board.attacks_mask(sq).bit_count()
+        att = board.attacks_mask(sq)
+        if is_ks_c:
+            w_attacks_bb |= att
+        w_mob += mob_r * att.bit_count()
 
     # Black rooks
     bb = b_rooks_mask
@@ -433,7 +487,10 @@ def evaluate_white_relative(board: chess.Board, params: EvalParameters | None = 
         mg -= rook_v_mg + rook_pst[idx]
         eg -= rook_v_eg + rook_pst[idx]
         phase += PHASE_WEIGHT_ROOK
-        b_mob += mob_r * board.attacks_mask(sq).bit_count()
+        att = board.attacks_mask(sq)
+        if is_ks_c:
+            b_attacks_bb |= att
+        b_mob += mob_r * att.bit_count()
 
     # White queens
     bb = w_queens_mask
@@ -444,7 +501,10 @@ def evaluate_white_relative(board: chess.Board, params: EvalParameters | None = 
         mg += queen_v_mg + queen_pst[idx]
         eg += queen_v_eg + queen_pst[idx]
         phase += PHASE_WEIGHT_QUEEN
-        w_mob += mob_q * board.attacks_mask(sq).bit_count()
+        att = board.attacks_mask(sq)
+        if is_ks_c:
+            w_attacks_bb |= att
+        w_mob += mob_q * att.bit_count()
 
     # Black queens
     bb = b_queens_mask
@@ -455,7 +515,10 @@ def evaluate_white_relative(board: chess.Board, params: EvalParameters | None = 
         mg -= queen_v_mg + queen_pst[idx]
         eg -= queen_v_eg + queen_pst[idx]
         phase += PHASE_WEIGHT_QUEEN
-        b_mob += mob_q * board.attacks_mask(sq).bit_count()
+        att = board.attacks_mask(sq)
+        if is_ks_c:
+            b_attacks_bb |= att
+        b_mob += mob_q * att.bit_count()
 
     # Kings
     if w_king_mask:
@@ -508,8 +571,28 @@ def evaluate_white_relative(board: chess.Board, params: EvalParameters | None = 
     eg += int(mob * 0.3)
 
     # King safety
-    wks = _king_safety(board, chess.WHITE, w_king_sq, w_pawns_mask, w_pawn_files, b_queens_mask, p)
-    bks = _king_safety(board, chess.BLACK, b_king_sq, b_pawns_mask, b_pawn_files, w_queens_mask, p)
+    wks = _king_safety(
+        board,
+        chess.WHITE,
+        w_king_sq,
+        w_pawns_mask,
+        w_pawn_files,
+        b_queens_mask,
+        p,
+        enemy_attacks_bb=b_attacks_bb,
+        enemy_pawns_mask=b_pawns_mask,
+    )
+    bks = _king_safety(
+        board,
+        chess.BLACK,
+        b_king_sq,
+        b_pawns_mask,
+        b_pawn_files,
+        w_queens_mask,
+        p,
+        enemy_attacks_bb=w_attacks_bb,
+        enemy_pawns_mask=w_pawns_mask,
+    )
     mg += wks - bks
     eg += int((wks - bks) * 0.2)
 

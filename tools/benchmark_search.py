@@ -3,11 +3,17 @@
 from __future__ import annotations
 
 import argparse
+import sys
 import time
+from pathlib import Path
 
-import chess
+ROOT = Path(__file__).resolve().parent.parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
-import agent
+import chess  # noqa: E402
+
+import agent  # noqa: E402
 
 POSITIONS: tuple[str, ...] = (
     chess.STARTING_FEN,

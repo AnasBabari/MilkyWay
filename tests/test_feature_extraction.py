@@ -89,6 +89,46 @@ class TestFeatureExtraction(unittest.TestCase):
         self.assertGreater(tested, 400)
         self.assertLessEqual(max_diff, 3)
 
+    def test_ks_c_evaluation_symmetry(self) -> None:
+        """KS-C bitboard king safety variant must evaluate cleanly and preserve symmetry."""
+        from constants import MW_0_2_KS_C
+
+        fens = [
+            chess.STARTING_FEN,
+            "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3",
+            "r1b2rk1/1pq1bppp/p1nppn2/8/3NPP2/2N1B3/PPP1B1PP/R2Q1R1K w - - 0 11",
+            "4k3/8/8/3P4/8/8/8/4K3 w - - 0 1",
+            "r2q1rk1/pp1b1ppp/2n1pn2/2bp4/2P5/2N1PN2/PP1BBPPP/R2Q1RK1 w - - 0 1",
+            "8/2k5/8/8/8/8/2K5/8 w - - 0 1",
+        ]
+        for fen in fens:
+            board = chess.Board(fen)
+            ev_orig = evaluate_white_relative(board, MW_0_2_KS_C)
+            ev_mirr = evaluate_white_relative(board.mirror(), MW_0_2_KS_C)
+            self.assertEqual(ev_orig, -ev_mirr, f"KS-C eval failed symmetry on {fen}")
+
+    def test_paired_test_bank_integrity(self) -> None:
+        """Verify neutral test bank contains 200 valid near-balanced positions."""
+        from tools.test_bank import BANK_VERSION, PAIRED_TEST_BANK
+
+        self.assertEqual(BANK_VERSION, "1.0.0")
+        self.assertEqual(len(PAIRED_TEST_BANK), 200)
+
+        seen_keys: set[str] = set()
+        for pos in PAIRED_TEST_BANK:
+            board = chess.Board(pos.fen)
+            self.assertTrue(board.is_valid(), f"Invalid board FEN: {pos.fen}")
+            self.assertFalse(board.is_check(), f"Position in check: {pos.fen}")
+            self.assertFalse(board.is_game_over(), f"Terminal position: {pos.fen}")
+            self.assertGreaterEqual(len(list(board.legal_moves)), 2)
+
+            key = " ".join(pos.fen.split()[:4])
+            self.assertNotIn(key, seen_keys, f"Duplicate position key: {key}")
+            seen_keys.add(key)
+
+            ev = evaluate_white_relative(board)
+            self.assertLessEqual(abs(ev), 50, f"Position not near-balanced ({ev} cp): {pos.fen}")
+
 
 if __name__ == "__main__":
     unittest.main()

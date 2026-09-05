@@ -101,12 +101,22 @@ def split_and_extract(
     return counts
 
 
+def get_default_input_path() -> Path:
+    p25 = Path("training/datasets/labels/labels_25k.jsonl")
+    if p25.is_file():
+        return p25
+    p1 = Path("training/datasets/labels/labels_1k.jsonl")
+    if p1.is_file():
+        return p1
+    return p25
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Split dataset into train/val/test.")
     parser.add_argument(
         "--input",
         type=Path,
-        default=Path("training/datasets/labels/labels_smoke.jsonl"),
+        default=get_default_input_path(),
     )
     parser.add_argument(
         "--output-dir",

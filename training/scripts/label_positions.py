@@ -55,29 +55,62 @@ def find_stockfish_executable(custom_path: str | None = None) -> str | None:
 
 
 def mock_label_position(board: chess.Board) -> dict[str, Any]:
-    """Deterministic mock labeler when external engine is absent."""
-    # Combine static evaluation with shallow tactical quiescence
+    """Deterministic mock labeler when external engine is absent.
+
+    Uses a sound 1-ply minimax lookahead over legal moves without multi-move
+    summation or inverted piece-value heuristics.
+    """
+    if board.is_checkmate():
+        score_white = -30000 if board.turn == chess.WHITE else 30000
+        return {
+            "sf_cp_white": max(CP_CLAMP_MIN, min(CP_CLAMP_MAX, score_white)),
+            "raw_cp": score_white,
+            "is_mate": True,
+            "mate_moves": 0,
+            "sf_nodes": 1,
+            "sf_depth": 1,
+            "label_engine": "mock_evaluator_v2",
+        }
+    if board.is_stalemate() or board.is_insufficient_material():
+        return {
+            "sf_cp_white": 0,
+            "raw_cp": 0,
+            "is_mate": False,
+            "mate_moves": None,
+            "sf_nodes": 1,
+            "sf_depth": 1,
+            "label_engine": "mock_evaluator_v2",
+        }
+
     base_eval = evaluate_white_relative(board)
+    legal_moves = list(board.legal_moves)
+    if not legal_moves:
+        score_white = base_eval
+    else:
+        # 1-ply lookahead: side to move optimizes White-relative evaluation
+        best_eval = -999999 if board.turn == chess.WHITE else 999999
+        for move in legal_moves:
+            board.push(move)
+            v = evaluate_white_relative(board)
+            board.pop()
+            if board.turn == chess.WHITE:
+                if v > best_eval:
+                    best_eval = v
+            else:
+                if v < best_eval:
+                    best_eval = v
+        # Blend shallow lookahead with static base
+        score_white = int(0.5 * base_eval + 0.5 * best_eval)
 
-    # Check for simple immediate captures
-    tactical_adj = 0
-    for move in board.legal_moves:
-        if board.is_capture(move):
-            captured = board.piece_at(move.to_square)
-            attacker = board.piece_at(move.from_square)
-            if captured and attacker:
-                val = (captured.piece_type - attacker.piece_type) * 10
-                tactical_adj += val if board.turn == chess.WHITE else -val
-
-    score_white = max(CP_CLAMP_MIN, min(CP_CLAMP_MAX, base_eval + tactical_adj))
+    clamped_white = max(CP_CLAMP_MIN, min(CP_CLAMP_MAX, score_white))
     return {
-        "sf_cp_white": score_white,
+        "sf_cp_white": clamped_white,
         "raw_cp": score_white,
         "is_mate": False,
         "mate_moves": None,
-        "sf_nodes": 0,
+        "sf_nodes": len(legal_moves),
         "sf_depth": 1,
-        "label_engine": "mock_evaluator_v1",
+        "label_engine": "mock_evaluator_v2",
     }
 
 
@@ -193,17 +226,27 @@ def label_dataset(
             engine.quit()
 
 
+def get_default_position_input() -> Path:
+    p25 = Path("training/datasets/positions/positions_25k.jsonl")
+    if p25.is_file():
+        return p25
+    p1 = Path("training/datasets/positions/positions_1k.jsonl")
+    if p1.is_file():
+        return p1
+    return p25
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Label chess positions with Stockfish.")
     parser.add_argument(
         "--input",
         type=Path,
-        default=Path("training/datasets/positions/positions_smoke.jsonl"),
+        default=get_default_position_input(),
     )
     parser.add_argument(
         "--output",
         type=Path,
-        default=Path("training/datasets/labels/labels_smoke.jsonl"),
+        default=Path("training/datasets/labels/labels_25k.jsonl"),
     )
     parser.add_argument("--stockfish-path", type=str, default=None)
     parser.add_argument("--nodes", type=int, default=DEFAULT_NODE_BUDGET)

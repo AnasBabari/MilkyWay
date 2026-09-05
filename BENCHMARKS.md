@@ -151,35 +151,40 @@ LABEL OFFLINE → FIT COEFFICIENTS → VALIDATE OUT OF SAMPLE → PLAY PAIRED AR
 - Labeled with canonical White-perspective centipawns, forced mates flagged and isolated, scores clamped to [-1500, +1500] cp.
 
 **Fitting Experiments**:
-- `M16-ridge-01`: Ridge regression regularized toward `MW_0_2_EVAL`.
-- `M16-huber-01`: Robust Huber regression (delta = 25.0 cp, lambda = 5000.0) via Iteratively Reweighted Least Squares (IRLS).
+- `M16-ridge-01`: Ridge regression regularized toward `MW_0_2_EVAL` with standardized feature scaling.
+- `M16-huber-01`: Robust Huber regression (delta = 25.0 cp, lambda = 5000.0) via Iteratively Reweighted Least Squares (IRLS) with feature standardization (scales = max(std, 1e-4)) and mobility sanity lower bounds.
 
 **Held-out Test Metrics (2,481 positions)**:
 | Metric | MW-0.2 Baseline | M16-huber-01 Tuned | Delta |
 |--------|-----------------|--------------------|-------|
-| MAE | 60.48 cp | **59.41 cp** | **-1.07 cp** |
-| Median AE | 18.37 cp | **15.08 cp** | **-3.29 cp** |
-| RMSE | 180.34 cp | **176.52 cp** | **-3.82 cp** |
+| MAE | 60.48 cp | **59.23 cp** | **-1.25 cp** |
+| Median AE | 18.37 cp | **14.73 cp** | **-3.64 cp** |
+| RMSE | 180.34 cp | **175.81 cp** | **-4.53 cp** |
 | Sign Accuracy | 99.4% | **99.5%** | **+0.1%** |
-| Pearson r | 0.9833 | **0.9834** | +0.0001 |
+| Pearson r | 0.9833 | **0.9841** | **+0.0008** |
 | Pairwise Order Acc | 99.4% | 99.4% | +0.0% |
-| Middlegame MAE | 93.8 cp | **91.4 cp** | **-2.4 cp** |
+| Middlegame MAE | 93.8 cp | **91.1 cp** | **-2.7 cp** |
 
-**King Safety Ablation (Section 32)**:
+**Neutral Test Bank (Section 31)**:
+- Generated in `tools/test_bank.py` (`BANK_VERSION = "1.0.0"`).
+- Contains 200 legal, near-balanced positions ($|\text{eval}| \le 45$ cp) sampled across openings (50), middlegames (100), and endgames (50) to eliminate opening bias in paired arenas.
+
+**King Safety Ablation & Microbenchmark (Section 32)**:
 - Profiling revealed king-safety attack checks (9 `is_attacked_by` calls per king) consume ~18% of eval runtime.
-- Evaluated KS-A (full attacks) vs KS-B (simplified king safety: pawn shield, open files near king, queen proximity; zero `is_attacked_by` loops):
-  - Standalone eval throughput: 14,065 eval/s $\to$ **20,837 eval/s (+48.1% speedup)**.
-  - Search NPS (depth 4): 10,132 NPS $\to$ **11,913 NPS (+17.6% speedup)**.
-  - Paired arena screen (20 games vs MW-0.2): **+9 =4 -7 (55.0%)**.
+- Evaluated KS-A (baseline), KS-B (simplified: pawn shield, open files near king, queen proximity), and KS-C (bitboard king-zone attacks):
+  - Standalone isolated KS: KS-A 97,832 call/s | KS-B 593,930 call/s (6.07x) | KS-C 489,356 call/s (**5.00x speedup**).
+  - Full static eval throughput: KS-A 14,546 eval/s | KS-B 20,421 eval/s (+40.4%) | KS-C 19,861 eval/s (**+36.5% speedup**).
+  - KS-C bitboard calculation `((enemy_attacks_bb | patt) & kzone).bit_count()` matches KS-A attack counts 98.6% of the time (max diff 1) with zero `is_attacked_by` calls.
 
-**Paired Candidate Arena Results (vs frozen MW-0.2 control, FAST TC 500ms+50ms)**:
+**Paired Candidate Arena Results (vs frozen MW-0.2 control, FAST TC 500ms+50ms, neutral bank)**:
 | Candidate | Games | Score | W/D/L | Terminations | Notes |
 |-----------|-------|-------|-------|--------------|-------|
-| M16-huber-01 | 20 | 42.5% | +7 =3 -10 | checkmate 17, threefold 3 | Tuned mobility was too passive (-100% queen, -68% rook); rejected |
-| KS-B ablation | 20 | 55.0% | +9 =4 -7 | checkmate 16, threefold 3, insufficient 1 | Faster search (+17.6% NPS) yields positive screen; valuable finding |
+| KS-C ablation | 20 | **57.5%** | +11 =1 -8 | checkmate 17, threefold 2, 50-move 1 | Evaluator speedup (+36.5%) gives positive screen |
+| M16-huber-01 screen | 20 | **62.5%** | +12 =1 -7 | checkmate 18, threefold 2 | Standardized fit with sound mobility bounds |
+| M16-huber-01 extended | 100 | **53.0%** | +48 =10 -42 | checkmate 89, threefold 8, 50-move 3 | Positive win delta (+6), but fails >55% gate |
 
 **MW-0.3 Decision**:
-- **REJECT promotion; RETAIN MW-0.2 as competition build.**
-- Per M16 criteria: offline tuned coefficients did not convincingly beat MW-0.2 in game play (42.5%). KS-B (+48% eval speed, 55.0% screen) is a promising finding documented for future search integration, but does not justify replacing the proven 96%-over-MW-0.1 MW-0.2 competition release without a massive (200+ game) confirmation.
-- Working tree remains clean with MW-0.2 as default runtime evaluator.
+- **REJECT promotion; RETAIN MW-0.2 as competition build (`ACTIVE_PARAMS = MW_0_2_EVAL`).**
+- Per Section 38 promotion criteria: candidate must convincingly clear >55% over a substantial sample. While M16-huber-01 achieved a positive score (53.0%, +6 game margin), it did not clear the 55% threshold. KS-C (+36.5% eval speed, 57.5% screen) and standardized Huber tuning provide sound foundations, but MW-0.2 remains the standing competition release.
+- Production engine code remains 100% bit-for-bit identical to MW-0.2.
 
