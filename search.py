@@ -18,7 +18,7 @@ from constants import (
 )
 from engine_types import SearchStats, SearchTimeout
 from evaluation import evaluate
-from move_ordering import capture_mvv_lva, order_moves
+from move_ordering import capture_mvv_lva, order_moves, order_root_moves
 from time_manager import Clock
 from transposition import TranspositionTable
 
@@ -61,16 +61,24 @@ class Searcher:
         self.game_history: dict[Hashable, int] = {}
         self._stack_keys: list[Hashable] = []
         self._emergency = False
+        self.root_policy_scores: dict[chess.Move, float] = {}
 
     def new_game(self) -> None:
         self.tt.clear()
         self.killers = [[None, None] for _ in range(MAX_PLY + 8)]
         self.history = [[[0 for _ in range(64)] for _ in range(64)] for _ in range(2)]
         self.game_history.clear()
+        self.root_policy_scores.clear()
 
-    def new_search(self, clock: Clock, emergency: bool) -> None:
+    def new_search(
+        self,
+        clock: Clock,
+        emergency: bool,
+        root_policy_scores: dict[chess.Move, float] | None = None,
+    ) -> None:
         self.clock = clock
         self._emergency = emergency
+        self.root_policy_scores = root_policy_scores or {}
         self.stats = SearchStats()
         self._stack_keys = []
         self.tt.new_generation()
@@ -139,7 +147,12 @@ class Searcher:
         if tt_entry is not None:
             self.stats.tt_hits += 1
             tt_move = tt_entry.best_move
-        ordered = order_moves(board, legal, tt_move, (None, None), self.history)
+        if self.root_policy_scores:
+            ordered = order_root_moves(
+                board, legal, tt_move, self.root_policy_scores, self.history
+            )
+        else:
+            ordered = order_moves(board, legal, tt_move, (None, None), self.history)
         best_score = -INF
         best_move: chess.Move | None = None
         pv: list[chess.Move] = []

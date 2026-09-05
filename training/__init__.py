@@ -1,1 +1,1 @@
-"""Training and offline tuning package."""
+"""MilkyWay M17 offline training package."""

@@ -7,6 +7,7 @@ import contextlib
 import chess
 
 from constants import INF, MATE_SCORE
+from root_policy import get_root_evaluator
 from search import MATE_THRESHOLD, Searcher
 from time_manager import Clock, allocate_time
 from transposition import TranspositionTable
@@ -68,7 +69,16 @@ class MilkyWayEngine:
         if time_left_ms < 6000:
             max_depth = min(max_depth, 6 if not budget.emergency else 4)
 
-        self.searcher.new_search(clock, budget.emergency)
+        # Single-core CPU root policy move scores
+        policy_scores: dict[chess.Move, float] = {}
+        try:
+            evaluator = get_root_evaluator()
+            if evaluator.is_available():
+                policy_scores = evaluator.get_move_scores(board, legal_sorted)
+        except Exception:
+            policy_scores = {}
+
+        self.searcher.new_search(clock, budget.emergency, root_policy_scores=policy_scores)
         try:
             best, score, pv = self.searcher.iterative_deepening(board, max_depth, fallback)
         except Exception:

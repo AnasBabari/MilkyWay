@@ -91,3 +91,43 @@ def order_moves(
         scored.append((s, tie, move))
     scored.sort(key=lambda item: (-item[0], item[1]))
     return [move for _, _, move in scored]
+
+
+def order_root_moves(
+    board: chess.Board,
+    moves: list[chess.Move],
+    tt_move: chess.Move | None,
+    policy_scores: dict[chess.Move, float],
+    history: list[list[list[int]]],
+) -> list[chess.Move]:
+    """Order root moves using TT move, promotions, captures, and neural policy scores.
+
+    TT move is always prioritized first. Promotions and captures follow classical MVV-LVA.
+    Quiet moves are ordered primarily by neural policy logits, blended with classical history,
+    capped strictly below good captures so quiet moves never jump ahead of tactical captures.
+    """
+    stm = 1 if board.turn == chess.WHITE else 0
+    scored: list[tuple[float, int, chess.Move]] = []
+    for move in moves:
+        if tt_move is not None and move == tt_move:
+            s = 100000.0
+        elif move.promotion is not None:
+            promo = move.promotion
+            promo_value = _PIECE_VALUE_MAP.get(promo, 0)
+            s = float(PROMOTION_BONUS + promo_value + max(0, capture_mvv_lva(board, move) // 8))
+        elif board.is_capture(move):
+            mvv = capture_mvv_lva(board, move)
+            s = float(GOOD_CAPTURE_BASE + mvv)
+        else:
+            h = history[stm][move.from_square][move.to_square]
+            classical_h = float(min(h, HISTORY_MAX_BONUS))
+            p_score = policy_scores.get(move, -50.0) if policy_scores else 0.0
+            quiet_s = classical_h + p_score * 300.0
+            s = min(float(GOOD_CAPTURE_BASE - 100), quiet_s)
+
+        tie = (move.from_square << 6) | move.to_square | ((move.promotion or 0) << 12)
+        scored.append((s, tie, move))
+
+    scored.sort(key=lambda item: (-item[0], item[1]))
+    return [move for _, _, move in scored]
+
