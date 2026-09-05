@@ -1,7 +1,12 @@
 # MilkyWay — Benchmarks
 
 All results are `agent (./MilkyWay) vs opponent`, alternating colours (even game = agent White).
-Time controls noted per row. Harness: `harness/arena.py` / `harness/play.py` (unmodified).
+Time controls noted per row. Harness: `harness/arena.py` / `harness/play.py`.
+
+> [!WARNING] **LEGACY HARNESS NOTICE (pre-upstream-91f70e5, 300-ply material adjudication)**
+> Historical benchmarks recorded prior to commit `91f70e54be07e1bf56311962044a08b822c3af50` used the 300-ply cap with material adjudication.
+> Any game terminated by `adjudication` is obsolete as a platform-equivalent result under current platform rules (which enforce a 600-ply draw cap).
+> Checkmate, threefold repetition, 50-move, stalemate, crash, and illegal results remain valid historical reference points subject to the new flag-insufficient-material rule.
 
 ## M0 — Unmodified starter baseline (random mover, 2026-09-05, local Windows, uv sync)
 
@@ -214,5 +219,61 @@ Time control: 10s base + 0.1s increment, alternating colours.
 | Candidate vs MW-0.1 | 10 | **95.0%** | +9 =1 -0 | checkmate 9, threefold 1 | Dominant win rate vs MW-0.1 |
 | Candidate vs MW-0.2 | 2 | **100.0%** | +2 =0 -0 | checkmate 2 | Smoke gate |
 | Candidate vs MW-0.2 | 10 | **55.0%** | +5 =1 -4 | checkmate 9, threefold 1 | Positive score vs frozen MW-0.2 |
+
+## Upstream Rules Sync & Post-91f70e5 Benchmarks (2026-09-05)
+
+### AI Chessathon upstream rules update — 2026-09-05
+
+- **Upstream commit:** `91f70e54be07e1bf56311962044a08b822c3af50` (`fix(harness): draw a capped game and a flag against a bare king`)
+- **Old rules:**
+  - 300-ply cap, material adjudication (`_adjudicate()`)
+  - Flag fall is always a loss for mover
+  - Cap checked `len(board.move_stack) >= 300` (ignored opening FEN ply count)
+- **New rules:**
+  - 600-ply cap, draw (`board.ply() >= 600 -> result="draw", termination="ply_cap"`)
+  - Flag fall is a draw when opponent has insufficient mating material (`board.has_insufficient_material(not mover)`)
+  - Cap checked `board.ply() >= 600` (opening FEN move number/turn properly contributes to cap)
+
+### Provenance Classification:
+- **Legacy harness (pre-upstream-91f70e5, 300-ply material adjudication):**
+  M0, MW-0.1, MW-0.2, and M17.5 historical runs prior to commit `91f70e5`. Results terminated by `adjudication` are obsolete as platform-equivalent metrics.
+- **New harness (post-upstream-91f70e5, 600-ply draw cap):**
+  All subsequent benchmarks, long-game simulations, and candidate validations.
+
+### Post-Sync Verification & Candidate Retest Benchmarks (New Harness)
+
+| Date | Matchup | Games | TC | Score | W/D/L | Terminations | Notes |
+|------|---------|-------|----|-------|-------|--------------|-------|
+| 2026-09-05 | Candidate (Package) vs baselines/greedy | 2 | 5s+0.1s | 100.0% | +2 =0 -0 | checkmate 2 | Package gate smoke test on new harness |
+| 2026-09-05 | Candidate vs versions/mw_0_2 | 10 | 10s+0.1s | 50.0% | +5 =0 -5 | checkmate 10 | Fresh candidate vs frozen MW-0.2 control |
+| 2026-09-05 | Candidate (Policy ON) vs Policy OFF | 6 | 10s+0.1s | 41.7% | +2 =1 -3 | checkmate 5, threefold_repetition 1 | Root policy ON vs OFF ablation |
+| 2026-09-05 | Candidate vs versions/mw_0_2 (Endgames) | 16 | 5s+0.1s | 46.9% | +4 =7 -5 | checkmate 9, insufficient_material 4, fifty_moves 2, threefold_repetition 1 | Paired 8 endgame positions under 600-ply cap |
+
+### Long-Game Clock Trajectory Simulation (120s + 0.5s TC, 300 moves per side / 600 plies)
+Simulated via `tools/simulate_long_game.py`:
+- **Nominal (1.0x soft budget):**
+  - Move 10: 97.86s
+  - Move 25: 72.85s
+  - Move 50: 45.51s
+  - Move 100: 20.20s
+  - Move 150: 11.55s
+  - Move 200: 8.59s
+  - Move 250: 7.58s
+  - Move 295: 7.26s
+  - Move 300: 7.24s (stable asymptotic equilibrium)
+- **Overrun (1.2x soft budget):**
+  - Move 10: 93.10s
+  - Move 25: 64.20s
+  - Move 50: 35.15s
+  - Move 100: 11.94s
+  - Move 150: 5.96s (enters emergency mode)
+  - Move 200+: 5.95s (stable asymptotic equilibrium)
+- **Heavy Stress (1.5x soft budget):**
+  - Move 10: 86.30s
+  - Move 25: 52.78s
+  - Move 50: 23.05s
+  - Move 100: 5.11s (enters emergency mode)
+  - Move 150+: 4.76s (stable asymptotic equilibrium)
+
 
 
