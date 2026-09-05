@@ -119,9 +119,17 @@ Local testing:
 uv run python -m unittest discover -s tests
 uv run python -m tools.fuzz_positions --positions 500 --time-ms 200
 uv run python -m tools.benchmark_eval --positions 2000
+uv run python -m tools.diff_eval --positions 2000       # eval parity gate
 uv run python -m harness.arena --opponent baselines/numba --games 20
+uv run python tools/paired_arena.py --opponent versions/mw_0_1   # 40 FENs x2
 uv run python -m harness.package  # submission.zip, agent.py at root
 ```
+
+Current version: **MW-0.2** (2.09x search NPS over MW-0.1, 96.0% over
+100 games, low-clock flag fixed and probed). MW-0.1 snapshot in
+`versions/mw_0_1/` is the standing A/B opponent; `tools/paired_arena.py`
+plays the 40-position bank with colours reversed. Numba was measured and
+rejected: no qualifying hotspot. Details in `BENCHMARKS.md`.
 
 Constraints honoured: only `chess` (+ stdlib) at runtime, single thread, no
 network, no native binaries, deterministic move selection, readable source.

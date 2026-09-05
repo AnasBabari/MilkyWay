@@ -19,12 +19,18 @@ Submission API: `get_move(fen, time_left_ms) -> uci`.
 - [x] M12 — Late Move Reductions
 - [x] M13 — Null-move pruning (conservative, zugzwang-aware)
 - [x] M14 — Futility / reverse futility / check extensions (conservative)
-- [ ] M15 — Profiling / Numba optimisation (only if measured end-to-end win; eval 5.2k/s baseline recorded)
+- [x] M15 — Profiling / Numba optimisation: 2.09x search NPS measured;
+  Numba explicitly rejected (no qualifying hotspot); see BENCHMARKS.md
 - [ ] M16 — Classical evaluation tuning (offline engine-labelled regression, ship coefficients only)
 - [ ] M17 — Optional learned evaluation / policy (only if stronger than M16 in arena)
-- [x] M18 (partial) — Production hardening: 32 unit tests, 200-position fuzz clean, gate green, zip 57 KB verified
+- [x] M18 (partial) — Production hardening: 32 unit tests, 500-position fuzz
+  clean, timing probe 0/320, gate green, zip verified, 100-game A/B recorded
 
-Next: M15 profiling/Numba decision, then M16 eval tuning, then larger arenas (100+ games MW-0.1 vs MW-0.2 for every later change).
+MW-0.2 tagged: bitboard eval + lean ordering + O(1) TT + low-clock flag fix.
+A/B: MW-0.2 vs MW-0.1 96.0% over 100 games. Opponent snapshots live in
+versions/ (mw_0_1 faithful to 772e9a5, verified). Paired FEN-bank arena
+(tools/paired_arena.py, 40 positions x2 colours) is the default A/B for M16:
+tuned-eval candidates must beat MW-0.2 with search code identical.
 
 ## Order of work
 
