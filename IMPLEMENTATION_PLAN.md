@@ -21,7 +21,7 @@ Submission API: `get_move(fen, time_left_ms) -> uci`.
 - [x] M14 — Futility / reverse futility / check extensions (conservative)
 - [x] M15 — Profiling / Numba optimisation: 2.09x search NPS measured;
   Numba explicitly rejected (no qualifying hotspot); see BENCHMARKS.md
-- [ ] M16 — Classical evaluation tuning (offline engine-labelled regression, ship coefficients only)
+- [x] M16 — Classical evaluation tuning (offline pipeline built, Huber/Ridge fitting, KS-A/B/C benchmarked; MW-0.2 retained as champion under >55% gate)
 - [ ] M17 — Optional learned evaluation / policy (only if stronger than M16 in arena)
 - [x] M18 (partial) — Production hardening: 32 unit tests, 500-position fuzz
   clean, timing probe 0/320, gate green, zip verified, 100-game A/B recorded
