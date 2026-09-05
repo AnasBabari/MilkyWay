@@ -194,7 +194,9 @@ class Searcher:
         self.stats.nodes += 1
         if ply > self.stats.seldepth:
             self.stats.seldepth = ply
-        if (self.stats.nodes & 255) == 0:
+        # Poll the hard deadline more often in emergency, when the budget is
+        # small enough that 256 nodes of overshoot could flag the game.
+        if (self.stats.nodes & (63 if self._emergency else 255)) == 0:
             self._poll_timeout()
         if ply >= MAX_PLY:
             return evaluate(board)
@@ -372,7 +374,7 @@ class Searcher:
         self.stats.qnodes += 1
         if ply > self.stats.seldepth:
             self.stats.seldepth = ply
-        if (self.stats.qnodes & 255) == 0:
+        if (self.stats.qnodes & (63 if self._emergency else 255)) == 0:
             self._poll_timeout()
 
         key = board._transposition_key()

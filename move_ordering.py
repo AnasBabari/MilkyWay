@@ -26,17 +26,15 @@ HISTORY_MAX_BONUS: int = 2500
 
 def capture_mvv_lva(board: chess.Board, move: chess.Move) -> int:
     """Most Valuable Victim / Least Valuable Attacker score."""
-    victim: chess.PieceType | None = None
     if board.is_en_passant(move):
         victim = chess.PAWN
     else:
-        target = board.piece_at(move.to_square)
-        if target is not None:
-            victim = target.piece_type
-    if victim is None:
-        return 0
-    attacker = board.piece_at(move.from_square)
-    attacker_value = _PIECE_VALUE_MAP[attacker.piece_type] if attacker is not None else 0
+        target = board.piece_type_at(move.to_square)
+        if target is None:
+            return 0
+        victim = target
+    attacker = board.piece_type_at(move.from_square)
+    attacker_value = _PIECE_VALUE_MAP[attacker] if attacker is not None else 0
     victim_value = _PIECE_VALUE_MAP[victim]
     return victim_value * 16 - attacker_value
 
@@ -81,21 +79,15 @@ def order_moves(
     killers: tuple[chess.Move | None, chess.Move | None],
     history: list[list[list[int]]],
 ) -> list[chess.Move]:
-    """Return moves sorted best-first (deterministic tie-break by UCI)."""
+    """Return moves sorted best-first (deterministic tie-break by integer move encoding)."""
     stm = 1 if board.turn == chess.WHITE else 0
-    scored: list[tuple[int, str, chess.Move]] = []
+    scored: list[tuple[int, int, chess.Move]] = []
     for move in moves:
         h = history[stm][move.from_square][move.to_square]
-        # Check detection needs push; do it sparingly — only for quiet moves
-        # that could earn the check bonus. Captures/promotions/TT already rank.
-        gives_check = False
-        if (tt_move is None or move != tt_move) and (
-            not board.is_capture(move) and move.promotion is None
-        ):
-            board.push(move)
-            gives_check = board.is_check()
-            board.pop()
-        s = score_move(board, move, tt_move, killers, h, gives_check)
-        scored.append((s, move.uci(), move))
+        # Quiet moves do not probe check with push/pop (hotspot eliminated).
+        s = score_move(board, move, tt_move, killers, h, False)
+        # Deterministic integer tie-break: avoid string allocation overhead
+        tie = (move.from_square << 6) | move.to_square | ((move.promotion or 0) << 12)
+        scored.append((s, tie, move))
     scored.sort(key=lambda item: (-item[0], item[1]))
     return [move for _, _, move in scored]

@@ -70,16 +70,10 @@ class TranspositionTable:
         )
 
     def _evict_one(self) -> None:
-        # Evict an oldest-generation, shallowest entry. Table sizes are modest
-        # so a short scan is cheaper than maintaining a heap.
-        oldest_key: Hashable | None = None
-        oldest_score: tuple[int, int] | None = None
-        for key, entry in self._table.items():
-            score = (entry.generation, entry.depth)
-            if oldest_score is None or score < oldest_score:
-                oldest_score = score
-                oldest_key = key
-                if score == (0, 0):
-                    break
-        if oldest_key is not None:
+        # Evict in O(1) time using dict FIFO order. Avoids scanning up to 131k
+        # items when the transposition table reaches capacity.
+        try:
+            oldest_key = next(iter(self._table))
             del self._table[oldest_key]
+        except StopIteration:
+            pass
