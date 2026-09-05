@@ -43,14 +43,10 @@ def allocate_time(
         hard = time_left * 0.25
         emergency = True
     else:
-        # TM-B: Conservative 40-move divisor with 15.0s emergency reserve floor.
-        reserve_floor = 15000.0
+        # TM-B: Conservative 40-move divisor with up to 15.0s emergency reserve floor (scaled for short arena time controls).
+        reserve_floor = min(15000.0, time_left * 0.15)
         usable = max(0.0, time_left - reserve_floor)
-        if usable > 0.0:
-            soft = usable / 40.0 + float(increment_ms) * 0.7
-        else:
-            # Dipping into reserve: pace gently with increment
-            soft = (time_left / 40.0) * 0.6 + float(increment_ms) * 0.5
+        soft = usable / 40.0 + float(increment_ms) * 0.7
         hard = soft * 3.0
 
         # Cap opening moves so early play never risks the whole game.
