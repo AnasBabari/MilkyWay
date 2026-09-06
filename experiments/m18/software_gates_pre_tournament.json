@@ -1,0 +1,28 @@
+{
+  "stage": "pre_tournament",
+  "all_passed": true,
+  "ruff": {
+    "passed": true,
+    "output": "All checks passed!"
+  },
+  "mypy": {
+    "passed": true,
+    "output": "Success: no issues found in 79 source files"
+  },
+  "unit_tests": {
+    "passed": true,
+    "output": "......................................................................\n----------------------------------------------------------------------\nRan 70 tests in 49.992s\n\nOK"
+  },
+  "time_probe": {
+    "passed": true,
+    "output": "budget=30ms: worst overrun -20.4ms (10 calls)\nbudget=50ms: worst overrun -34.4ms (10 calls)\nbudget=75ms: worst overrun -53.1ms (10 calls)\nbudget=100ms: worst overrun -70.8ms (10 calls)\nbudget=150ms: worst overrun -114.2ms (10 calls)\nbudget=250ms: worst overrun -193.5ms (10 calls)\nbudget=500ms: worst overrun -399.2ms (10 calls)\nbudget=1000ms: worst overrun -813.9ms (10 calls)\n\n0/80 calls exceeded budget"
+  },
+  "onnx_smoke": {
+    "passed": true,
+    "output": "Model file: weights\\milkyway_policy.onnx (5,268,829 bytes)\nDirect ONNX session loaded successfully.\nInputs (1):\n  board_planes: shape=['batch_size', 18, 8, 8], type=tensor(float)\nOutputs (1):\n  policy_logits: shape=['batch_size', 1968], type=tensor(float)\nInference latency over 100 calls:\n  Min: 0.54 ms\n  Mean: 0.82 ms\n  Median: 0.74 ms\n  Max: 1.95 ms\nONNX load and inference smoke test PASSED."
+  },
+  "arena_20_game": {
+    "passed": true,
+    "output": "game 1/20: white by checkmate\ngame 2/20: black by checkmate\ngame 3/20: white by checkmate\ngame 4/20: black by checkmate\ngame 5/20: white by checkmate\ngame 6/20: black by checkmate\ngame 7/20: white by checkmate\ngame 8/20: black by checkmate\ngame 9/20: white by checkmate\ngame 10/20: black by checkmate\ngame 11/20: white by checkmate\ngame 12/20: black by checkmate\ngame 13/20: white by checkmate\ngame 14/20: black by checkmate\ngame 15/20: white by checkmate\ngame 16/20: black by checkmate\ngame 17/20: white by checkmate\ngame 18/20: black by checkmate\ngame 19/20: white by checkmate\ngame 20/20: black by checkmate\n\n. vs baselines\\greedy over 20 games\n+20 =0 -0, score 100.0%\nterminations: checkmate 20"
+  }
+}

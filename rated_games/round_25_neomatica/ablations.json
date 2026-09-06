@@ -1,0 +1,1055 @@
+{
+  "Move 10 (Ng5 mistake)": {
+    "fen": "rn3rk1/p3ppbp/b2P2p1/2q5/P4B2/2P2NN1/1P3PPP/R2QK2R w KQ - 1 16",
+    "depth_trace": {
+      "policy_on": [
+        {
+          "depth": 1,
+          "best_uci": "g3e4",
+          "best_san": "Ne4",
+          "score": 283,
+          "nodes": 43,
+          "time_ms": 33.05,
+          "pv": [
+            "g3e4"
+          ]
+        },
+        {
+          "depth": 2,
+          "best_uci": "g3e4",
+          "best_san": "Ne4",
+          "score": 293,
+          "nodes": 185,
+          "time_ms": 59.13,
+          "pv": [
+            "g3e4"
+          ]
+        },
+        {
+          "depth": 3,
+          "best_uci": "a1c1",
+          "best_san": "Rc1",
+          "score": 238,
+          "nodes": 2574,
+          "time_ms": 859.52,
+          "pv": [
+            "a1c1"
+          ]
+        },
+        {
+          "depth": 4,
+          "best_uci": "f3g5",
+          "best_san": "Ng5",
+          "score": 228,
+          "nodes": 5811,
+          "time_ms": 1808.44,
+          "pv": [
+            "f3g5"
+          ]
+        },
+        {
+          "depth": 5,
+          "best_uci": "f3g5",
+          "best_san": "Ng5",
+          "score": 228,
+          "nodes": 9642,
+          "time_ms": 1786.43,
+          "pv": [
+            "f3g5"
+          ]
+        }
+      ],
+      "policy_off": [
+        {
+          "depth": 1,
+          "best_uci": "g3e4",
+          "best_san": "Ne4",
+          "score": 283,
+          "nodes": 44,
+          "time_ms": 42.21,
+          "pv": [
+            "g3e4"
+          ]
+        },
+        {
+          "depth": 2,
+          "best_uci": "g3e4",
+          "best_san": "Ne4",
+          "score": 293,
+          "nodes": 185,
+          "time_ms": 44.59,
+          "pv": [
+            "g3e4"
+          ]
+        },
+        {
+          "depth": 3,
+          "best_uci": "a1c1",
+          "best_san": "Rc1",
+          "score": 238,
+          "nodes": 2058,
+          "time_ms": 430.35,
+          "pv": [
+            "a1c1"
+          ]
+        },
+        {
+          "depth": 4,
+          "best_uci": "f3g5",
+          "best_san": "Ng5",
+          "score": 228,
+          "nodes": 7565,
+          "time_ms": 1914.5,
+          "pv": [
+            "f3g5"
+          ]
+        },
+        {
+          "depth": 5,
+          "best_uci": "f3g5",
+          "best_san": "Ng5",
+          "score": 228,
+          "nodes": 9658,
+          "time_ms": 1673.93,
+          "pv": [
+            "f3g5"
+          ]
+        }
+      ]
+    },
+    "timed_matrix": [
+      {
+        "budget_ms": 100,
+        "policy_enabled": true,
+        "best_uci": "g3e4",
+        "best_san": "Ne4",
+        "score": 293,
+        "depth_reached": 2,
+        "seldepth": 10,
+        "nodes": 228,
+        "elapsed_ms": 103.38,
+        "pv": [
+          "g3e4"
+        ]
+      },
+      {
+        "budget_ms": 100,
+        "policy_enabled": false,
+        "best_uci": "g3e4",
+        "best_san": "Ne4",
+        "score": 293,
+        "depth_reached": 2,
+        "seldepth": 10,
+        "nodes": 229,
+        "elapsed_ms": 90.07,
+        "pv": [
+          "g3e4"
+        ]
+      },
+      {
+        "budget_ms": 250,
+        "policy_enabled": true,
+        "best_uci": "g3e4",
+        "best_san": "Ne4",
+        "score": 293,
+        "depth_reached": 2,
+        "seldepth": 14,
+        "nodes": 1369,
+        "elapsed_ms": 391.19,
+        "pv": [
+          "g3e4"
+        ]
+      },
+      {
+        "budget_ms": 250,
+        "policy_enabled": false,
+        "best_uci": "g3e4",
+        "best_san": "Ne4",
+        "score": 293,
+        "depth_reached": 2,
+        "seldepth": 14,
+        "nodes": 1280,
+        "elapsed_ms": 382.28,
+        "pv": [
+          "g3e4"
+        ]
+      },
+      {
+        "budget_ms": 500,
+        "policy_enabled": true,
+        "best_uci": "g3e4",
+        "best_san": "Ne4",
+        "score": 293,
+        "depth_reached": 2,
+        "seldepth": 14,
+        "nodes": 2191,
+        "elapsed_ms": 771.3,
+        "pv": [
+          "g3e4"
+        ]
+      },
+      {
+        "budget_ms": 500,
+        "policy_enabled": false,
+        "best_uci": "a1c1",
+        "best_san": "Rc1",
+        "score": 238,
+        "depth_reached": 3,
+        "seldepth": 14,
+        "nodes": 2287,
+        "elapsed_ms": 537.16,
+        "pv": [
+          "a1c1"
+        ]
+      },
+      {
+        "budget_ms": 1000,
+        "policy_enabled": true,
+        "best_uci": "a1c1",
+        "best_san": "Rc1",
+        "score": 238,
+        "depth_reached": 3,
+        "seldepth": 14,
+        "nodes": 2802,
+        "elapsed_ms": 901.37,
+        "pv": [
+          "a1c1"
+        ]
+      },
+      {
+        "budget_ms": 1000,
+        "policy_enabled": false,
+        "best_uci": "a1c1",
+        "best_san": "Rc1",
+        "score": 238,
+        "depth_reached": 3,
+        "seldepth": 16,
+        "nodes": 5006,
+        "elapsed_ms": 1526.11,
+        "pv": [
+          "a1c1"
+        ]
+      },
+      {
+        "budget_ms": 2000,
+        "policy_enabled": true,
+        "best_uci": "f3g5",
+        "best_san": "Ng5",
+        "score": 228,
+        "depth_reached": 4,
+        "seldepth": 16,
+        "nodes": 10486,
+        "elapsed_ms": 2999.07,
+        "pv": [
+          "f3g5"
+        ]
+      },
+      {
+        "budget_ms": 2000,
+        "policy_enabled": false,
+        "best_uci": "a1c1",
+        "best_san": "Rc1",
+        "score": 238,
+        "depth_reached": 3,
+        "seldepth": 16,
+        "nodes": 9808,
+        "elapsed_ms": 3004.11,
+        "pv": [
+          "a1c1"
+        ]
+      }
+    ],
+    "ablations": [
+      {
+        "name": "Full (Policy ON)",
+        "best_uci": "f3g5",
+        "best_san": "Ng5",
+        "score": 228,
+        "nodes": 6251,
+        "elapsed_ms": 1585.3,
+        "pv": [
+          "f3g5"
+        ]
+      },
+      {
+        "name": "Full (Policy OFF)",
+        "best_uci": "f3g5",
+        "best_san": "Ng5",
+        "score": 228,
+        "nodes": 9304,
+        "elapsed_ms": 2331.17,
+        "pv": [
+          "f3g5"
+        ]
+      },
+      {
+        "name": "No TT",
+        "best_uci": "f3g5",
+        "best_san": "Ng5",
+        "score": 228,
+        "nodes": 6269,
+        "elapsed_ms": 1632.12,
+        "pv": [
+          "f3g5"
+        ]
+      },
+      {
+        "name": "No LMR",
+        "best_uci": "f3g5",
+        "best_san": "Ng5",
+        "score": 228,
+        "nodes": 7483,
+        "elapsed_ms": 1641.2,
+        "pv": [
+          "f3g5"
+        ]
+      },
+      {
+        "name": "No Null Move",
+        "best_uci": "f3g5",
+        "best_san": "Ng5",
+        "score": 228,
+        "nodes": 6248,
+        "elapsed_ms": 1647.0,
+        "pv": [
+          "f3g5"
+        ]
+      },
+      {
+        "name": "No Futility",
+        "best_uci": "f3g5",
+        "best_san": "Ng5",
+        "score": 228,
+        "nodes": 9470,
+        "elapsed_ms": 1807.44,
+        "pv": [
+          "f3g5"
+        ]
+      },
+      {
+        "name": "No Reverse Futility",
+        "best_uci": "f3g5",
+        "best_san": "Ng5",
+        "score": 228,
+        "nodes": 11238,
+        "elapsed_ms": 2608.6,
+        "pv": [
+          "f3g5"
+        ]
+      },
+      {
+        "name": "No Aspiration",
+        "best_uci": "f3g5",
+        "best_san": "Ng5",
+        "score": 228,
+        "nodes": 6251,
+        "elapsed_ms": 1586.38,
+        "pv": [
+          "f3g5"
+        ]
+      }
+    ]
+  },
+  "Move 15 (Rb1 collapse)": {
+    "fen": "5rk1/p4pbp/b5p1/4n1N1/P3N3/2P5/1q1B1PPP/R2QK2R w KQ - 2 21",
+    "depth_trace": {
+      "policy_on": [
+        {
+          "depth": 1,
+          "best_uci": "a1b1",
+          "best_san": "Rb1",
+          "score": 625,
+          "nodes": 40,
+          "time_ms": 14.26,
+          "pv": [
+            "a1b1"
+          ]
+        },
+        {
+          "depth": 2,
+          "best_uci": "a1b1",
+          "best_san": "Rb1",
+          "score": 643,
+          "nodes": 246,
+          "time_ms": 66.59,
+          "pv": [
+            "a1b1"
+          ]
+        },
+        {
+          "depth": 3,
+          "best_uci": "d1b1",
+          "best_san": "Qb1",
+          "score": 592,
+          "nodes": 1773,
+          "time_ms": 447.71,
+          "pv": [
+            "d1b1"
+          ]
+        },
+        {
+          "depth": 4,
+          "best_uci": "e4c5",
+          "best_san": "Nc5",
+          "score": 574,
+          "nodes": 5274,
+          "time_ms": 1365.46,
+          "pv": [
+            "e4c5"
+          ]
+        },
+        {
+          "depth": 5,
+          "best_uci": "a1b1",
+          "best_san": "Rb1",
+          "score": 526,
+          "nodes": 16708,
+          "time_ms": 3321.01,
+          "pv": [
+            "a1b1"
+          ]
+        }
+      ],
+      "policy_off": [
+        {
+          "depth": 1,
+          "best_uci": "a1b1",
+          "best_san": "Rb1",
+          "score": 625,
+          "nodes": 37,
+          "time_ms": 8.81,
+          "pv": [
+            "a1b1"
+          ]
+        },
+        {
+          "depth": 2,
+          "best_uci": "a1b1",
+          "best_san": "Rb1",
+          "score": 643,
+          "nodes": 247,
+          "time_ms": 69.58,
+          "pv": [
+            "a1b1"
+          ]
+        },
+        {
+          "depth": 3,
+          "best_uci": "d1b1",
+          "best_san": "Qb1",
+          "score": 592,
+          "nodes": 1490,
+          "time_ms": 303.99,
+          "pv": [
+            "d1b1"
+          ]
+        },
+        {
+          "depth": 4,
+          "best_uci": "e4c5",
+          "best_san": "Nc5",
+          "score": 574,
+          "nodes": 5464,
+          "time_ms": 1404.68,
+          "pv": [
+            "e4c5"
+          ]
+        },
+        {
+          "depth": 5,
+          "best_uci": "a1b1",
+          "best_san": "Rb1",
+          "score": 526,
+          "nodes": 16614,
+          "time_ms": 3290.79,
+          "pv": [
+            "a1b1"
+          ]
+        }
+      ]
+    },
+    "timed_matrix": [
+      {
+        "budget_ms": 100,
+        "policy_enabled": true,
+        "best_uci": "a1b1",
+        "best_san": "Rb1",
+        "score": 643,
+        "depth_reached": 2,
+        "seldepth": 14,
+        "nodes": 622,
+        "elapsed_ms": 163.59,
+        "pv": [
+          "a1b1"
+        ]
+      },
+      {
+        "budget_ms": 100,
+        "policy_enabled": false,
+        "best_uci": "a1b1",
+        "best_san": "Rb1",
+        "score": 643,
+        "depth_reached": 2,
+        "seldepth": 14,
+        "nodes": 672,
+        "elapsed_ms": 162.78,
+        "pv": [
+          "a1b1"
+        ]
+      },
+      {
+        "budget_ms": 250,
+        "policy_enabled": true,
+        "best_uci": "a1b1",
+        "best_san": "Rb1",
+        "score": 643,
+        "depth_reached": 2,
+        "seldepth": 15,
+        "nodes": 1360,
+        "elapsed_ms": 390.33,
+        "pv": [
+          "a1b1"
+        ]
+      },
+      {
+        "budget_ms": 250,
+        "policy_enabled": false,
+        "best_uci": "a1b1",
+        "best_san": "Rb1",
+        "score": 643,
+        "depth_reached": 2,
+        "seldepth": 15,
+        "nodes": 1747,
+        "elapsed_ms": 380.3,
+        "pv": [
+          "a1b1"
+        ]
+      },
+      {
+        "budget_ms": 500,
+        "policy_enabled": true,
+        "best_uci": "d1b1",
+        "best_san": "Qb1",
+        "score": 592,
+        "depth_reached": 3,
+        "seldepth": 15,
+        "nodes": 2059,
+        "elapsed_ms": 516.61,
+        "pv": [
+          "d1b1"
+        ]
+      },
+      {
+        "budget_ms": 500,
+        "policy_enabled": false,
+        "best_uci": "d1b1",
+        "best_san": "Qb1",
+        "score": 592,
+        "depth_reached": 3,
+        "seldepth": 15,
+        "nodes": 1774,
+        "elapsed_ms": 402.69,
+        "pv": [
+          "d1b1"
+        ]
+      },
+      {
+        "budget_ms": 1000,
+        "policy_enabled": true,
+        "best_uci": "d1b1",
+        "best_san": "Qb1",
+        "score": 592,
+        "depth_reached": 3,
+        "seldepth": 18,
+        "nodes": 6123,
+        "elapsed_ms": 1520.88,
+        "pv": [
+          "d1b1"
+        ]
+      },
+      {
+        "budget_ms": 1000,
+        "policy_enabled": false,
+        "best_uci": "e4c5",
+        "best_san": "Nc5",
+        "score": 574,
+        "depth_reached": 4,
+        "seldepth": 17,
+        "nodes": 6080,
+        "elapsed_ms": 1429.72,
+        "pv": [
+          "e4c5"
+        ]
+      },
+      {
+        "budget_ms": 2000,
+        "policy_enabled": true,
+        "best_uci": "e4c5",
+        "best_san": "Nc5",
+        "score": 574,
+        "depth_reached": 4,
+        "seldepth": 18,
+        "nodes": 14316,
+        "elapsed_ms": 3026.11,
+        "pv": [
+          "e4c5"
+        ]
+      },
+      {
+        "budget_ms": 2000,
+        "policy_enabled": false,
+        "best_uci": "e4c5",
+        "best_san": "Nc5",
+        "score": 574,
+        "depth_reached": 4,
+        "seldepth": 17,
+        "nodes": 14129,
+        "elapsed_ms": 3002.42,
+        "pv": [
+          "e4c5"
+        ]
+      }
+    ],
+    "ablations": [
+      {
+        "name": "Full (Policy ON)",
+        "best_uci": "e4c5",
+        "best_san": "Nc5",
+        "score": 574,
+        "nodes": 7430,
+        "elapsed_ms": 1830.83,
+        "pv": [
+          "e4c5"
+        ]
+      },
+      {
+        "name": "Full (Policy OFF)",
+        "best_uci": "e4c5",
+        "best_san": "Nc5",
+        "score": 574,
+        "nodes": 7396,
+        "elapsed_ms": 1708.76,
+        "pv": [
+          "e4c5"
+        ]
+      },
+      {
+        "name": "No TT",
+        "best_uci": "e4c5",
+        "best_san": "Nc5",
+        "score": 574,
+        "nodes": 7501,
+        "elapsed_ms": 1790.78,
+        "pv": [
+          "e4c5"
+        ]
+      },
+      {
+        "name": "No LMR",
+        "best_uci": "e4c5",
+        "best_san": "Nc5",
+        "score": 568,
+        "nodes": 9269,
+        "elapsed_ms": 2053.28,
+        "pv": [
+          "e4c5"
+        ]
+      },
+      {
+        "name": "No Null Move",
+        "best_uci": "e4c5",
+        "best_san": "Nc5",
+        "score": 574,
+        "nodes": 7512,
+        "elapsed_ms": 1772.63,
+        "pv": [
+          "e4c5"
+        ]
+      },
+      {
+        "name": "No Futility",
+        "best_uci": "e4c5",
+        "best_san": "Nc5",
+        "score": 574,
+        "nodes": 14565,
+        "elapsed_ms": 2209.77,
+        "pv": [
+          "e4c5"
+        ]
+      },
+      {
+        "name": "No Reverse Futility",
+        "best_uci": "e4c5",
+        "best_san": "Nc5",
+        "score": 574,
+        "nodes": 8808,
+        "elapsed_ms": 2275.52,
+        "pv": [
+          "e4c5"
+        ]
+      },
+      {
+        "name": "No Aspiration",
+        "best_uci": "e4c5",
+        "best_san": "Nc5",
+        "score": 574,
+        "nodes": 7430,
+        "elapsed_ms": 1763.53,
+        "pv": [
+          "e4c5"
+        ]
+      }
+    ]
+  },
+  "Move 18 (Ra1 fatal blunder)": {
+    "fen": "5rk1/p5bp/b5p1/5pN1/P3N3/2PnK3/q2B1PPP/1R1Q3R w - - 0 24",
+    "depth_trace": {
+      "policy_on": [
+        {
+          "depth": 1,
+          "best_uci": "e4d6",
+          "best_san": "Nd6",
+          "score": 683,
+          "nodes": 47,
+          "time_ms": 25.21,
+          "pv": [
+            "e4d6"
+          ]
+        },
+        {
+          "depth": 2,
+          "best_uci": "b1a1",
+          "best_san": "Ra1",
+          "score": 651,
+          "nodes": 293,
+          "time_ms": 68.0,
+          "pv": [
+            "b1a1"
+          ]
+        },
+        {
+          "depth": 3,
+          "best_uci": "e4d6",
+          "best_san": "Nd6",
+          "score": 572,
+          "nodes": 1010,
+          "time_ms": 312.08,
+          "pv": [
+            "e4d6"
+          ]
+        },
+        {
+          "depth": 4,
+          "best_uci": "b1a1",
+          "best_san": "Ra1",
+          "score": 522,
+          "nodes": 3785,
+          "time_ms": 774.37,
+          "pv": [
+            "b1a1"
+          ]
+        },
+        {
+          "depth": 5,
+          "best_uci": "g2g4",
+          "best_san": "g4",
+          "score": 322,
+          "nodes": 16808,
+          "time_ms": 3419.46,
+          "pv": [
+            "g2g4"
+          ]
+        }
+      ],
+      "policy_off": [
+        {
+          "depth": 1,
+          "best_uci": "e4d6",
+          "best_san": "Nd6",
+          "score": 683,
+          "nodes": 48,
+          "time_ms": 33.66,
+          "pv": [
+            "e4d6"
+          ]
+        },
+        {
+          "depth": 2,
+          "best_uci": "b1a1",
+          "best_san": "Ra1",
+          "score": 651,
+          "nodes": 269,
+          "time_ms": 69.73,
+          "pv": [
+            "b1a1"
+          ]
+        },
+        {
+          "depth": 3,
+          "best_uci": "e4d6",
+          "best_san": "Nd6",
+          "score": 572,
+          "nodes": 1107,
+          "time_ms": 317.95,
+          "pv": [
+            "e4d6"
+          ]
+        },
+        {
+          "depth": 4,
+          "best_uci": "b1a1",
+          "best_san": "Ra1",
+          "score": 522,
+          "nodes": 3467,
+          "time_ms": 709.83,
+          "pv": [
+            "b1a1"
+          ]
+        },
+        {
+          "depth": 5,
+          "best_uci": "g2g4",
+          "best_san": "g4",
+          "score": 322,
+          "nodes": 18437,
+          "time_ms": 3831.31,
+          "pv": [
+            "g2g4"
+          ]
+        }
+      ]
+    },
+    "timed_matrix": [
+      {
+        "budget_ms": 100,
+        "policy_enabled": true,
+        "best_uci": "b1a1",
+        "best_san": "Ra1",
+        "score": 651,
+        "depth_reached": 2,
+        "seldepth": 11,
+        "nodes": 340,
+        "elapsed_ms": 100.61,
+        "pv": [
+          "b1a1"
+        ]
+      },
+      {
+        "budget_ms": 100,
+        "policy_enabled": false,
+        "best_uci": "b1a1",
+        "best_san": "Ra1",
+        "score": 651,
+        "depth_reached": 2,
+        "seldepth": 11,
+        "nodes": 317,
+        "elapsed_ms": 105.67,
+        "pv": [
+          "b1a1"
+        ]
+      },
+      {
+        "budget_ms": 250,
+        "policy_enabled": true,
+        "best_uci": "b1a1",
+        "best_san": "Ra1",
+        "score": 651,
+        "depth_reached": 2,
+        "seldepth": 15,
+        "nodes": 1275,
+        "elapsed_ms": 393.78,
+        "pv": [
+          "b1a1"
+        ]
+      },
+      {
+        "budget_ms": 250,
+        "policy_enabled": false,
+        "best_uci": "b1a1",
+        "best_san": "Ra1",
+        "score": 651,
+        "depth_reached": 2,
+        "seldepth": 15,
+        "nodes": 1344,
+        "elapsed_ms": 398.3,
+        "pv": [
+          "b1a1"
+        ]
+      },
+      {
+        "budget_ms": 500,
+        "policy_enabled": true,
+        "best_uci": "e4d6",
+        "best_san": "Nd6",
+        "score": 572,
+        "depth_reached": 3,
+        "seldepth": 15,
+        "nodes": 1350,
+        "elapsed_ms": 406.95,
+        "pv": [
+          "e4d6"
+        ]
+      },
+      {
+        "budget_ms": 500,
+        "policy_enabled": false,
+        "best_uci": "e4d6",
+        "best_san": "Nd6",
+        "score": 572,
+        "depth_reached": 3,
+        "seldepth": 15,
+        "nodes": 1424,
+        "elapsed_ms": 430.07,
+        "pv": [
+          "e4d6"
+        ]
+      },
+      {
+        "budget_ms": 1000,
+        "policy_enabled": true,
+        "best_uci": "e4d6",
+        "best_san": "Nd6",
+        "score": 572,
+        "depth_reached": 3,
+        "seldepth": 17,
+        "nodes": 6656,
+        "elapsed_ms": 1519.42,
+        "pv": [
+          "e4d6"
+        ]
+      },
+      {
+        "budget_ms": 1000,
+        "policy_enabled": false,
+        "best_uci": "b1a1",
+        "best_san": "Ra1",
+        "score": 522,
+        "depth_reached": 4,
+        "seldepth": 17,
+        "nodes": 6573,
+        "elapsed_ms": 1514.89,
+        "pv": [
+          "b1a1"
+        ]
+      },
+      {
+        "budget_ms": 2000,
+        "policy_enabled": true,
+        "best_uci": "b1a1",
+        "best_san": "Ra1",
+        "score": 522,
+        "depth_reached": 4,
+        "seldepth": 18,
+        "nodes": 14942,
+        "elapsed_ms": 3000.53,
+        "pv": [
+          "b1a1"
+        ]
+      },
+      {
+        "budget_ms": 2000,
+        "policy_enabled": false,
+        "best_uci": "b1a1",
+        "best_san": "Ra1",
+        "score": 522,
+        "depth_reached": 4,
+        "seldepth": 18,
+        "nodes": 14848,
+        "elapsed_ms": 3010.46,
+        "pv": [
+          "b1a1"
+        ]
+      }
+    ],
+    "ablations": [
+      {
+        "name": "Full (Policy ON)",
+        "best_uci": "b1a1",
+        "best_san": "Ra1",
+        "score": 522,
+        "nodes": 6127,
+        "elapsed_ms": 1395.03,
+        "pv": [
+          "b1a1"
+        ]
+      },
+      {
+        "name": "Full (Policy OFF)",
+        "best_uci": "e4d6",
+        "best_san": "Nd6",
+        "score": 488,
+        "nodes": 6542,
+        "elapsed_ms": 1478.27,
+        "pv": [
+          "e4d6"
+        ]
+      },
+      {
+        "name": "No TT",
+        "best_uci": "b1a1",
+        "best_san": "Ra1",
+        "score": 522,
+        "nodes": 6947,
+        "elapsed_ms": 1506.38,
+        "pv": [
+          "b1a1"
+        ]
+      },
+      {
+        "name": "No LMR",
+        "best_uci": "b1a1",
+        "best_san": "Ra1",
+        "score": 314,
+        "nodes": 9243,
+        "elapsed_ms": 2172.05,
+        "pv": [
+          "b1a1"
+        ]
+      },
+      {
+        "name": "No Null Move",
+        "best_uci": "b1a1",
+        "best_san": "Ra1",
+        "score": 522,
+        "nodes": 6492,
+        "elapsed_ms": 1462.24,
+        "pv": [
+          "b1a1"
+        ]
+      },
+      {
+        "name": "No Futility",
+        "best_uci": "b1a1",
+        "best_san": "Ra1",
+        "score": 522,
+        "nodes": 12156,
+        "elapsed_ms": 1764.97,
+        "pv": [
+          "b1a1"
+        ]
+      },
+      {
+        "name": "No Reverse Futility",
+        "best_uci": "b1a1",
+        "best_san": "Ra1",
+        "score": 522,
+        "nodes": 9534,
+        "elapsed_ms": 2659.79,
+        "pv": [
+          "b1a1"
+        ]
+      },
+      {
+        "name": "No Aspiration",
+        "best_uci": "b1a1",
+        "best_san": "Ra1",
+        "score": 522,
+        "nodes": 6127,
+        "elapsed_ms": 1377.04,
+        "pv": [
+          "b1a1"
+        ]
+      }
+    ]
+  }
+}

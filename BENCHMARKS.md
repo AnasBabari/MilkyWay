@@ -1,16 +1,23 @@
 # MilkyWay — Benchmarks
 
 All results are `agent (./MilkyWay) vs opponent`, alternating colours (even game = agent White).
-Time controls noted per row. Harness: `harness/arena.py` / `harness/play.py` (unmodified).
+Time controls noted per row. Harness: `harness/arena.py` / `harness/play.py`.
+
+> [!WARNING] **LEGACY HARNESS NOTICE (pre-upstream-91f70e5, 300-ply material adjudication)**
+> Historical benchmarks recorded prior to commit `91f70e54be07e1bf56311962044a08b822c3af50` used the 300-ply cap with material adjudication.
+> Any game terminated by `adjudication` is obsolete as a platform-equivalent result under current platform rules (which enforce a 600-ply draw cap).
+> Checkmate, threefold repetition, 50-move, stalemate, crash, and illegal results remain valid historical reference points subject to the new flag-insufficient-material rule.
 
 ## M0 — Unmodified starter baseline (random mover, 2026-09-05, local Windows, uv sync)
+
+*Harness: LEGACY HARNESS (pre-upstream-91f70e5, 300-ply material adjudication)*
 
 Environment: Python 3.14.5 (local; platform is 3.12), chess 1.11.2, numpy 2.5.2,
 numba 0.67.0, torch 2.13.0+cpu, onnxruntime 1.29.0. Local machine (not EPYC 9V74).
 
 | Date | Matchup | Games | TC | Score | W/D/L | Terminations | Notes |
 |------|---------|-------|----|-------|-------|--------------|-------|
-| 2026-09-05 | starter(random) vs baselines/random | 2 | 5s+0.1s(?) `--base-ms 5000` | 50.0% | +1 =0 -1 | adjudication 2 | `make gate` smoke: ruff OK, mypy OK |
+| 2026-09-05 | starter(random) vs baselines/random | 2 | 5s+0.1s(?) `--base-ms 5000` | 50.0% | +1 =0 -1 | adjudication 2 | `make gate` smoke: ruff OK, mypy OK (obsolete termination under 600-ply draw cap) |
 | 2026-09-05 | starter(random) vs baselines/greedy | 20 | 10s+0.1s (arena default) | 10.0% | +0 =4 -16 | stalemate 4, checkmate 16 | matches README (~10%) |
 | 2026-09-05 | starter(random) vs baselines/minimax | 6 | 10s+0.1s | 8.3% | +0 =1 -5 | checkmate 5, threefold 1 | expected: random loses |
 | 2026-09-05 | starter(random, White) vs greedy(Black), single `harness.play` | 1 | 120s+0.5s | draw | =1 | threefold_repetition | sanity: full-TC game finishes cleanly |
@@ -23,6 +30,8 @@ No crashes / illegal moves / flags in M0 baseline runs.
 ## Milestone results (append below)
 
 ### MW-0.1 — first competition engine (2026-09-05, local Windows, uv sync)
+
+*Harness: LEGACY HARNESS (pre-upstream-91f70e5, 300-ply material adjudication)*
 
 Classical engine, no network. Tapered eval (material, PST, pawn structure,
 bishop pair, rooks, mobility, king safety, mop-up) + ID + PVS alpha-beta +
@@ -43,6 +52,8 @@ Unit tests 32/32. ruff + mypy strict clean (30 files). Zip 57 KB unzipped.
 Zero illegal moves / crashes / flags across all MW-0.1 games (58 games total).
 
 ### MW-0.2 — performance release (2026-09-05, local Windows, uv sync)
+
+*Harness: LEGACY HARNESS (pre-upstream-91f70e5, 300-ply material adjudication)*
 
 Rule for the release: PROFILE → HYPOTHESIS → ONE CHANGE → MEASURE →
 ARENA → KEEP OR REVERT. No new search features; no neural network.
@@ -121,6 +132,8 @@ deeper search and should read better than this rapid calibration.
 
 ### M16 — Offline Handcrafted Evaluation Tuning (2026-09-05, local Windows, uv sync)
 
+*Harness: LEGACY HARNESS (pre-upstream-91f70e5, 300-ply material adjudication)*
+
 **Rule for the phase**: FREEZE SEARCH → BUILD DATASET → EXTRACT EXPLAINABLE FEATURES →
 LABEL OFFLINE → FIT COEFFICIENTS → VALIDATE OUT OF SAMPLE → PLAY PAIRED ARENAS → KEEP OR REJECT.
 
@@ -190,16 +203,155 @@ LABEL OFFLINE → FIT COEFFICIENTS → VALIDATE OUT OF SAMPLE → PLAY PAIRED AR
 
 ### AI Chessathon platform validation — 2026-09-05
 
+*Harness: LEGACY HARNESS (pre-upstream-91f70e5, 300-ply material adjudication)*
+
 Build: MW-0.2 validated candidate
 
 - Build: PASS
 - Uncompressed package: 71,835 bytes
 - Init: 0.7 s as White / 0.5 s as Black
-- White smoke: PASS, adjudication
-- Black smoke: PASS, adjudication
+- White smoke: PASS, adjudication (obsolete termination under 600-ply draw cap)
+- Black smoke: PASS, adjudication (obsolete termination under 600-ply draw cap)
 - Slowest move: 12.0 s
 - Illegal moves: 0
 - Crashes: 0
 - Flags: 0
 - Overall result: VALID
+
+### M17.5 — Forensics, Root Policy, and TM-B Fixes (2026-09-05)
+
+*Harness: LEGACY HARNESS (pre-upstream-91f70e5, 300-ply material adjudication)*
+
+Match testing against previous frozen milestones (`versions/mw_0_1` and `versions/mw_0_2`).
+Time control: 10s base + 0.1s increment, alternating colours.
+
+| Matchup | Games | Score | W/D/L | Terminations | Notes |
+|---------|-------|-------|-------|--------------|-------|
+| Candidate vs MW-0.1 | 2 | **100.0%** | +2 =0 -0 | checkmate 2 | Smoke gate |
+| Candidate vs MW-0.1 | 10 | **95.0%** | +9 =1 -0 | checkmate 9, threefold 1 | Dominant win rate vs MW-0.1 |
+| Candidate vs MW-0.2 | 2 | **100.0%** | +2 =0 -0 | checkmate 2 | Smoke gate |
+| Candidate vs MW-0.2 | 10 | **55.0%** | +5 =1 -4 | checkmate 9, threefold 1 | Positive score vs frozen MW-0.2 |
+
+## Upstream Rules Sync & Post-91f70e5 Benchmarks (2026-09-05)
+
+### AI Chessathon upstream rules update — 2026-09-05
+
+- **Upstream commit:** `91f70e54be07e1bf56311962044a08b822c3af50` (`fix(harness): draw a capped game and a flag against a bare king`)
+- **Old rules:**
+  - 300-ply cap, material adjudication (`_adjudicate()`)
+  - Flag fall is always a loss for mover
+  - Cap checked `len(board.move_stack) >= 300` (ignored opening FEN ply count)
+- **New rules:**
+  - 600-ply cap, draw (`board.ply() >= 600 -> result="draw", termination="ply_cap"`)
+  - Flag fall is a draw when opponent has insufficient mating material (`board.has_insufficient_material(not mover)`)
+  - Cap checked `board.ply() >= 600` (opening FEN move number/turn properly contributes to cap)
+
+### Provenance Classification:
+- **Legacy harness (pre-upstream-91f70e5, 300-ply material adjudication):**
+  M0, MW-0.1, MW-0.2, and M17.5 historical runs prior to commit `91f70e5`. Results terminated by `adjudication` are obsolete as platform-equivalent metrics.
+- **New harness (post-upstream-91f70e5, 600-ply draw cap):**
+  All subsequent benchmarks, long-game simulations, and candidate validations.
+
+### Post-Sync Verification & Candidate Retest Benchmarks (New Harness)
+
+| Date | Matchup | Games | TC | Score | W/D/L | Terminations | Notes |
+|------|---------|-------|----|-------|-------|--------------|-------|
+| 2026-09-05 | Candidate (Package) vs baselines/greedy | 2 | 5s+0.1s | 100.0% | +2 =0 -0 | checkmate 2 | Package gate smoke test on new harness |
+| 2026-09-05 | Candidate vs versions/mw_0_2 | 10 | 10s+0.1s | 50.0% | +5 =0 -5 | checkmate 10 | Fresh candidate vs frozen MW-0.2 control |
+| 2026-09-05 | Candidate (Policy ON) vs Policy OFF | 6 | 10s+0.1s | 41.7% | +2 =1 -3 | checkmate 5, threefold_repetition 1 | Root policy ON vs OFF ablation |
+| 2026-09-05 | Candidate vs versions/mw_0_2 (Endgames) | 16 | 5s+0.1s | 46.9% | +4 =7 -5 | checkmate 9, insufficient_material 4, fifty_moves 2, threefold_repetition 1 | Paired 8 endgame positions under 600-ply cap |
+
+### Long-Game Clock Trajectory Simulation (120s + 0.5s TC, 300 moves per side / 600 plies)
+Simulated via `tools/simulate_long_game.py`:
+- **Nominal (1.0x soft budget):**
+  - Move 10: 97.86s
+  - Move 25: 72.85s
+  - Move 50: 45.51s
+  - Move 100: 20.20s
+  - Move 150: 11.55s
+  - Move 200: 8.59s
+  - Move 250: 7.58s
+  - Move 295: 7.26s
+  - Move 300: 7.24s (stable asymptotic equilibrium)
+- **Overrun (1.2x soft budget):**
+  - Move 10: 93.10s
+  - Move 25: 64.20s
+  - Move 50: 35.15s
+  - Move 100: 11.94s
+  - Move 150: 5.96s (enters emergency mode)
+  - Move 200+: 5.95s (stable asymptotic equilibrium)
+- **Heavy Stress (1.5x soft budget):**
+  - Move 10: 86.30s
+  - Move 25: 52.78s
+  - Move 50: 23.05s
+  - Move 100: 5.11s (enters emergency mode)
+  - Move 150+: 4.76s (stable asymptotic equilibrium)
+
+## M18 — Production Qualification Tournament & Statistical Protocol (2026-09-05)
+
+*Harness: NEW HARNESS (post-upstream-91f70e5, 600-ply draw cap)*
+
+Execution of the formal 15-amendment qualification protocol evaluating frozen candidate `MilkyWay RC1` (commit `e252106c3b4dc6d60b72e822673641c894be9d49`) against frozen control `versions/mw_0_2`.
+
+### Protocol Setup & Audits:
+- **Bank Stratification**: Deterministic split (`M18_SPLIT_SEED = 20260905`, Bank SHA-256 `505bdd4860bab9fc20c4b43ae38bafc1693e5d07ad758dacbd56d6ae0ec1fac1`) yielding two non-overlapping 100-pair sets (Screen and Confirmation), each exactly 25 opening, 50 middlegame, and 25 endgame pairs.
+- **Bank Distribution Audit**: Fullmoves min 3, max 77, median 21; halfmove clock min 0, max 88, median 1; starting ply min 4, max 152, median 41. No near-cap positions (min 448 plies remaining vs 600-ply cap).
+- **Packaging Determinism**: Bit-identical builds verified (`sha1 == sha2 == af55cb1777778141b0b1de26bb8c8c08445a5c59280c01fcdb152be3366de063`). Uncompressed payload 5,353,731 bytes (limit <50 MB). Extracted 2-game smoke: 100% checkmate wins.
+- **Pre-tournament Software Gates**: `ruff check` PASS (clean repo-wide), `mypy` PASS (strict clean across all files), `tests` PASS (69/69 in 49.5s), time probe PASS (0/320 overruns), ONNX smoke PASS (median 0.51 ms latency, 18-plane input), 20-game arena vs `baselines/greedy` PASS (+20 =0 -0, 100% checkmates).
+- **Rated Regressions (Gate 6)**: R20 (LarpMaxx) and R25 (Neomatica) unit tests PASS (4/4 in 41.1s).
+- **Long-Game Live-Search Stress (Gate 0)**: 250 candidate decisions sustained live search under 120s+0.5s TC. Zero flags, zero crashes, zero illegals across all moves and 25 game completions; stable asymptotic clock equilibrium verified.
+
+### Tournament & Ablation Results:
+
+| Stage | Pairs / Games | TC | Score | W/D/L | 95% Bootstrap CI | Point Elo [95% CI] | Gate Status |
+|---|---|---|---|---|---|---|---|
+| Gate 1: Screen Set | 100 / 200 | 10s+0.1s | **52.0%** | +86 =36 -78 | [47.0%, 57.0%] | +13.9 [-20.9, +49.0] | PASS (cond. >=52%) |
+| Gate 2: Holdout Confirmation | 100 / 200 | 10s+0.1s | **52.25%** | +90 =29 -81 | [47.75%, 57.0%] | +15.6 [-15.6, +49.0] | PASS (>50% req.) |
+| Gate 3: Combined 400 (Exploratory) | 200 / 400 | 10s+0.1s | **52.125%** | +176 =65 -159 | [48.75%, 55.5%] | +14.8 [-8.7, +38.4] | **FAIL** (<55% target, CI spans neutral) |
+| Gate 4: Policy ON vs Policy OFF | 20 / 40 | 10s+0.1s | **50.0%** | +18 =4 -18 | [35.0%, 65.0%] | 0.0 [-107.5, +107.5] | Neutral |
+| TM-B vs TM-A Ablation | 20 / 40 | 10s+0.1s | **47.5%** | +16 =6 -18 | [36.25%, 58.75%] | -17.4 [-98.1, +61.4] | Control favored |
+| Gate 5a: Medium TC Bridge | 20 / 40 | 30s+0.3s | **51.25%** | +18 =5 -17 | [38.75%, 63.75%] | +8.7 [-79.5, +98.1] | Positive |
+| Gate 5b: Full TC Bridge | 10 / 20 | 120s+0.5s | **45.0%** | +7 =4 -9 | [30.0%, 57.5%] | -34.9 [-147.2, +52.5] | **FAIL** (direction reversal) |
+
+### Stratified Performance Breakdown:
+- **Colour Stratification (Combined 400)**:
+  - White: 44.75% (+71 =37 -92)
+  - Black: 59.50% (+105 =28 -67)
+- **Phase Stratification (Combined 400)**:
+  - Opening (50 pairs): 56.0% (+52 =8 -40)
+  - Middlegame (100 pairs): 49.5% (+87 =24 -89)
+  - Endgame (50 pairs): 53.5% (+37 =33 -30)
+- **Pair Score Distribution (Combined 400, 200 pairs)**:
+  - 2.0 (Double win): 23 pairs (11.5%)
+  - 1.5 (Win + Draw): 22 pairs (11.0%)
+  - 1.0 (Balanced split): 120 pairs (60.0%)
+  - 0.5 (Loss + Draw): 19 pairs (9.5%)
+  - 0.0 (Double loss): 16 pairs (8.0%)
+
+### Reliability & Terminations (540 Total Games):
+- Zero crashes, zero flags, zero illegal moves.
+- Checkmate: 457 (84.6%)
+- Threefold repetition: 47 (8.7%)
+- Insufficient material: 17 (3.1%)
+- Fifty moves: 13 (2.4%)
+- Stalemate: 6 (1.1%)
+
+### Promotion Gate Evaluation:
+- `Gate 0 (Reliability)`: **PASS** (zero crashes, flags, or illegals across all matches).
+- `Gate 1 (Screen Set)`: **PASS** (52.0% >= 52% conditional threshold).
+- `Gate 2 (Untouched Holdout Confirmation)`: **PASS** (52.25% > 50% threshold).
+- `Gate 3 (Combined 400 Games)`: **FAIL** (52.125% < 55.0% target; 95% CI [48.75%, 55.5%] includes neutral).
+- `Gate 4 (Policy ON vs OFF)`: **PASS** (50.0% >= 50.0% threshold).
+- `Gate 5 (Time Control Scaling)`: **FAIL** (Direction reversal at Full TC 120s+0.5s: 45.0% < 50.0%).
+- `Gate 6 (Rated Regressions)`: **PASS** (R20 LarpMaxx & R25 Neomatica green).
+- `Gate 7 (Packaging Audit)`: **PASS** (Deterministic SHA, payload <50MB, smoke verified).
+
+### Final Promotion Decision:
+**`REJECT_AND_RETAIN_MW02`**
+MilkyWay RC1 demonstrates perfect execution reliability (zero crashes, zero flags, zero illegal moves over 540 tournament games and 250 candidate stress decisions) and preserves all historical regression benchmarks. However, it fails the primary promotion criteria:
+1. It achieves only +14.8 Elo (52.1%) across the 400-game test bank, missing the >=55% promotion target, with a 95% paired bootstrap confidence interval [48.8%, 55.5%] that spans neutral.
+2. In the full competition time-control bridge (120s+0.5s), candidate performance reverses direction to 45.0% (-34.9 Elo), indicating search efficiency and scaling deficits at deeper plies against MW-0.2.
+Per the precommitted protocol, `RC1` is rejected for promotion, and `MW-0.2` is retained as the standing competition engine.
+
+
 

@@ -1,0 +1,38 @@
+{
+  "total_positions": 200,
+  "categories": {
+    "middlegame": 100,
+    "endgame": 50,
+    "opening": 50
+  },
+  "fullmove_number": {
+    "min": 3,
+    "max": 77,
+    "median": 21,
+    "mean": 22.985,
+    "p10": 8,
+    "p90": 42
+  },
+  "halfmove_clock": {
+    "min": 0,
+    "max": 88,
+    "median": 1,
+    "mean": 5.615,
+    "p10": 0,
+    "p90": 13
+  },
+  "starting_ply": {
+    "min": 4,
+    "max": 152,
+    "median": 41,
+    "mean": 44.5,
+    "p10": 15,
+    "p90": 83
+  },
+  "max_starting_ply_vs_cap": {
+    "max_ply": 152,
+    "ply_cap": 600,
+    "min_remaining_plies": 448,
+    "pathological_near_cap_present": false
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "deterministic_packaging": true,
+  "build_sha1": "af55cb1777778141b0b1de26bb8c8c08445a5c59280c01fcdb152be3366de063",
+  "build_sha2": "af55cb1777778141b0b1de26bb8c8c08445a5c59280c01fcdb152be3366de063",
+  "uncompressed_bytes": 5353731,
+  "compressed_bytes": 4875602,
+  "under_50mb_limit": true,
+  "payload_files_count": 11,
+  "payload_mismatches": [],
+  "extraction_smoke_games": [
+    {
+      "game": "1",
+      "result": "white",
+      "term": "checkmate"
+    },
+    {
+      "game": "2",
+      "result": "black",
+      "term": "checkmate"
+    }
+  ],
+  "smoke_passed": true
+}
