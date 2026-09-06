@@ -62,3 +62,12 @@ uv run python -m harness.package --out agent.zip
 ```
 
 Milestones, benchmarking logs, and tuning experiments are documented in `IMPLEMENTATION_PLAN.md` and `BENCHMARKS.md`.
+
+## Upstream sync notes (2026-09-06)
+
+Synced with `advitrocks9/aichessathon-starter`: the harness now suspends
+agents while the opponent thinks, annotates PGNs with clocks and names,
+draws only on the actual third repetition / fifty moves / 600-ply cap, and
+local games start from eight curated openings. `make zip` now auto-includes
+imported local packages and plays two full-clock smoke games from the built
+zip, so packaging failures surface locally instead of on the platform.
