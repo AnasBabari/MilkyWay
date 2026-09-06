@@ -1,0 +1,58 @@
+{
+  "candidate_name": "M19-A (RC1 Policy + TM-A)",
+  "base_commit": "e252106c3b4dc6d60b72e822673641c894be9d49",
+  "time_manager": "TM-A (exact MW-0.2 time manager from versions/mw_0_2)",
+  "policy_mode": "P-ON (RC1 root neural policy enabled)",
+  "files": {
+    "agent.py": {
+      "sha256": "019f0d62991cbbdac35715ee7da8ce0395d098163437550acb2fa97d22e739b7",
+      "size_bytes": 1111
+    },
+    "constants.py": {
+      "sha256": "1feb0bc0b6d4cd1f9b44cdcad2e4d9107b34f527ff9acd0466025f614b36cc68",
+      "size_bytes": 18739
+    },
+    "engine.py": {
+      "sha256": "89486acfc84ba9e4fb17023004c006a9c0ddd68a14b2016ab0130d83b7732ba5",
+      "size_bytes": 6445
+    },
+    "engine_types.py": {
+      "sha256": "16cf6db9903be9f38da6a880927a1779457fe284499b1e4fdd4fdf775c795ae5",
+      "size_bytes": 934
+    },
+    "evaluation.py": {
+      "sha256": "2bae45d3e31d9a714fd8783fece9bb9cda00deb1497185fe1f2b51b3ed24f88e",
+      "size_bytes": 19324
+    },
+    "move_ordering.py": {
+      "sha256": "5d0bc60763bfdfc8a0075b09395a9b761af7b990ab3f9d681ea60be18943b487",
+      "size_bytes": 5507
+    },
+    "root_policy.py": {
+      "sha256": "901595954d200955079eeb10c035713b8ffec173d805ab22832243d4289b740a",
+      "size_bytes": 7340
+    },
+    "search.py": {
+      "sha256": "0251e33a8574ec738f016a41803818aa801df86990341a8c15d18dceee0c8406",
+      "size_bytes": 19637
+    },
+    "time_manager.py": {
+      "sha256": "bdabf177a277322d9e21df92bcb614a1071ebf5022097f9ec66c9894f29337ad",
+      "size_bytes": 3012
+    },
+    "transposition.py": {
+      "sha256": "49d956a7f374475488aa75e78873b009dce69c2756a314b25c367fa99bc372f2",
+      "size_bytes": 2525
+    },
+    "weights/milkyway_policy.onnx": {
+      "sha256": "4d93818689914495e41c1241adab1529509beacabfc2e653ff629a9a2f41e9aa",
+      "size_bytes": 5268829
+    }
+  },
+  "environment": {
+    "harness_referee_sha256": "122ff19324392714add2321149f70cd13768e612e588b95c56216f4cdef2522d",
+    "harness_rules_sha256": "5cea675db20d0e6a39bca93027fea912dfc0c97da26bca337c888ca6a487e2a1",
+    "test_bank_sha256": "505bdd4860bab9fc20c4b43ae38bafc1693e5d07ad758dacbd56d6ae0ec1fac1",
+    "upstream_commit": "91f70e54be07e1bf56311962044a08b822c3af50"
+  }
+}

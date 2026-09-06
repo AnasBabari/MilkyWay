@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import time
 import unittest
 
 import chess
@@ -35,6 +36,8 @@ class ScriptedAgent(Agent):
         self.stopped = True
 
     def move(self, fen: str, time_left_ms: int) -> str:
+        if self.delay_s > 0:
+            time.sleep(self.delay_s)
         if self.fail_reason and self.fail_reason != "init":
             raise AgentFailure(self.fail_reason)
         if self.move_idx < len(self.moves):
@@ -173,7 +176,7 @@ class HarnessRulesRegressionTests(unittest.TestCase):
         self.assertFalse(board.has_insufficient_material(chess.WHITE))
 
         white = ScriptedAgent()
-        black = ScriptedAgent(moves=["e7e6"])
+        black = ScriptedAgent(moves=["e7e6"], delay_s=0.01)
 
         outcome = play_match(white, black, base_ms=0, increment_ms=0, start_fen=fen)
         self.assertEqual(outcome.result, "white")
@@ -192,7 +195,7 @@ class HarnessRulesRegressionTests(unittest.TestCase):
         self.assertIsNone(board.outcome())
         self.assertTrue(board.has_insufficient_material(chess.BLACK))
 
-        white = ScriptedAgent(moves=["d1d2"])
+        white = ScriptedAgent(moves=["d1d2"], delay_s=0.01)
         black = ScriptedAgent()
 
         outcome = play_match(white, black, base_ms=0, increment_ms=0, start_fen=fen)
