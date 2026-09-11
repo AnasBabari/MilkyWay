@@ -1,0 +1,967 @@
+# mypy: ignore-errors
+"""MilkyWay — numba-accelerated static evaluation.
+
+This is a *faithful* port of ``evaluation.evaluate_white_relative`` to a numba
+``njit`` kernel that works on raw bitboards. The reference implementation walks
+python-chess objects (``board.attacks_mask``, ``board.is_attacked_by``), which
+profiling shows dominates leaf cost. The kernel reproduces the same arithmetic
+on plain integers so the two paths can be diffed square-for-square.
+
+Everything here is a pure function of the position plus a flat parameter
+vector, so it is safe to call from anywhere in the search. If numba is missing
+or fails to compile, ``build_fast_eval()`` returns ``None`` and the caller must
+fall back to the reference Python evaluation — never the other way round.
+
+Parameter vector layout is documented in ``P_IDX`` and built by
+``build_param_vector``; the tables passed alongside it (rays, knight/king/pawn
+attacks) are precomputed once at import in plain Python.
+"""
+
+from __future__ import annotations
+
+from collections.abc import Callable
+from typing import Any
+
+import numpy as np
+
+try:  # pragma: no cover - depends on the platform image
+    from numba import int64, njit, uint64
+
+    _HAVE_NUMBA = True
+except Exception:  # pragma: no cover - numba absent or broken
+    _HAVE_NUMBA = False
+
+
+# --------------------------------------------------------------------------
+# Parameter vector layout (int64). Keep in sync with build_param_vector().
+# --------------------------------------------------------------------------
+P_IDX: dict[str, int] = {
+    "pawn_value_mg": 0,
+    "pawn_value_eg": 1,
+    "knight_value_mg": 2,
+    "knight_value_eg": 3,
+    "bishop_value_mg": 4,
+    "bishop_value_eg": 5,
+    "rook_value_mg": 6,
+    "rook_value_eg": 7,
+    "queen_value_mg": 8,
+    "queen_value_eg": 9,
+    "bishop_pair_mg": 10,
+    "bishop_pair_eg": 11,
+    "mobility_knight": 12,
+    "mobility_bishop": 13,
+    "mobility_rook": 14,
+    "mobility_queen": 15,
+    "doubled_pawn_mg": 16,
+    "doubled_pawn_eg": 17,
+    "isolated_pawn_mg": 18,
+    "isolated_pawn_eg": 19,
+    "connected_pawn_mg": 20,
+    "connected_pawn_eg": 21,
+    "backward_pawn_mg": 22,
+    "backward_pawn_eg": 23,
+    "protected_passer_mg": 24,
+    "protected_passer_eg": 25,
+    "rook_open_file_mg": 26,
+    "rook_open_file_eg": 27,
+    "rook_semi_open_mg": 28,
+    "rook_semi_open_eg": 29,
+    "rook_seventh_mg": 30,
+    "rook_seventh_eg": 31,
+    "rook_connected_mg": 32,
+    "rook_behind_passer_mg": 33,
+    "rook_behind_passer_eg": 34,
+    "king_shield_missing": 35,
+    "king_open_file_near": 36,
+    "king_attack_unit": 37,
+    "king_max_safety": 38,
+    "mop_threshold": 39,
+    "mop_edge_weight": 40,
+    "mop_proximity_weight": 41,
+    "king_safety_variant": 42,
+    "max_phase": 43,
+    "phase_weight_knight": 44,
+    "phase_weight_bishop": 45,
+    "phase_weight_rook": 46,
+    "phase_weight_queen": 47,
+    "passed_pawn_mg": 48,  # 48..55
+    "passed_pawn_eg": 56,  # 56..63
+    "pawn_mg_pst": 64,  # 64..127
+    "pawn_eg_pst": 128,  # 128..191
+    "knight_pst": 192,  # 192..255
+    "bishop_pst": 256,  # 256..319
+    "rook_pst": 320,  # 320..383
+    "queen_pst": 384,  # 384..447
+    "king_mg_pst": 448,  # 448..511
+    "king_eg_pst": 512,  # 512..575
+}
+P_LEN = 576
+
+# Direction deltas. Indices 0..3 increase the square index (first blocker is
+# the least significant bit), 4..7 decrease it (first blocker is the msb).
+DIR_DELTAS: tuple[int, ...] = (8, 9, 1, 7, -7, -8, -9, -1)
+BISHOP_DIRS: tuple[int, ...] = (1, 3, 4, 6)  # NE, NW, SE, SW
+ROOK_DIRS: tuple[int, ...] = (0, 2, 5, 7)  # N, E, S, W
+ALL_DIRS: tuple[int, ...] = (0, 1, 2, 3, 4, 5, 6, 7)
+
+
+def _distance(a: int, b: int) -> int:
+    """python-chess square_distance (Chebyshev) between two squares."""
+    return max(abs((a & 7) - (b & 7)), abs((a >> 3) - (b >> 3)))
+
+
+def _build_ray_table() -> np.ndarray:
+    """RAYS[dir * 64 + sq] = every square from sq to the edge along dir.
+
+    Mirrors python-chess's ray construction, including the file-wrap guard.
+    """
+    rays = np.zeros(8 * 64, dtype=np.uint64)
+    for d, delta in enumerate(DIR_DELTAS):
+        for sq in range(64):
+            mask = 0
+            s = sq
+            while True:
+                s += delta
+                if not (0 <= s < 64):
+                    break
+                if _distance(s, s - delta) > 2:
+                    break
+                mask |= 1 << s
+            rays[d * 64 + sq] = mask
+    return rays
+
+
+def _build_knight_table() -> np.ndarray:
+    table = np.zeros(64, dtype=np.uint64)
+    for sq in range(64):
+        f, r = sq & 7, sq >> 3
+        mask = 0
+        for df, dr in ((1, 2), (2, 1), (2, -1), (1, -2), (-1, -2), (-2, -1), (-2, 1), (-1, 2)):
+            nf, nr = f + df, r + dr
+            if 0 <= nf < 8 and 0 <= nr < 8:
+                mask |= 1 << ((nr << 3) | nf)
+        table[sq] = mask
+    return table
+
+
+def _build_king_table() -> np.ndarray:
+    table = np.zeros(64, dtype=np.uint64)
+    for sq in range(64):
+        f, r = sq & 7, sq >> 3
+        mask = 0
+        for df in (-1, 0, 1):
+            for dr in (-1, 0, 1):
+                if df == 0 and dr == 0:
+                    continue
+                nf, nr = f + df, r + dr
+                if 0 <= nf < 8 and 0 <= nr < 8:
+                    mask |= 1 << ((nr << 3) | nf)
+        table[sq] = mask
+    return table
+
+
+def _build_pawn_attack_table() -> np.ndarray:
+    """PAWN_ATTACKS[color * 64 + sq]: squares attacked by a `color` pawn on sq."""
+    table = np.zeros(128, dtype=np.uint64)
+    for sq in range(64):
+        f, r = sq & 7, sq >> 3
+        for color in (0, 1):  # 0 = white, 1 = black
+            dr = 1 if color == 0 else -1
+            mask = 0
+            for df in (-1, 1):
+                nf, nr = f + df, r + dr
+                if 0 <= nf < 8 and 0 <= nr < 8:
+                    mask |= 1 << ((nr << 3) | nf)
+            table[color * 64 + sq] = mask
+    return table
+
+
+RAYS: np.ndarray = _build_ray_table()
+KNIGHT_ATTACKS: np.ndarray = _build_knight_table()
+KING_ATTACKS: np.ndarray = _build_king_table()
+PAWN_ATTACKS: np.ndarray = _build_pawn_attack_table()
+
+# Passer masks, identical to evaluation.py's precomputation (white perspective
+# in index 0..63, black in 64..127).
+PASSER_MASKS: np.ndarray = np.zeros(128, dtype=np.uint64)
+for _sq in range(64):
+    _f, _r = _sq & 7, _sq >> 3
+    _w = 0
+    _b = 0
+    for _df in (-1, 0, 1):
+        _nf = _f + _df
+        if 0 <= _nf < 8:
+            for _nr in range(_r + 1, 8):
+                _w |= 1 << ((_nr << 3) | _nf)
+            for _nr in range(0, _r):
+                _b |= 1 << ((_nr << 3) | _nf)
+    PASSER_MASKS[_sq] = _w
+    PASSER_MASKS[64 + _sq] = _b
+
+# White PST square transform: white indexes tables with sq ^ 56, black with sq.
+WHITE_PST_SQ: np.ndarray = np.array([sq ^ 56 for sq in range(64)], dtype=np.int64)
+
+
+# --------------------------------------------------------------------------
+# numba kernels
+# --------------------------------------------------------------------------
+if _HAVE_NUMBA:
+
+    @njit(cache=False)
+    def _popcount(x: np.uint64) -> np.uint64:  # type: ignore[no-untyped-def]
+        """SWAR population count on 64 bits."""
+        x = x - ((x >> np.uint64(1)) & np.uint64(0x5555555555555555))
+        x = (x & np.uint64(0x3333333333333333)) + (
+            (x >> np.uint64(2)) & np.uint64(0x3333333333333333)
+        )
+        x = (x + (x >> np.uint64(4))) & np.uint64(0x0F0F0F0F0F0F0F0F)
+        return (x * np.uint64(0x0101010101010101)) >> np.uint64(56)
+
+    @njit(cache=False)
+    def _lsb_index(x: np.uint64) -> np.int64:  # type: ignore[no-untyped-def]
+        """Index of the lowest set bit (caller guarantees x != 0)."""
+        return np.int64(_popcount(np.uint64((x & (np.uint64(0) - x)) - np.uint64(1))))
+
+    @njit(cache=False)
+    def _msb_index(x: np.uint64) -> np.int64:  # type: ignore[no-untyped-def]
+        """Index of the highest set bit (caller guarantees x != 0)."""
+        x = x | (x >> np.uint64(1))
+        x = x | (x >> np.uint64(2))
+        x = x | (x >> np.uint64(4))
+        x = x | (x >> np.uint64(8))
+        x = x | (x >> np.uint64(16))
+        x = x | (x >> np.uint64(32))
+        return np.int64(_popcount(x)) - 1
+
+    @njit(cache=False)
+    def _slider_attacks(sq: int, occ: np.uint64, rays: np.ndarray, dirs: np.ndarray) -> np.uint64:  # type: ignore[no-untyped-def]
+        """Attack set for a slider on `sq`, blockers inclusive (as python-chess)."""
+        attacks = np.uint64(0)
+        base = np.int64(sq)
+        for i in range(dirs.shape[0]):
+            d = np.int64(dirs[i])
+            ray = rays[d * 64 + base]
+            blockers = ray & occ
+            if blockers:
+                first = (
+                    np.int64(_lsb_index(blockers))
+                    if d <= 3
+                    else np.int64(_msb_index(blockers))
+                )
+                ray = ray ^ rays[d * 64 + first]
+            attacks = attacks | ray
+        return attacks
+
+    _BISHOP_DIRS_ARR = np.array(BISHOP_DIRS, dtype=np.int64)
+    _ROOK_DIRS_ARR = np.array(ROOK_DIRS, dtype=np.int64)
+    _ALL_DIRS_ARR = np.array(ALL_DIRS, dtype=np.int64)
+
+    @njit(
+        int64(
+            uint64,  # wp
+            uint64,  # wn
+            uint64,  # wb
+            uint64,  # wr
+            uint64,  # wq
+            uint64,  # wk
+            uint64,  # bp
+            uint64,  # bn
+            uint64,  # bb
+            uint64,  # br
+            uint64,  # bq
+            uint64,  # bk
+            int64,  # turn (1 = white to move)
+            int64[:],  # P
+            uint64[:],  # RAYS
+            uint64[:],  # KNIGHT_ATTACKS
+            uint64[:],  # KING_ATTACKS
+            uint64[:],  # PAWN_ATTACKS
+            uint64[:],  # PASSER_MASKS
+            int64[:],  # WHITE_PST_SQ
+            int64[:],  # BISHOP_DIRS
+            int64[:],  # ROOK_DIRS
+            int64[:],  # ALL_DIRS
+        ),
+        cache=False,
+        nogil=True,
+        fastmath=False,
+    )
+    def _eval_kernel(
+        wp: int,
+        wn: int,
+        wb: int,
+        wr: int,
+        wq: int,
+        wk: int,
+        bp: int,
+        bn: int,
+        bb: int,
+        br: int,
+        bq: int,
+        bk: int,
+        turn: int,
+        P: np.ndarray,
+        rays: np.ndarray,
+        knight_att: np.ndarray,
+        king_att: np.ndarray,
+        pawn_att: np.ndarray,
+        passer_masks: np.ndarray,
+        white_pst_sq: np.ndarray,
+        bishop_dirs: np.ndarray,
+        rook_dirs: np.ndarray,
+        all_dirs: np.ndarray,
+    ) -> int:
+        uwp = np.uint64(wp)
+        uwn = np.uint64(wn)
+        uwb = np.uint64(wb)
+        uwr = np.uint64(wr)
+        uwq = np.uint64(wq)
+        uwk = np.uint64(wk)
+        ubp = np.uint64(bp)
+        ubn = np.uint64(bn)
+        ubb = np.uint64(bb)
+        ubr = np.uint64(br)
+        ubq = np.uint64(bq)
+        ubk = np.uint64(bk)
+
+        white_occ = uwp | uwn | uwb | uwr | uwq | uwk
+        black_occ = ubp | ubn | ubb | ubr | ubq | ubk
+        occ = white_occ | black_occ
+
+        mg = 0
+        eg = 0
+        phase = 0
+
+        # ---- pawns (material + PST + file counts) -------------------------
+        w_pawn_files = np.zeros(8, dtype=np.int64)
+        b_pawn_files = np.zeros(8, dtype=np.int64)
+        w_passers = np.zeros(8, dtype=np.int64)
+        b_passers = np.zeros(8, dtype=np.int64)
+        w_passer_count = 0
+        b_passer_count = 0
+
+        t = uwp
+        while t:
+            sq = _lsb_index(t)
+            t = t & (t - np.uint64(1))
+            idx = white_pst_sq[sq]
+            mg += P[0] + P[64 + idx]
+            eg += P[1] + P[128 + idx]
+            w_pawn_files[sq & 7] += 1
+
+        t = ubp
+        while t:
+            sq = _lsb_index(t)
+            t = t & (t - np.uint64(1))
+            idx = sq
+            mg -= P[0] + P[64 + idx]
+            eg -= P[1] + P[128 + idx]
+            b_pawn_files[sq & 7] += 1
+
+        w_mob = 0
+        b_mob = 0
+        w_attacks_bb = np.uint64(0)
+        b_attacks_bb = np.uint64(0)
+        is_ks_c = P[42] == 2
+
+        # ---- knights ------------------------------------------------------
+        t = uwn
+        while t:
+            sq = _lsb_index(t)
+            t = t & (t - np.uint64(1))
+            idx = white_pst_sq[sq]
+            mg += P[2] + P[192 + idx]
+            eg += P[3] + P[192 + idx]
+            phase += P[44]
+            att = knight_att[sq]
+            if is_ks_c:
+                w_attacks_bb = w_attacks_bb | att
+            w_mob += P[12] * int(_popcount(att))
+
+        t = ubn
+        while t:
+            sq = _lsb_index(t)
+            t = t & (t - np.uint64(1))
+            idx = sq
+            mg -= P[2] + P[192 + idx]
+            eg -= P[3] + P[192 + idx]
+            phase += P[44]
+            att = knight_att[sq]
+            if is_ks_c:
+                b_attacks_bb = b_attacks_bb | att
+            b_mob += P[12] * int(_popcount(att))
+
+        # ---- bishops ------------------------------------------------------
+        w_bishops = 0
+        t = uwb
+        while t:
+            sq = _lsb_index(t)
+            t = t & (t - np.uint64(1))
+            w_bishops += 1
+            idx = white_pst_sq[sq]
+            mg += P[4] + P[256 + idx]
+            eg += P[5] + P[256 + idx]
+            phase += P[45]
+            att = _slider_attacks(sq, occ, rays, bishop_dirs)
+            if is_ks_c:
+                w_attacks_bb = w_attacks_bb | att
+            w_mob += P[13] * int(_popcount(att))
+
+        b_bishops = 0
+        t = ubb
+        while t:
+            sq = _lsb_index(t)
+            t = t & (t - np.uint64(1))
+            b_bishops += 1
+            idx = sq
+            mg -= P[4] + P[256 + idx]
+            eg -= P[5] + P[256 + idx]
+            phase += P[45]
+            att = _slider_attacks(sq, occ, rays, bishop_dirs)
+            if is_ks_c:
+                b_attacks_bb = b_attacks_bb | att
+            b_mob += P[13] * int(_popcount(att))
+
+        # ---- rooks --------------------------------------------------------
+        w_rooks = np.zeros(8, dtype=np.int64)
+        b_rooks = np.zeros(8, dtype=np.int64)
+        w_rook_count = 0
+        b_rook_count = 0
+
+        t = uwr
+        while t:
+            sq = _lsb_index(t)
+            t = t & (t - np.uint64(1))
+            w_rooks[w_rook_count] = sq
+            w_rook_count += 1
+            idx = white_pst_sq[sq]
+            mg += P[6] + P[320 + idx]
+            eg += P[7] + P[320 + idx]
+            phase += P[46]
+            att = _slider_attacks(sq, occ, rays, rook_dirs)
+            if is_ks_c:
+                w_attacks_bb = w_attacks_bb | att
+            w_mob += P[14] * int(_popcount(att))
+
+        t = ubr
+        while t:
+            sq = _lsb_index(t)
+            t = t & (t - np.uint64(1))
+            b_rooks[b_rook_count] = sq
+            b_rook_count += 1
+            idx = sq
+            mg -= P[6] + P[320 + idx]
+            eg -= P[7] + P[320 + idx]
+            phase += P[46]
+            att = _slider_attacks(sq, occ, rays, rook_dirs)
+            if is_ks_c:
+                b_attacks_bb = b_attacks_bb | att
+            b_mob += P[14] * int(_popcount(att))
+
+        # ---- queens -------------------------------------------------------
+        t = uwq
+        while t:
+            sq = _lsb_index(t)
+            t = t & (t - np.uint64(1))
+            idx = white_pst_sq[sq]
+            mg += P[8] + P[384 + idx]
+            eg += P[9] + P[384 + idx]
+            phase += P[47]
+            att = _slider_attacks(sq, occ, rays, all_dirs)
+            if is_ks_c:
+                w_attacks_bb = w_attacks_bb | att
+            w_mob += P[15] * int(_popcount(att))
+
+        t = ubq
+        while t:
+            sq = _lsb_index(t)
+            t = t & (t - np.uint64(1))
+            idx = sq
+            mg -= P[8] + P[384 + idx]
+            eg -= P[9] + P[384 + idx]
+            phase += P[47]
+            att = _slider_attacks(sq, occ, rays, all_dirs)
+            if is_ks_c:
+                b_attacks_bb = b_attacks_bb | att
+            b_mob += P[15] * int(_popcount(att))
+
+        # ---- kings --------------------------------------------------------
+        w_king_sq = -1
+        b_king_sq = -1
+        if uwk:
+            w_king_sq = _lsb_index(uwk)
+            idx = white_pst_sq[w_king_sq]
+            mg += P[448 + idx]
+            eg += P[512 + idx]
+        if ubk:
+            b_king_sq = _lsb_index(ubk)
+            idx = b_king_sq
+            mg -= P[448 + idx]
+            eg -= P[512 + idx]
+
+        phase = max(0, min(P[43], phase))
+        mg_weight = float(phase) / float(P[43])
+        eg_weight = 1.0 - mg_weight
+
+        # ---- bishop pair --------------------------------------------------
+        if w_bishops >= 2:
+            mg += P[10]
+            eg += P[11]
+        if b_bishops >= 2:
+            mg -= P[10]
+            eg -= P[11]
+
+        # ---- pawn structure ----------------------------------------------
+        # Doubled / isolated / connected / backward / passed, lsb-first order.
+        doubled_mg = P[16]
+        doubled_eg = P[17]
+        isolated_mg = P[18]
+        isolated_eg = P[19]
+        connected_mg = P[20]
+        connected_eg = P[21]
+        backward_mg = P[22] // 2
+        backward_eg = P[23] // 2
+
+        # white
+        wpmg = 0
+        wpeg = 0
+        t = uwp
+        while t:
+            sq = _lsb_index(t)
+            t = t & (t - np.uint64(1))
+            f = sq & 7
+            r = sq >> 3
+            if w_pawn_files[f] > 1:
+                wpmg += doubled_mg
+                wpeg += doubled_eg
+            left = w_pawn_files[f - 1] if f > 0 else 0
+            right = w_pawn_files[f + 1] if f < 7 else 0
+            if left == 0 and right == 0:
+                wpmg += isolated_mg
+                wpeg += isolated_eg
+            else:
+                connected = False
+                for nf in (f - 1, f + 1):
+                    if 0 <= nf < 8 and w_pawn_files[nf] > 0:
+                        connected = True
+                if connected and not (left == 0 and right == 0):
+                    wpmg += connected_mg
+                    wpeg += connected_eg
+            if not (left == 0 and right == 0):
+                behind_rank_ok = False
+                for nf in (f - 1, f + 1):
+                    if 0 <= nf < 8:
+                        t2 = uwp
+                        while t2:
+                            osq = _lsb_index(t2)
+                            t2 = t2 & (t2 - np.uint64(1))
+                            if (osq & 7) == nf and (osq >> 3) < r:
+                                behind_rank_ok = True
+                if not behind_rank_ok:
+                    wpmg += backward_mg
+                    wpeg += backward_eg
+            if (ubp & passer_masks[sq]) == 0:
+                if w_passer_count < 8:
+                    w_passers[w_passer_count] = sq
+                    w_passer_count += 1
+                wpmg += P[48 + r]
+                wpeg += P[56 + r]
+                # is_attacked_by(WHITE, sq)
+                w_att = (
+                    pawn_att[64 + sq] & uwp
+                    or knight_att[sq] & uwn
+                    or king_att[sq] & uwk
+                    or _slider_attacks(sq, occ, rays, bishop_dirs) & (uwb | uwq)
+                    or _slider_attacks(sq, occ, rays, rook_dirs) & (uwr | uwq)
+                )
+                if w_att:
+                    wpmg += P[24]
+                    wpeg += P[25]
+
+        # black
+        bpmg = 0
+        bpeg = 0
+        t = ubp
+        while t:
+            sq = _lsb_index(t)
+            t = t & (t - np.uint64(1))
+            f = sq & 7
+            r = sq >> 3
+            if b_pawn_files[f] > 1:
+                bpmg += doubled_mg
+                bpeg += doubled_eg
+            left = b_pawn_files[f - 1] if f > 0 else 0
+            right = b_pawn_files[f + 1] if f < 7 else 0
+            if left == 0 and right == 0:
+                bpmg += isolated_mg
+                bpeg += isolated_eg
+            else:
+                connected = False
+                for nf in (f - 1, f + 1):
+                    if 0 <= nf < 8 and b_pawn_files[nf] > 0:
+                        connected = True
+                if connected and not (left == 0 and right == 0):
+                    bpmg += connected_mg
+                    bpeg += connected_eg
+            if not (left == 0 and right == 0):
+                behind_rank_ok = False
+                for nf in (f - 1, f + 1):
+                    if 0 <= nf < 8:
+                        t2 = ubp
+                        while t2:
+                            osq = _lsb_index(t2)
+                            t2 = t2 & (t2 - np.uint64(1))
+                            if (osq & 7) == nf and (osq >> 3) > r:
+                                behind_rank_ok = True
+                if not behind_rank_ok:
+                    bpmg += backward_mg
+                    bpeg += backward_eg
+            if (uwp & passer_masks[64 + sq]) == 0:
+                if b_passer_count < 8:
+                    b_passers[b_passer_count] = sq
+                    b_passer_count += 1
+                bpmg += P[48 + (7 - r)]
+                bpeg += P[56 + (7 - r)]
+                # is_attacked_by(BLACK, sq)
+                b_att = (
+                    pawn_att[sq] & ubp
+                    or knight_att[sq] & ubn
+                    or king_att[sq] & ubk
+                    or _slider_attacks(sq, occ, rays, bishop_dirs) & (ubb | ubq)
+                    or _slider_attacks(sq, occ, rays, rook_dirs) & (ubr | ubq)
+                )
+                if b_att:
+                    bpmg += P[24]
+                    bpeg += P[25]
+
+        mg += wpmg - bpmg
+        eg += wpeg - bpeg
+
+        # ---- rook terms ---------------------------------------------------
+        wrmg = 0
+        wreg = 0
+        for i in range(w_rook_count):
+            sq = w_rooks[i]
+            f = sq & 7
+            r = sq >> 3
+            own = w_pawn_files[f] > 0
+            enemy = b_pawn_files[f] > 0
+            if not own and not enemy:
+                wrmg += P[26]
+                wreg += P[27]
+            elif not own and enemy:
+                wrmg += P[28]
+                wreg += P[29]
+            if r == 6:
+                wrmg += P[30]
+                wreg += P[31]
+            for j in range(w_rook_count):
+                other = w_rooks[j]
+                if other != sq and ((other >> 3) == r or (other & 7) == f):
+                    wrmg += P[32]
+                    break
+            for k in range(w_passer_count):
+                psq = w_passers[k]
+                if (psq & 7) == f and r < (psq >> 3):
+                    wrmg += P[33]
+                    wreg += P[34]
+                    break
+
+        brmg = 0
+        breg = 0
+        for i in range(b_rook_count):
+            sq = b_rooks[i]
+            f = sq & 7
+            r = sq >> 3
+            own = b_pawn_files[f] > 0
+            enemy = w_pawn_files[f] > 0
+            if not own and not enemy:
+                brmg += P[26]
+                breg += P[27]
+            elif not own and enemy:
+                brmg += P[28]
+                breg += P[29]
+            if r == 1:
+                brmg += P[30]
+                breg += P[31]
+            for j in range(b_rook_count):
+                other = b_rooks[j]
+                if other != sq and ((other >> 3) == r or (other & 7) == f):
+                    brmg += P[32]
+                    break
+            for k in range(b_passer_count):
+                psq = b_passers[k]
+                if (psq & 7) == f and r > (psq >> 3):
+                    brmg += P[33]
+                    breg += P[34]
+                    break
+
+        mg += wrmg - brmg
+        eg += wreg - breg
+
+        # ---- mobility -----------------------------------------------------
+        mob = w_mob - b_mob
+        mg += int(mob * 0.7)
+        eg += int(mob * 0.3)
+
+        # ---- king safety ---------------------------------------------------
+        ks_c = P[42] == 2
+        ks_a = P[42] == 1
+
+        wks = 0
+        if w_king_sq >= 0:
+            score = 0
+            kf = w_king_sq & 7
+            kr = w_king_sq >> 3
+            if kr <= 1:
+                for df in (-1, 0, 1):
+                    f = kf + df
+                    if 0 <= f < 8:
+                        shielded = False
+                        for dr in (1, 2):
+                            rr = kr + dr
+                            if (uwp & (np.uint64(1) << np.uint64((rr << 3) | f))) != 0:
+                                shielded = True
+                        if not shielded:
+                            score += P[35]
+            if kr <= 1:
+                for df in (-1, 0, 1):
+                    f = kf + df
+                    if 0 <= f < 8 and w_pawn_files[f] == 0:
+                        score += P[36] // 2
+            if ks_c:
+                kzone = king_att[w_king_sq] | (np.uint64(1) << np.uint64(w_king_sq))
+                patt = (
+                    ((ubp & np.uint64(0x7F7F7F7F7F7F7F7F)) >> np.uint64(9))
+                    | ((ubp & np.uint64(0xFEFEFEFEFEFEFEFE)) >> np.uint64(7))
+                )
+                attacks = int(_popcount((b_attacks_bb | patt) & kzone))
+                score += P[37] * attacks
+            elif ks_a:
+                for df in (-1, 0, 1):
+                    for dr in (-1, 0, 1):
+                        f = kf + df
+                        r = kr + dr
+                        if 0 <= f < 8 and 0 <= r < 8:
+                            tsq = (r << 3) | f
+                            attacked = False
+                            b_att = (
+                                pawn_att[64 + tsq] & ubp
+                                or knight_att[tsq] & ubn
+                                or king_att[tsq] & ubk
+                                or _slider_attacks(tsq, occ, rays, bishop_dirs) & (ubb | ubq)
+                                or _slider_attacks(tsq, occ, rays, rook_dirs) & (ubr | ubq)
+                            )
+                            if b_att:
+                                attacked = True
+                            if attacked:
+                                score += P[37]
+            if ubq:
+                q_bb = ubq
+                min_qdist = 999
+                while q_bb:
+                    q = _lsb_index(q_bb)
+                    q_bb = q_bb & (q_bb - np.uint64(1))
+                    d = abs((q & 7) - kf) + abs((q >> 3) - kr)
+                    if d < min_qdist:
+                        min_qdist = d
+                if min_qdist <= 3:
+                    score += P[37] * (4 - min_qdist)
+            wks = max(score, P[38] * 2)
+        else:
+            wks = max(0, P[38] * 2)
+
+        bks = 0
+        if b_king_sq >= 0:
+            score = 0
+            kf = b_king_sq & 7
+            kr = b_king_sq >> 3
+            if kr >= 6:
+                for df in (-1, 0, 1):
+                    f = kf + df
+                    if 0 <= f < 8:
+                        shielded = False
+                        for dr in (1, 2):
+                            rr = kr - dr
+                            if (ubp & (np.uint64(1) << np.uint64((rr << 3) | f))) != 0:
+                                shielded = True
+                        if not shielded:
+                            score += P[35]
+            if kr >= 6:
+                for df in (-1, 0, 1):
+                    f = kf + df
+                    if 0 <= f < 8 and b_pawn_files[f] == 0:
+                        score += P[36] // 2
+            if ks_c:
+                kzone = king_att[b_king_sq] | (np.uint64(1) << np.uint64(b_king_sq))
+                patt = (
+                    ((uwp & np.uint64(0x7F7F7F7F7F7F7F7F)) << np.uint64(7))
+                    | ((uwp & np.uint64(0xFEFEFEFEFEFEFEFE)) << np.uint64(9))
+                )
+                attacks = int(_popcount((w_attacks_bb | patt) & kzone))
+                score += P[37] * attacks
+            elif ks_a:
+                for df in (-1, 0, 1):
+                    for dr in (-1, 0, 1):
+                        f = kf + df
+                        r = kr + dr
+                        if 0 <= f < 8 and 0 <= r < 8:
+                            tsq = (r << 3) | f
+                            attacked = False
+                            w_att = (
+                                pawn_att[tsq] & uwp
+                                or knight_att[tsq] & uwn
+                                or king_att[tsq] & uwk
+                                or _slider_attacks(tsq, occ, rays, bishop_dirs) & (uwb | uwq)
+                                or _slider_attacks(tsq, occ, rays, rook_dirs) & (uwr | uwq)
+                            )
+                            if w_att:
+                                attacked = True
+                            if attacked:
+                                score += P[37]
+            if uwq:
+                q_bb = uwq
+                min_qdist = 999
+                while q_bb:
+                    q = _lsb_index(q_bb)
+                    q_bb = q_bb & (q_bb - np.uint64(1))
+                    d = abs((q & 7) - kf) + abs((q >> 3) - kr)
+                    if d < min_qdist:
+                        min_qdist = d
+                if min_qdist <= 3:
+                    score += P[37] * (4 - min_qdist)
+            bks = max(score, P[38] * 2)
+        else:
+            bks = max(0, P[38] * 2)
+
+        mg += wks - bks
+        eg += int((wks - bks) * 0.2)
+
+        # ---- taper ---------------------------------------------------------
+        tapered = int(mg * mg_weight + eg * eg_weight)
+
+        # ---- mop-up --------------------------------------------------------
+        if abs(tapered) >= P[39] and w_king_sq >= 0 and b_king_sq >= 0:
+            winning_white = tapered > 0
+            if winning_white:
+                lfile = b_king_sq & 7
+                lrank = b_king_sq >> 3
+                wfile = w_king_sq & 7
+                wrank = w_king_sq >> 3
+            else:
+                lfile = w_king_sq & 7
+                lrank = w_king_sq >> 3
+                wfile = b_king_sq & 7
+                wrank = b_king_sq >> 3
+            edge = min(lfile, 7 - lfile) + min(lrank, 7 - lrank)
+            proximity = abs(wfile - lfile) + abs(wrank - lrank)
+            bonus = (6 - edge) * P[40] + (14 - proximity) * P[41]
+            if winning_white:
+                tapered += bonus
+            else:
+                tapered -= bonus
+
+        return tapered if turn == 1 else -tapered
+
+
+# --------------------------------------------------------------------------
+# Python-side plumbing
+# --------------------------------------------------------------------------
+def build_param_vector(params: Any) -> np.ndarray:
+    """Flatten an EvalParameters instance into the int64 vector the kernel reads."""
+    # These live in constants.py, not on the params object.
+    from constants import (  # local import: keeps this module import-order safe
+        MAX_PHASE,
+        PHASE_WEIGHT_BISHOP,
+        PHASE_WEIGHT_KNIGHT,
+        PHASE_WEIGHT_QUEEN,
+        PHASE_WEIGHT_ROOK,
+    )
+
+    p = np.zeros(P_LEN, dtype=np.int64)
+    for name, idx in P_IDX.items():
+        if name in ("passed_pawn_mg", "passed_pawn_eg"):
+            continue
+        if name.endswith("_pst"):
+            continue
+        if name == "king_safety_variant":
+            continue
+        if name.startswith("phase_weight_") or name == "max_phase":
+            continue
+        p[idx] = int(getattr(params, name))
+    variant = getattr(params, "king_safety_variant", "A")
+    p[P_IDX["king_safety_variant"]] = {"A": 1, "C": 2}.get(variant, 0)
+    p[P_IDX["max_phase"]] = int(MAX_PHASE)
+    p[P_IDX["phase_weight_knight"]] = int(PHASE_WEIGHT_KNIGHT)
+    p[P_IDX["phase_weight_bishop"]] = int(PHASE_WEIGHT_BISHOP)
+    p[P_IDX["phase_weight_rook"]] = int(PHASE_WEIGHT_ROOK)
+    p[P_IDX["phase_weight_queen"]] = int(PHASE_WEIGHT_QUEEN)
+
+    for i in range(8):
+        p[P_IDX["passed_pawn_mg"] + i] = int(params.passed_pawn_mg[i])
+        p[P_IDX["passed_pawn_eg"] + i] = int(params.passed_pawn_eg[i])
+    for name, base in (
+        ("pawn_mg_pst", "pawn_mg_pst"),
+        ("pawn_eg_pst", "pawn_eg_pst"),
+        ("knight_pst", "knight_pst"),
+        ("bishop_pst", "bishop_pst"),
+        ("rook_pst", "rook_pst"),
+        ("queen_pst", "queen_pst"),
+        ("king_mg_pst", "king_mg_pst"),
+        ("king_eg_pst", "king_eg_pst"),
+    ):
+        table = getattr(params, name)
+        for i in range(64):
+            p[P_IDX[base] + i] = int(table[i])
+    return p
+
+
+def build_fast_eval(params: Any) -> Callable[[Any], int] | None:
+    """Return a `board -> side-to-move-relative cp` callable, or None if unusable.
+
+    The returned closure reads bitboards straight off a python-chess board, so
+    it is a drop-in replacement for ``evaluation.evaluate``.
+    """
+    if not _HAVE_NUMBA:
+        return None
+    P = build_param_vector(params)
+    rays = RAYS
+    knight_att = KNIGHT_ATTACKS
+    king_att = KING_ATTACKS
+    pawn_att = PAWN_ATTACKS
+    passer_masks = PASSER_MASKS
+    wps = WHITE_PST_SQ
+    bdirs = _BISHOP_DIRS_ARR
+    rdirs = _ROOK_DIRS_ARR
+    adirs = _ALL_DIRS_ARR
+
+    def fast_eval(board: Any) -> int:
+        occ_co = board.occupied_co
+        # python-chess bitboards are unsigned 64-bit; hand them over as uint64.
+        return _eval_kernel(
+            np.uint64(board.pawns & occ_co[True]),  # type: ignore[arg-type]
+            np.uint64(board.knights & occ_co[True]),  # type: ignore[arg-type]
+            np.uint64(board.bishops & occ_co[True]),  # type: ignore[arg-type]
+            np.uint64(board.rooks & occ_co[True]),  # type: ignore[arg-type]
+            np.uint64(board.queens & occ_co[True]),  # type: ignore[arg-type]
+            np.uint64(board.kings & occ_co[True]),  # type: ignore[arg-type]
+            np.uint64(board.pawns & occ_co[False]),  # type: ignore[arg-type]
+            np.uint64(board.knights & occ_co[False]),  # type: ignore[arg-type]
+            np.uint64(board.bishops & occ_co[False]),  # type: ignore[arg-type]
+            np.uint64(board.rooks & occ_co[False]),  # type: ignore[arg-type]
+            np.uint64(board.queens & occ_co[False]),  # type: ignore[arg-type]
+            np.uint64(board.kings & occ_co[False]),  # type: ignore[arg-type]
+            1 if board.turn else 0,
+            P,
+            rays,
+            knight_att,
+            king_att,
+            pawn_att,
+            passer_masks,
+            wps,
+            bdirs,
+            rdirs,
+            adirs,
+        )
+
+    return fast_eval

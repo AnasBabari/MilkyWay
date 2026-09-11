@@ -1,0 +1,25 @@
+{
+  "status": "predeclared; bank generation pending completed exclusion index",
+  "seed": 2026090821,
+  "positions": 50,
+  "selection": "Generate fresh legal opening trajectories with offline Stockfish MultiPV; no candidate search or evaluation used for selection. Select first50 unique admissible positions in deterministic generated order.",
+  "trajectory_plies": [
+    16,
+    24
+  ],
+  "multipv": 4,
+  "trajectory_nodes_per_position": 10000,
+  "final_balance_nodes": 100000,
+  "maximum_absolute_white_score_cp": 50,
+  "require_nonterminal": true,
+  "exclude_checks_at_start": true,
+  "exclusions": "Exact packed12-piece-plane digest and colour/rank-reflected digest must both be absent from confirmation_exclusions_01.sqlite. Refresh overlap against any games completed after that snapshot before accepting bank.",
+  "provenance": "Save generator seed/source hash, Stockfish binary hash/options, complete source moves, finalFEN, selection/rejection counts, dataset-index hash and raw-file audit hashes.",
+  "freeze": "Freeze before qualification games; never tune on this bank or reuse after a failed confirmation as unseen. Do not ship this bank or engine analysis in agent.zip.",
+  "confirmation_games_per_opponent": 100,
+  "paired_colours": true,
+  "base_ms": 120000,
+  "increment_ms": 500,
+  "live_required_score": 0.6,
+  "no_candidate_qualification_claim": true
+}

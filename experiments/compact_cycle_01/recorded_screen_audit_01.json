@@ -1,0 +1,503 @@
+[
+  {
+    "run": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\compiled_pvs_01_silky_120s",
+    "snapshot_only": true,
+    "base_ms": 120000,
+    "increment_ms": 500,
+    "runtime_hashes_match": true,
+    "game_count": 4,
+    "all_recorded_wdl": {
+      "win": 2,
+      "loss": 2
+    },
+    "all_recorded_score": 0.5,
+    "all_recorded_win_rate": 0.5,
+    "complete_pairs_wdl": {
+      "loss": 2,
+      "win": 2
+    },
+    "terminations": {
+      "checkmate": 4
+    },
+    "games": [
+      {
+        "file": "sbank_051_black.json",
+        "outcome": "win",
+        "position_id": "sbank_051",
+        "color": "black",
+        "termination": "checkmate",
+        "moves": 56,
+        "max_move_s": 6.5,
+        "min_remaining_s": 4.494,
+        "sha256": "b4105278b66ad48f79098c070b6debbda15071b7f656d6e85ebc70501528bab5"
+      },
+      {
+        "file": "sbank_051_white.json",
+        "outcome": "loss",
+        "position_id": "sbank_051",
+        "color": "white",
+        "termination": "checkmate",
+        "moves": 60,
+        "max_move_s": 6.5,
+        "min_remaining_s": 5.545,
+        "sha256": "31e08c1622e14caed5c986071669c819b6884ba15531f7986b3cc3b9e3e56cd8"
+      },
+      {
+        "file": "sbank_089_black.json",
+        "outcome": "loss",
+        "position_id": "sbank_089",
+        "color": "black",
+        "termination": "checkmate",
+        "moves": 61,
+        "max_move_s": 6.5,
+        "min_remaining_s": 13.953,
+        "sha256": "e5cfdbec6a23aba0e720e1471dfc47aa3ca20fd53e25f9730648f2ba4493aeb4"
+      },
+      {
+        "file": "sbank_089_white.json",
+        "outcome": "win",
+        "position_id": "sbank_089",
+        "color": "white",
+        "termination": "checkmate",
+        "moves": 64,
+        "max_move_s": 6.5,
+        "min_remaining_s": 3.23,
+        "sha256": "9b10ce4f8bf1a2fd9260786d7d66d9d4e83cbaa730b9a6d90dba44d566648323"
+      }
+    ]
+  },
+  {
+    "run": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\compiled_pvs_01_sf7_120s",
+    "snapshot_only": true,
+    "base_ms": 120000,
+    "increment_ms": 500,
+    "runtime_hashes_match": true,
+    "game_count": 7,
+    "all_recorded_wdl": {
+      "win": 3,
+      "draw": 2,
+      "loss": 2
+    },
+    "all_recorded_score": 0.5714285714285714,
+    "all_recorded_win_rate": 0.42857142857142855,
+    "complete_pairs_wdl": {
+      "draw": 2,
+      "loss": 2,
+      "win": 2
+    },
+    "terminations": {
+      "checkmate": 5,
+      "threefold_repetition": 2
+    },
+    "games": [
+      {
+        "file": "sbank_010_white.json",
+        "outcome": "win",
+        "position_id": "sbank_010",
+        "color": "white",
+        "termination": "checkmate",
+        "moves": 39,
+        "max_move_s": 6.516000000000005,
+        "min_remaining_s": 23.063,
+        "sha256": "adabc78ef41b96f39b8ad7ef48f325ab53e19f8e4cb8ecaf8affdf857a8b8ffa"
+      },
+      {
+        "file": "sbank_051_black.json",
+        "outcome": "draw",
+        "position_id": "sbank_051",
+        "color": "black",
+        "termination": "threefold_repetition",
+        "moves": 45,
+        "max_move_s": 6.515000000000015,
+        "min_remaining_s": 12.08,
+        "sha256": "cc6303e9b143dd2ff1b7b1b6c8871204c9042efe815b9d8314bd7d079e4b4515"
+      },
+      {
+        "file": "sbank_051_white.json",
+        "outcome": "draw",
+        "position_id": "sbank_051",
+        "color": "white",
+        "termination": "threefold_repetition",
+        "moves": 40,
+        "max_move_s": 6.780999999999992,
+        "min_remaining_s": 17.624,
+        "sha256": "9e93e6d17ae40ef4c3b29714e0c382aa9e217c9e931fc7978766bbfa0e241926"
+      },
+      {
+        "file": "sbank_062_black.json",
+        "outcome": "loss",
+        "position_id": "sbank_062",
+        "color": "black",
+        "termination": "checkmate",
+        "moves": 31,
+        "max_move_s": 6.515999999999991,
+        "min_remaining_s": 39.407,
+        "sha256": "9b8f574c00380adbb5436c42a2705a48d6f66c50e3b55b9e909852741b25cfb6"
+      },
+      {
+        "file": "sbank_062_white.json",
+        "outcome": "win",
+        "position_id": "sbank_062",
+        "color": "white",
+        "termination": "checkmate",
+        "moves": 18,
+        "max_move_s": 6.516000000000005,
+        "min_remaining_s": 52.063,
+        "sha256": "cce63a52a4c8df61d23f871b461a111e060f0bbee3c455f1979402a027e57dbc"
+      },
+      {
+        "file": "sbank_089_black.json",
+        "outcome": "win",
+        "position_id": "sbank_089",
+        "color": "black",
+        "termination": "checkmate",
+        "moves": 51,
+        "max_move_s": 6.531000000000006,
+        "min_remaining_s": 10.344,
+        "sha256": "9e6b4c9b1e827f559875697c9176e65286ef43e0aa691fea789b2da22f15c4ae"
+      },
+      {
+        "file": "sbank_089_white.json",
+        "outcome": "loss",
+        "position_id": "sbank_089",
+        "color": "white",
+        "termination": "checkmate",
+        "moves": 40,
+        "max_move_s": 6.609999999999999,
+        "min_remaining_s": 26.627,
+        "sha256": "1483bf9d55c00c61405ac1895642388e23ca8160a1c336d4e19ba49882df2f10"
+      }
+    ]
+  },
+  {
+    "run": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\compact_quarter_policy_v6_centered_silky_120s",
+    "snapshot_only": true,
+    "base_ms": 120000,
+    "increment_ms": 500,
+    "runtime_hashes_match": true,
+    "game_count": 14,
+    "all_recorded_wdl": {
+      "loss": 5,
+      "win": 6,
+      "draw": 3
+    },
+    "all_recorded_score": 0.5357142857142857,
+    "all_recorded_win_rate": 0.42857142857142855,
+    "complete_pairs_wdl": {
+      "draw": 3,
+      "win": 6,
+      "loss": 5
+    },
+    "terminations": {
+      "checkmate": 11,
+      "threefold_repetition": 1,
+      "insufficient_material": 1,
+      "fifty_moves": 1
+    },
+    "games": [
+      {
+        "file": "sbank_010_black.json",
+        "outcome": "loss",
+        "position_id": "sbank_010",
+        "color": "black",
+        "termination": "checkmate",
+        "moves": 46,
+        "max_move_s": 5.578000000000003,
+        "min_remaining_s": 23.86,
+        "sha256": "276e8a78beb6c6d1aaaca0276d3bd99548c6b23532f22a4fe477b960462d6d83"
+      },
+      {
+        "file": "sbank_010_white.json",
+        "outcome": "loss",
+        "position_id": "sbank_010",
+        "color": "white",
+        "termination": "checkmate",
+        "moves": 71,
+        "max_move_s": 6.5,
+        "min_remaining_s": 10.578,
+        "sha256": "4bcc78b8e0ce71ee8fa964d1bbaaf9e00680b25840bb7f6678595e541a4b12de"
+      },
+      {
+        "file": "sbank_030_black.json",
+        "outcome": "win",
+        "position_id": "sbank_030",
+        "color": "black",
+        "termination": "checkmate",
+        "moves": 31,
+        "max_move_s": 5.75,
+        "min_remaining_s": 41.78,
+        "sha256": "4ee7d66471bafc7d671638ed3e26b99c3530786c975549319819681b60744326"
+      },
+      {
+        "file": "sbank_030_white.json",
+        "outcome": "loss",
+        "position_id": "sbank_030",
+        "color": "white",
+        "termination": "checkmate",
+        "moves": 38,
+        "max_move_s": 6.5,
+        "min_remaining_s": 25.922,
+        "sha256": "a9952406a7377e0e6eb1b9c543a8674552cefdee176162e09cb6d6cce10e1b23"
+      },
+      {
+        "file": "sbank_051_black.json",
+        "outcome": "draw",
+        "position_id": "sbank_051",
+        "color": "black",
+        "termination": "threefold_repetition",
+        "moves": 27,
+        "max_move_s": 6.171999999999997,
+        "min_remaining_s": 48.387,
+        "sha256": "abf8f55c57406a21cc1ad0854f9f9f3bb2a2a243fe3b135208c9dddb65139efe"
+      },
+      {
+        "file": "sbank_051_white.json",
+        "outcome": "loss",
+        "position_id": "sbank_051",
+        "color": "white",
+        "termination": "checkmate",
+        "moves": 62,
+        "max_move_s": 6.5,
+        "min_remaining_s": 11.689,
+        "sha256": "763a05d03ba6daf07914bb0f7dfc1bad2003c8646a2654825e6ddb908dc47957"
+      },
+      {
+        "file": "sbank_062_black.json",
+        "outcome": "win",
+        "position_id": "sbank_062",
+        "color": "black",
+        "termination": "checkmate",
+        "moves": 27,
+        "max_move_s": 6.5,
+        "min_remaining_s": 49.232,
+        "sha256": "66e3f1b4b693a77c7f43682f91af97a9c0230943ecc56ec41f072c6e62cdcb8b"
+      },
+      {
+        "file": "sbank_062_white.json",
+        "outcome": "draw",
+        "position_id": "sbank_062",
+        "color": "white",
+        "termination": "insufficient_material",
+        "moves": 59,
+        "max_move_s": 6.5,
+        "min_remaining_s": 19.183,
+        "sha256": "94069833044e64fa8096ee54abcdf69f626e9aadc381ba977691c2f6139c7cc4"
+      },
+      {
+        "file": "sbank_080_black.json",
+        "outcome": "draw",
+        "position_id": "sbank_080",
+        "color": "black",
+        "termination": "fifty_moves",
+        "moves": 145,
+        "max_move_s": 5.671999999999997,
+        "min_remaining_s": 5.263,
+        "sha256": "7c3aae41bdc5456d95163cbb469b84d5bb8b6cc420d1114915420b528f4370d3"
+      },
+      {
+        "file": "sbank_080_white.json",
+        "outcome": "win",
+        "position_id": "sbank_080",
+        "color": "white",
+        "termination": "checkmate",
+        "moves": 66,
+        "max_move_s": 6.5,
+        "min_remaining_s": 8.113,
+        "sha256": "e7d4269d1272abec4cd1895d5302b6db6c014dd941b080417341a75fb39affd3"
+      },
+      {
+        "file": "sbank_085_black.json",
+        "outcome": "loss",
+        "position_id": "sbank_085",
+        "color": "black",
+        "termination": "checkmate",
+        "moves": 106,
+        "max_move_s": 6.218999999999994,
+        "min_remaining_s": 12.216,
+        "sha256": "91bcb078c5e7f10cf9cebb63f2a6a266a3b5255f863ca5570e80dbeeb3bf2400"
+      },
+      {
+        "file": "sbank_085_white.json",
+        "outcome": "win",
+        "position_id": "sbank_085",
+        "color": "white",
+        "termination": "checkmate",
+        "moves": 48,
+        "max_move_s": 6.672000000000011,
+        "min_remaining_s": 18.14,
+        "sha256": "d49cf34675768235d61b75f5cb330d8062df2147ed174cad5b92c3bb5e92680b"
+      },
+      {
+        "file": "sbank_089_black.json",
+        "outcome": "win",
+        "position_id": "sbank_089",
+        "color": "black",
+        "termination": "checkmate",
+        "moves": 48,
+        "max_move_s": 6.625,
+        "min_remaining_s": 15.084,
+        "sha256": "6922ca9059db186ca2a7290ad95e9f5cfe350838b765bc8bb73b383d3cd4ad36"
+      },
+      {
+        "file": "sbank_089_white.json",
+        "outcome": "win",
+        "position_id": "sbank_089",
+        "color": "white",
+        "termination": "checkmate",
+        "moves": 48,
+        "max_move_s": 6.5,
+        "min_remaining_s": 16.579,
+        "sha256": "42ee6c7b81872e36fe238a104fab7ce00dc06586798452187b02278f0fe057eb"
+      }
+    ]
+  },
+  {
+    "run": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\compact_sf67_value_01_silky_120s",
+    "snapshot_only": true,
+    "base_ms": 120000,
+    "increment_ms": 500,
+    "runtime_hashes_match": true,
+    "game_count": 11,
+    "all_recorded_wdl": {
+      "loss": 6,
+      "win": 2,
+      "draw": 3
+    },
+    "all_recorded_score": 0.3181818181818182,
+    "all_recorded_win_rate": 0.18181818181818182,
+    "complete_pairs_wdl": {
+      "loss": 5,
+      "win": 2,
+      "draw": 3
+    },
+    "terminations": {
+      "checkmate": 8,
+      "threefold_repetition": 1,
+      "fifty_moves": 1,
+      "insufficient_material": 1
+    },
+    "games": [
+      {
+        "file": "sbank_010_black.json",
+        "outcome": "loss",
+        "position_id": "sbank_010",
+        "color": "black",
+        "termination": "checkmate",
+        "moves": 67,
+        "max_move_s": 6.5,
+        "min_remaining_s": 6.078,
+        "sha256": "f2ef0e443251de722d3dc9d0f97090e68a2634c35c2481d919fe07d1516c2995"
+      },
+      {
+        "file": "sbank_010_white.json",
+        "outcome": "win",
+        "position_id": "sbank_010",
+        "color": "white",
+        "termination": "checkmate",
+        "moves": 47,
+        "max_move_s": 6.5,
+        "min_remaining_s": 19.271,
+        "sha256": "374c7cb3321c3ca20b553d45f53fa415f57b01e52c4da423750469f6000254a0"
+      },
+      {
+        "file": "sbank_030_black.json",
+        "outcome": "draw",
+        "position_id": "sbank_030",
+        "color": "black",
+        "termination": "threefold_repetition",
+        "moves": 46,
+        "max_move_s": 6.5,
+        "min_remaining_s": 20.346,
+        "sha256": "5b91f600045dd7fac506cb84c942f4e4f470d28e72807f263ff0d44a8ced93c2"
+      },
+      {
+        "file": "sbank_030_white.json",
+        "outcome": "draw",
+        "position_id": "sbank_030",
+        "color": "white",
+        "termination": "fifty_moves",
+        "moves": 100,
+        "max_move_s": 6.514999999999986,
+        "min_remaining_s": 5.425,
+        "sha256": "b087b7024267c8fa4a67827812623cafd68b6c608f7a24920833598028e1df93"
+      },
+      {
+        "file": "sbank_051_black.json",
+        "outcome": "loss",
+        "position_id": "sbank_051",
+        "color": "black",
+        "termination": "checkmate",
+        "moves": 97,
+        "max_move_s": 6.5,
+        "min_remaining_s": 5.532,
+        "sha256": "8db87c8391e2c239a54dae97836d9628d65033e9636a94c53d3b57b22ec5352e"
+      },
+      {
+        "file": "sbank_051_white.json",
+        "outcome": "loss",
+        "position_id": "sbank_051",
+        "color": "white",
+        "termination": "checkmate",
+        "moves": 104,
+        "max_move_s": 6.5,
+        "min_remaining_s": 5.185,
+        "sha256": "1c2ae2c3e6d1c00ddafb802cb6de823788d15dcc823a382a0e70a898130ed0b9"
+      },
+      {
+        "file": "sbank_062_black.json",
+        "outcome": "draw",
+        "position_id": "sbank_062",
+        "color": "black",
+        "termination": "insufficient_material",
+        "moves": 75,
+        "max_move_s": 6.5,
+        "min_remaining_s": 6.21,
+        "sha256": "1e199ad5aa223e5d110371b348dbf77dd54d801a91930d1345adc6352697e985"
+      },
+      {
+        "file": "sbank_062_white.json",
+        "outcome": "win",
+        "position_id": "sbank_062",
+        "color": "white",
+        "termination": "checkmate",
+        "moves": 42,
+        "max_move_s": 6.5,
+        "min_remaining_s": 21.188,
+        "sha256": "c7c668bf125907d778d710ba519163e96e824f09fc2798ca4d7a05ec7508f01c"
+      },
+      {
+        "file": "sbank_080_white.json",
+        "outcome": "loss",
+        "position_id": "sbank_080",
+        "color": "white",
+        "termination": "checkmate",
+        "moves": 62,
+        "max_move_s": 6.530999999999992,
+        "min_remaining_s": 13.829,
+        "sha256": "eb780a057a19a1634a56b5188df32c648c961196776632d4f0a3d92756c3691c"
+      },
+      {
+        "file": "sbank_089_black.json",
+        "outcome": "loss",
+        "position_id": "sbank_089",
+        "color": "black",
+        "termination": "checkmate",
+        "moves": 69,
+        "max_move_s": 5.952999999999989,
+        "min_remaining_s": 7.208,
+        "sha256": "51aee5bcaa2f5d5fc0ceb2ef032fb6f0b2f9d44e1483c45087bfaa977ff7bed5"
+      },
+      {
+        "file": "sbank_089_white.json",
+        "outcome": "loss",
+        "position_id": "sbank_089",
+        "color": "white",
+        "termination": "checkmate",
+        "moves": 59,
+        "max_move_s": 6.515999999999991,
+        "min_remaining_s": 8.156,
+        "sha256": "eb00c071460c036011a1b019414000e12951a6329b4ab730604a083cd7bcd39a"
+      }
+    ]
+  }
+]

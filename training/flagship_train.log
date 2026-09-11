@@ -1,0 +1,29 @@
+device: cuda
+parameters: 1,448,929
+warm start: 62 tensors loaded, value head fresh
+train=27242 val=3356 steps/epoch=27
+ep00 train=8.1979 val_ce=6.4658 val_kd=0.0000 val_vmse=0.0054 top1=0.039 vmae=0.0633 (19s)
+ep01 train=6.1447 val_ce=5.8003 val_kd=0.0000 val_vmse=0.0000 top1=0.066 vmae=0.0055 (1s)
+ep02 train=5.5356 val_ce=5.3301 val_kd=0.0000 val_vmse=0.0000 top1=0.070 vmae=0.0035 (1s)
+ep03 train=4.9715 val_ce=4.9856 val_kd=0.0000 val_vmse=0.0000 top1=0.082 vmae=0.0027 (1s)
+ep04 train=4.5538 val_ce=4.7899 val_kd=0.0000 val_vmse=0.0000 top1=0.091 vmae=0.0030 (1s)
+ep05 train=4.2426 val_ce=4.6734 val_kd=0.0000 val_vmse=0.0000 top1=0.099 vmae=0.0024 (1s)
+ep06 train=3.9825 val_ce=4.5979 val_kd=0.0000 val_vmse=0.0000 top1=0.103 vmae=0.0028 (1s)
+ep07 train=3.7520 val_ce=4.5590 val_kd=0.0000 val_vmse=0.0000 top1=0.103 vmae=0.0029 (1s)
+ep08 train=3.5423 val_ce=4.5276 val_kd=0.0000 val_vmse=0.0000 top1=0.111 vmae=0.0023 (1s)
+ep09 train=3.3566 val_ce=4.4745 val_kd=0.0000 val_vmse=0.0000 top1=0.113 vmae=0.0029 (1s)
+ep10 train=3.1841 val_ce=4.4999 val_kd=0.0000 val_vmse=0.0000 top1=0.113 vmae=0.0027 (1s)
+ep11 train=3.0232 val_ce=4.4520 val_kd=0.0000 val_vmse=0.0000 top1=0.116 vmae=0.0022 (1s)
+ep12 train=2.8799 val_ce=4.4646 val_kd=0.0000 val_vmse=0.0000 top1=0.113 vmae=0.0025 (1s)
+ep13 train=2.7484 val_ce=4.4776 val_kd=0.0000 val_vmse=0.0000 top1=0.117 vmae=0.0021 (1s)
+ep14 train=2.6274 val_ce=4.4484 val_kd=0.0000 val_vmse=0.0000 top1=0.112 vmae=0.0023 (1s)
+ep15 train=2.5213 val_ce=4.4522 val_kd=0.0000 val_vmse=0.0000 top1=0.119 vmae=0.0023 (1s)
+ep16 train=2.4229 val_ce=4.4668 val_kd=0.0000 val_vmse=0.0000 top1=0.115 vmae=0.0022 (1s)
+ep17 train=2.3399 val_ce=4.4770 val_kd=0.0000 val_vmse=0.0000 top1=0.118 vmae=0.0021 (1s)
+ep18 train=2.2625 val_ce=4.4807 val_kd=0.0000 val_vmse=0.0000 top1=0.116 vmae=0.0019 (1s)
+ep19 train=2.1996 val_ce=4.4772 val_kd=0.0000 val_vmse=0.0000 top1=0.113 vmae=0.0020 (1s)
+ep20 train=2.1465 val_ce=4.4755 val_kd=0.0000 val_vmse=0.0000 top1=0.115 vmae=0.0020 (1s)
+ep21 train=2.0990 val_ce=4.4965 val_kd=0.0000 val_vmse=0.0000 top1=0.116 vmae=0.0019 (1s)
+ep22 train=2.0588 val_ce=4.4863 val_kd=0.0000 val_vmse=0.0000 top1=0.109 vmae=0.0019 (1s)
+early stop at epoch 22
+best val_comp=4.4484 -> training\checkpoints\flagship\best_flagship.pt

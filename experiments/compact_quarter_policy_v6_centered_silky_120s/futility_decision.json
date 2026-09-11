@@ -1,0 +1,9 @@
+{
+  "decision": "stop for mathematical futility at planned 20-game screen",
+  "completed_games_at_decision": 14,
+  "points_at_decision": 7.5,
+  "planned_games": 20,
+  "required_points": 14,
+  "maximum_possible_points": 13.5,
+  "interpretation": "Partial stopped screen, not a completed tournament or population-strength conclusion"
+}

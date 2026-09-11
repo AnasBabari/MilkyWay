@@ -1,0 +1,75 @@
+{
+  "base_ms": 60000,
+  "increment_ms": 500,
+  "pairs_per_comparison": 25,
+  "games_per_comparison": 50,
+  "workers_per_comparison": 1,
+  "bank": "screen",
+  "runs": [
+    {
+      "agent": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\compiled_pvs_01",
+      "opponent": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\silky_snow",
+      "out": "experiments\\compiled_pvs_01_silky_60s_50g",
+      "stockfish_level": 5,
+      "seed": 20260906,
+      "session_id": 42737
+    },
+    {
+      "agent": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\compiled_pvs_01",
+      "opponent": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\baselines\\stockfish",
+      "out": "experiments\\compiled_pvs_01_sf7_60s_50g",
+      "stockfish_level": 7,
+      "seed": 20260906,
+      "session_id": 2071
+    },
+    {
+      "agent": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\compiled_ordered_01",
+      "opponent": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\compiled_pvs_01",
+      "out": "experiments\\compiled_ordered_01_parent_60s_50g",
+      "stockfish_level": 5,
+      "seed": 20260906,
+      "session_id": 10622
+    },
+    {
+      "agent": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\compiled_sf7_rl_01",
+      "opponent": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\compiled_pvs_01",
+      "out": "experiments\\compiled_sf7_rl_01_parent_60s_50g",
+      "stockfish_level": 5,
+      "seed": 20260906,
+      "session_id": 46693
+    },
+    {
+      "agent": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\compiled_sf7_rl_01",
+      "opponent": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\silky_snow",
+      "out": "experiments\\compiled_sf7_rl_01_silky_60s_50g",
+      "stockfish_level": 5,
+      "seed": 20260906,
+      "session_id": 93758
+    },
+    {
+      "agent": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\compiled_sf7_rl_01",
+      "opponent": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\baselines\\stockfish",
+      "out": "experiments\\compiled_sf7_rl_01_sf7_60s_50g",
+      "stockfish_level": 7,
+      "seed": 20260906,
+      "session_id": 57821
+    },
+    {
+      "agent": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\compiled_ordered_01",
+      "opponent": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\silky_snow",
+      "out": "experiments\\compiled_ordered_01_silky_60s_50g",
+      "stockfish_level": 5,
+      "seed": 20260906,
+      "session_id": 40388
+    },
+    {
+      "agent": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\compiled_ordered_01",
+      "opponent": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\baselines\\stockfish",
+      "out": "experiments\\compiled_ordered_01_sf7_60s_50g",
+      "stockfish_level": 7,
+      "seed": 20260906,
+      "session_id": 69028
+    }
+  ],
+  "note": "Supersedes local120second/20game screen protocol. Do not pool prior results. No strength qualification claimed."
+}

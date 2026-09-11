@@ -1,0 +1,108 @@
+{
+  "game_sha256": "6391f5ab428282b2bdcaf786dd4cd44063480c4a956b8ea0ba88489bf56bedad",
+  "stockfish_sha256": "c86215fa1977d53b82ed854540a4c7b025be4cd042276c85ba3de53fb9118911",
+  "nodes_per_analysis": 100000,
+  "skill": 20,
+  "threads": 1,
+  "hash_mb": 32,
+  "purpose": "offline diagnostic; estimates depend on bounded search, not ground truth",
+  "initial_clock_ms": 120000,
+  "moves": [
+    {
+      "ply": 13,
+      "fen": "r2qkbnr/pp1n1ppp/4p3/1BppPb2/3P4/5N2/PPPN1PPP/R1BQ1RK1 b kq - 3 7",
+      "move": "d8b6",
+      "san": "Qb6",
+      "best": "c5c4",
+      "best_cp": -25,
+      "played_cp": -178,
+      "loss_cp": 153,
+      "clock_before_s": 120.0,
+      "clock_after_s": 113.97
+    },
+    {
+      "ply": 15,
+      "fen": "r3kbnr/pp1n1ppp/1q2p3/1BppPb2/3P4/5N2/PPP2PPP/RNBQ1RK1 b kq - 5 8",
+      "move": "b6b5",
+      "san": "Qxb5",
+      "best": "b6b5",
+      "best_cp": 367,
+      "played_cp": 358,
+      "loss_cp": 0,
+      "clock_before_s": 113.97,
+      "clock_after_s": 110.1
+    },
+    {
+      "ply": 17,
+      "fen": "r3kbnr/pp1n1ppp/4p3/1qppPb2/3P4/3Q1N2/PPP2PPP/RNB2RK1 b kq - 1 9",
+      "move": "f5d3",
+      "san": "Bxd3",
+      "best": "f5d3",
+      "best_cp": 648,
+      "played_cp": 651,
+      "loss_cp": 0,
+      "clock_before_s": 110.1,
+      "clock_after_s": 104.092
+    },
+    {
+      "ply": 19,
+      "fen": "r3kbnr/pp1n1ppp/4p3/1qppP3/3P4/N2b1N2/PPP2PPP/R1B2RK1 b kq - 1 10",
+      "move": "d3f1",
+      "san": "Bxf1",
+      "best": "d3f1",
+      "best_cp": 815,
+      "played_cp": 830,
+      "loss_cp": 0,
+      "clock_before_s": 104.092,
+      "clock_after_s": 100.443
+    },
+    {
+      "ply": 21,
+      "fen": "r3kbnr/pp1n1ppp/4p3/1qppP3/3P4/N3BN2/PPP2PPP/R4bK1 b kq - 1 11",
+      "move": "b5b2",
+      "san": "Qxb2",
+      "best": "b5c6",
+      "best_cp": 839,
+      "played_cp": 871,
+      "loss_cp": 0,
+      "clock_before_s": 100.443,
+      "clock_after_s": 97.695
+    },
+    {
+      "ply": 23,
+      "fen": "r3kbnr/pp1n1ppp/4p3/2ppP3/2NP4/4BN2/PqP2PPP/R4bK1 b kq - 1 12",
+      "move": "b2a1",
+      "san": "Qxa1",
+      "best": "b2a1",
+      "best_cp": 1103,
+      "played_cp": 1093,
+      "loss_cp": 0,
+      "clock_before_s": 97.695,
+      "clock_after_s": 95.357
+    },
+    {
+      "ply": 25,
+      "fen": "r3kbnr/pp1n1ppp/1N2p3/2ppP3/3P4/4BN2/P1P2PPP/q4bK1 b kq - 1 13",
+      "move": "f1e2",
+      "san": "Be2+",
+      "best": "f1e2",
+      "best_cp": 9997,
+      "played_cp": 9997,
+      "loss_cp": 0,
+      "clock_before_s": 95.357,
+      "clock_after_s": 95.53999999999999
+    },
+    {
+      "ply": 27,
+      "fen": "r3kbnr/pp1n1ppp/1N2p3/2ppP3/3P4/4B3/P1P1bPPP/q3N1K1 b kq - 3 14",
+      "move": "a1e1",
+      "san": "Qxe1#",
+      "best": "a1e1",
+      "best_cp": 9999,
+      "played_cp": 9999,
+      "loss_cp": 0,
+      "clock_before_s": 95.53999999999999,
+      "clock_after_s": 95.856
+    }
+  ]
+}

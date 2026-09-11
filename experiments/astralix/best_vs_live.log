@@ -1,0 +1,104 @@
+1/50 sbank_051: 2.0/2 checkmate/checkmate
+2/50 sbank_062: 0.0/2 checkmate/checkmate
+3/50 sbank_010: 1.0/2 checkmate/checkmate
+4/50 sbank_089: 0.5/2 checkmate/insufficient_material
+5/50 sbank_030: 0.5/2 checkmate/insufficient_material
+6/50 sbank_080: 2.0/2 checkmate/checkmate
+7/50 sbank_042: 0.0/2 checkmate/checkmate
+8/50 sbank_085: 1.0/2 threefold_repetition/fifty_moves
+9/50 sbank_041: 1.0/2 checkmate/checkmate
+10/50 sbank_067: 1.0/2 checkmate/checkmate
+11/50 sbank_018: 1.0/2 checkmate/checkmate
+12/50 sbank_044: 1.5/2 checkmate/fifty_moves
+13/50 sbank_021: 1.0/2 checkmate/checkmate
+14/50 sbank_032: 2.0/2 checkmate/checkmate
+15/50 sbank_072: 1.5/2 checkmate/threefold_repetition
+16/50 sbank_074: 0.0/2 checkmate/checkmate
+17/50 sbank_078: 0.0/2 checkmate/checkmate
+18/50 sbank_052: 1.0/2 checkmate/checkmate
+19/50 sbank_090: 1.0/2 threefold_repetition/threefold_repetition
+20/50 sbank_081: 1.0/2 checkmate/checkmate
+21/50 sbank_038: 2.0/2 checkmate/checkmate
+22/50 sbank_037: 2.0/2 checkmate/checkmate
+23/50 sbank_093: 0.5/2 checkmate/insufficient_material
+24/50 sbank_050: 1.5/2 checkmate/threefold_repetition
+25/50 sbank_099: 0.5/2 checkmate/threefold_repetition
+26/50 sbank_098: 2.0/2 checkmate/checkmate
+27/50 sbank_017: 0.5/2 threefold_repetition/checkmate
+28/50 sbank_043: 1.0/2 fifty_moves/threefold_repetition
+29/50 sbank_082: 0.0/2 checkmate/checkmate
+30/50 sbank_023: 0.0/2 checkmate/checkmate
+31/50 sbank_005: 0.0/2 checkmate/checkmate
+32/50 sbank_069: 1.0/2 checkmate/checkmate
+33/50 sbank_095: 0.0/2 checkmate/checkmate
+34/50 sbank_009: 1.0/2 checkmate/checkmate
+35/50 sbank_028: 1.0/2 checkmate/checkmate
+36/50 sbank_019: 1.5/2 checkmate/threefold_repetition
+37/50 sbank_087: 2.0/2 checkmate/checkmate
+38/50 sbank_073: 0.0/2 checkmate/checkmate
+39/50 sbank_070: 2.0/2 checkmate/checkmate
+40/50 sbank_066: 2.0/2 checkmate/checkmate
+41/50 sbank_096: 1.0/2 checkmate/checkmate
+42/50 sbank_060: 0.0/2 checkmate/checkmate
+43/50 sbank_084: 1.0/2 checkmate/checkmate
+44/50 sbank_027: 1.0/2 checkmate/checkmate
+45/50 sbank_054: 2.0/2 checkmate/checkmate
+46/50 sbank_061: 1.0/2 checkmate/checkmate
+47/50 sbank_079: 1.0/2 checkmate/checkmate
+48/50 sbank_086: 1.5/2 fifty_moves/checkmate
+49/50 sbank_025: 0.0/2 checkmate/checkmate
+50/50 sbank_035: 1.0/2 checkmate/checkmate
+{
+  "pairs": 50,
+  "games": 100,
+  "score": 0.49,
+  "record": "+41 =16 -43",
+  "white": {
+    "score": 0.47,
+    "record": "+21 =5 -24"
+  },
+  "black": {
+    "score": 0.51,
+    "record": "+20 =11 -19"
+  },
+  "phases": {
+    "opening": {
+      "pairs": 50,
+      "games": 100,
+      "score": 0.49,
+      "wins": 41,
+      "draws": 16,
+      "losses": 43
+    }
+  },
+  "terminations": {
+    "checkmate": 84,
+    "threefold_repetition": 9,
+    "insufficient_material": 3,
+    "fifty_moves": 4
+  },
+  "bootstrap": {
+    "pairs_count": 50,
+    "games_count": 100,
+    "point_score": 0.49,
+    "score_95_ci": [
+      0.395,
+      0.585
+    ],
+    "point_elo": -6.94963842776909,
+    "elo_95_ci": [
+      -74.06331161040343,
+      59.643107748035064
+    ],
+    "pair_distribution": {
+      "2.0": 10,
+      "1.5": 5,
+      "1.0": 19,
+      "0.5": 5,
+      "0.0": 11
+    },
+    "supportive": false,
+    "strong": false
+  },
+  "failed_terminations": {}
+}

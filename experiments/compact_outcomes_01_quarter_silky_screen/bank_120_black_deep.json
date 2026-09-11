@@ -1,0 +1,36 @@
+{
+  "game_sha256": "c14bc4a8ff8b935b50866836e03753a67e8a9ed7e6cdde532cbdce0c8aa0ce54",
+  "stockfish_sha256": "c86215fa1977d53b82ed854540a4c7b025be4cd042276c85ba3de53fb9118911",
+  "nodes_per_analysis": 500000,
+  "skill": 20,
+  "threads": 1,
+  "hash_mb": 32,
+  "purpose": "offline diagnostic; estimates depend on bounded search, not ground truth",
+  "clock_note": "initial clock assumes this development run's 10-second base",
+  "moves": [
+    {
+      "ply": 53,
+      "fen": "r7/2k4p/p1p2pp1/r2p4/2p1P2P/B1P3P1/PK3PB1/3R4 b - - 7 27",
+      "move": "a8e8",
+      "san": "Re8",
+      "best": "a8b8",
+      "best_cp": -40,
+      "played_cp": -262,
+      "loss_cp": 222,
+      "clock_before_s": 6.557,
+      "clock_after_s": 5.345
+    },
+    {
+      "ply": 59,
+      "fen": "8/2k4p/p1p2pp1/3P4/rBp4P/2P3P1/P3rPB1/1K1R4 b - - 2 30",
+      "move": "c6d5",
+      "san": "cxd5",
+      "best": "e2a2",
+      "best_cp": 251,
+      "played_cp": -309,
+      "loss_cp": 560,
+      "clock_before_s": 5.452,
+      "clock_after_s": 5.473
+    }
+  ]
+}

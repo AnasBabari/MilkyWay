@@ -1,0 +1,64 @@
+{
+  "level": 6,
+  "base_ms": 120000,
+  "increment_ms": 500,
+  "stockfish_path": "C:/Users/Babar/AppData/Local/Microsoft/WinGet/Packages/Stockfish.Stockfish_Microsoft.Winget.Source_8wekyb3d8bbwe/stockfish\\stockfish-windows-x86-64-avx2.exe",
+  "stockfish_sha256": "c86215fa1977d53b82ed854540a4c7b025be4cd042276c85ba3de53fb9118911",
+  "stockfish_time_per_move_ms": null,
+  "stockfish_threads": "1",
+  "opponent_sha256": {
+    "__init__.py": "8c172aa43bbf6732ff4e697838168e01051c23429be7ac2b861eca7c4ea119a7",
+    "agent.py": "d869b638ba4f6b64c9fc6c4b6e1391932f8601101e000ff687da511a2feaa929"
+  },
+  "harness_sha256": {
+    "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "arena.py": "313c0a35c703ac9f5cf2101ef81826315871fd3eb6d54862f364e23d79969e8c",
+    "package.py": "140ef43bfc1be472891e08db766fe5933984fac746b4715ccfa1acc6fc1a83a1",
+    "play.py": "abed391241953901429ad4dccb608347d1626c1c032e2df43a4f5c6e65dee08d",
+    "referee.py": "5562edc242e687690b2d87f0d97ad2130f7878d08802079772c0c2e72ce9077e",
+    "rules.py": "464252107597dc3e540ba8df19d8f7fd8f82397eb4cc7e1529a54a38f92e0e60",
+    "runner.py": "b343dbf51ff2814f1ce223436f4fe10a9d78d7e329d176b3f080082aa61063e7",
+    "sandbox.py": "451d535f921889514a781ff24b3169d4a151a3a3139a43212743609b092d8ae3"
+  },
+  "agent_sha256": {
+    "agent.py": "eb39003426716628e226aa88bdf4ed7f8783bfea6734d928d7a624acabffd968",
+    "astralix_config.py": "d73fd4a9d56fda040c4b3d1643665417efa9d5807e6bba8a6408a219a2a97494",
+    "constants.py": "e0da5e8acc198bc9a4325fbf4403ec8c0bba9ed8d84e5d89ecb9c9f39dd7af57",
+    "engine.py": "dbb02abc565320cd88d244da999fa561729c7463621e7f99f6df52a162bb2aa6",
+    "engine_types.py": "685b89bd83b15ac5fb76bb3a15ac5857f9ea33761a62aa3f13ae7ea560f4c68f",
+    "evaluation.py": "a5b138bdc09f0c96ca7dcb7c53b04dc6846b59e3ad16b69edcf4198a75bffea5",
+    "move_ordering.py": "43156f7ce0d2369581d222044452dd90d90a7eb8632a1674caccd16b95639d10",
+    "root_policy.py": "84b05efefc99dd10629ea5ee702b7ee96bb1b104b708d595ff4b2dcc0466f6b6",
+    "search.py": "709977b92efc64b2dce3dfd3e710d444c8e60ad41d7dacee5a1e02e302857743",
+    "time_manager.py": "67b27cb22a55975b1442ee7fc22824430f4f40e246fd1136608a8b17ff9ddd0f",
+    "transposition.py": "ea9edc8da4a5fba376b588a5aca9dd7fec50090cd0f4a4b0cb0b0faf75637add",
+    "weights\\milkyway_astralix.onnx": "1ba410baff275546c73d9f2c338c98e01d3ced1874f48232a7f747164a6fef67"
+  },
+  "positions": [
+    [
+      "sbank_034",
+      "r1bq1rk1/ppp2pbp/2np1np1/4p3/2PPP3/2N2N2/PP2BPPP/R1BQ1RK1 w - - 2 8"
+    ],
+    [
+      "sbank_026",
+      "rnbqkb1r/pp3ppp/5n2/2pp4/3P4/5NP1/PP2PP1P/RNBQKB1R w KQkq - 1 6"
+    ],
+    [
+      "sbank_100",
+      "r1bq1rk1/pp2bppp/2np1n2/2p1p3/2B1P3/2NP4/PPP2PPP/R1BQNRK1 w - - 5 8"
+    ],
+    [
+      "sbank_085",
+      "rn2kbnr/pp2pppp/8/2pq4/6b1/5NP1/PPPP1PBP/RNBQK2R b KQkq - 3 5"
+    ],
+    [
+      "sbank_079",
+      "rnb1kb1r/ppp1qppp/3p1n2/6B1/8/3P1N2/PPP1QPPP/RN2KB1R b KQkq - 2 7"
+    ],
+    [
+      "sbank_082",
+      "rnb1k2r/pp2nppp/2pqp3/b7/P2P4/2P5/1P1N1PPP/R1BQKBNR w KQkq - 0 8"
+    ]
+  ],
+  "acpl_method_version": 3
+}

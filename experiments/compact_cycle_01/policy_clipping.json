@@ -1,0 +1,16 @@
+[
+  {
+    "model": "experiments/silky_snow/weights/milkyway_policy.onnx",
+    "positions": 255,
+    "quiet_scores": 8099,
+    "clipped_fraction": 0.1547104580812446,
+    "top_tie_positions": 185
+  },
+  {
+    "model": "weights/milkyway_flagship_v6.onnx",
+    "positions": 255,
+    "quiet_scores": 8099,
+    "clipped_fraction": 0.03691813804173355,
+    "top_tie_positions": 45
+  }
+]

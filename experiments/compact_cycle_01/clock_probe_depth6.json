@@ -1,0 +1,42 @@
+[
+  {
+    "position": "bank120_move30_blunder",
+    "coefficient": null,
+    "move": "c6d5",
+    "score": -112,
+    "depth": 6,
+    "nodes": 9605,
+    "qnodes": 10182,
+    "seconds": 0.6102204999770038
+  },
+  {
+    "position": "bank120_move30_blunder",
+    "coefficient": 0.0,
+    "move": "c6d5",
+    "score": -112,
+    "depth": 6,
+    "nodes": 9605,
+    "qnodes": 10182,
+    "seconds": 0.6901048999861814
+  },
+  {
+    "position": "bank120_move30_blunder",
+    "coefficient": 0.25,
+    "move": "c6d5",
+    "score": -65,
+    "depth": 6,
+    "nodes": 8403,
+    "qnodes": 9218,
+    "seconds": 0.6013164999894798
+  },
+  {
+    "position": "bank120_move30_blunder",
+    "coefficient": 1.0,
+    "move": "c6d5",
+    "score": 41,
+    "depth": 6,
+    "nodes": 10971,
+    "qnodes": 11633,
+    "seconds": 0.7733678999939002
+  }
+]

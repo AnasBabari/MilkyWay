@@ -1,0 +1,27 @@
+device: cuda
+parameters: 1,449,187
+warm start: 62 tensors loaded, value head fresh
+train=61758 val=6718 steps/epoch=61
+ep00 train=6.6658 val_ce=3.7870 val_kd=3.1364 val_vmse=1.0863 top1=0.167 vmae_cp=89.7 (21s)
+ep01 train=6.3330 val_ce=3.6583 val_kd=3.0669 val_vmse=1.0824 top1=0.178 vmae_cp=88.0 (2s)
+ep02 train=6.0569 val_ce=3.5577 val_kd=2.9802 val_vmse=1.0801 top1=0.191 vmae_cp=87.1 (2s)
+ep03 train=5.7730 val_ce=3.4853 val_kd=2.8815 val_vmse=1.0799 top1=0.196 vmae_cp=87.8 (2s)
+ep04 train=5.4898 val_ce=3.4442 val_kd=2.8601 val_vmse=1.0792 top1=0.199 vmae_cp=87.9 (2s)
+ep05 train=5.2476 val_ce=3.4061 val_kd=2.7661 val_vmse=1.0792 top1=0.209 vmae_cp=87.9 (2s)
+ep06 train=5.0294 val_ce=3.4078 val_kd=2.6853 val_vmse=1.0800 top1=0.206 vmae_cp=87.6 (2s)
+ep07 train=4.8340 val_ce=3.3654 val_kd=2.7096 val_vmse=1.0843 top1=0.205 vmae_cp=91.2 (2s)
+ep08 train=4.6546 val_ce=3.3631 val_kd=2.6779 val_vmse=1.0822 top1=0.208 vmae_cp=89.3 (2s)
+ep09 train=4.4922 val_ce=3.3680 val_kd=2.6121 val_vmse=1.0834 top1=0.211 vmae_cp=89.9 (2s)
+ep10 train=4.3437 val_ce=3.4094 val_kd=2.5574 val_vmse=1.0839 top1=0.216 vmae_cp=89.7 (2s)
+ep11 train=4.2114 val_ce=3.3852 val_kd=2.5842 val_vmse=1.0859 top1=0.217 vmae_cp=90.9 (2s)
+ep12 train=4.0856 val_ce=3.3800 val_kd=2.5713 val_vmse=1.0879 top1=0.220 vmae_cp=92.4 (2s)
+ep13 train=3.9757 val_ce=3.4240 val_kd=2.5181 val_vmse=1.0862 top1=0.222 vmae_cp=90.3 (2s)
+ep14 train=3.8740 val_ce=3.4091 val_kd=2.5290 val_vmse=1.0875 top1=0.225 vmae_cp=91.3 (2s)
+ep15 train=3.7787 val_ce=3.4244 val_kd=2.5215 val_vmse=1.0885 top1=0.223 vmae_cp=91.6 (2s)
+ep16 train=3.7001 val_ce=3.4479 val_kd=2.4967 val_vmse=1.0884 top1=0.223 vmae_cp=91.3 (2s)
+ep17 train=3.6249 val_ce=3.4264 val_kd=2.5164 val_vmse=1.0897 top1=0.221 vmae_cp=92.6 (2s)
+ep18 train=3.5601 val_ce=3.4582 val_kd=2.4991 val_vmse=1.0897 top1=0.217 vmae_cp=92.3 (2s)
+ep19 train=3.5021 val_ce=3.4766 val_kd=2.4929 val_vmse=1.0895 top1=0.220 vmae_cp=92.1 (2s)
+ep20 train=3.4528 val_ce=3.4762 val_kd=2.4984 val_vmse=1.0909 top1=0.220 vmae_cp=93.0 (2s)
+early stop at epoch 20
+best val_comp=5.7535 -> training\checkpoints\flagship_v2\best_flagship.pt

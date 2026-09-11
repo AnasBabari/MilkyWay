@@ -1,0 +1,28 @@
+[
+  {
+    "pos_id": "bank_120",
+    "category": "middlegame",
+    "start_fen": "rr6/2pk3p/p4pp1/3p4/2p4P/B1P3P1/P3PP2/2K2BR1 w - - 0 23",
+    "starting_ply": 44,
+    "white_result": "white",
+    "white_term": "checkmate",
+    "white_score": 1.0,
+    "black_result": "white",
+    "black_term": "checkmate",
+    "black_score": 0.0,
+    "pair_score": 1.0
+  },
+  {
+    "pos_id": "bank_183",
+    "category": "opening",
+    "start_fen": "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3",
+    "starting_ply": 4,
+    "white_result": "white",
+    "white_term": "checkmate",
+    "white_score": 1.0,
+    "black_result": "black",
+    "black_term": "checkmate",
+    "black_score": 1.0,
+    "pair_score": 2.0
+  }
+]

@@ -1,0 +1,85 @@
+1/30 sbank_053: 1.0/2 checkmate/checkmate
+2/30 sbank_002: 1.0/2 checkmate/checkmate
+3/30 sbank_036: 1.0/2 checkmate/checkmate
+4/30 sbank_083: 0.5/2 fifty_moves/checkmate
+5/30 sbank_016: 0.5/2 checkmate/insufficient_material
+6/30 sbank_061: 1.0/2 checkmate/checkmate
+7/30 sbank_023: 1.5/2 fifty_moves/checkmate
+8/30 sbank_082: 1.5/2 checkmate/threefold_repetition
+9/30 sbank_096: 2.0/2 checkmate/checkmate
+10/30 sbank_056: 0.5/2 threefold_repetition/checkmate
+11/30 sbank_099: 1.0/2 checkmate/checkmate
+12/30 sbank_038: 1.5/2 checkmate/stalemate
+13/30 sbank_050: 1.0/2 checkmate/checkmate
+14/30 sbank_077: 1.0/2 checkmate/checkmate
+15/30 sbank_081: 1.0/2 checkmate/checkmate
+16/30 sbank_010: 2.0/2 checkmate/checkmate
+17/30 sbank_074: 1.0/2 checkmate/checkmate
+18/30 sbank_091: 1.0/2 checkmate/checkmate
+19/30 sbank_069: 1.5/2 checkmate/threefold_repetition
+20/30 sbank_011: 0.0/2 checkmate/checkmate
+21/30 sbank_028: 1.0/2 checkmate/checkmate
+22/30 sbank_073: 1.0/2 threefold_repetition/insufficient_material
+23/30 sbank_076: 1.0/2 checkmate/checkmate
+24/30 sbank_095: 1.0/2 checkmate/checkmate
+25/30 sbank_097: 2.0/2 checkmate/checkmate
+26/30 sbank_042: 0.5/2 fifty_moves/checkmate
+27/30 sbank_021: 2.0/2 checkmate/checkmate
+28/30 sbank_066: 1.0/2 checkmate/checkmate
+29/30 sbank_063: 1.5/2 threefold_repetition/checkmate
+30/30 sbank_012: 1.5/2 checkmate/insufficient_material
+{
+  "pairs": 30,
+  "games": 60,
+  "score": 0.5666666666666667,
+  "record": "+28 =12 -20",
+  "white": {
+    "score": 0.5666666666666667,
+    "record": "+14 =6 -10"
+  },
+  "black": {
+    "score": 0.5666666666666667,
+    "record": "+14 =6 -10"
+  },
+  "phases": {
+    "opening": {
+      "pairs": 30,
+      "games": 60,
+      "score": 0.5666666666666667,
+      "wins": 28,
+      "draws": 12,
+      "losses": 20
+    }
+  },
+  "terminations": {
+    "checkmate": 48,
+    "insufficient_material": 3,
+    "fifty_moves": 3,
+    "stalemate": 1,
+    "threefold_repetition": 5
+  },
+  "bootstrap": {
+    "pairs_count": 30,
+    "games_count": 60,
+    "point_score": 0.5666666666666667,
+    "score_95_ci": [
+      0.48333333333333334,
+      0.65
+    ],
+    "point_elo": 46.60222762857488,
+    "elo_95_ci": [
+      -11.585478374126659,
+      107.53812491703204
+    ],
+    "pair_distribution": {
+      "2.0": 4,
+      "1.5": 6,
+      "1.0": 15,
+      "0.5": 4,
+      "0.0": 1
+    },
+    "supportive": true,
+    "strong": false
+  },
+  "failed_terminations": {}
+}

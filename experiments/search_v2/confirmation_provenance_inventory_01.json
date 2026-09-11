@@ -1,0 +1,8135 @@
+{
+  "existing_confirmation_bank_manifest_uses": [
+    {
+      "path": "experiments\\confirm_validate\\manifest.json",
+      "overlap": 100,
+      "bank": "confirm"
+    },
+    {
+      "path": "experiments\\silky_snow_confirm\\manifest.json",
+      "overlap": 100,
+      "bank": "confirm"
+    },
+    {
+      "path": "experiments\\silky_snow_promo\\manifest.json",
+      "overlap": 100,
+      "bank": "confirm"
+    },
+    {
+      "path": "experiments\\r34\\speed_confirm_vs_checkpoint\\manifest.json",
+      "overlap": 100,
+      "bank": "confirm"
+    }
+  ],
+  "npz_inventory": [
+    {
+      "path": "training\\datasets\\tuning_master_value_v2.npz",
+      "arrays": {
+        "X_train": [
+          61758,
+          50
+        ],
+        "y_train": [
+          61758
+        ],
+        "fixed_train": [
+          61758
+        ],
+        "X_val": [
+          6718,
+          50
+        ],
+        "y_val": [
+          6718
+        ],
+        "fixed_val": [
+          6718
+        ],
+        "X_test": [
+          3526,
+          50
+        ],
+        "y_test": [
+          3526
+        ],
+        "fixed_test": [
+          3526
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\compact_cycle_01\\test.npz",
+      "arrays": {
+        "x": [
+          3526,
+          768
+        ],
+        "anchor": [
+          3526
+        ],
+        "target": [
+          3526
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\compact_cycle_01\\train.npz",
+      "arrays": {
+        "x": [
+          61758,
+          768
+        ],
+        "anchor": [
+          61758
+        ],
+        "target": [
+          61758
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\compact_cycle_01\\val.npz",
+      "arrays": {
+        "x": [
+          6718,
+          768
+        ],
+        "anchor": [
+          6718
+        ],
+        "target": [
+          6718
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\compact_outcomes_01\\train.npz",
+      "arrays": {
+        "x": [
+          1073,
+          768
+        ],
+        "anchor": [
+          1073
+        ],
+        "target": [
+          1073
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\compact_outcomes_01\\val.npz",
+      "arrays": {
+        "x": [
+          420,
+          768
+        ],
+        "anchor": [
+          420
+        ],
+        "target": [
+          420
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\compact_outcomes_02\\train.npz",
+      "arrays": {
+        "x": [
+          5852,
+          768
+        ],
+        "anchor": [
+          5852
+        ],
+        "target": [
+          5852
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\compact_outcomes_02\\val.npz",
+      "arrays": {
+        "x": [
+          1360,
+          768
+        ],
+        "anchor": [
+          1360
+        ],
+        "target": [
+          1360
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\compact_sf67_outcomes_01\\train.npz",
+      "arrays": {
+        "x": [
+          2600,
+          768
+        ],
+        "anchor": [
+          2600
+        ],
+        "target": [
+          2600
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\compact_sf67_outcomes_01\\val.npz",
+      "arrays": {
+        "x": [
+          545,
+          768
+        ],
+        "anchor": [
+          545
+        ],
+        "target": [
+          545
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\compact_sf7_fullclock_outcomes_01\\train.npz",
+      "arrays": {
+        "x": [
+          4681,
+          768
+        ],
+        "anchor": [
+          4681
+        ],
+        "target": [
+          4681
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\compact_sf7_fullclock_outcomes_01\\val.npz",
+      "arrays": {
+        "x": [
+          1567,
+          768
+        ],
+        "anchor": [
+          1567
+        ],
+        "target": [
+          1567
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0000.npz",
+      "arrays": {
+        "X": [
+          49086,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49086
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0001.npz",
+      "arrays": {
+        "X": [
+          49006,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49006
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0002.npz",
+      "arrays": {
+        "X": [
+          49077,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49077
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0003.npz",
+      "arrays": {
+        "X": [
+          48993,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48993
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0004.npz",
+      "arrays": {
+        "X": [
+          49005,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49005
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0005.npz",
+      "arrays": {
+        "X": [
+          49024,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49024
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0006.npz",
+      "arrays": {
+        "X": [
+          48930,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48930
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0007.npz",
+      "arrays": {
+        "X": [
+          49026,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49026
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0008.npz",
+      "arrays": {
+        "X": [
+          49032,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49032
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0009.npz",
+      "arrays": {
+        "X": [
+          48999,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48999
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0010.npz",
+      "arrays": {
+        "X": [
+          48923,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48923
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0011.npz",
+      "arrays": {
+        "X": [
+          48997,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48997
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0012.npz",
+      "arrays": {
+        "X": [
+          49013,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49013
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0013.npz",
+      "arrays": {
+        "X": [
+          49075,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49075
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0014.npz",
+      "arrays": {
+        "X": [
+          48924,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48924
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0015.npz",
+      "arrays": {
+        "X": [
+          49007,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49007
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0016.npz",
+      "arrays": {
+        "X": [
+          49163,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49163
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0017.npz",
+      "arrays": {
+        "X": [
+          49104,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49104
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0018.npz",
+      "arrays": {
+        "X": [
+          48963,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48963
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0019.npz",
+      "arrays": {
+        "X": [
+          48978,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48978
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0020.npz",
+      "arrays": {
+        "X": [
+          49069,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49069
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0021.npz",
+      "arrays": {
+        "X": [
+          48928,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48928
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0022.npz",
+      "arrays": {
+        "X": [
+          48922,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48922
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0023.npz",
+      "arrays": {
+        "X": [
+          48889,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48889
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0024.npz",
+      "arrays": {
+        "X": [
+          48852,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48852
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0025.npz",
+      "arrays": {
+        "X": [
+          49131,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49131
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0026.npz",
+      "arrays": {
+        "X": [
+          48977,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48977
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0027.npz",
+      "arrays": {
+        "X": [
+          49026,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49026
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0028.npz",
+      "arrays": {
+        "X": [
+          48938,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48938
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0029.npz",
+      "arrays": {
+        "X": [
+          49173,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49173
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0030.npz",
+      "arrays": {
+        "X": [
+          48750,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48750
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0031.npz",
+      "arrays": {
+        "X": [
+          48897,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48897
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0032.npz",
+      "arrays": {
+        "X": [
+          49147,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49147
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0033.npz",
+      "arrays": {
+        "X": [
+          48955,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48955
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0034.npz",
+      "arrays": {
+        "X": [
+          49022,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49022
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0035.npz",
+      "arrays": {
+        "X": [
+          49072,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49072
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0036.npz",
+      "arrays": {
+        "X": [
+          48964,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48964
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0037.npz",
+      "arrays": {
+        "X": [
+          49141,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49141
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0038.npz",
+      "arrays": {
+        "X": [
+          49034,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49034
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0039.npz",
+      "arrays": {
+        "X": [
+          48843,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48843
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0040.npz",
+      "arrays": {
+        "X": [
+          48981,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48981
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0041.npz",
+      "arrays": {
+        "X": [
+          49008,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49008
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0042.npz",
+      "arrays": {
+        "X": [
+          49003,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49003
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0043.npz",
+      "arrays": {
+        "X": [
+          49036,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49036
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0044.npz",
+      "arrays": {
+        "X": [
+          49078,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49078
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0045.npz",
+      "arrays": {
+        "X": [
+          49007,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49007
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0046.npz",
+      "arrays": {
+        "X": [
+          48988,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48988
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0047.npz",
+      "arrays": {
+        "X": [
+          48957,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48957
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0048.npz",
+      "arrays": {
+        "X": [
+          49053,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49053
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0049.npz",
+      "arrays": {
+        "X": [
+          48991,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48991
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0050.npz",
+      "arrays": {
+        "X": [
+          48899,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48899
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0051.npz",
+      "arrays": {
+        "X": [
+          49069,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49069
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0052.npz",
+      "arrays": {
+        "X": [
+          48915,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48915
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0053.npz",
+      "arrays": {
+        "X": [
+          48955,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48955
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0054.npz",
+      "arrays": {
+        "X": [
+          48951,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48951
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0055.npz",
+      "arrays": {
+        "X": [
+          48777,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48777
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0056.npz",
+      "arrays": {
+        "X": [
+          48613,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48613
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0057.npz",
+      "arrays": {
+        "X": [
+          48424,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48424
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0058.npz",
+      "arrays": {
+        "X": [
+          48846,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48846
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0059.npz",
+      "arrays": {
+        "X": [
+          48852,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48852
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0060.npz",
+      "arrays": {
+        "X": [
+          48959,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48959
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0061.npz",
+      "arrays": {
+        "X": [
+          49002,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49002
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0062.npz",
+      "arrays": {
+        "X": [
+          48919,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48919
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0063.npz",
+      "arrays": {
+        "X": [
+          48752,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48752
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0064.npz",
+      "arrays": {
+        "X": [
+          48949,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48949
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0065.npz",
+      "arrays": {
+        "X": [
+          48928,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48928
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0066.npz",
+      "arrays": {
+        "X": [
+          48972,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48972
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0067.npz",
+      "arrays": {
+        "X": [
+          48864,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48864
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0068.npz",
+      "arrays": {
+        "X": [
+          48986,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48986
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0069.npz",
+      "arrays": {
+        "X": [
+          48865,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48865
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0070.npz",
+      "arrays": {
+        "X": [
+          48987,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48987
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0071.npz",
+      "arrays": {
+        "X": [
+          48905,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48905
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0072.npz",
+      "arrays": {
+        "X": [
+          48963,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48963
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0073.npz",
+      "arrays": {
+        "X": [
+          49003,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49003
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0074.npz",
+      "arrays": {
+        "X": [
+          48935,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48935
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0075.npz",
+      "arrays": {
+        "X": [
+          48918,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48918
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0076.npz",
+      "arrays": {
+        "X": [
+          48831,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48831
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0077.npz",
+      "arrays": {
+        "X": [
+          48899,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48899
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0078.npz",
+      "arrays": {
+        "X": [
+          48890,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48890
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0079.npz",
+      "arrays": {
+        "X": [
+          48821,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48821
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0080.npz",
+      "arrays": {
+        "X": [
+          48773,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48773
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0081.npz",
+      "arrays": {
+        "X": [
+          48870,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48870
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0082.npz",
+      "arrays": {
+        "X": [
+          48775,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48775
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0083.npz",
+      "arrays": {
+        "X": [
+          48798,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48798
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0084.npz",
+      "arrays": {
+        "X": [
+          48881,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48881
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0085.npz",
+      "arrays": {
+        "X": [
+          48869,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48869
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0086.npz",
+      "arrays": {
+        "X": [
+          48865,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48865
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0087.npz",
+      "arrays": {
+        "X": [
+          48886,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48886
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0088.npz",
+      "arrays": {
+        "X": [
+          48829,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48829
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0089.npz",
+      "arrays": {
+        "X": [
+          48873,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48873
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0090.npz",
+      "arrays": {
+        "X": [
+          48917,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48917
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0091.npz",
+      "arrays": {
+        "X": [
+          48909,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48909
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0092.npz",
+      "arrays": {
+        "X": [
+          48757,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48757
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0093.npz",
+      "arrays": {
+        "X": [
+          48743,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48743
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0094.npz",
+      "arrays": {
+        "X": [
+          48967,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48967
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0095.npz",
+      "arrays": {
+        "X": [
+          48710,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48710
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0096.npz",
+      "arrays": {
+        "X": [
+          48773,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48773
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0097.npz",
+      "arrays": {
+        "X": [
+          48759,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48759
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0098.npz",
+      "arrays": {
+        "X": [
+          48766,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48766
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0099.npz",
+      "arrays": {
+        "X": [
+          48785,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48785
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0100.npz",
+      "arrays": {
+        "X": [
+          48865,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48865
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0101.npz",
+      "arrays": {
+        "X": [
+          48842,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48842
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0102.npz",
+      "arrays": {
+        "X": [
+          48704,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48704
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0103.npz",
+      "arrays": {
+        "X": [
+          48815,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48815
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0104.npz",
+      "arrays": {
+        "X": [
+          48724,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48724
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0105.npz",
+      "arrays": {
+        "X": [
+          48741,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48741
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0106.npz",
+      "arrays": {
+        "X": [
+          48878,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48878
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0107.npz",
+      "arrays": {
+        "X": [
+          48926,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48926
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0108.npz",
+      "arrays": {
+        "X": [
+          48752,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48752
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0109.npz",
+      "arrays": {
+        "X": [
+          48746,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48746
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0110.npz",
+      "arrays": {
+        "X": [
+          48801,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48801
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0111.npz",
+      "arrays": {
+        "X": [
+          48735,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48735
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0112.npz",
+      "arrays": {
+        "X": [
+          48656,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48656
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0113.npz",
+      "arrays": {
+        "X": [
+          48748,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48748
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0114.npz",
+      "arrays": {
+        "X": [
+          48899,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48899
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0115.npz",
+      "arrays": {
+        "X": [
+          48724,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48724
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0116.npz",
+      "arrays": {
+        "X": [
+          48802,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48802
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0117.npz",
+      "arrays": {
+        "X": [
+          48757,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48757
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0118.npz",
+      "arrays": {
+        "X": [
+          48738,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48738
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0119.npz",
+      "arrays": {
+        "X": [
+          48899,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48899
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0120.npz",
+      "arrays": {
+        "X": [
+          48768,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48768
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0121.npz",
+      "arrays": {
+        "X": [
+          48581,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48581
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0122.npz",
+      "arrays": {
+        "X": [
+          48841,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48841
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0123.npz",
+      "arrays": {
+        "X": [
+          48801,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48801
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0124.npz",
+      "arrays": {
+        "X": [
+          48659,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48659
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0125.npz",
+      "arrays": {
+        "X": [
+          48897,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48897
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0126.npz",
+      "arrays": {
+        "X": [
+          48886,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48886
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0127.npz",
+      "arrays": {
+        "X": [
+          48819,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48819
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0128.npz",
+      "arrays": {
+        "X": [
+          48765,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48765
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0129.npz",
+      "arrays": {
+        "X": [
+          48664,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48664
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0130.npz",
+      "arrays": {
+        "X": [
+          48661,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48661
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0131.npz",
+      "arrays": {
+        "X": [
+          48700,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48700
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0132.npz",
+      "arrays": {
+        "X": [
+          48819,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48819
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0133.npz",
+      "arrays": {
+        "X": [
+          48683,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48683
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0134.npz",
+      "arrays": {
+        "X": [
+          48703,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48703
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0135.npz",
+      "arrays": {
+        "X": [
+          48701,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48701
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0136.npz",
+      "arrays": {
+        "X": [
+          48690,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48690
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1\\shard_0137.npz",
+      "arrays": {
+        "X": [
+          19860,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          19860
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1_subset\\shard_0000.npz",
+      "arrays": {
+        "X": [
+          49086,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49086
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1_subset\\shard_0001.npz",
+      "arrays": {
+        "X": [
+          49006,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49006
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1_subset\\shard_0002.npz",
+      "arrays": {
+        "X": [
+          49077,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49077
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1_subset\\shard_0003.npz",
+      "arrays": {
+        "X": [
+          48993,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48993
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1_subset\\shard_0004.npz",
+      "arrays": {
+        "X": [
+          49005,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49005
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1_subset\\shard_0005.npz",
+      "arrays": {
+        "X": [
+          49024,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49024
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1_subset\\shard_0006.npz",
+      "arrays": {
+        "X": [
+          48930,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48930
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1_subset\\shard_0007.npz",
+      "arrays": {
+        "X": [
+          49026,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49026
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1_subset\\shard_0008.npz",
+      "arrays": {
+        "X": [
+          49032,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49032
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1_subset\\shard_0009.npz",
+      "arrays": {
+        "X": [
+          48999,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48999
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1_subset\\shard_0010.npz",
+      "arrays": {
+        "X": [
+          48923,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48923
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1_subset\\shard_0011.npz",
+      "arrays": {
+        "X": [
+          48997,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48997
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1_subset\\shard_0012.npz",
+      "arrays": {
+        "X": [
+          49013,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49013
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1_subset\\shard_0013.npz",
+      "arrays": {
+        "X": [
+          49075,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49075
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1_subset\\shard_0014.npz",
+      "arrays": {
+        "X": [
+          48924,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48924
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1_subset\\shard_0015.npz",
+      "arrays": {
+        "X": [
+          49007,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49007
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1_subset\\shard_0016.npz",
+      "arrays": {
+        "X": [
+          49163,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49163
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1_subset\\shard_0017.npz",
+      "arrays": {
+        "X": [
+          49104,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49104
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1_subset\\shard_0018.npz",
+      "arrays": {
+        "X": [
+          48963,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48963
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1_subset\\shard_0019.npz",
+      "arrays": {
+        "X": [
+          48978,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48978
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1_subset\\shard_0020.npz",
+      "arrays": {
+        "X": [
+          49069,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          49069
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1_subset\\shard_0021.npz",
+      "arrays": {
+        "X": [
+          48928,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48928
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1_subset\\shard_0022.npz",
+      "arrays": {
+        "X": [
+          48922,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48922
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1_subset\\shard_0023.npz",
+      "arrays": {
+        "X": [
+          48889,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48889
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\lichess_eval_v1_subset\\shard_0024.npz",
+      "arrays": {
+        "X": [
+          48852,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          48852
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\processed\\dataset.npz",
+      "arrays": {
+        "X_train": [
+          20037,
+          50
+        ],
+        "y_train": [
+          20037
+        ],
+        "fixed_train": [
+          20037
+        ],
+        "X_val": [
+          2482,
+          50
+        ],
+        "y_val": [
+          2482
+        ],
+        "fixed_val": [
+          2482
+        ],
+        "X_test": [
+          2481,
+          50
+        ],
+        "y_test": [
+          2481
+        ],
+        "fixed_test": [
+          2481
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\selfplay_v1\\selfplay_1788815047.npz",
+      "arrays": {
+        "X": [
+          42623,
+          18,
+          8,
+          8
+        ],
+        "y": [
+          42623
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\combined_v2v3\\test\\shard_00000.npz",
+      "arrays": {
+        "boards": [
+          3526,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          3526
+        ],
+        "policy_masks": [
+          3526
+        ],
+        "wdl_targets": [
+          3526,
+          3
+        ],
+        "wdl_masks": [
+          3526
+        ],
+        "value_targets": [
+          3526
+        ],
+        "value_masks": [
+          3526
+        ],
+        "soft_indices": [
+          3526,
+          4
+        ],
+        "soft_probs": [
+          3526,
+          4
+        ],
+        "soft_masks": [
+          3526
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\combined_v2v3\\test\\shard_00001.npz",
+      "arrays": {
+        "boards": [
+          3722,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          3722
+        ],
+        "policy_masks": [
+          3722
+        ],
+        "wdl_targets": [
+          3722,
+          3
+        ],
+        "wdl_masks": [
+          3722
+        ],
+        "value_targets": [
+          3722
+        ],
+        "value_masks": [
+          3722
+        ],
+        "soft_indices": [
+          3722,
+          4
+        ],
+        "soft_probs": [
+          3722,
+          4
+        ],
+        "soft_masks": [
+          3722
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\combined_v2v3\\train\\shard_00000.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\combined_v2v3\\train\\shard_00001.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\combined_v2v3\\train\\shard_00002.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\combined_v2v3\\train\\shard_00003.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\combined_v2v3\\train\\shard_00004.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\combined_v2v3\\train\\shard_00005.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\combined_v2v3\\train\\shard_00006.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\combined_v2v3\\train\\shard_00007.npz",
+      "arrays": {
+        "boards": [
+          5758,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          5758
+        ],
+        "policy_masks": [
+          5758
+        ],
+        "wdl_targets": [
+          5758,
+          3
+        ],
+        "wdl_masks": [
+          5758
+        ],
+        "value_targets": [
+          5758
+        ],
+        "value_masks": [
+          5758
+        ],
+        "soft_indices": [
+          5758,
+          4
+        ],
+        "soft_probs": [
+          5758,
+          4
+        ],
+        "soft_masks": [
+          5758
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\combined_v2v3\\train\\shard_00008.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\combined_v2v3\\train\\shard_00009.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\combined_v2v3\\train\\shard_00010.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\combined_v2v3\\train\\shard_00011.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\combined_v2v3\\train\\shard_00012.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\combined_v2v3\\train\\shard_00013.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\combined_v2v3\\train\\shard_00014.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\combined_v2v3\\train\\shard_00015.npz",
+      "arrays": {
+        "boards": [
+          2553,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          2553
+        ],
+        "policy_masks": [
+          2553
+        ],
+        "wdl_targets": [
+          2553,
+          3
+        ],
+        "wdl_masks": [
+          2553
+        ],
+        "value_targets": [
+          2553
+        ],
+        "value_masks": [
+          2553
+        ],
+        "soft_indices": [
+          2553,
+          4
+        ],
+        "soft_probs": [
+          2553,
+          4
+        ],
+        "soft_masks": [
+          2553
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\combined_v2v3\\val\\shard_00000.npz",
+      "arrays": {
+        "boards": [
+          6718,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          6718
+        ],
+        "policy_masks": [
+          6718
+        ],
+        "wdl_targets": [
+          6718,
+          3
+        ],
+        "wdl_masks": [
+          6718
+        ],
+        "value_targets": [
+          6718
+        ],
+        "value_masks": [
+          6718
+        ],
+        "soft_indices": [
+          6718,
+          4
+        ],
+        "soft_probs": [
+          6718,
+          4
+        ],
+        "soft_masks": [
+          6718
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\combined_v2v3\\val\\shard_00001.npz",
+      "arrays": {
+        "boards": [
+          7725,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          7725
+        ],
+        "policy_masks": [
+          7725
+        ],
+        "wdl_targets": [
+          7725,
+          3
+        ],
+        "wdl_masks": [
+          7725
+        ],
+        "value_targets": [
+          7725
+        ],
+        "value_masks": [
+          7725
+        ],
+        "soft_indices": [
+          7725,
+          4
+        ],
+        "soft_probs": [
+          7725,
+          4
+        ],
+        "soft_masks": [
+          7725
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_balanced_32k\\test\\shard_00000.npz",
+      "arrays": {
+        "boards": [
+          1402,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          1402
+        ],
+        "policy_masks": [
+          1402
+        ],
+        "wdl_targets": [
+          1402,
+          3
+        ],
+        "wdl_masks": [
+          1402
+        ],
+        "value_targets": [
+          1402
+        ],
+        "value_masks": [
+          1402
+        ],
+        "soft_indices": [
+          1402,
+          4
+        ],
+        "soft_probs": [
+          1402,
+          4
+        ],
+        "soft_masks": [
+          1402
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_balanced_32k\\train\\shard_00000.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_balanced_32k\\train\\shard_00001.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_balanced_32k\\train\\shard_00002.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_balanced_32k\\train\\shard_00003.npz",
+      "arrays": {
+        "boards": [
+          3242,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          3242
+        ],
+        "policy_masks": [
+          3242
+        ],
+        "wdl_targets": [
+          3242,
+          3
+        ],
+        "wdl_masks": [
+          3242
+        ],
+        "value_targets": [
+          3242
+        ],
+        "value_masks": [
+          3242
+        ],
+        "soft_indices": [
+          3242,
+          4
+        ],
+        "soft_probs": [
+          3242,
+          4
+        ],
+        "soft_masks": [
+          3242
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_balanced_32k\\val\\shard_00000.npz",
+      "arrays": {
+        "boards": [
+          3356,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          3356
+        ],
+        "policy_masks": [
+          3356
+        ],
+        "wdl_targets": [
+          3356,
+          3
+        ],
+        "wdl_masks": [
+          3356
+        ],
+        "value_targets": [
+          3356
+        ],
+        "value_masks": [
+          3356
+        ],
+        "soft_indices": [
+          3356,
+          4
+        ],
+        "soft_probs": [
+          3356,
+          4
+        ],
+        "soft_masks": [
+          3356
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_extended_verified_100k\\test\\shard_00000.npz",
+      "arrays": {
+        "boards": [
+          3605,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          3605
+        ],
+        "policy_masks": [
+          3605
+        ],
+        "wdl_targets": [
+          3605,
+          3
+        ],
+        "wdl_masks": [
+          3605
+        ],
+        "value_targets": [
+          3605
+        ],
+        "value_masks": [
+          3605
+        ],
+        "soft_indices": [
+          3605,
+          4
+        ],
+        "soft_probs": [
+          3605,
+          4
+        ],
+        "soft_masks": [
+          3605
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_extended_verified_100k\\train\\shard_00000.npz",
+      "arrays": {
+        "boards": [
+          10000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          10000
+        ],
+        "policy_masks": [
+          10000
+        ],
+        "wdl_targets": [
+          10000,
+          3
+        ],
+        "wdl_masks": [
+          10000
+        ],
+        "value_targets": [
+          10000
+        ],
+        "value_masks": [
+          10000
+        ],
+        "soft_indices": [
+          10000,
+          4
+        ],
+        "soft_probs": [
+          10000,
+          4
+        ],
+        "soft_masks": [
+          10000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_extended_verified_100k\\train\\shard_00001.npz",
+      "arrays": {
+        "boards": [
+          10000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          10000
+        ],
+        "policy_masks": [
+          10000
+        ],
+        "wdl_targets": [
+          10000,
+          3
+        ],
+        "wdl_masks": [
+          10000
+        ],
+        "value_targets": [
+          10000
+        ],
+        "value_masks": [
+          10000
+        ],
+        "soft_indices": [
+          10000,
+          4
+        ],
+        "soft_probs": [
+          10000,
+          4
+        ],
+        "soft_masks": [
+          10000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_extended_verified_100k\\train\\shard_00002.npz",
+      "arrays": {
+        "boards": [
+          10000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          10000
+        ],
+        "policy_masks": [
+          10000
+        ],
+        "wdl_targets": [
+          10000,
+          3
+        ],
+        "wdl_masks": [
+          10000
+        ],
+        "value_targets": [
+          10000
+        ],
+        "value_masks": [
+          10000
+        ],
+        "soft_indices": [
+          10000,
+          4
+        ],
+        "soft_probs": [
+          10000,
+          4
+        ],
+        "soft_masks": [
+          10000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_extended_verified_100k\\train\\shard_00003.npz",
+      "arrays": {
+        "boards": [
+          10000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          10000
+        ],
+        "policy_masks": [
+          10000
+        ],
+        "wdl_targets": [
+          10000,
+          3
+        ],
+        "wdl_masks": [
+          10000
+        ],
+        "value_targets": [
+          10000
+        ],
+        "value_masks": [
+          10000
+        ],
+        "soft_indices": [
+          10000,
+          4
+        ],
+        "soft_probs": [
+          10000,
+          4
+        ],
+        "soft_masks": [
+          10000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_extended_verified_100k\\train\\shard_00004.npz",
+      "arrays": {
+        "boards": [
+          10000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          10000
+        ],
+        "policy_masks": [
+          10000
+        ],
+        "wdl_targets": [
+          10000,
+          3
+        ],
+        "wdl_masks": [
+          10000
+        ],
+        "value_targets": [
+          10000
+        ],
+        "value_masks": [
+          10000
+        ],
+        "soft_indices": [
+          10000,
+          4
+        ],
+        "soft_probs": [
+          10000,
+          4
+        ],
+        "soft_masks": [
+          10000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_extended_verified_100k\\train\\shard_00005.npz",
+      "arrays": {
+        "boards": [
+          10000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          10000
+        ],
+        "policy_masks": [
+          10000
+        ],
+        "wdl_targets": [
+          10000,
+          3
+        ],
+        "wdl_masks": [
+          10000
+        ],
+        "value_targets": [
+          10000
+        ],
+        "value_masks": [
+          10000
+        ],
+        "soft_indices": [
+          10000,
+          4
+        ],
+        "soft_probs": [
+          10000,
+          4
+        ],
+        "soft_masks": [
+          10000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_extended_verified_100k\\train\\shard_00006.npz",
+      "arrays": {
+        "boards": [
+          6915,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          6915
+        ],
+        "policy_masks": [
+          6915
+        ],
+        "wdl_targets": [
+          6915,
+          3
+        ],
+        "wdl_masks": [
+          6915
+        ],
+        "value_targets": [
+          6915
+        ],
+        "value_masks": [
+          6915
+        ],
+        "soft_indices": [
+          6915,
+          4
+        ],
+        "soft_probs": [
+          6915,
+          4
+        ],
+        "soft_masks": [
+          6915
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_extended_verified_100k\\val\\shard_00000.npz",
+      "arrays": {
+        "boards": [
+          8004,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8004
+        ],
+        "policy_masks": [
+          8004
+        ],
+        "wdl_targets": [
+          8004,
+          3
+        ],
+        "wdl_masks": [
+          8004
+        ],
+        "value_targets": [
+          8004
+        ],
+        "value_masks": [
+          8004
+        ],
+        "soft_indices": [
+          8004,
+          4
+        ],
+        "soft_probs": [
+          8004,
+          4
+        ],
+        "soft_masks": [
+          8004
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v1\\test\\shard_00000.npz",
+      "arrays": {
+        "boards": [
+          2960,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          2960
+        ],
+        "policy_masks": [
+          2960
+        ],
+        "wdl_targets": [
+          2960,
+          3
+        ],
+        "wdl_masks": [
+          2960
+        ],
+        "value_targets": [
+          2960
+        ],
+        "value_masks": [
+          2960
+        ],
+        "soft_indices": [
+          2960,
+          4
+        ],
+        "soft_probs": [
+          2960,
+          4
+        ],
+        "soft_masks": [
+          2960
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v1\\train\\shard_00000.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v1\\train\\shard_00001.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v1\\train\\shard_00002.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v1\\train\\shard_00003.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v1\\train\\shard_00004.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v1\\train\\shard_00005.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v1\\train\\shard_00006.npz",
+      "arrays": {
+        "boards": [
+          2387,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          2387
+        ],
+        "policy_masks": [
+          2387
+        ],
+        "wdl_targets": [
+          2387,
+          3
+        ],
+        "wdl_masks": [
+          2387
+        ],
+        "value_targets": [
+          2387
+        ],
+        "value_masks": [
+          2387
+        ],
+        "soft_indices": [
+          2387,
+          4
+        ],
+        "soft_probs": [
+          2387,
+          4
+        ],
+        "soft_masks": [
+          2387
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v1\\val\\shard_00000.npz",
+      "arrays": {
+        "boards": [
+          6655,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          6655
+        ],
+        "policy_masks": [
+          6655
+        ],
+        "wdl_targets": [
+          6655,
+          3
+        ],
+        "wdl_masks": [
+          6655
+        ],
+        "value_targets": [
+          6655
+        ],
+        "value_masks": [
+          6655
+        ],
+        "soft_indices": [
+          6655,
+          4
+        ],
+        "soft_probs": [
+          6655,
+          4
+        ],
+        "soft_masks": [
+          6655
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v2\\test\\shard_00000.npz",
+      "arrays": {
+        "boards": [
+          3526,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          3526
+        ],
+        "policy_masks": [
+          3526
+        ],
+        "wdl_targets": [
+          3526,
+          3
+        ],
+        "wdl_masks": [
+          3526
+        ],
+        "value_targets": [
+          3526
+        ],
+        "value_masks": [
+          3526
+        ],
+        "soft_indices": [
+          3526,
+          4
+        ],
+        "soft_probs": [
+          3526,
+          4
+        ],
+        "soft_masks": [
+          3526
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v2\\train\\shard_00000.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v2\\train\\shard_00001.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v2\\train\\shard_00002.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v2\\train\\shard_00003.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v2\\train\\shard_00004.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v2\\train\\shard_00005.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v2\\train\\shard_00006.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v2\\train\\shard_00007.npz",
+      "arrays": {
+        "boards": [
+          5758,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          5758
+        ],
+        "policy_masks": [
+          5758
+        ],
+        "wdl_targets": [
+          5758,
+          3
+        ],
+        "wdl_masks": [
+          5758
+        ],
+        "value_targets": [
+          5758
+        ],
+        "value_masks": [
+          5758
+        ],
+        "soft_indices": [
+          5758,
+          4
+        ],
+        "soft_probs": [
+          5758,
+          4
+        ],
+        "soft_masks": [
+          5758
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v2\\val\\shard_00000.npz",
+      "arrays": {
+        "boards": [
+          6718,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          6718
+        ],
+        "policy_masks": [
+          6718
+        ],
+        "wdl_targets": [
+          6718,
+          3
+        ],
+        "wdl_masks": [
+          6718
+        ],
+        "value_targets": [
+          6718
+        ],
+        "value_masks": [
+          6718
+        ],
+        "soft_indices": [
+          6718,
+          4
+        ],
+        "soft_probs": [
+          6718,
+          4
+        ],
+        "soft_masks": [
+          6718
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v3\\test\\shard_00000.npz",
+      "arrays": {
+        "boards": [
+          3722,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          3722
+        ],
+        "policy_masks": [
+          3722
+        ],
+        "wdl_targets": [
+          3722,
+          3
+        ],
+        "wdl_masks": [
+          3722
+        ],
+        "value_targets": [
+          3722
+        ],
+        "value_masks": [
+          3722
+        ],
+        "soft_indices": [
+          3722,
+          4
+        ],
+        "soft_probs": [
+          3722,
+          4
+        ],
+        "soft_masks": [
+          3722
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v3\\train\\shard_00000.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v3\\train\\shard_00001.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v3\\train\\shard_00002.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v3\\train\\shard_00003.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v3\\train\\shard_00004.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v3\\train\\shard_00005.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v3\\train\\shard_00006.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v3\\train\\shard_00007.npz",
+      "arrays": {
+        "boards": [
+          2553,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          2553
+        ],
+        "policy_masks": [
+          2553
+        ],
+        "wdl_targets": [
+          2553,
+          3
+        ],
+        "wdl_masks": [
+          2553
+        ],
+        "value_targets": [
+          2553
+        ],
+        "value_masks": [
+          2553
+        ],
+        "soft_indices": [
+          2553,
+          4
+        ],
+        "soft_probs": [
+          2553,
+          4
+        ],
+        "soft_masks": [
+          2553
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v3\\val\\shard_00000.npz",
+      "arrays": {
+        "boards": [
+          7725,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          7725
+        ],
+        "policy_masks": [
+          7725
+        ],
+        "wdl_targets": [
+          7725,
+          3
+        ],
+        "wdl_masks": [
+          7725
+        ],
+        "value_targets": [
+          7725
+        ],
+        "value_masks": [
+          7725
+        ],
+        "soft_indices": [
+          7725,
+          4
+        ],
+        "soft_probs": [
+          7725,
+          4
+        ],
+        "soft_masks": [
+          7725
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\test\\shard_00000.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\test\\shard_00001.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\test\\shard_00002.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\test\\shard_00003.npz",
+      "arrays": {
+        "boards": [
+          1317,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          1317
+        ],
+        "policy_masks": [
+          1317
+        ],
+        "wdl_targets": [
+          1317,
+          3
+        ],
+        "wdl_masks": [
+          1317
+        ],
+        "value_targets": [
+          1317
+        ],
+        "value_masks": [
+          1317
+        ],
+        "soft_indices": [
+          1317,
+          4
+        ],
+        "soft_probs": [
+          1317,
+          4
+        ],
+        "soft_masks": [
+          1317
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00000.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00001.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00002.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00003.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00004.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00005.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00006.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00007.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00008.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00009.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00010.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00011.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00012.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00013.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00014.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00015.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00016.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00017.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00018.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00019.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00020.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00021.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00022.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00023.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00024.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00025.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00026.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00027.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00028.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00029.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00030.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00031.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00032.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00033.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00034.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00035.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00036.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00037.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00038.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00039.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00040.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00041.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00042.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00043.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00044.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00045.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00046.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00047.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00048.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00049.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00050.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00051.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00052.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\train\\shard_00053.npz",
+      "arrays": {
+        "boards": [
+          2103,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          2103
+        ],
+        "policy_masks": [
+          2103
+        ],
+        "wdl_targets": [
+          2103,
+          3
+        ],
+        "wdl_masks": [
+          2103
+        ],
+        "value_targets": [
+          2103
+        ],
+        "value_masks": [
+          2103
+        ],
+        "soft_indices": [
+          2103,
+          4
+        ],
+        "soft_probs": [
+          2103,
+          4
+        ],
+        "soft_masks": [
+          2103
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\val\\shard_00000.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\val\\shard_00001.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\val\\shard_00002.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\val\\shard_00003.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\val\\shard_00004.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\val\\shard_00005.npz",
+      "arrays": {
+        "boards": [
+          8000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          8000
+        ],
+        "policy_masks": [
+          8000
+        ],
+        "wdl_targets": [
+          8000,
+          3
+        ],
+        "wdl_masks": [
+          8000
+        ],
+        "value_targets": [
+          8000
+        ],
+        "value_masks": [
+          8000
+        ],
+        "soft_indices": [
+          8000,
+          4
+        ],
+        "soft_probs": [
+          8000,
+          4
+        ],
+        "soft_masks": [
+          8000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\master_value_v4\\val\\shard_00006.npz",
+      "arrays": {
+        "boards": [
+          580,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          580
+        ],
+        "policy_masks": [
+          580
+        ],
+        "wdl_targets": [
+          580,
+          3
+        ],
+        "wdl_masks": [
+          580
+        ],
+        "value_targets": [
+          580
+        ],
+        "value_masks": [
+          580
+        ],
+        "soft_indices": [
+          580,
+          4
+        ],
+        "soft_probs": [
+          580,
+          4
+        ],
+        "soft_masks": [
+          580
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\smoke_50k\\test\\shard_00000.npz",
+      "arrays": {
+        "boards": [
+          2585,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          2585
+        ],
+        "policy_masks": [
+          2585
+        ],
+        "wdl_targets": [
+          2585,
+          3
+        ],
+        "wdl_masks": [
+          2585
+        ],
+        "value_targets": [
+          2585
+        ],
+        "value_masks": [
+          2585
+        ],
+        "soft_indices": [
+          2585,
+          4
+        ],
+        "soft_probs": [
+          2585,
+          4
+        ],
+        "soft_masks": [
+          2585
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\smoke_50k\\train\\shard_00000.npz",
+      "arrays": {
+        "boards": [
+          10000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          10000
+        ],
+        "policy_masks": [
+          10000
+        ],
+        "wdl_targets": [
+          10000,
+          3
+        ],
+        "wdl_masks": [
+          10000
+        ],
+        "value_targets": [
+          10000
+        ],
+        "value_masks": [
+          10000
+        ],
+        "soft_indices": [
+          10000,
+          4
+        ],
+        "soft_probs": [
+          10000,
+          4
+        ],
+        "soft_masks": [
+          10000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\smoke_50k\\train\\shard_00001.npz",
+      "arrays": {
+        "boards": [
+          10000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          10000
+        ],
+        "policy_masks": [
+          10000
+        ],
+        "wdl_targets": [
+          10000,
+          3
+        ],
+        "wdl_masks": [
+          10000
+        ],
+        "value_targets": [
+          10000
+        ],
+        "value_masks": [
+          10000
+        ],
+        "soft_indices": [
+          10000,
+          4
+        ],
+        "soft_probs": [
+          10000,
+          4
+        ],
+        "soft_masks": [
+          10000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\smoke_50k\\train\\shard_00002.npz",
+      "arrays": {
+        "boards": [
+          10000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          10000
+        ],
+        "policy_masks": [
+          10000
+        ],
+        "wdl_targets": [
+          10000,
+          3
+        ],
+        "wdl_masks": [
+          10000
+        ],
+        "value_targets": [
+          10000
+        ],
+        "value_masks": [
+          10000
+        ],
+        "soft_indices": [
+          10000,
+          4
+        ],
+        "soft_probs": [
+          10000,
+          4
+        ],
+        "soft_masks": [
+          10000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\smoke_50k\\train\\shard_00003.npz",
+      "arrays": {
+        "boards": [
+          10000,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          10000
+        ],
+        "policy_masks": [
+          10000
+        ],
+        "wdl_targets": [
+          10000,
+          3
+        ],
+        "wdl_masks": [
+          10000
+        ],
+        "value_targets": [
+          10000
+        ],
+        "value_masks": [
+          10000
+        ],
+        "soft_indices": [
+          10000,
+          4
+        ],
+        "soft_probs": [
+          10000,
+          4
+        ],
+        "soft_masks": [
+          10000
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\smoke_50k\\train\\shard_00004.npz",
+      "arrays": {
+        "boards": [
+          1963,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          1963
+        ],
+        "policy_masks": [
+          1963
+        ],
+        "wdl_targets": [
+          1963,
+          3
+        ],
+        "wdl_masks": [
+          1963
+        ],
+        "value_targets": [
+          1963
+        ],
+        "value_masks": [
+          1963
+        ],
+        "soft_indices": [
+          1963,
+          4
+        ],
+        "soft_probs": [
+          1963,
+          4
+        ],
+        "soft_masks": [
+          1963
+        ]
+      }
+    },
+    {
+      "path": "training\\datasets\\smoke_50k\\val\\shard_00000.npz",
+      "arrays": {
+        "boards": [
+          5452,
+          18,
+          8,
+          8
+        ],
+        "policy_indices": [
+          5452
+        ],
+        "policy_masks": [
+          5452
+        ],
+        "wdl_targets": [
+          5452,
+          3
+        ],
+        "wdl_masks": [
+          5452
+        ],
+        "value_targets": [
+          5452
+        ],
+        "value_masks": [
+          5452
+        ],
+        "soft_indices": [
+          5452,
+          4
+        ],
+        "soft_probs": [
+          5452,
+          4
+        ],
+        "soft_masks": [
+          5452
+        ]
+      }
+    }
+  ],
+  "new_bank_required": true,
+  "note": "Manifest inclusion indicates exposure/planning, not necessarily all positions played. Do not assume old confirm bank is untouched."
+}

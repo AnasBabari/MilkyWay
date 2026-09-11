@@ -1,0 +1,145 @@
+{
+  "campaign": "experiments\\compact_cycle_01\\campaign_60s_50g.json",
+  "base_ms": 60000,
+  "increment_ms": 500,
+  "runs": [
+    {
+      "candidate": "compiled_pvs_01",
+      "opponent": "silky_snow",
+      "completed_games": 26,
+      "planned_games": 50,
+      "complete": false,
+      "wdl": {
+        "loss": 10,
+        "win": 11,
+        "draw": 5
+      },
+      "score": 0.5192307692307693,
+      "actual_win_rate": 0.4230769230769231,
+      "run": "experiments\\compiled_pvs_01_silky_60s_50g"
+    },
+    {
+      "candidate": "compiled_pvs_01",
+      "opponent": "stockfish",
+      "completed_games": 30,
+      "planned_games": 50,
+      "complete": false,
+      "wdl": {
+        "loss": 20,
+        "draw": 8,
+        "win": 2
+      },
+      "score": 0.2,
+      "actual_win_rate": 0.06666666666666667,
+      "run": "experiments\\compiled_pvs_01_sf7_60s_50g"
+    },
+    {
+      "candidate": "compiled_ordered_01",
+      "opponent": "compiled_pvs_01",
+      "completed_games": 23,
+      "planned_games": 50,
+      "complete": false,
+      "wdl": {
+        "draw": 7,
+        "win": 9,
+        "loss": 7
+      },
+      "score": 0.5434782608695652,
+      "actual_win_rate": 0.391304347826087,
+      "run": "experiments\\compiled_ordered_01_parent_60s_50g"
+    },
+    {
+      "candidate": "compiled_sf7_rl_01",
+      "opponent": "compiled_pvs_01",
+      "completed_games": 24,
+      "planned_games": 50,
+      "complete": false,
+      "wdl": {
+        "loss": 8,
+        "win": 12,
+        "draw": 4
+      },
+      "score": 0.5833333333333334,
+      "actual_win_rate": 0.5,
+      "run": "experiments\\compiled_sf7_rl_01_parent_60s_50g"
+    },
+    {
+      "candidate": "compiled_sf7_rl_01",
+      "opponent": "silky_snow",
+      "completed_games": 27,
+      "planned_games": 50,
+      "complete": false,
+      "wdl": {
+        "win": 13,
+        "loss": 14
+      },
+      "score": 0.48148148148148145,
+      "actual_win_rate": 0.48148148148148145,
+      "run": "experiments\\compiled_sf7_rl_01_silky_60s_50g"
+    },
+    {
+      "candidate": "compiled_sf7_rl_01",
+      "opponent": "stockfish",
+      "completed_games": 34,
+      "planned_games": 50,
+      "complete": false,
+      "wdl": {
+        "loss": 22,
+        "draw": 9,
+        "win": 3
+      },
+      "score": 0.22058823529411764,
+      "actual_win_rate": 0.08823529411764706,
+      "run": "experiments\\compiled_sf7_rl_01_sf7_60s_50g"
+    },
+    {
+      "candidate": "compiled_ordered_01",
+      "opponent": "silky_snow",
+      "completed_games": 27,
+      "planned_games": 50,
+      "complete": false,
+      "wdl": {
+        "loss": 14,
+        "win": 10,
+        "draw": 3
+      },
+      "score": 0.42592592592592593,
+      "actual_win_rate": 0.37037037037037035,
+      "run": "experiments\\compiled_ordered_01_silky_60s_50g"
+    },
+    {
+      "candidate": "compiled_ordered_01",
+      "opponent": "stockfish",
+      "completed_games": 32,
+      "planned_games": 50,
+      "complete": false,
+      "wdl": {
+        "draw": 8,
+        "win": 6,
+        "loss": 18
+      },
+      "score": 0.3125,
+      "actual_win_rate": 0.1875,
+      "run": "experiments\\compiled_ordered_01_sf7_60s_50g"
+    }
+  ],
+  "agents": {
+    "compiled_pvs_01": {
+      "silky_score_gate": false,
+      "sf7_win_gate": false,
+      "observed_screen_targets_passed": false
+    },
+    "compiled_ordered_01": {
+      "silky_score_gate": false,
+      "sf7_win_gate": false,
+      "observed_screen_targets_passed": false
+    },
+    "compiled_sf7_rl_01": {
+      "silky_score_gate": false,
+      "sf7_win_gate": false,
+      "observed_screen_targets_passed": false
+    }
+  },
+  "not_a_promotion": true,
+  "note": "Partial rates are descriptive only. Final independent confirmation and reliability/archive verification remain separate requirements."
+}

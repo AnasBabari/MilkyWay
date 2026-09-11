@@ -3,13 +3,16 @@
 from __future__ import annotations
 
 import hashlib
+import sys
 import tempfile
 import unittest
 from pathlib import Path
 
-from harness.package import build
-
 ROOT = Path(__file__).resolve().parent.parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from harness.package import build  # noqa: E402
 
 
 class TestPackageDeterminism(unittest.TestCase):

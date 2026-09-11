@@ -1,0 +1,29 @@
+{
+  "source": "speed build validated at 71.0% on confirm bank (50 pairs)",
+  "confirm_validate": {
+    "pairs": 50,
+    "games": 100,
+    "score": 0.71,
+    "record": "+64 =14 -22",
+    "score_95_ci": [
+      0.63,
+      0.785
+    ],
+    "strong": true
+  },
+  "files": {
+    "agent.py": "eb39003426716628e226aa88bdf4ed7f8783bfea6734d928d7a624acabffd968",
+    "constants.py": "1feb0bc0b6d4cd1f9b44cdcad2e4d9107b34f527ff9acd0466025f614b36cc68",
+    "engine.py": "576bdc64be3050ed206761fb75dc70175411d18f2007af102cf6ceb74961272d",
+    "engine_types.py": "2dc6319ad87691f768687c25f516d3113ea4f8e08644459a59600dbb161191a9",
+    "evaluation.py": "4d5c6f2b8f51f445a787f78be4d60a9bc14be9283de9acb28e018da988c413d4",
+    "fast_eval.py": "b9593db1e92f8a1f7f06d1863c0982ef153339dfbe5aef7f09cf895108340fa9",
+    "move_ordering.py": "5d0bc60763bfdfc8a0075b09395a9b761af7b990ab3f9d681ea60be18943b487",
+    "root_policy.py": "8b3d4c842fe27bad3a87efaa3c5ca95c6d563cc88a59272af3c60b8a90df271a",
+    "search.py": "ac08e8357e0ce2e751576943fd502e384c0c3073673004ff851707c5b193c033",
+    "time_manager.py": "a160b0fec65e406d4e8b3a33bc5332956e0369914c3823ee6bc7aea91b8786dc",
+    "transposition.py": "49d956a7f374475488aa75e78873b009dce69c2756a314b25c367fa99bc372f2",
+    "weights/milkyway_flagship_v6.onnx": "67319e037ee57a268abc90392325f1bef335063b525bd2689d0713b05347168e",
+    "weights/milkyway_policy.onnx": "4d93818689914495e41c1241adab1529509beacabfc2e653ff629a9a2f41e9aa"
+  }
+}

@@ -1,0 +1,164 @@
+[
+  {
+    "run": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\compiled_sf7_rl_01_parent_120s",
+    "snapshot_only": true,
+    "base_ms": 120000,
+    "increment_ms": 500,
+    "runtime_hashes_match": true,
+    "game_count": 1,
+    "all_recorded_wdl": {
+      "loss": 1
+    },
+    "all_recorded_score": 0.0,
+    "all_recorded_win_rate": 0.0,
+    "complete_pairs_wdl": {},
+    "terminations": {
+      "checkmate": 1
+    },
+    "games": [
+      {
+        "file": "sbank_051_white.json",
+        "outcome": "loss",
+        "position_id": "sbank_051",
+        "color": "white",
+        "termination": "checkmate",
+        "moves": 55,
+        "max_move_s": 6.5930000000000035,
+        "min_remaining_s": 7.539,
+        "sha256": "e8cb329f4f87be74d85a44e7420a2e826cdc79dece095d72378a5dc249327f67"
+      }
+    ]
+  },
+  {
+    "run": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\compiled_sf7_rl_01_silky_120s",
+    "snapshot_only": true,
+    "base_ms": 120000,
+    "increment_ms": 500,
+    "runtime_hashes_match": true,
+    "game_count": 1,
+    "all_recorded_wdl": {
+      "draw": 1
+    },
+    "all_recorded_score": 0.5,
+    "all_recorded_win_rate": 0.0,
+    "complete_pairs_wdl": {},
+    "terminations": {
+      "fifty_moves": 1
+    },
+    "games": [
+      {
+        "file": "sbank_051_white.json",
+        "outcome": "draw",
+        "position_id": "sbank_051",
+        "color": "white",
+        "termination": "fifty_moves",
+        "moves": 125,
+        "max_move_s": 6.655999999999992,
+        "min_remaining_s": 2.988,
+        "sha256": "c7f9fe91861431cd611e7852c467a24a89f8506e7f0b8356bf1a89dd0bbdc1a6"
+      }
+    ]
+  },
+  {
+    "run": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\compiled_sf7_rl_01_sf7_120s",
+    "snapshot_only": true,
+    "base_ms": 120000,
+    "increment_ms": 500,
+    "runtime_hashes_match": true,
+    "game_count": 2,
+    "all_recorded_wdl": {
+      "draw": 1,
+      "win": 1
+    },
+    "all_recorded_score": 0.75,
+    "all_recorded_win_rate": 0.5,
+    "complete_pairs_wdl": {
+      "draw": 1,
+      "win": 1
+    },
+    "terminations": {
+      "threefold_repetition": 1,
+      "checkmate": 1
+    },
+    "games": [
+      {
+        "file": "sbank_051_black.json",
+        "outcome": "draw",
+        "position_id": "sbank_051",
+        "color": "black",
+        "termination": "threefold_repetition",
+        "moves": 56,
+        "max_move_s": 6.5,
+        "min_remaining_s": 16.298,
+        "sha256": "91e6ea891920bc1a994cd11015909555c91002e6cc7315750bbea99cede10a65"
+      },
+      {
+        "file": "sbank_051_white.json",
+        "outcome": "win",
+        "position_id": "sbank_051",
+        "color": "white",
+        "termination": "checkmate",
+        "moves": 41,
+        "max_move_s": 6.546999999999997,
+        "min_remaining_s": 13.156,
+        "sha256": "a2439ae426bcd22ff7cf391dbaf10405b02c95b93990cf3e9a241d21b19cb338"
+      }
+    ]
+  },
+  {
+    "run": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\compiled_ordered_01_parent_120s",
+    "snapshot_only": true,
+    "base_ms": 120000,
+    "increment_ms": 500,
+    "runtime_hashes_match": true,
+    "game_count": 3,
+    "all_recorded_wdl": {
+      "win": 2,
+      "draw": 1
+    },
+    "all_recorded_score": 0.8333333333333334,
+    "all_recorded_win_rate": 0.6666666666666666,
+    "complete_pairs_wdl": {
+      "win": 2
+    },
+    "terminations": {
+      "checkmate": 2,
+      "threefold_repetition": 1
+    },
+    "games": [
+      {
+        "file": "sbank_051_black.json",
+        "outcome": "win",
+        "position_id": "sbank_051",
+        "color": "black",
+        "termination": "checkmate",
+        "moves": 61,
+        "max_move_s": 6.515999999999991,
+        "min_remaining_s": 8.468,
+        "sha256": "1ad1f143210567c3b90ee6591ac50af74daf8b3792f3f491cd881cbee0d0b671"
+      },
+      {
+        "file": "sbank_051_white.json",
+        "outcome": "win",
+        "position_id": "sbank_051",
+        "color": "white",
+        "termination": "checkmate",
+        "moves": 69,
+        "max_move_s": 6.5,
+        "min_remaining_s": 3.686,
+        "sha256": "cdfae6524ab77a06bb760b29ca32a943890765cb8e0bed511dbbbf08a008e1e9"
+      },
+      {
+        "file": "sbank_089_white.json",
+        "outcome": "draw",
+        "position_id": "sbank_089",
+        "color": "white",
+        "termination": "threefold_repetition",
+        "moves": 8,
+        "max_move_s": 6.5,
+        "min_remaining_s": 87.533,
+        "sha256": "f3c38a3489dc0a8841ac286f8b1ed8973b288074fd0212a7c4beb9b33956a7b3"
+      }
+    ]
+  }
+]

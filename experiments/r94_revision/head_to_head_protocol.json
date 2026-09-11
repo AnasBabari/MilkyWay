@@ -1,0 +1,16 @@
+{
+  "candidate": "experiments/r94_king_safety_01",
+  "opponent": "experiments/search_v2_combined_01",
+  "games": 50,
+  "pairs": 25,
+  "base_ms": 12000,
+  "increment_ms": 100,
+  "workers": 3,
+  "seed": 20260906,
+  "bank": "screen",
+  "required_score": 0.6,
+  "zero_reliability_failures": true,
+  "no_positive_early_stop": true,
+  "purpose": "direct development comparison against the actual losing runtime; not independent full-clock qualification",
+  "package_gate": "passing this screen plus actual-clock critical-position and artifact smoke tests; report full-clock confirmation incomplete"
+}

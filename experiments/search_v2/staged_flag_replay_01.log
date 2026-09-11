@@ -1,0 +1,17 @@
+{"fen": "r1b1kb1r/p3qp1p/1pnppnp1/2p5/1PP5/P3PN1P/R2PBPP1/1NBQK2R w Kkq - 2 9", "time_left_ms": 120000, "historical_move": "b4b5", "move": "b4b5", "legal": true, "elapsed_s": 6.501592300017364}
+{"fen": "r1b1kb1r/p3qp1p/1p1ppnp1/1Pp1n3/2P5/P3PN1P/R2PBPP1/1NBQK2R w Kkq - 1 10", "time_left_ms": 114000, "historical_move": "f3e5", "move": "f3e5", "legal": true, "elapsed_s": 3.711455999989994}
+{"fen": "r1b1kb1r/p3qp1p/1p2pnp1/1Pp1p3/2P5/P3P2P/R2PBPP1/1NBQK2R w Kkq - 0 11", "time_left_ms": 110875, "historical_move": "c1b2", "move": "c1b2", "legal": true, "elapsed_s": 6.501797499950044}
+{"fen": "r3kb1r/pb2qp1p/1p2pnp1/1Pp1p3/2P5/P3P2P/RB1PBPP1/1N1QK2R w Kkq - 2 12", "time_left_ms": 104875, "historical_move": "b2e5", "move": "b2e5", "legal": true, "elapsed_s": 6.501466199988499}
+{"fen": "r3kb1r/p3qp1p/1p2pnp1/1Pp1B3/2P5/P3P2P/R2PBPb1/1N1QK2R w Kkq - 0 13", "time_left_ms": 98875, "historical_move": "h1h2", "move": "h1h2", "legal": true, "elapsed_s": 2.707714399904944}
+{"fen": "r3kb1r/pb2qp1p/1p2pnp1/1Pp1B3/2P5/P3P2P/R2PBP1R/1N1QK3 w kq - 2 14", "time_left_ms": 96735, "historical_move": "e2f3", "move": "e2f3", "legal": true, "elapsed_s": 6.50179620005656}
+{"fen": "r3k2r/pb2qpbp/1p2pnp1/1Pp1B3/2P5/P3PB1P/R2P1P1R/1N1QK3 w kq - 4 15", "time_left_ms": 90735, "historical_move": "f3c6", "move": "f3c6", "legal": true, "elapsed_s": 6.501593799912371}
+{"fen": "r3k2r/p3qpbp/1pb1pnp1/1Pp1B3/2P5/P3P2P/R2P1P1R/1N1QK3 w kq - 0 16", "time_left_ms": 84735, "historical_move": "b5c6", "move": "b5c6", "legal": true, "elapsed_s": 6.453733399976045}
+{"fen": "2r1k2r/p3qpbp/1pP1pnp1/2p1B3/2P5/P3P2P/R2P1P1R/1N1QK3 w k - 1 17", "time_left_ms": 78782, "historical_move": "d1a4", "move": "d1a4", "legal": true, "elapsed_s": 2.9351014000130817}
+{"fen": "2r1k2r/p3qpbp/1pP1p1p1/2p1B2n/Q1P5/P3P2P/R2P1P1R/1N2K3 w k - 3 18", "time_left_ms": 76501, "historical_move": "e5g7", "move": "e5g7", "legal": true, "elapsed_s": 4.8203752000117674}
+{"fen": "2r1k2r/p3qpnp/1pP1p1p1/2p5/Q1P5/P3P2P/R2P1P1R/1N2K3 w k - 0 19", "time_left_ms": 72391, "historical_move": "c6c7", "move": "c6c7", "legal": true, "elapsed_s": 3.28658950002864}
+{"fen": "2r2k1r/p1P1qpnp/1p2p1p1/2p5/Q1P5/P3P2P/R2P1P1R/1N2K3 w - - 1 20", "time_left_ms": 69750, "historical_move": "a4a7", "move": "a4a7", "legal": true, "elapsed_s": 3.327627500053495}
+{"fen": "2r2k1r/Q1P2pnp/1p1qp1p1/2p5/2P5/P3P2P/R2P1P1R/1N2K3 w - - 1 21", "time_left_ms": 67031, "historical_move": "f2f4", "move": "f2f4", "legal": true, "elapsed_s": 3.1167408999754116}
+{"fen": "5k1r/Q1r2pnp/1p1qp1p1/2p5/2P2P2/P3P2P/R2P3R/1N2K3 w - - 0 22", "time_left_ms": 64453, "historical_move": "a7a8", "move": "a7a8", "legal": true, "elapsed_s": 2.15817850001622}
+{"fen": "Q3nk1r/2r2p1p/1p1qp1p1/2p5/2P2P2/P3P2P/R2P3R/1N2K3 w - - 2 23", "time_left_ms": 62906, "historical_move": "b1c3", "move": "b1c3", "legal": true, "elapsed_s": 5.061947499983944}
+{"fen": "Q3n2r/2r2pkp/1p1qp1p1/2p5/2P2P2/P1N1P2P/R2P3R/4K3 w - - 4 24", "time_left_ms": 58360, "historical_move": "a8e4", "move": "a8e4", "legal": true, "elapsed_s": 3.0203764999751}
+{"fen": "7r/2r2pkp/1p1qpnp1/2p5/2P1QP2/P1N1P2P/R2P3R/4K3 w - - 6 25", "time_left_ms": 55751, "historical_move": null, "move": "e4c2", "legal": true, "elapsed_s": 4.6056641000323}

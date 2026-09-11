@@ -1,0 +1,332 @@
+{
+  "purpose": "provenance audit, not a claim of complete independence",
+  "scope": "all non-test JSONL under training/datasets; excludes NPZ-only data",
+  "limitations": [
+    "Missing game IDs and NPZ-only provenance require follow-up",
+    "Previously played tournament games are not audited here",
+    "Shared early openings do not establish shared source games"
+  ],
+  "non_test_source_games": 35947,
+  "non_test_positions": 724337,
+  "files": [
+    {
+      "path": "labels\\labels_1k.jsonl",
+      "sha256": "f654c0bde827461316feeacb0634389cad2e7f4edd44a23c0a2a55393a31ecd7",
+      "records": 1000,
+      "missing_game_ids": 0,
+      "bank_overlap_positions": {
+        "screen": 0,
+        "confirm": 0,
+        "dev": 13
+      }
+    },
+    {
+      "path": "labels\\labels_25k.jsonl",
+      "sha256": "196de2da6ad578a44237de103b26607e2d6afb982c8bc9a3313828493c0acdde",
+      "records": 25000,
+      "missing_game_ids": 0,
+      "bank_overlap_positions": {
+        "screen": 0,
+        "confirm": 0,
+        "dev": 200
+      }
+    },
+    {
+      "path": "master_balanced_32k\\train\\shard_00000.jsonl",
+      "sha256": "60fc4ba0458f335d5b17e1a2715695c429a874f7574d5f7600a398edf073323a",
+      "records": 8000,
+      "missing_game_ids": 0,
+      "bank_overlap_positions": {
+        "screen": 0,
+        "confirm": 0,
+        "dev": 0
+      }
+    },
+    {
+      "path": "master_balanced_32k\\train\\shard_00001.jsonl",
+      "sha256": "495211bdd7fa81c7c60520c77679e0ffd4c997810388f5ea46f7916bd30ad8e7",
+      "records": 8000,
+      "missing_game_ids": 0,
+      "bank_overlap_positions": {
+        "screen": 0,
+        "confirm": 0,
+        "dev": 0
+      }
+    },
+    {
+      "path": "master_balanced_32k\\train\\shard_00002.jsonl",
+      "sha256": "f0b31218111706639e66b5b433410d2cf0e868e56ecc246881aa9c464ec08861",
+      "records": 8000,
+      "missing_game_ids": 0,
+      "bank_overlap_positions": {
+        "screen": 0,
+        "confirm": 0,
+        "dev": 0
+      }
+    },
+    {
+      "path": "master_balanced_32k\\train\\shard_00003.jsonl",
+      "sha256": "8841465add75b6a8bf6b17c85e97e509c19df5dd9c37588d8308e046c67efc27",
+      "records": 3242,
+      "missing_game_ids": 0,
+      "bank_overlap_positions": {
+        "screen": 0,
+        "confirm": 0,
+        "dev": 0
+      }
+    },
+    {
+      "path": "master_balanced_32k\\val\\shard_00000.jsonl",
+      "sha256": "d6f2af4afd7244dc57e076277341f6f44622a98aaa5e930a03f0d8664717d0eb",
+      "records": 3356,
+      "missing_game_ids": 0,
+      "bank_overlap_positions": {
+        "screen": 0,
+        "confirm": 0,
+        "dev": 0
+      }
+    },
+    {
+      "path": "master_extended_verified_100k\\train\\shard_00000.jsonl",
+      "sha256": "b93f558241d312e2410786ca226b18e685acc5c8c859d03dd4b9807ed42da879",
+      "records": 10000,
+      "missing_game_ids": 0,
+      "bank_overlap_positions": {
+        "screen": 0,
+        "confirm": 0,
+        "dev": 0
+      }
+    },
+    {
+      "path": "master_extended_verified_100k\\train\\shard_00001.jsonl",
+      "sha256": "956d6cb659d53ca6b34a7ada29f09eb36e1dfa55eafbd1732e25cad9d44d8c5b",
+      "records": 10000,
+      "missing_game_ids": 0,
+      "bank_overlap_positions": {
+        "screen": 0,
+        "confirm": 0,
+        "dev": 0
+      }
+    },
+    {
+      "path": "master_extended_verified_100k\\train\\shard_00002.jsonl",
+      "sha256": "f1909ff5aa4916bd499c1fb9b498aa21a4cd8aef9b813c0b631a594e33a0f825",
+      "records": 10000,
+      "missing_game_ids": 0,
+      "bank_overlap_positions": {
+        "screen": 0,
+        "confirm": 0,
+        "dev": 0
+      }
+    },
+    {
+      "path": "master_extended_verified_100k\\train\\shard_00003.jsonl",
+      "sha256": "4869f83d05e787ce2b5f2f352300a8c4fa936ca06e82e59609aabc971238b3a8",
+      "records": 10000,
+      "missing_game_ids": 0,
+      "bank_overlap_positions": {
+        "screen": 0,
+        "confirm": 0,
+        "dev": 0
+      }
+    },
+    {
+      "path": "master_extended_verified_100k\\train\\shard_00004.jsonl",
+      "sha256": "f17ee81818143a62bc3ffa98a3fed571ce86095d7bb2b24cebe35938777b6e50",
+      "records": 10000,
+      "missing_game_ids": 0,
+      "bank_overlap_positions": {
+        "screen": 0,
+        "confirm": 0,
+        "dev": 0
+      }
+    },
+    {
+      "path": "master_extended_verified_100k\\train\\shard_00005.jsonl",
+      "sha256": "83c6fbe06af4a50edb39b9a91e22695e520ad9e64be570045b8ea22f518adc5d",
+      "records": 10000,
+      "missing_game_ids": 0,
+      "bank_overlap_positions": {
+        "screen": 0,
+        "confirm": 0,
+        "dev": 0
+      }
+    },
+    {
+      "path": "master_extended_verified_100k\\train\\shard_00006.jsonl",
+      "sha256": "64bedfb62d43e9c5227361a62da41668da92002fa3a5ebcf2a5663292137436c",
+      "records": 6915,
+      "missing_game_ids": 0,
+      "bank_overlap_positions": {
+        "screen": 0,
+        "confirm": 0,
+        "dev": 0
+      }
+    },
+    {
+      "path": "master_extended_verified_100k\\val\\shard_00000.jsonl",
+      "sha256": "4a70a19d9d178c2f0647e8ae4910761184d2070a9ed26dabbfb23d6ed031fbe3",
+      "records": 8004,
+      "missing_game_ids": 0,
+      "bank_overlap_positions": {
+        "screen": 0,
+        "confirm": 0,
+        "dev": 0
+      }
+    },
+    {
+      "path": "master_value_v1\\train.jsonl",
+      "sha256": "24d53b44f4203165d373105a0600a0d5686f89536a30afb6a5672eca9f7d508c",
+      "records": 50387,
+      "missing_game_ids": 0,
+      "bank_overlap_positions": {
+        "screen": 0,
+        "confirm": 0,
+        "dev": 0
+      }
+    },
+    {
+      "path": "master_value_v1\\val.jsonl",
+      "sha256": "09f9612417adba9636423e19b6086250ca6b6a581f4d75ba4a33c17d2ad3cc9c",
+      "records": 6655,
+      "missing_game_ids": 0,
+      "bank_overlap_positions": {
+        "screen": 0,
+        "confirm": 0,
+        "dev": 0
+      }
+    },
+    {
+      "path": "master_value_v2\\train.jsonl",
+      "sha256": "02b69b5ba54f0e0a4ed90ca81665dc818e0620552694eac21c0027de3db56f50",
+      "records": 61758,
+      "missing_game_ids": 0,
+      "bank_overlap_positions": {
+        "screen": 0,
+        "confirm": 0,
+        "dev": 0
+      }
+    },
+    {
+      "path": "master_value_v2\\val.jsonl",
+      "sha256": "b78a9d85914e13bb119e388fef3dc165a6c197dd9c631d9476e9857e92874d92",
+      "records": 6718,
+      "missing_game_ids": 0,
+      "bank_overlap_positions": {
+        "screen": 0,
+        "confirm": 0,
+        "dev": 0
+      }
+    },
+    {
+      "path": "master_value_v3\\train.jsonl",
+      "sha256": "ad5aafbcf3f96f0a39c0959c79f073a1cc6c66580e161f64e8ba6328f1079a84",
+      "records": 58553,
+      "missing_game_ids": 0,
+      "bank_overlap_positions": {
+        "screen": 0,
+        "confirm": 0,
+        "dev": 0
+      }
+    },
+    {
+      "path": "master_value_v3\\val.jsonl",
+      "sha256": "d477fc2235c37cb8aa9cf3e2050232b5d92dd20e4c48d9094a13fc8e8fbb6ee5",
+      "records": 7725,
+      "missing_game_ids": 0,
+      "bank_overlap_positions": {
+        "screen": 0,
+        "confirm": 0,
+        "dev": 0
+      }
+    },
+    {
+      "path": "master_value_v4\\train.jsonl",
+      "sha256": "70fd1496a8ecdd4ee3569f09a2dd1e6ddeb56e84154254f2eed03a12a2c6e544",
+      "records": 426103,
+      "missing_game_ids": 0,
+      "bank_overlap_positions": {
+        "screen": 0,
+        "confirm": 0,
+        "dev": 0
+      }
+    },
+    {
+      "path": "master_value_v4\\val.jsonl",
+      "sha256": "eff902d532e59b8631057916184618a0300050bb156673268a710e95295d7195",
+      "records": 48580,
+      "missing_game_ids": 0,
+      "bank_overlap_positions": {
+        "screen": 0,
+        "confirm": 0,
+        "dev": 0
+      }
+    },
+    {
+      "path": "positions\\positions_1k.jsonl",
+      "sha256": "3d10dcaec5dddf646c1faf16625e9047f73813b3ec4ca62bfc489e186a5c88f3",
+      "records": 1000,
+      "missing_game_ids": 0,
+      "bank_overlap_positions": {
+        "screen": 0,
+        "confirm": 0,
+        "dev": 13
+      }
+    },
+    {
+      "path": "positions\\positions_25k.jsonl",
+      "sha256": "9e775238699e1d8374210551a6ccfcae0459a47d1d57983eafea058cde1fded8",
+      "records": 25000,
+      "missing_game_ids": 0,
+      "bank_overlap_positions": {
+        "screen": 0,
+        "confirm": 0,
+        "dev": 200
+      }
+    },
+    {
+      "path": "processed\\train.jsonl",
+      "sha256": "8d8929970cb66e0b518197861b054b1ced9dfca5583e530a811282b0fd428a8b",
+      "records": 20037,
+      "missing_game_ids": 0,
+      "bank_overlap_positions": {
+        "screen": 0,
+        "confirm": 0,
+        "dev": 162
+      }
+    },
+    {
+      "path": "processed\\val.jsonl",
+      "sha256": "0e6a69ea9e65a8e73d91c2150c93e07bc8caf27e76b36ca0926100f5f8b83339",
+      "records": 2482,
+      "missing_game_ids": 0,
+      "bank_overlap_positions": {
+        "screen": 0,
+        "confirm": 0,
+        "dev": 24
+      }
+    }
+  ],
+  "test_reserve_candidates": [
+    {
+      "path": "master_value_v1\\test.jsonl",
+      "unseen_games": 161,
+      "unseen_positions": 2698
+    },
+    {
+      "path": "master_value_v2\\test.jsonl",
+      "unseen_games": 191,
+      "unseen_positions": 3221
+    },
+    {
+      "path": "master_value_v3\\test.jsonl",
+      "unseen_games": 174,
+      "unseen_positions": 3438
+    },
+    {
+      "path": "master_value_v4\\test.jsonl",
+      "unseen_games": 1201,
+      "unseen_positions": 24918
+    }
+  ]
+}

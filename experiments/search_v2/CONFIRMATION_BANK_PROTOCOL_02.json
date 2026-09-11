@@ -1,0 +1,33 @@
+{
+ "status": "PREDECLARED - awaiting user sign-off; generation NOT run",
+ "candidate": "experiments/search_v2_combined_01 (frozen, never to be mutated)",
+ "seed": 2026090902,
+ "seed_note": "Novel seed; staged bank_01 used 2026090821 and is EXPOSED - forbidden for combined.",
+ "positions": 50,
+ "selection": "Generate fresh legal opening trajectories with offline Stockfish MultiPV; no candidate search or evaluation used for selection. Select first 50 unique admissible positions in deterministic generated order.",
+ "trajectory_plies": [
+  16,
+  24
+ ],
+ "multipv": 4,
+ "trajectory_nodes_per_position": 10000,
+ "final_balance_nodes": 100000,
+ "maximum_absolute_white_score_cp": 50,
+ "require_nonterminal": true,
+ "exclude_checks_at_start": true,
+ "exclusions": "Build NEW confirmation_exclusions_02.sqlite (+metadata) via a copied builder (build_confirmation_exclusions_02.py); preserve 01 artifacts untouched. Refresh must cover all games through the full-clock pooled test including the void evidence, both clock replays, and all dev screens. Exact packed-12-plane digest AND colour/rank-reflected digest must both be absent from the 02 index.",
+ "new_files": [
+  "generate_confirmation_bank_02.py (copy of 01; reads this protocol; writes confirmation_bank_02.json + confirmation_bank_generation_02.jsonl; refuses to overwrite existing evidence)",
+  "confirmation_exclusions_02.sqlite + confirmation_exclusions_02.json (fresh build, hash-pinned in metadata)",
+  "confirmation_bank_02.json -> audited -> confirmation_bank_02_frozen.json"
+ ],
+ "provenance": "Save generator seed/source hash, Stockfish binary hash/options, complete source moves, final FEN, selection/rejection counts, dataset-index hash and raw-file audit hashes.",
+ "audit_before_freeze": [
+  "legal replay of all 50 positions from source moves",
+  "uniqueness (exact + reflected) within the bank",
+  "exact AND colour/rank-reflected digest absence from 02 index",
+  "post-snapshot overlap scan against every recorded game on disk",
+  "generator/Stockfish/source hash verification"
+ ],
+ "freeze": "Freeze as confirmation_bank_02_frozen.json before any qualifying game; never tune on this bank or reuse after a failed confirmation as unseen. Do not ship this bank or engine analysis in agent.zip."
+}

@@ -1,0 +1,29 @@
+{
+ "candidate": "search_v2_syzygy_01",
+ "base": "search_v2_nmp_01",
+ "change": "Syzygy 3-man root probe (see SYZYGY_DESIGN.md)",
+ "sha256": {
+  "agent.py": "66b2f510bc09c3ad54538ebec9d917c1abf4256f80f035280394a16a86eda8fd",
+  "combined_search.py": "fb639bbdbce3b0b67830c3c0e277f95bebca7e92b1e794bd9f4a4ac32b15dea1",
+  "compact_value.py": "88b029e1bc463fa9767d7c16bca802f918818b571518b9f8ad697e6d3046a5e1",
+  "compiled_eval.py": "7f0f2f25f689abb3a3052d54784c7cad35fe29d3e89848f6ee36d70f8bcb8519",
+  "compiled_search.py": "2898ea0523042045c8ff75c0d6a78a026c0ca88c8ba9292b89d5d558b6bc6193",
+  "constants.py": "1feb0bc0b6d4cd1f9b44cdcad2e4d9107b34f527ff9acd0466025f614b36cc68",
+  "core.py": "5536cb3beb0cac12d125cd544810f8e08c0727fd26daf5d3d85455341e1c24fd",
+  "evaluation.py": "4d5c6f2b8f51f445a787f78be4d60a9bc14be9283de9acb28e018da988c413d4",
+  "fast_eval.py": "f3034da83221502f412d17dfa87fb06af09108cc3c008794826662893f22098a",
+  "ordered_search.py": "2584713fcbbfe92f74b2b136255ccc6db2730d09f2e88e03e69d7d94f6c718b1",
+  "time_manager.py": "a160b0fec65e406d4e8b3a33bc5332956e0369914c3823ee6bc7aea91b8786dc",
+  "weights/compact_value.npz": "465ef2c4da390a359ec6e4741709093159700160a5c785b0e4b4adc53e453eca",
+  "weights/syzygy/KBvK.rtbw": "bc0d8ab3560de9038460f0e8f61e3b7efd3e3d0327d19ae0387c0da7ddeb244d",
+  "weights/syzygy/KNvK.rtbw": "9d3518b12df3d2006441df758bce31e961346e70a11920aaad75c647003bb6e7",
+  "weights/syzygy/KPvK.rtbw": "02fd2bdcd92821c869458f019f63524def1c9e7a2862ca8d2b16dc7712b16183",
+  "weights/syzygy/KQvK.rtbw": "517667dff787162dbb1ed9d5d6484d30ee854e686ee0675c08d99ecf045d2d50",
+  "weights/syzygy/KRvK.rtbw": "386fbde73308e49a4207836922c68b30b664e83c5a37f7fa37305a15cd16f2f1",
+  "weights/syzygy/KBvK.rtbz": "6246c8a5c643eec9d4758d55ed843e31cc28a9b82a6f630c1c950d8b7755975b",
+  "weights/syzygy/KNvK.rtbz": "0e49a0f2810a131c32fc14872e83044aa9810ce2c86df071851512077291fc25",
+  "weights/syzygy/KPvK.rtbz": "ad01af2076183c90ccee662ca6c5d74da3222ff1fee47c01b5d4e56ed01938de",
+  "weights/syzygy/KQvK.rtbz": "71ea9444fa5bd42897d781a0c356975ea6f23e0f65a4254e470897031c161c8c",
+  "weights/syzygy/KRvK.rtbz": "cab59f42e75c2a25da3939231850a79fa838593fff5c28d7772da92062ed965a"
+ }
+}

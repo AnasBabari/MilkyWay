@@ -1,0 +1,7 @@
+{
+  "start_fen": "8/1K6/1P6/8/4k3/p7/8/8 w - - 12 24",
+  "candidate_color": "white",
+  "result": "draw",
+  "termination": "insufficient_material",
+  "pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"compact_quarter_policy_v6\"]\n[Black \"compact_cycle_01_quarter\"]\n[Result \"1/2-1/2\"]\n[FEN \"8/1K6/1P6/8/4k3/p7/8/8 w - - 12 24\"]\n[SetUp \"1\"]\n[Termination \"insufficient_material\"]\n\n24. Kc6 { [%clk 0:00:09.194] } 24... a2 { [%clk 0:00:09.319] } 25. b7 { [%clk 0:00:08.122] } 25... a1=Q { [%clk 0:00:07.919] } 26. b8=Q { [%clk 0:00:06.644] } 26... Qc1+ { [%clk 0:00:07.316] } 27. Kd7 { [%clk 0:00:05.697] } 27... Qg1 { [%clk 0:00:05.884] } 28. Qd6 { [%clk 0:00:05.782] } 28... Qa7+ { [%clk 0:00:05.906] } 29. Kc6 { [%clk 0:00:05.866] } 29... Qa6+ { [%clk 0:00:05.944] } 30. Kc5 { [%clk 0:00:05.95] } 30... Qxd6+ { [%clk 0:00:06.028] } 31. Kxd6 { [%clk 0:00:06.05] } 1/2-1/2"
+}

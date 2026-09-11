@@ -1,0 +1,67 @@
+{
+  "checkpoint": {
+    "agent.py": "019f0d62991cbbdac35715ee7da8ce0395d098163437550acb2fa97d22e739b7",
+    "constants.py": "1feb0bc0b6d4cd1f9b44cdcad2e4d9107b34f527ff9acd0466025f614b36cc68",
+    "engine.py": "89486acfc84ba9e4fb17023004c006a9c0ddd68a14b2016ab0130d83b7732ba5",
+    "engine_types.py": "16cf6db9903be9f38da6a880927a1779457fe284499b1e4fdd4fdf775c795ae5",
+    "evaluation.py": "2bae45d3e31d9a714fd8783fece9bb9cda00deb1497185fe1f2b51b3ed24f88e",
+    "move_ordering.py": "5d0bc60763bfdfc8a0075b09395a9b761af7b990ab3f9d681ea60be18943b487",
+    "root_policy.py": "8b3d4c842fe27bad3a87efaa3c5ca95c6d563cc88a59272af3c60b8a90df271a",
+    "search.py": "0251e33a8574ec738f016a41803818aa801df86990341a8c15d18dceee0c8406",
+    "time_manager.py": "fd6dcf7db882ba53295529332815c628bbb26a813a7930eb38182a23f27586ea",
+    "transposition.py": "49d956a7f374475488aa75e78873b009dce69c2756a314b25c367fa99bc372f2",
+    "weights/milkyway_policy.onnx": "4d93818689914495e41c1241adab1529509beacabfc2e653ff629a9a2f41e9aa"
+  },
+  "ksc_candidate": {
+    "agent.py": "019f0d62991cbbdac35715ee7da8ce0395d098163437550acb2fa97d22e739b7",
+    "constants.py": "1feb0bc0b6d4cd1f9b44cdcad2e4d9107b34f527ff9acd0466025f614b36cc68",
+    "engine.py": "89486acfc84ba9e4fb17023004c006a9c0ddd68a14b2016ab0130d83b7732ba5",
+    "engine_types.py": "16cf6db9903be9f38da6a880927a1779457fe284499b1e4fdd4fdf775c795ae5",
+    "evaluation.py": "f3024be8b8857bec18a4b2602a0e74886649a64e2766c8740c80bc0bf1434c4d",
+    "move_ordering.py": "5d0bc60763bfdfc8a0075b09395a9b761af7b990ab3f9d681ea60be18943b487",
+    "root_policy.py": "8b3d4c842fe27bad3a87efaa3c5ca95c6d563cc88a59272af3c60b8a90df271a",
+    "search.py": "0251e33a8574ec738f016a41803818aa801df86990341a8c15d18dceee0c8406",
+    "time_manager.py": "fd6dcf7db882ba53295529332815c628bbb26a813a7930eb38182a23f27586ea",
+    "transposition.py": "49d956a7f374475488aa75e78873b009dce69c2756a314b25c367fa99bc372f2",
+    "weights/milkyway_policy.onnx": "4d93818689914495e41c1241adab1529509beacabfc2e653ff629a9a2f41e9aa"
+  },
+  "lmr_candidate": {
+    "agent.py": "019f0d62991cbbdac35715ee7da8ce0395d098163437550acb2fa97d22e739b7",
+    "constants.py": "1feb0bc0b6d4cd1f9b44cdcad2e4d9107b34f527ff9acd0466025f614b36cc68",
+    "engine.py": "89486acfc84ba9e4fb17023004c006a9c0ddd68a14b2016ab0130d83b7732ba5",
+    "engine_types.py": "16cf6db9903be9f38da6a880927a1779457fe284499b1e4fdd4fdf775c795ae5",
+    "evaluation.py": "2bae45d3e31d9a714fd8783fece9bb9cda00deb1497185fe1f2b51b3ed24f88e",
+    "move_ordering.py": "5d0bc60763bfdfc8a0075b09395a9b761af7b990ab3f9d681ea60be18943b487",
+    "root_policy.py": "8b3d4c842fe27bad3a87efaa3c5ca95c6d563cc88a59272af3c60b8a90df271a",
+    "search.py": "43ea27db6577c9085d8635478ba0c1d0dc475dc739f300b526f72363547d52fe",
+    "time_manager.py": "fd6dcf7db882ba53295529332815c628bbb26a813a7930eb38182a23f27586ea",
+    "transposition.py": "49d956a7f374475488aa75e78873b009dce69c2756a314b25c367fa99bc372f2",
+    "weights/milkyway_policy.onnx": "4d93818689914495e41c1241adab1529509beacabfc2e653ff629a9a2f41e9aa"
+  },
+  "ksq_candidate": {
+    "agent.py": "019f0d62991cbbdac35715ee7da8ce0395d098163437550acb2fa97d22e739b7",
+    "constants.py": "1feb0bc0b6d4cd1f9b44cdcad2e4d9107b34f527ff9acd0466025f614b36cc68",
+    "engine.py": "89486acfc84ba9e4fb17023004c006a9c0ddd68a14b2016ab0130d83b7732ba5",
+    "engine_types.py": "16cf6db9903be9f38da6a880927a1779457fe284499b1e4fdd4fdf775c795ae5",
+    "evaluation.py": "0e79fb598f8fbc7e50ae023633848b0faa271d4115eb2894dbc437911aaf4a19",
+    "move_ordering.py": "5d0bc60763bfdfc8a0075b09395a9b761af7b990ab3f9d681ea60be18943b487",
+    "root_policy.py": "8b3d4c842fe27bad3a87efaa3c5ca95c6d563cc88a59272af3c60b8a90df271a",
+    "search.py": "0251e33a8574ec738f016a41803818aa801df86990341a8c15d18dceee0c8406",
+    "time_manager.py": "fd6dcf7db882ba53295529332815c628bbb26a813a7930eb38182a23f27586ea",
+    "transposition.py": "49d956a7f374475488aa75e78873b009dce69c2756a314b25c367fa99bc372f2",
+    "weights/milkyway_policy.onnx": "4d93818689914495e41c1241adab1529509beacabfc2e653ff629a9a2f41e9aa"
+  },
+  "speed_candidate": {
+    "agent.py": "019f0d62991cbbdac35715ee7da8ce0395d098163437550acb2fa97d22e739b7",
+    "constants.py": "1feb0bc0b6d4cd1f9b44cdcad2e4d9107b34f527ff9acd0466025f614b36cc68",
+    "engine.py": "89486acfc84ba9e4fb17023004c006a9c0ddd68a14b2016ab0130d83b7732ba5",
+    "engine_types.py": "16cf6db9903be9f38da6a880927a1779457fe284499b1e4fdd4fdf775c795ae5",
+    "evaluation.py": "f3024be8b8857bec18a4b2602a0e74886649a64e2766c8740c80bc0bf1434c4d",
+    "move_ordering.py": "5d0bc60763bfdfc8a0075b09395a9b761af7b990ab3f9d681ea60be18943b487",
+    "root_policy.py": "8b3d4c842fe27bad3a87efaa3c5ca95c6d563cc88a59272af3c60b8a90df271a",
+    "search.py": "cf0d6a8ad42f01d5ee1f4c19ab5f3c916fa6cc618028b9d72ce5b83da918210b",
+    "time_manager.py": "fd6dcf7db882ba53295529332815c628bbb26a813a7930eb38182a23f27586ea",
+    "transposition.py": "49d956a7f374475488aa75e78873b009dce69c2756a314b25c367fa99bc372f2",
+    "weights/milkyway_policy.onnx": "4d93818689914495e41c1241adab1529509beacabfc2e653ff629a9a2f41e9aa"
+  }
+}

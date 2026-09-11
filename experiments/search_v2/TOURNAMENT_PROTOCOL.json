@@ -1,0 +1,104 @@
+{
+  "status": "planned; no new tournament launched yet",
+  "objective": "Qualify a frozen original candidate with at least 60% score against exact live silky_snow in independent full-clock confirmation, and demonstrated superiority over the other current candidates. SF7 is diagnostic only.",
+  "development": {
+    "base_ms": 12000,
+    "increment_ms": 100,
+    "clock_revision": "2026-09-08 user revision: development games sped up to ~30 seconds wall each (moves played very quickly); 1/5 scale of the earlier 60s+0.5s development clock. The 60s partial lmr parent screen is preserved at lmr_parent_60s_50g_superseded_partial and is never pooled with fast-clock games. Fast-clock screens are development evidence; independent confirmation remains 120s+0.5s per opponent.",
+    "pairs": 25,
+    "games": 50,
+    "seed": 20260906,
+    "workers_per_comparison": 3,
+    "workers_revision": "2026-09-08: raised from 1 to 3 concurrent games per comparison to meet the user's ~30s/game speed target; per-game wall time has a ~40s structural floor from fresh runner startup (Numba compilation; harness scratch-dir design prevents cross-game caching). Games are independent; clock, bank, seed and pairing unchanged.",
+    "live_required_score": 0.55,
+    "gate_revision": "2026-09-08 user revision: live gate lowered from 35/50 actual wins (70%) to >=27.5/50 points (55% score, a 10-percentage-point improvement over the live candidate); challenger screen stays >=0.55 score. Live-screen futility stop now fires when 27.5 points becomes unreachable.",
+    "challenger_screen_min_score": 0.55
+  },
+  "confirmation": {
+    "base_ms": 120000,
+    "increment_ms": 500,
+    "pairs_per_opponent": 50,
+    "games_per_opponent": 100,
+    "independent_bank": true,
+    "challenger_score_lower_95pct_pair_bootstrap_bound_must_exceed": 0.5,
+    "controlled_load": true,
+    "live_required_score": 0.6,
+    "gate_revision": "Explicit user answer: 60% score against live. Score=(W+0.5D)/N; actual win rate reported separately."
+  },
+  "opponents": {
+    "compiled_pvs_01": {
+      "path": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\compiled_pvs_01",
+      "manifest_sha256": "1b1ee446079b0c33bab01582c6776bebb078036bd23695edad22b60a3af8cd20",
+      "sha256": {
+        "agent.py": "0222ee65c01aedc89565bc4125113e8df75d5e1b73656fee2baa16ac55495ef3",
+        "core.py": "a32c0bd9c898a4e8292b954620d5fd362147b2d4551a3221f8cd9bce07ac2fd9",
+        "compiled_eval.py": "7f0f2f25f689abb3a3052d54784c7cad35fe29d3e89848f6ee36d70f8bcb8519",
+        "compiled_search.py": "2898ea0523042045c8ff75c0d6a78a026c0ca88c8ba9292b89d5d558b6bc6193",
+        "pvs_search.py": "0270978916d179ab143d704a4704458b6662dc787f92778b841b24cd2be81d06",
+        "constants.py": "1feb0bc0b6d4cd1f9b44cdcad2e4d9107b34f527ff9acd0466025f614b36cc68",
+        "evaluation.py": "4d5c6f2b8f51f445a787f78be4d60a9bc14be9283de9acb28e018da988c413d4",
+        "fast_eval.py": "f3034da83221502f412d17dfa87fb06af09108cc3c008794826662893f22098a",
+        "compact_value.py": "88b029e1bc463fa9767d7c16bca802f918818b571518b9f8ad697e6d3046a5e1",
+        "time_manager.py": "a160b0fec65e406d4e8b3a33bc5332956e0369914c3823ee6bc7aea91b8786dc",
+        "weights/compact_value.npz": "465ef2c4da390a359ec6e4741709093159700160a5c785b0e4b4adc53e453eca"
+      }
+    },
+    "compiled_ordered_01": {
+      "path": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\compiled_ordered_01",
+      "manifest_sha256": "058d8461e100ac93f49db73756fea686cde5142899574e2fd27a2cf11b894351",
+      "sha256": {
+        "agent.py": "ad73c2f8f5eba0f85ebf13b157dfdcf53d861cfe9c428f22fff55e163f43e5fd",
+        "core.py": "a32c0bd9c898a4e8292b954620d5fd362147b2d4551a3221f8cd9bce07ac2fd9",
+        "compiled_eval.py": "7f0f2f25f689abb3a3052d54784c7cad35fe29d3e89848f6ee36d70f8bcb8519",
+        "compiled_search.py": "2898ea0523042045c8ff75c0d6a78a026c0ca88c8ba9292b89d5d558b6bc6193",
+        "ordered_search.py": "2584713fcbbfe92f74b2b136255ccc6db2730d09f2e88e03e69d7d94f6c718b1",
+        "constants.py": "1feb0bc0b6d4cd1f9b44cdcad2e4d9107b34f527ff9acd0466025f614b36cc68",
+        "evaluation.py": "4d5c6f2b8f51f445a787f78be4d60a9bc14be9283de9acb28e018da988c413d4",
+        "fast_eval.py": "f3034da83221502f412d17dfa87fb06af09108cc3c008794826662893f22098a",
+        "compact_value.py": "88b029e1bc463fa9767d7c16bca802f918818b571518b9f8ad697e6d3046a5e1",
+        "time_manager.py": "a160b0fec65e406d4e8b3a33bc5332956e0369914c3823ee6bc7aea91b8786dc",
+        "weights/compact_value.npz": "465ef2c4da390a359ec6e4741709093159700160a5c785b0e4b4adc53e453eca"
+      }
+    },
+    "compiled_sf7_rl_01": {
+      "path": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\compiled_sf7_rl_01",
+      "manifest_sha256": "4de116bc52c00926f219aaf804977fc07971f7771e463e2980b88c892d27d575",
+      "sha256": {
+        "agent.py": "0222ee65c01aedc89565bc4125113e8df75d5e1b73656fee2baa16ac55495ef3",
+        "compact_value.py": "88b029e1bc463fa9767d7c16bca802f918818b571518b9f8ad697e6d3046a5e1",
+        "compiled_eval.py": "7f0f2f25f689abb3a3052d54784c7cad35fe29d3e89848f6ee36d70f8bcb8519",
+        "compiled_search.py": "2898ea0523042045c8ff75c0d6a78a026c0ca88c8ba9292b89d5d558b6bc6193",
+        "constants.py": "1feb0bc0b6d4cd1f9b44cdcad2e4d9107b34f527ff9acd0466025f614b36cc68",
+        "core.py": "a32c0bd9c898a4e8292b954620d5fd362147b2d4551a3221f8cd9bce07ac2fd9",
+        "evaluation.py": "4d5c6f2b8f51f445a787f78be4d60a9bc14be9283de9acb28e018da988c413d4",
+        "fast_eval.py": "f3034da83221502f412d17dfa87fb06af09108cc3c008794826662893f22098a",
+        "pvs_search.py": "0270978916d179ab143d704a4704458b6662dc787f92778b841b24cd2be81d06",
+        "time_manager.py": "a160b0fec65e406d4e8b3a33bc5332956e0369914c3823ee6bc7aea91b8786dc",
+        "weights\\compact_value.npz": "3573973f080c94e23e518d26a8a64ac40baaae3c1db05b412d1ada6cd16362fa"
+      }
+    },
+    "silky_snow": {
+      "path": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\silky_snow",
+      "sha256": {
+        "agent.py": "eb39003426716628e226aa88bdf4ed7f8783bfea6734d928d7a624acabffd968",
+        "constants.py": "1feb0bc0b6d4cd1f9b44cdcad2e4d9107b34f527ff9acd0466025f614b36cc68",
+        "engine.py": "576bdc64be3050ed206761fb75dc70175411d18f2007af102cf6ceb74961272d",
+        "engine_types.py": "2dc6319ad87691f768687c25f516d3113ea4f8e08644459a59600dbb161191a9",
+        "evaluation.py": "4d5c6f2b8f51f445a787f78be4d60a9bc14be9283de9acb28e018da988c413d4",
+        "fast_eval.py": "b9593db1e92f8a1f7f06d1863c0982ef153339dfbe5aef7f09cf895108340fa9",
+        "move_ordering.py": "323a57a4bf656bb3e5d3040a13ba90154197e3822b45b7130135ac0d31499423",
+        "root_policy.py": "8b3d4c842fe27bad3a87efaa3c5ca95c6d563cc88a59272af3c60b8a90df271a",
+        "search.py": "07eef1673d32957728cdf86c75fb2bde21b7551b56645c6a16f06f9a6adba32e",
+        "time_manager.py": "a160b0fec65e406d4e8b3a33bc5332956e0369914c3823ee6bc7aea91b8786dc",
+        "transposition.py": "49d956a7f374475488aa75e78873b009dce69c2756a314b25c367fa99bc372f2",
+        "weights\\milkyway_flagship_silkysnow.onnx": "f2239f7b48ac2ee14b80d7faecebffb8595d25deaf8a3d9466cddedecc96fe55",
+        "weights\\milkyway_policy.onnx": "4d93818689914495e41c1241adab1529509beacabfc2e653ff629a9a2f41e9aa"
+      },
+      "provenance_manifest": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\compiled_pvs_01_silky_60s_50g\\manifest.json"
+    }
+  },
+  "roster_scope": "Exact live candidate and three current compiled challengers; historical rejected variants remain provenance/regression evidence.",
+  "sf7": "Optional fixed-spec diagnostic; no required win rate.",
+  "external_engines": "Offline training and testing only. No engine code, binary, published weights or engine lookup table in final agent.",
+  "promotion": "Only after gates and artifact reliability; preserve existing agent.zip, do not upload."
+}

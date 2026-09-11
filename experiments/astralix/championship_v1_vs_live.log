@@ -1,0 +1,62 @@
+1/10 sbank_051: 1.0/2 checkmate/checkmate
+2/10 sbank_089: 1.0/2 checkmate/checkmate
+3/10 sbank_062: 0.0/2 checkmate/checkmate
+4/10 sbank_010: 1.0/2 checkmate/checkmate
+5/10 sbank_030: 0.0/2 checkmate/checkmate
+6/10 sbank_080: 0.5/2 fifty_moves/checkmate
+7/10 sbank_085: 1.0/2 checkmate/checkmate
+8/10 sbank_042: 1.0/2 checkmate/checkmate
+9/10 sbank_067: 1.0/2 checkmate/checkmate
+10/10 sbank_041: 1.0/2 checkmate/checkmate
+{
+  "pairs": 10,
+  "games": 20,
+  "score": 0.375,
+  "record": "+7 =1 -12",
+  "white": {
+    "score": 0.45,
+    "record": "+4 =1 -5"
+  },
+  "black": {
+    "score": 0.3,
+    "record": "+3 =0 -7"
+  },
+  "phases": {
+    "opening": {
+      "pairs": 10,
+      "games": 20,
+      "score": 0.375,
+      "wins": 7,
+      "draws": 1,
+      "losses": 12
+    }
+  },
+  "terminations": {
+    "checkmate": 19,
+    "fifty_moves": 1
+  },
+  "bootstrap": {
+    "pairs_count": 10,
+    "games_count": 20,
+    "point_score": 0.375,
+    "score_95_ci": [
+      0.25,
+      0.5
+    ],
+    "point_elo": -88.73949984654253,
+    "elo_95_ci": [
+      -190.84850188786498,
+      0.0
+    ],
+    "pair_distribution": {
+      "2.0": 0,
+      "1.5": 0,
+      "1.0": 7,
+      "0.5": 1,
+      "0.0": 2
+    },
+    "supportive": false,
+    "strong": false
+  },
+  "failed_terminations": {}
+}

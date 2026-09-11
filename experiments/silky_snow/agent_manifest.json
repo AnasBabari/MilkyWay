@@ -1,0 +1,17 @@
+{
+  "candidate": "silky-snow",
+  "files": {
+    "agent.py": "1078",
+    "constants.py": "18739",
+    "engine.py": "6594",
+    "engine_types.py": "1154",
+    "evaluation.py": "21286",
+    "fast_eval.py": "34337",
+    "move_ordering.py": "8146",
+    "root_policy.py": "7557",
+    "search.py": "24147",
+    "time_manager.py": "4347",
+    "transposition.py": "2525",
+    "weights/milkyway_policy.onnx": "5268829"
+  }
+}

@@ -1,0 +1,595 @@
+{
+  "status": "candidate_screens_running",
+  "results": [
+    {
+      "candidate": "lmr",
+      "opponent": "parent",
+      "audit": {
+        "run": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\search_v2\\lmr_parent_12s_50g",
+        "snapshot_only": true,
+        "base_ms": 12000,
+        "increment_ms": 100,
+        "runtime_hashes_match": true,
+        "game_count": 50,
+        "all_recorded_wdl": {
+          "draw": 10,
+          "win": 24,
+          "loss": 16
+        },
+        "harness_orchestration_hashes_match": true,
+        "auditor_sha256": "62ca4bec23d8d39d59c938168756b3807a2893cd62954ba73ee9a753b7b957ef",
+        "all_recorded_score": 0.58,
+        "all_recorded_win_rate": 0.48,
+        "complete_pairs_wdl": {
+          "win": 24,
+          "draw": 10,
+          "loss": 16
+        },
+        "terminations": {
+          "insufficient_material": 5,
+          "checkmate": 40,
+          "threefold_repetition": 3,
+          "fifty_moves": 2
+        },
+        "games": [
+          {
+            "file": "sbank_010_black.json",
+            "outcome": "draw",
+            "position_id": "sbank_010",
+            "color": "black",
+            "termination": "insufficient_material",
+            "moves": 61,
+            "max_move_s": 1.734,
+            "min_remaining_s": 0.97,
+            "sha256": "75ef83ca20ab6a8bf622947c8f9cfce9de23ea63304924b258ac21150b7d3a50"
+          },
+          {
+            "file": "sbank_010_white.json",
+            "outcome": "win",
+            "position_id": "sbank_010",
+            "color": "white",
+            "termination": "checkmate",
+            "moves": 76,
+            "max_move_s": 1.4529999999999994,
+            "min_remaining_s": 0.849,
+            "sha256": "e651ba596b2a053a2a01af907ed82a58cb047f7968844a1c12af0f77c383230d"
+          },
+          {
+            "file": "sbank_018_black.json",
+            "outcome": "win",
+            "position_id": "sbank_018",
+            "color": "black",
+            "termination": "checkmate",
+            "moves": 28,
+            "max_move_s": 1.5,
+            "min_remaining_s": 1.249,
+            "sha256": "4bd0e105424aa762a97bb3baf5bf79e47ec6cc8deef62f3e12b211ffcf2bc3f7"
+          },
+          {
+            "file": "sbank_018_white.json",
+            "outcome": "win",
+            "position_id": "sbank_018",
+            "color": "white",
+            "termination": "checkmate",
+            "moves": 61,
+            "max_move_s": 1.359,
+            "min_remaining_s": 0.658,
+            "sha256": "7e27fd2ddaabc35cd974a925a35fa070515cd5186384f6488bc25811844bd766"
+          },
+          {
+            "file": "sbank_021_black.json",
+            "outcome": "loss",
+            "position_id": "sbank_021",
+            "color": "black",
+            "termination": "checkmate",
+            "moves": 76,
+            "max_move_s": 1.6559999999999988,
+            "min_remaining_s": 0.658,
+            "sha256": "eaed37581194f740c50be142bd560b16807af22f4c167037ca6492758e142bd8"
+          },
+          {
+            "file": "sbank_021_white.json",
+            "outcome": "loss",
+            "position_id": "sbank_021",
+            "color": "white",
+            "termination": "checkmate",
+            "moves": 77,
+            "max_move_s": 1.7189999999999994,
+            "min_remaining_s": 0.976,
+            "sha256": "564797a4fe28dc7346edfacfc25146e18561594ecdb6cea44752167f80b7b1d8"
+          },
+          {
+            "file": "sbank_030_black.json",
+            "outcome": "draw",
+            "position_id": "sbank_030",
+            "color": "black",
+            "termination": "threefold_repetition",
+            "moves": 33,
+            "max_move_s": 1.734,
+            "min_remaining_s": 0.66,
+            "sha256": "ba8758a4f34e16b8fa59dafcf23fe1d25b9f204077e8b06f4e70d0cbbf5c3f0f"
+          },
+          {
+            "file": "sbank_030_white.json",
+            "outcome": "draw",
+            "position_id": "sbank_030",
+            "color": "white",
+            "termination": "insufficient_material",
+            "moves": 118,
+            "max_move_s": 1.718,
+            "min_remaining_s": 0.973,
+            "sha256": "42cb5a9395b7ca3e36c66dc9d514907ee0d6eafa901d43d470d9712fe6fdd97d"
+          },
+          {
+            "file": "sbank_032_black.json",
+            "outcome": "loss",
+            "position_id": "sbank_032",
+            "color": "black",
+            "termination": "checkmate",
+            "moves": 39,
+            "max_move_s": 1.8119999999999994,
+            "min_remaining_s": 0.816,
+            "sha256": "7de6d0c79e01287407c28624c03cf4bc330f67739d19c5b17b8460ac1639d938"
+          },
+          {
+            "file": "sbank_032_white.json",
+            "outcome": "draw",
+            "position_id": "sbank_032",
+            "color": "white",
+            "termination": "insufficient_material",
+            "moves": 95,
+            "max_move_s": 1.75,
+            "min_remaining_s": 0.767,
+            "sha256": "6c2c77879410ddc9e4374a97b8fdb91f9c2e6c954960f017691b74b8f4ea3e07"
+          },
+          {
+            "file": "sbank_037_black.json",
+            "outcome": "win",
+            "position_id": "sbank_037",
+            "color": "black",
+            "termination": "checkmate",
+            "moves": 63,
+            "max_move_s": 1.516,
+            "min_remaining_s": 0.655,
+            "sha256": "a434855ab0650b3990ea113d626f64550e436b689c3f0135ad62ad8e4a63f7ce"
+          },
+          {
+            "file": "sbank_037_white.json",
+            "outcome": "draw",
+            "position_id": "sbank_037",
+            "color": "white",
+            "termination": "threefold_repetition",
+            "moves": 34,
+            "max_move_s": 1.6559999999999988,
+            "min_remaining_s": 1.158,
+            "sha256": "ba722c99e0e8c9b197cf761ca846c4a0d22de2e2588bc2b1843a04aef4949cf8"
+          },
+          {
+            "file": "sbank_038_black.json",
+            "outcome": "loss",
+            "position_id": "sbank_038",
+            "color": "black",
+            "termination": "checkmate",
+            "moves": 47,
+            "max_move_s": 1.5629999999999997,
+            "min_remaining_s": 0.951,
+            "sha256": "0698a0b35010926eac69f4957f98a4d3b03cc0a58850dbfb970e1bdbef53d8ca"
+          },
+          {
+            "file": "sbank_038_white.json",
+            "outcome": "loss",
+            "position_id": "sbank_038",
+            "color": "white",
+            "termination": "checkmate",
+            "moves": 41,
+            "max_move_s": 1.4530000000000003,
+            "min_remaining_s": 0.975,
+            "sha256": "a072eb4915eb334f047e698644c67e3854cf41babf9921d9cf036595ee36f575"
+          },
+          {
+            "file": "sbank_041_black.json",
+            "outcome": "win",
+            "position_id": "sbank_041",
+            "color": "black",
+            "termination": "checkmate",
+            "moves": 21,
+            "max_move_s": 1.8129999999999988,
+            "min_remaining_s": 1.097,
+            "sha256": "b06c61fb11c56fd700cc8588ae779e8cbbeea70061f79bab3f0c100810416c42"
+          },
+          {
+            "file": "sbank_041_white.json",
+            "outcome": "draw",
+            "position_id": "sbank_041",
+            "color": "white",
+            "termination": "insufficient_material",
+            "moves": 114,
+            "max_move_s": 1.5939999999999994,
+            "min_remaining_s": 0.814,
+            "sha256": "112da6effa0ee2bf9d001d0a2364badfd623a5ec5f1a5ee63f01fde7859747d2"
+          },
+          {
+            "file": "sbank_042_black.json",
+            "outcome": "win",
+            "position_id": "sbank_042",
+            "color": "black",
+            "termination": "checkmate",
+            "moves": 88,
+            "max_move_s": 1.5159999999999991,
+            "min_remaining_s": 0.999,
+            "sha256": "2e18874f0a4af68912b33bb151640b7a3637b6e60df88189c44e2ebb3862cd04"
+          },
+          {
+            "file": "sbank_042_white.json",
+            "outcome": "win",
+            "position_id": "sbank_042",
+            "color": "white",
+            "termination": "checkmate",
+            "moves": 31,
+            "max_move_s": 1.641,
+            "min_remaining_s": 0.964,
+            "sha256": "65cd6e56fd085c3c6a2ceb454713cb38da0fdecc980b6a2e9d05e096d88409ab"
+          },
+          {
+            "file": "sbank_044_black.json",
+            "outcome": "draw",
+            "position_id": "sbank_044",
+            "color": "black",
+            "termination": "insufficient_material",
+            "moves": 61,
+            "max_move_s": 1.7649999999999988,
+            "min_remaining_s": 0.825,
+            "sha256": "f7b7e1a1e52d3fee7245c28d2a9a2a97d266d6c352609f310ae1fb9d54a92a33"
+          },
+          {
+            "file": "sbank_044_white.json",
+            "outcome": "loss",
+            "position_id": "sbank_044",
+            "color": "white",
+            "termination": "checkmate",
+            "moves": 73,
+            "max_move_s": 1.609,
+            "min_remaining_s": 0.773,
+            "sha256": "92ccd021a3f669dee3c3ced353a7b630e08a5a457b9ef200b89293abe3b7d039"
+          },
+          {
+            "file": "sbank_050_black.json",
+            "outcome": "loss",
+            "position_id": "sbank_050",
+            "color": "black",
+            "termination": "checkmate",
+            "moves": 88,
+            "max_move_s": 1.625,
+            "min_remaining_s": 0.813,
+            "sha256": "7dba8d2e18aaba0732356b0cc5b6194421ea1fb42d92d5d8af7fbecc9d60ac2c"
+          },
+          {
+            "file": "sbank_050_white.json",
+            "outcome": "win",
+            "position_id": "sbank_050",
+            "color": "white",
+            "termination": "checkmate",
+            "moves": 50,
+            "max_move_s": 1.8279999999999994,
+            "min_remaining_s": 1.071,
+            "sha256": "666194cbff9b30cb5767caabe0f162591596bc3c32a3cdd4f9dc1035d8826dd1"
+          },
+          {
+            "file": "sbank_051_black.json",
+            "outcome": "loss",
+            "position_id": "sbank_051",
+            "color": "black",
+            "termination": "checkmate",
+            "moves": 77,
+            "max_move_s": 1.5149999999999988,
+            "min_remaining_s": 0.992,
+            "sha256": "65cc9a75a574a95dffcc508680cb4cfdf175f07576fd83168b5a876ad2682cf0"
+          },
+          {
+            "file": "sbank_051_white.json",
+            "outcome": "win",
+            "position_id": "sbank_051",
+            "color": "white",
+            "termination": "checkmate",
+            "moves": 36,
+            "max_move_s": 1.5149999999999997,
+            "min_remaining_s": 0.718,
+            "sha256": "6fe448e6cf28919a71d6250749149fdab022524e856c7a38a673c5065226ee92"
+          },
+          {
+            "file": "sbank_052_black.json",
+            "outcome": "win",
+            "position_id": "sbank_052",
+            "color": "black",
+            "termination": "checkmate",
+            "moves": 61,
+            "max_move_s": 1.5469999999999988,
+            "min_remaining_s": 0.677,
+            "sha256": "5b4803db3043d18c98354116533ca1e8b644c8c5d35f203dda47da62fdb21d85"
+          },
+          {
+            "file": "sbank_052_white.json",
+            "outcome": "draw",
+            "position_id": "sbank_052",
+            "color": "white",
+            "termination": "fifty_moves",
+            "moves": 158,
+            "max_move_s": 1.516,
+            "min_remaining_s": 0.783,
+            "sha256": "6a2116c9ff06c0fe51e248e361c5b2b4ac1ee0c62ea177398c3c838fca993f0f"
+          },
+          {
+            "file": "sbank_062_black.json",
+            "outcome": "win",
+            "position_id": "sbank_062",
+            "color": "black",
+            "termination": "checkmate",
+            "moves": 78,
+            "max_move_s": 1.7349999999999994,
+            "min_remaining_s": 0.962,
+            "sha256": "fcfcbbc4a7cf3134b75a871a9b9500ede258b66db817f5bec9b3f1bf9d45a7e0"
+          },
+          {
+            "file": "sbank_062_white.json",
+            "outcome": "win",
+            "position_id": "sbank_062",
+            "color": "white",
+            "termination": "checkmate",
+            "moves": 38,
+            "max_move_s": 1.7969999999999988,
+            "min_remaining_s": 1.04,
+            "sha256": "c731be97b7e5a7899da4e94cb7e2f92e8da73ac7fa18d4ef4adf3a9e47d0836d"
+          },
+          {
+            "file": "sbank_067_black.json",
+            "outcome": "win",
+            "position_id": "sbank_067",
+            "color": "black",
+            "termination": "checkmate",
+            "moves": 98,
+            "max_move_s": 1.5309999999999997,
+            "min_remaining_s": 0.822,
+            "sha256": "3a23739829a01059fa32ff140789b1b5eff04e93d4b0a03c012e4cfec8d69420"
+          },
+          {
+            "file": "sbank_067_white.json",
+            "outcome": "win",
+            "position_id": "sbank_067",
+            "color": "white",
+            "termination": "checkmate",
+            "moves": 61,
+            "max_move_s": 1.8129999999999988,
+            "min_remaining_s": 0.714,
+            "sha256": "dae092a5db8219acc0f9a194b4bc80a2a7e6f6ef4434381f9c3abeafb41e5c25"
+          },
+          {
+            "file": "sbank_072_black.json",
+            "outcome": "win",
+            "position_id": "sbank_072",
+            "color": "black",
+            "termination": "checkmate",
+            "moves": 81,
+            "max_move_s": 1.6720000000000006,
+            "min_remaining_s": 0.728,
+            "sha256": "3c5f06203209a3c0630a85a1f2e610671e66439d8cf34d5b2510605004243505"
+          },
+          {
+            "file": "sbank_072_white.json",
+            "outcome": "loss",
+            "position_id": "sbank_072",
+            "color": "white",
+            "termination": "checkmate",
+            "moves": 63,
+            "max_move_s": 1.7029999999999994,
+            "min_remaining_s": 1.014,
+            "sha256": "3f1caa5576984c24cab6645eca0c06f70874e6b2c045032d928876ea9e0da099"
+          },
+          {
+            "file": "sbank_074_black.json",
+            "outcome": "win",
+            "position_id": "sbank_074",
+            "color": "black",
+            "termination": "checkmate",
+            "moves": 62,
+            "max_move_s": 1.4059999999999997,
+            "min_remaining_s": 0.811,
+            "sha256": "02eff4f96007c56d3da92ddbb860c979c319752e5b259b453ed4bfc3c978bbe4"
+          },
+          {
+            "file": "sbank_074_white.json",
+            "outcome": "win",
+            "position_id": "sbank_074",
+            "color": "white",
+            "termination": "checkmate",
+            "moves": 63,
+            "max_move_s": 1.5779999999999994,
+            "min_remaining_s": 0.815,
+            "sha256": "0df81439c85c36d39b668cebbcc8aa2c92bf8db1d2a7d52b34f3b0ad96530a77"
+          },
+          {
+            "file": "sbank_078_black.json",
+            "outcome": "loss",
+            "position_id": "sbank_078",
+            "color": "black",
+            "termination": "checkmate",
+            "moves": 65,
+            "max_move_s": 1.7189999999999994,
+            "min_remaining_s": 1.006,
+            "sha256": "976c11c4a01d7c9ffb8a83d0c3bb9667d2799376bead1517f57ef0f55757897b"
+          },
+          {
+            "file": "sbank_078_white.json",
+            "outcome": "loss",
+            "position_id": "sbank_078",
+            "color": "white",
+            "termination": "checkmate",
+            "moves": 64,
+            "max_move_s": 1.4529999999999994,
+            "min_remaining_s": 0.865,
+            "sha256": "43383239b25e7457e6a40752f5ef6fb078c8559eb7be26b46c7200a173030147"
+          },
+          {
+            "file": "sbank_080_black.json",
+            "outcome": "loss",
+            "position_id": "sbank_080",
+            "color": "black",
+            "termination": "checkmate",
+            "moves": 101,
+            "max_move_s": 1.5159999999999991,
+            "min_remaining_s": 0.842,
+            "sha256": "4309422aee7a2d70d1f5c69f3cfadb8d32ca48e8f8ca51064e9c8dd94a1795ef"
+          },
+          {
+            "file": "sbank_080_white.json",
+            "outcome": "loss",
+            "position_id": "sbank_080",
+            "color": "white",
+            "termination": "checkmate",
+            "moves": 62,
+            "max_move_s": 1.6869999999999994,
+            "min_remaining_s": 0.769,
+            "sha256": "440a56952c3dcbaef12aedb426084c6eadc3bea2a4a757055a70b5519df81d2e"
+          },
+          {
+            "file": "sbank_081_black.json",
+            "outcome": "loss",
+            "position_id": "sbank_081",
+            "color": "black",
+            "termination": "checkmate",
+            "moves": 55,
+            "max_move_s": 1.641,
+            "min_remaining_s": 1.002,
+            "sha256": "22d88ebcdd3c7d2866011a8ae2dfb03e21e4214e60cec46b870275033c2f6aae"
+          },
+          {
+            "file": "sbank_081_white.json",
+            "outcome": "win",
+            "position_id": "sbank_081",
+            "color": "white",
+            "termination": "checkmate",
+            "moves": 32,
+            "max_move_s": 1.8129999999999988,
+            "min_remaining_s": 1.128,
+            "sha256": "337e01d75f2152e303f77324304ebe923dc0b94d516cf392d18cb617aef97307"
+          },
+          {
+            "file": "sbank_085_black.json",
+            "outcome": "draw",
+            "position_id": "sbank_085",
+            "color": "black",
+            "termination": "threefold_repetition",
+            "moves": 34,
+            "max_move_s": 1.5779999999999994,
+            "min_remaining_s": 0.996,
+            "sha256": "2d9aa06d231e9330ae56083ad137d7dfaec2f1a997113735a3d40ffd75d7b411"
+          },
+          {
+            "file": "sbank_085_white.json",
+            "outcome": "win",
+            "position_id": "sbank_085",
+            "color": "white",
+            "termination": "checkmate",
+            "moves": 47,
+            "max_move_s": 1.5619999999999994,
+            "min_remaining_s": 0.821,
+            "sha256": "83fa90d6a1647608aeab37459a7d9b0863f8731ecae8ec66d075c03c1f20c517"
+          },
+          {
+            "file": "sbank_089_black.json",
+            "outcome": "win",
+            "position_id": "sbank_089",
+            "color": "black",
+            "termination": "checkmate",
+            "moves": 74,
+            "max_move_s": 1.8279999999999994,
+            "min_remaining_s": 0.878,
+            "sha256": "9243a82221fdf222c23c36bbc03a576cfb4f10db341ae37a15dd71e3d98d8fbe"
+          },
+          {
+            "file": "sbank_089_white.json",
+            "outcome": "win",
+            "position_id": "sbank_089",
+            "color": "white",
+            "termination": "checkmate",
+            "moves": 59,
+            "max_move_s": 1.7189999999999994,
+            "min_remaining_s": 0.89,
+            "sha256": "6e7a9902b8da5bf336e59923d4f382a7152cc501fa364ff73a27dbb9c4e7d697"
+          },
+          {
+            "file": "sbank_090_black.json",
+            "outcome": "win",
+            "position_id": "sbank_090",
+            "color": "black",
+            "termination": "checkmate",
+            "moves": 55,
+            "max_move_s": 1.5,
+            "min_remaining_s": 0.945,
+            "sha256": "d71bbcfa2b387760fc9376775cbf46706fedc0124a84a493f29fb72de7d13ab9"
+          },
+          {
+            "file": "sbank_090_white.json",
+            "outcome": "draw",
+            "position_id": "sbank_090",
+            "color": "white",
+            "termination": "fifty_moves",
+            "moves": 93,
+            "max_move_s": 1.4380000000000006,
+            "min_remaining_s": 0.833,
+            "sha256": "84ce3e0969e30ef6e3e1e7c383c31b780080c335a6583fb33b090672dd4bbf91"
+          },
+          {
+            "file": "sbank_093_black.json",
+            "outcome": "win",
+            "position_id": "sbank_093",
+            "color": "black",
+            "termination": "checkmate",
+            "moves": 68,
+            "max_move_s": 1.4210000000000003,
+            "min_remaining_s": 0.79,
+            "sha256": "153121045fc37dd8a2a30906bf1b3ac67184d2022b7c9e559d73c24cb1437dd0"
+          },
+          {
+            "file": "sbank_093_white.json",
+            "outcome": "win",
+            "position_id": "sbank_093",
+            "color": "white",
+            "termination": "checkmate",
+            "moves": 43,
+            "max_move_s": 1.1869999999999994,
+            "min_remaining_s": 1.137,
+            "sha256": "723fe5ddde32340b786ce39feaa16c40a2d3ba3ab9ff009eb7927de4407dfb3e"
+          },
+          {
+            "file": "sbank_098_black.json",
+            "outcome": "loss",
+            "position_id": "sbank_098",
+            "color": "black",
+            "termination": "checkmate",
+            "moves": 29,
+            "max_move_s": 1.5149999999999997,
+            "min_remaining_s": 0.984,
+            "sha256": "7cf09dd96065672bca1a9025faad3de0917cfa58181defab5d49b3ab766d16dd"
+          },
+          {
+            "file": "sbank_098_white.json",
+            "outcome": "loss",
+            "position_id": "sbank_098",
+            "color": "white",
+            "termination": "checkmate",
+            "moves": 36,
+            "max_move_s": 1.7029999999999994,
+            "min_remaining_s": 0.877,
+            "sha256": "987ec9e8a91aa9001fa609a09eb734333324f71183511262431c9e2e94a35fd0"
+          }
+        ],
+        "stopped_for_futility": false,
+        "complete_50": true
+      }
+    }
+  ],
+  "candidates": {
+    "lmr": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\search_v2_lmr_01",
+    "staged": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\search_v2_staged_01"
+  }
+}

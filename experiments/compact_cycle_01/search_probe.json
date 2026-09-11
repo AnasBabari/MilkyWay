@@ -1,0 +1,402 @@
+[
+  {
+    "position": "bank_012",
+    "coefficient": null,
+    "move": "b4c2",
+    "score": 551,
+    "depth": 4,
+    "nodes": 622,
+    "qnodes": 488,
+    "seconds": 0.03425460000289604
+  },
+  {
+    "position": "bank_012",
+    "coefficient": 0.0,
+    "move": "b4c2",
+    "score": 551,
+    "depth": 4,
+    "nodes": 622,
+    "qnodes": 488,
+    "seconds": 0.03850850003072992
+  },
+  {
+    "position": "bank_012",
+    "coefficient": 0.25,
+    "move": "b4c2",
+    "score": 489,
+    "depth": 4,
+    "nodes": 622,
+    "qnodes": 497,
+    "seconds": 0.038809899997431785
+  },
+  {
+    "position": "bank_012",
+    "coefficient": 1.0,
+    "move": "b4c2",
+    "score": 326,
+    "depth": 4,
+    "nodes": 824,
+    "qnodes": 1083,
+    "seconds": 0.07297579996520653
+  },
+  {
+    "position": "bank_016",
+    "coefficient": null,
+    "move": "h6f4",
+    "score": 100,
+    "depth": 4,
+    "nodes": 2047,
+    "qnodes": 13783,
+    "seconds": 0.5578020000248216
+  },
+  {
+    "position": "bank_016",
+    "coefficient": 0.0,
+    "move": "h6f4",
+    "score": 100,
+    "depth": 4,
+    "nodes": 2047,
+    "qnodes": 13783,
+    "seconds": 0.6443136999732815
+  },
+  {
+    "position": "bank_016",
+    "coefficient": 0.25,
+    "move": "h6f4",
+    "score": 69,
+    "depth": 4,
+    "nodes": 1929,
+    "qnodes": 16948,
+    "seconds": 0.7729215000290424
+  },
+  {
+    "position": "bank_016",
+    "coefficient": 1.0,
+    "move": "h6f4",
+    "score": 26,
+    "depth": 4,
+    "nodes": 5580,
+    "qnodes": 47102,
+    "seconds": 2.030300000042189
+  },
+  {
+    "position": "bank_032",
+    "coefficient": null,
+    "move": "d7d5",
+    "score": -26,
+    "depth": 4,
+    "nodes": 1341,
+    "qnodes": 1872,
+    "seconds": 0.10991280002053827
+  },
+  {
+    "position": "bank_032",
+    "coefficient": 0.0,
+    "move": "d7d5",
+    "score": -26,
+    "depth": 4,
+    "nodes": 1341,
+    "qnodes": 1872,
+    "seconds": 0.12769629998365417
+  },
+  {
+    "position": "bank_032",
+    "coefficient": 0.25,
+    "move": "d7d5",
+    "score": -52,
+    "depth": 4,
+    "nodes": 1500,
+    "qnodes": 2271,
+    "seconds": 0.1430131999659352
+  },
+  {
+    "position": "bank_032",
+    "coefficient": 1.0,
+    "move": "e7e5",
+    "score": -53,
+    "depth": 4,
+    "nodes": 2919,
+    "qnodes": 6069,
+    "seconds": 0.3336171999690123
+  },
+  {
+    "position": "bank_033",
+    "coefficient": null,
+    "move": "g5f4",
+    "score": 82,
+    "depth": 4,
+    "nodes": 1477,
+    "qnodes": 2097,
+    "seconds": 0.09980749996611848
+  },
+  {
+    "position": "bank_033",
+    "coefficient": 0.0,
+    "move": "g5f4",
+    "score": 82,
+    "depth": 4,
+    "nodes": 1477,
+    "qnodes": 2097,
+    "seconds": 0.11830729997018352
+  },
+  {
+    "position": "bank_033",
+    "coefficient": 0.25,
+    "move": "g5f4",
+    "score": 125,
+    "depth": 4,
+    "nodes": 2339,
+    "qnodes": 3500,
+    "seconds": 0.19152990001020953
+  },
+  {
+    "position": "bank_033",
+    "coefficient": 1.0,
+    "move": "g5f4",
+    "score": 171,
+    "depth": 4,
+    "nodes": 2281,
+    "qnodes": 3332,
+    "seconds": 0.1897832999820821
+  },
+  {
+    "position": "bank_061",
+    "coefficient": null,
+    "move": "b1c3",
+    "score": -39,
+    "depth": 4,
+    "nodes": 1870,
+    "qnodes": 2425,
+    "seconds": 0.12440720002632588
+  },
+  {
+    "position": "bank_061",
+    "coefficient": 0.0,
+    "move": "b1c3",
+    "score": -39,
+    "depth": 4,
+    "nodes": 1870,
+    "qnodes": 2425,
+    "seconds": 0.1433287999825552
+  },
+  {
+    "position": "bank_061",
+    "coefficient": 0.25,
+    "move": "b1c3",
+    "score": 37,
+    "depth": 4,
+    "nodes": 1411,
+    "qnodes": 1692,
+    "seconds": 0.10813260002760217
+  },
+  {
+    "position": "bank_061",
+    "coefficient": 1.0,
+    "move": "b3b4",
+    "score": 224,
+    "depth": 4,
+    "nodes": 2653,
+    "qnodes": 2961,
+    "seconds": 0.18301949999295175
+  },
+  {
+    "position": "bank_120",
+    "coefficient": null,
+    "move": "e2e4",
+    "score": 37,
+    "depth": 4,
+    "nodes": 1358,
+    "qnodes": 1561,
+    "seconds": 0.06720579997636378
+  },
+  {
+    "position": "bank_120",
+    "coefficient": 0.0,
+    "move": "e2e4",
+    "score": 37,
+    "depth": 4,
+    "nodes": 1358,
+    "qnodes": 1561,
+    "seconds": 0.07839989999774843
+  },
+  {
+    "position": "bank_120",
+    "coefficient": 0.25,
+    "move": "f1h3",
+    "score": 27,
+    "depth": 4,
+    "nodes": 1829,
+    "qnodes": 1669,
+    "seconds": 0.10619630001019686
+  },
+  {
+    "position": "bank_120",
+    "coefficient": 1.0,
+    "move": "f1h3",
+    "score": 6,
+    "depth": 4,
+    "nodes": 2766,
+    "qnodes": 2570,
+    "seconds": 0.16253959998721257
+  },
+  {
+    "position": "bank_155",
+    "coefficient": null,
+    "move": "b7c6",
+    "score": 4,
+    "depth": 4,
+    "nodes": 220,
+    "qnodes": 168,
+    "seconds": 0.008686300017870963
+  },
+  {
+    "position": "bank_155",
+    "coefficient": 0.0,
+    "move": "b7c6",
+    "score": 4,
+    "depth": 4,
+    "nodes": 220,
+    "qnodes": 168,
+    "seconds": 0.01032689999556169
+  },
+  {
+    "position": "bank_155",
+    "coefficient": 0.25,
+    "move": "b7c6",
+    "score": 5,
+    "depth": 4,
+    "nodes": 222,
+    "qnodes": 202,
+    "seconds": 0.011295299977064133
+  },
+  {
+    "position": "bank_155",
+    "coefficient": 1.0,
+    "move": "b7c6",
+    "score": 7,
+    "depth": 4,
+    "nodes": 232,
+    "qnodes": 235,
+    "seconds": 0.01214920001802966
+  },
+  {
+    "position": "bank_171",
+    "coefficient": null,
+    "move": "g3g1",
+    "score": 748,
+    "depth": 4,
+    "nodes": 959,
+    "qnodes": 982,
+    "seconds": 0.05237569997552782
+  },
+  {
+    "position": "bank_171",
+    "coefficient": 0.0,
+    "move": "g3g1",
+    "score": 748,
+    "depth": 4,
+    "nodes": 959,
+    "qnodes": 982,
+    "seconds": 0.06003789999522269
+  },
+  {
+    "position": "bank_171",
+    "coefficient": 0.25,
+    "move": "g3g1",
+    "score": 671,
+    "depth": 4,
+    "nodes": 910,
+    "qnodes": 849,
+    "seconds": 0.0542219000053592
+  },
+  {
+    "position": "bank_171",
+    "coefficient": 1.0,
+    "move": "g3g1",
+    "score": 479,
+    "depth": 4,
+    "nodes": 895,
+    "qnodes": 805,
+    "seconds": 0.05741979996673763
+  },
+  {
+    "position": "bank_183",
+    "coefficient": null,
+    "move": "d2d4",
+    "score": 1,
+    "depth": 4,
+    "nodes": 2436,
+    "qnodes": 4178,
+    "seconds": 0.20035439997445792
+  },
+  {
+    "position": "bank_183",
+    "coefficient": 0.0,
+    "move": "d2d4",
+    "score": 1,
+    "depth": 4,
+    "nodes": 2436,
+    "qnodes": 4178,
+    "seconds": 0.22947210003621876
+  },
+  {
+    "position": "bank_183",
+    "coefficient": 0.25,
+    "move": "d2d4",
+    "score": 7,
+    "depth": 4,
+    "nodes": 2509,
+    "qnodes": 4657,
+    "seconds": 0.25644530000863597
+  },
+  {
+    "position": "bank_183",
+    "coefficient": 1.0,
+    "move": "b1c3",
+    "score": 20,
+    "depth": 4,
+    "nodes": 2671,
+    "qnodes": 5102,
+    "seconds": 0.24151420005364344
+  },
+  {
+    "position": "bank_189",
+    "coefficient": null,
+    "move": "f6h8",
+    "score": 620,
+    "depth": 4,
+    "nodes": 731,
+    "qnodes": 1957,
+    "seconds": 0.08699859998887405
+  },
+  {
+    "position": "bank_189",
+    "coefficient": 0.0,
+    "move": "f6h8",
+    "score": 620,
+    "depth": 4,
+    "nodes": 731,
+    "qnodes": 1957,
+    "seconds": 0.09988239995436743
+  },
+  {
+    "position": "bank_189",
+    "coefficient": 0.25,
+    "move": "f6h8",
+    "score": 545,
+    "depth": 4,
+    "nodes": 731,
+    "qnodes": 2040,
+    "seconds": 0.10239730001194403
+  },
+  {
+    "position": "bank_189",
+    "coefficient": 1.0,
+    "move": "f6h8",
+    "score": 322,
+    "depth": 4,
+    "nodes": 1076,
+    "qnodes": 4886,
+    "seconds": 0.2601827000034973
+  }
+]

@@ -1,0 +1,79 @@
+1/25 sbank_089: 1.0/2 checkmate/checkmate
+2/25 sbank_062: 1.0/2 checkmate/checkmate
+3/25 sbank_051: 2.0/2 checkmate/checkmate
+4/25 sbank_010: 1.5/2 checkmate/threefold_repetition
+5/25 sbank_080: 1.0/2 checkmate/checkmate
+6/25 sbank_030: 0.0/2 checkmate/checkmate
+7/25 sbank_067: 1.5/2 checkmate/insufficient_material
+8/25 sbank_085: 1.0/2 threefold_repetition/threefold_repetition
+9/25 sbank_042: 1.5/2 insufficient_material/checkmate
+10/25 sbank_041: 0.0/2 checkmate/checkmate
+11/25 sbank_044: 0.0/2 checkmate/checkmate
+12/25 sbank_018: 1.0/2 threefold_repetition/insufficient_material
+13/25 sbank_021: 1.0/2 checkmate/checkmate
+14/25 sbank_032: 2.0/2 checkmate/checkmate
+15/25 sbank_072: 2.0/2 checkmate/checkmate
+16/25 sbank_074: 0.5/2 checkmate/insufficient_material
+17/25 sbank_052: 1.0/2 checkmate/checkmate
+18/25 sbank_078: 2.0/2 checkmate/checkmate
+19/25 sbank_038: 1.0/2 checkmate/checkmate
+20/25 sbank_090: 1.5/2 checkmate/threefold_repetition
+21/25 sbank_081: 0.5/2 fifty_moves/checkmate
+22/25 sbank_093: 1.0/2 checkmate/checkmate
+23/25 sbank_037: 1.0/2 checkmate/checkmate
+24/25 sbank_050: 1.0/2 checkmate/checkmate
+25/25 sbank_098: 2.0/2 checkmate/checkmate
+{
+  "pairs": 25,
+  "games": 50,
+  "score": 0.56,
+  "record": "+23 =10 -17",
+  "white": {
+    "score": 0.6,
+    "record": "+13 =4 -8"
+  },
+  "black": {
+    "score": 0.52,
+    "record": "+10 =6 -9"
+  },
+  "phases": {
+    "opening": {
+      "pairs": 25,
+      "games": 50,
+      "score": 0.56,
+      "wins": 23,
+      "draws": 10,
+      "losses": 17
+    }
+  },
+  "terminations": {
+    "checkmate": 40,
+    "threefold_repetition": 5,
+    "insufficient_material": 4,
+    "fifty_moves": 1
+  },
+  "bootstrap": {
+    "pairs_count": 25,
+    "games_count": 50,
+    "point_score": 0.56,
+    "score_95_ci": [
+      0.44,
+      0.68
+    ],
+    "point_elo": 41.89414020800522,
+    "elo_95_ci": [
+      -41.89414020800522,
+      130.9435737545322
+    ],
+    "pair_distribution": {
+      "2.0": 5,
+      "1.5": 4,
+      "1.0": 11,
+      "0.5": 2,
+      "0.0": 3
+    },
+    "supportive": true,
+    "strong": false
+  },
+  "failed_terminations": {}
+}

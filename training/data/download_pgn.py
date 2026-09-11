@@ -17,7 +17,11 @@ ROOT = Path(__file__).resolve().parent.parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-PLAYERS = ["Kasparov", "Carlsen", "Karpov", "Fischer", "Anand", "Kramnik"]
+PLAYERS = [
+    "Kasparov", "Carlsen", "Karpov", "Fischer",
+    "Anand", "Kramnik", "Nakamura", "Caruana",
+    "Topalov", "Aronian", "Ding", "Nepomniachtchi",
+]
 BASE_URL = "https://www.pgnmentor.com/players/{player}.zip"
 
 

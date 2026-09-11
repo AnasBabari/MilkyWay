@@ -1,0 +1,7 @@
+{
+  "start_fen": "r1bk1b1r/pp1ppp1p/n1p2Q2/q5B1/1P1Pn3/8/P1P1BPPP/RN2K1NR w KQ - 1 8",
+  "candidate_color": "white",
+  "result": "black",
+  "termination": "checkmate",
+  "pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"compact_quarter_policy_v6\"]\n[Black \"silky_snow\"]\n[Result \"0-1\"]\n[FEN \"r1bk1b1r/pp1ppp1p/n1p2Q2/q5B1/1P1Pn3/8/P1P1BPPP/RN2K1NR w KQ - 1 8\"]\n[SetUp \"1\"]\n[Termination \"checkmate\"]\n\n8. Qxh8 { [%clk 0:00:09.256] } 8... Qxg5 { [%clk 0:00:08.834] } 9. Qxf8+ { [%clk 0:00:07.997] } 9... Kc7 { [%clk 0:00:08.934] } 10. Qxf7 { [%clk 0:00:07.144] } 10... Nxb4 { [%clk 0:00:08.253] } 11. Na3 { [%clk 0:00:05.775] } 11... Nxc2+ { [%clk 0:00:07.462] } 12. Nxc2 { [%clk 0:00:05.797] } 12... Qa5+ { [%clk 0:00:06.031] } 13. Kf1 { [%clk 0:00:05.788] } 13... Nd2+ { [%clk 0:00:05.881] } 14. Ke1 { [%clk 0:00:05.888] } 14... Nf3+ { [%clk 0:00:05.965] } 15. Kf1 { [%clk 0:00:05.941] } 15... Qe1+ { [%clk 0:00:06.034] } 16. Nxe1 { [%clk 0:00:06.01] } 16... Nd2# { [%clk 0:00:06.118] } 0-1"
+}

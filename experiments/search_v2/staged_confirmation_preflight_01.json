@@ -1,0 +1,51 @@
+[
+  {
+    "candidate": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\search_v2_staged_01",
+    "files": {
+      "agent.py": "6a11eea5df0aec0057a7b8beadb21fb8cfd7b181f79defe7c0774ea9e7b8b2fd",
+      "compact_value.py": "88b029e1bc463fa9767d7c16bca802f918818b571518b9f8ad697e6d3046a5e1",
+      "compiled_eval.py": "7f0f2f25f689abb3a3052d54784c7cad35fe29d3e89848f6ee36d70f8bcb8519",
+      "compiled_search.py": "2898ea0523042045c8ff75c0d6a78a026c0ca88c8ba9292b89d5d558b6bc6193",
+      "constants.py": "1feb0bc0b6d4cd1f9b44cdcad2e4d9107b34f527ff9acd0466025f614b36cc68",
+      "core.py": "5536cb3beb0cac12d125cd544810f8e08c0727fd26daf5d3d85455341e1c24fd",
+      "evaluation.py": "4d5c6f2b8f51f445a787f78be4d60a9bc14be9283de9acb28e018da988c413d4",
+      "fast_eval.py": "f3034da83221502f412d17dfa87fb06af09108cc3c008794826662893f22098a",
+      "ordered_search.py": "2584713fcbbfe92f74b2b136255ccc6db2730d09f2e88e03e69d7d94f6c718b1",
+      "staged_search.py": "c597d795e328e80e1d61c78337ba8405e54c8e8401a04c93c354b93ba12d4107",
+      "time_manager.py": "a160b0fec65e406d4e8b3a33bc5332956e0369914c3823ee6bc7aea91b8786dc",
+      "weights/compact_value.npz": "465ef2c4da390a359ec6e4741709093159700160a5c785b0e4b4adc53e453eca"
+    },
+    "unzipped_bytes": 177452,
+    "imports": [
+      "__future__",
+      "chess",
+      "collections",
+      "compact_value",
+      "compiled_eval",
+      "compiled_search",
+      "constants",
+      "core",
+      "dataclasses",
+      "evaluation",
+      "fast_eval",
+      "json",
+      "math",
+      "numba",
+      "numpy",
+      "os",
+      "pathlib",
+      "staged_search",
+      "time",
+      "time_manager",
+      "typing"
+    ],
+    "matches_frozen_runtime": true,
+    "static_preflight_only": true,
+    "remaining": [
+      "strength qualification",
+      "exact archive build and extraction",
+      "extracted-archive smoke games",
+      "final artifact checksum"
+    ]
+  }
+]

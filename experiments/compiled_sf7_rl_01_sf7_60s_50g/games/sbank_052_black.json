@@ -1,0 +1,7 @@
+{
+  "start_fen": "r3kb1r/pp1qpppp/2np1n2/2p5/4P3/2P2N2/PP1PQPPP/RNB2RK1 b kq - 2 7",
+  "candidate_color": "black",
+  "result": "draw",
+  "termination": "threefold_repetition",
+  "pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"stockfish\"]\n[Black \"compiled_sf7_rl_01\"]\n[Result \"1/2-1/2\"]\n[FEN \"r3kb1r/pp1qpppp/2np1n2/2p5/4P3/2P2N2/PP1PQPPP/RNB2RK1 b kq - 2 7\"]\n[SetUp \"1\"]\n[Termination \"threefold_repetition\"]\n\n7... Qg4 { [%clk 0:00:55.625] } 8. Re1 { [%clk 0:00:59.5] } 8... h5 { [%clk 0:00:51.515] } 9. h3 { [%clk 0:00:59] } 9... Qg6 { [%clk 0:00:47.687] } 10. d4 { [%clk 0:00:58.5] } 10... cxd4 { [%clk 0:00:46.078] } 11. cxd4 { [%clk 0:00:58] } 11... e5 { [%clk 0:00:42.593] } 12. d5 { [%clk 0:00:57.5] } 12... Nd4 { [%clk 0:00:39.328] } 13. Nxd4 { [%clk 0:00:57] } 13... exd4 { [%clk 0:00:38.453] } 14. Nd2 { [%clk 0:00:56.5] } 14... O-O-O { [%clk 0:00:37.437] } 15. b4 { [%clk 0:00:56] } 15... Kb8 { [%clk 0:00:34.5] } 16. Qb5 { [%clk 0:00:55.5] } 16... Rc8 { [%clk 0:00:33.031] } 17. Bb2 { [%clk 0:00:55] } 17... Rc2 { [%clk 0:00:32.187] } 18. Nb3 { [%clk 0:00:54.5] } 18... Rxb2 { [%clk 0:00:30.531] } 19. Na5 { [%clk 0:00:54] } 19... b6 { [%clk 0:00:28.562] } 20. Nc6+ { [%clk 0:00:53.5] } 20... Kb7 { [%clk 0:00:27.125] } 21. Na5+ { [%clk 0:00:53] } 21... Kb8 { [%clk 0:00:24.843] } 22. Nc6+ { [%clk 0:00:52.5] } 22... Kb7 { [%clk 0:00:23.062] } 23. Na5+ { [%clk 0:00:52] } 23... Kb8 { [%clk 0:00:22.39] } 1/2-1/2"
+}

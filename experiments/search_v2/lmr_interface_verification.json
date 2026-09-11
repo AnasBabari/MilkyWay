@@ -1,0 +1,31 @@
+{
+  "import_s": 22.250195400090888,
+  "low_clock_moves": 80,
+  "max_250ms_clock_move_s": 0.05173169996123761,
+  "full_clock_probe_s": 6.501205500098877,
+  "full_clock_search": {
+    "move": "e2e3",
+    "depth": 8,
+    "nodes": 1563265,
+    "score": 0,
+    "elapsed_s": 6.499892699997872,
+    "aborted": true,
+    "tt_hits": 56372,
+    "reductions": 43925,
+    "reduction_researches": 1250
+  },
+  "history_extension_and_reset": true,
+  "sha256": {
+    "agent.py": "956827a9cd1383c02b58892837961a7ccc157d226486098735f52c5bbffb28c6",
+    "compact_value.py": "88b029e1bc463fa9767d7c16bca802f918818b571518b9f8ad697e6d3046a5e1",
+    "compiled_eval.py": "7f0f2f25f689abb3a3052d54784c7cad35fe29d3e89848f6ee36d70f8bcb8519",
+    "compiled_search.py": "2898ea0523042045c8ff75c0d6a78a026c0ca88c8ba9292b89d5d558b6bc6193",
+    "constants.py": "1feb0bc0b6d4cd1f9b44cdcad2e4d9107b34f527ff9acd0466025f614b36cc68",
+    "core.py": "a32c0bd9c898a4e8292b954620d5fd362147b2d4551a3221f8cd9bce07ac2fd9",
+    "evaluation.py": "4d5c6f2b8f51f445a787f78be4d60a9bc14be9283de9acb28e018da988c413d4",
+    "fast_eval.py": "f3034da83221502f412d17dfa87fb06af09108cc3c008794826662893f22098a",
+    "ordered_search.py": "2584713fcbbfe92f74b2b136255ccc6db2730d09f2e88e03e69d7d94f6c718b1",
+    "reduced_search.py": "1b5299afdd0fd68275b2f3ae733afa650414c3eb6b22711beb98a3342d069327",
+    "time_manager.py": "a160b0fec65e406d4e8b3a33bc5332956e0369914c3823ee6bc7aea91b8786dc"
+  }
+}

@@ -21,7 +21,7 @@ class ScriptedAgent(Agent):
         fail_reason: str | None = None,
         delay_s: float = 0.0,
     ) -> None:
-        super().__init__(command=[])
+        super().__init__(command=[], name="scripted")
         self.moves = list(moves or [])
         self.move_idx = 0
         self.fail_reason = fail_reason
@@ -230,9 +230,9 @@ class HarnessRulesRegressionTests(unittest.TestCase):
     def test_existing_fifty_moves_draw_preserved(self) -> None:
         """50-move rule without captures or pawn pushes terminates as fifty_moves draw."""
         # Halfmove clock at 99 with sufficient material (Rook on each side).
-        # White makes non-pawn non-capture move to hit 100 halfmoves.
+        # White makes legal non-pawn non-capture move (e1f1) to hit 100 halfmoves.
         fen = "8/8/8/8/8/4k3/4r3/4K2R w - - 99 100"
-        white = ScriptedAgent(moves=["h1h3"])
+        white = ScriptedAgent(moves=["e1f1"])
         black = ScriptedAgent(moves=["e3f4"])
 
         outcome = play_match(white, black, base_ms=10000, increment_ms=500, start_fen=fen)
@@ -266,6 +266,21 @@ class HarnessRulesRegressionTests(unittest.TestCase):
         outcome = play_match(white, black, base_ms=10000, increment_ms=500)
         self.assertEqual(outcome.result, "black")
         self.assertEqual(outcome.termination, "crash")
+
+    def test_draw_on_third_occurrence_not_potential_repetition(self) -> None:
+        """A draw must occur on the actual 3rd occurrence, not when a move could reach it."""
+        # 1. Nf3 Nf6 2. Ng1 Ng8 3. Nf3 Nf6 4. Ng1
+        # At this point, the starting position has occurred twice.
+        # Black could reach the 3rd occurrence with 4... Ng8, but instead plays 4... e5.
+        # Under the old referee (claim_draw=True), the game was drawn before Black could move.
+        # Under the new referee, Black is allowed to play 4... e5 and the game continues.
+        white = ScriptedAgent(moves=["g1f3", "f3g1", "g1f3", "f3g1"])
+        black = ScriptedAgent(moves=["g8f6", "f6g8", "g8f6", "e7e5"])
+
+        outcome = play_match(white, black, base_ms=10000, increment_ms=500)
+        self.assertEqual(black.move_idx, 4)
+        # PGN moves carry clock annotations, so match the black move token.
+        self.assertIn("4... e5", outcome.pgn)
 
 
 if __name__ == "__main__":

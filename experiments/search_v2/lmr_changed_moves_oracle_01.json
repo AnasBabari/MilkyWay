@@ -1,0 +1,266 @@
+{
+  "purpose": "bounded offline diagnosis, not training or strength qualification",
+  "stockfish_sha256": "c86215fa1977d53b82ed854540a4c7b025be4cd042276c85ba3de53fb9118911",
+  "settings": {
+    "skill": 20,
+    "threads": 1,
+    "hash_mb": 16,
+    "nodes_per_forced_move": 100000
+  },
+  "positions": [
+    {
+      "id": "recorded_015",
+      "estimates": {
+        "disabled": {
+          "move": "c1g5",
+          "score_cp": 156,
+          "nodes": 100102,
+          "depth": 15
+        },
+        "lmr": {
+          "move": "c1e3",
+          "score_cp": 92,
+          "nodes": 100009,
+          "depth": 15
+        }
+      },
+      "lmr_minus_parent_cp": -64
+    },
+    {
+      "id": "recorded_026",
+      "estimates": {
+        "disabled": {
+          "move": "c5b6",
+          "score_cp": 120,
+          "nodes": 100071,
+          "depth": 15
+        },
+        "lmr": {
+          "move": "f8d6",
+          "score_cp": 177,
+          "nodes": 100018,
+          "depth": 16
+        }
+      },
+      "lmr_minus_parent_cp": 57
+    },
+    {
+      "id": "recorded_029",
+      "estimates": {
+        "disabled": {
+          "move": "d8e8",
+          "score_cp": -121,
+          "nodes": 100108,
+          "depth": 16
+        },
+        "lmr": {
+          "move": "g7g6",
+          "score_cp": -114,
+          "nodes": 100039,
+          "depth": 17
+        }
+      },
+      "lmr_minus_parent_cp": 7
+    },
+    {
+      "id": "recorded_031",
+      "estimates": {
+        "disabled": {
+          "move": "e2e3",
+          "score_cp": -500,
+          "nodes": 100073,
+          "depth": 16
+        },
+        "lmr": {
+          "move": "e2d1",
+          "score_cp": -497,
+          "nodes": 100004,
+          "depth": 17
+        }
+      },
+      "lmr_minus_parent_cp": 3
+    },
+    {
+      "id": "recorded_032",
+      "estimates": {
+        "disabled": {
+          "move": "h7h5",
+          "score_cp": -162,
+          "nodes": 100002,
+          "depth": 17
+        },
+        "lmr": {
+          "move": "a7a5",
+          "score_cp": -202,
+          "nodes": 100057,
+          "depth": 15
+        }
+      },
+      "lmr_minus_parent_cp": -40
+    },
+    {
+      "id": "recorded_039",
+      "estimates": {
+        "disabled": {
+          "move": "f3g3",
+          "score_cp": 5,
+          "nodes": 100076,
+          "depth": 13
+        },
+        "lmr": {
+          "move": "f3g4",
+          "score_cp": 13,
+          "nodes": 100115,
+          "depth": 15
+        }
+      },
+      "lmr_minus_parent_cp": 8
+    },
+    {
+      "id": "recorded_059",
+      "estimates": {
+        "disabled": {
+          "move": "e4d4",
+          "score_cp": 1,
+          "nodes": 100019,
+          "depth": 17
+        },
+        "lmr": {
+          "move": "e4d3",
+          "score_cp": 4,
+          "nodes": 100046,
+          "depth": 17
+        }
+      },
+      "lmr_minus_parent_cp": 3
+    },
+    {
+      "id": "recorded_063",
+      "estimates": {
+        "disabled": {
+          "move": "c3b3",
+          "score_cp": 0,
+          "nodes": 100026,
+          "depth": 29
+        },
+        "lmr": {
+          "move": "c3c4",
+          "score_cp": 0,
+          "nodes": 100012,
+          "depth": 25
+        }
+      },
+      "lmr_minus_parent_cp": 0
+    },
+    {
+      "id": "recorded_066",
+      "estimates": {
+        "disabled": {
+          "move": "h4h3",
+          "score_cp": 0,
+          "nodes": 100023,
+          "depth": 17
+        },
+        "lmr": {
+          "move": "e1f1",
+          "score_cp": -5,
+          "nodes": 100048,
+          "depth": 18
+        }
+      },
+      "lmr_minus_parent_cp": -5
+    },
+    {
+      "id": "recorded_114",
+      "estimates": {
+        "disabled": {
+          "move": "b8b4",
+          "score_cp": 74,
+          "nodes": 100013,
+          "depth": 16
+        },
+        "lmr": {
+          "move": "f6d4",
+          "score_cp": 67,
+          "nodes": 100095,
+          "depth": 13
+        }
+      },
+      "lmr_minus_parent_cp": -7
+    },
+    {
+      "id": "recorded_120",
+      "estimates": {
+        "disabled": {
+          "move": "g5h7",
+          "score_cp": 29997,
+          "nodes": 16851,
+          "depth": 245
+        },
+        "lmr": {
+          "move": "g3f4",
+          "score_cp": 29997,
+          "nodes": 16041,
+          "depth": 245
+        }
+      },
+      "lmr_minus_parent_cp": 0
+    },
+    {
+      "id": "recorded_189",
+      "estimates": {
+        "disabled": {
+          "move": "e8d8",
+          "score_cp": -196,
+          "nodes": 100044,
+          "depth": 16
+        },
+        "lmr": {
+          "move": "c8a6",
+          "score_cp": -98,
+          "nodes": 100088,
+          "depth": 15
+        }
+      },
+      "lmr_minus_parent_cp": 98
+    },
+    {
+      "id": "recorded_220",
+      "estimates": {
+        "disabled": {
+          "move": "e1g1",
+          "score_cp": -47,
+          "nodes": 100076,
+          "depth": 15
+        },
+        "lmr": {
+          "move": "c1g5",
+          "score_cp": -26,
+          "nodes": 100002,
+          "depth": 14
+        }
+      },
+      "lmr_minus_parent_cp": 21
+    },
+    {
+      "id": "recorded_228",
+      "estimates": {
+        "disabled": {
+          "move": "h8g8",
+          "score_cp": -50,
+          "nodes": 100049,
+          "depth": 14
+        },
+        "lmr": {
+          "move": "h7h6",
+          "score_cp": 47,
+          "nodes": 100096,
+          "depth": 15
+        }
+      },
+      "lmr_minus_parent_cp": 97
+    }
+  ],
+  "large_negative_deltas": 0,
+  "large_positive_deltas": 0
+}

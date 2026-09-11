@@ -1,0 +1,76 @@
+{
+ "status": "PREDECLARED - awaiting user sign-off; bank must be generated+frozen first",
+ "candidate": "experiments/search_v2_combined_01",
+ "roster": {
+  "combined": {
+   "dir": "experiments/search_v2_combined_01",
+   "frozen_files": 12,
+   "hashes_verified": true,
+   "manifestsig": "0887efaa7604a509"
+  },
+  "ordered": {
+   "dir": "experiments/compiled_ordered_01",
+   "frozen_files": 11,
+   "hashes_verified": true,
+   "manifestsig": "a0dd1b40e851e9cf"
+  },
+  "pvs": {
+   "dir": "experiments/compiled_pvs_01",
+   "frozen_files": 11,
+   "hashes_verified": true,
+   "manifestsig": "2dc90f1f89687170"
+  },
+  "rl": {
+   "dir": "experiments/compiled_sf7_rl_01",
+   "frozen_files": 11,
+   "hashes_verified": true,
+   "manifestsig": "eee8cf72d1c2b773"
+  },
+  "staged": {
+   "dir": "experiments/search_v2_staged_01",
+   "frozen_files": 12,
+   "hashes_verified": true,
+   "manifestsig": "b8054a5d720fb640"
+  },
+  "lmr": {
+   "dir": "experiments/search_v2_lmr_01",
+   "frozen_files": 12,
+   "hashes_verified": true,
+   "manifestsig": "8e779f798f6c1887"
+  },
+  "aspir": {
+   "dir": "experiments/search_v2_aspir_01",
+   "frozen_files": 12,
+   "hashes_verified": true,
+   "manifestsig": "b567ab4486bd5f37"
+  }
+ },
+ "roster_live_silky": {
+  "dir": "experiments/silky_snow",
+  "frozen_files": 13,
+  "hashes_verified": "match vs audited live-run manifest 13/13 on 2026-09-09",
+  "identity": "byte-identical to agent_silky_snow.zip per flagship archive audit"
+ },
+ "challenger_roles": [
+  "ordered",
+  "pvs",
+  "rl",
+  "staged",
+  "lmr",
+  "aspir"
+ ],
+ "selection_rationale": "Live (exact production opponent) + every mechanism challenger with a completed development screen: ordered parent, compiled PVS, SF7-RL weights, staged, LMR, aspiration.",
+ "confirmation_games_per_opponent": 100,
+ "paired_colours": true,
+ "pairs_per_opponent": 50,
+ "base_ms": 120000,
+ "increment_ms": 500,
+ "workers_per_comparison": 1,
+ "order": "Live first. Start at most two challenger comparisons only after live passes.",
+ "live_required_score": 0.6,
+ "live_reliability": "zero failed terminations or the run is disqualified regardless of score",
+ "challenger_gate": "paired opening-pair bootstrap two-sided 95% lower score bound above 50% (20000 resamples, seed 2026090823) against EACH challenger; point estimates and transitive comparisons do not substitute",
+ "stockfish_skill7": "diagnostic only, not a qualification target",
+ "stopping": "No early positive stopping; no retrospective exclusion of bad results; failed confirmation retires the bank as unseen.",
+ "package_after_qualification": "Deterministic ZIP from exact qualified runtime; preserve existing root agent.zip first; clean-extract hash comparison of every member; extracted-artifact smoke games both colours; record SHA256. No upload."
+}

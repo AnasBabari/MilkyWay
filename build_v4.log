@@ -1,0 +1,13 @@
+{
+ "total": 500000,
+ "by_source": {
+  "LichessBig": 499878,
+  "aichessathon-round-20-larpmaxx": 14,
+  "aichessathon-round-25-neomatica": 24,
+  "aichessathon-round-34-sunfish": 24,
+  "aichessathon-round-35-tempo": 24,
+  "aichessathon-round-44-imperialists": 24,
+  "aichessathon-round-52-zero-elo-vs-krispy": 12
+ },
+ "excluded_bank": 487
+}

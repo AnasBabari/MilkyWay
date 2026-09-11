@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "C:\Users\Babar\Documents\Coding\Projects\chess_bot\MilkyWay\experiments\search_v2\verify_combined_variant.py", line 128, in <module>
+    main()
+  File "C:\Users\Babar\Documents\Coding\Projects\chess_bot\MilkyWay\experiments\search_v2\verify_combined_variant.py", line 109, in main
+    "baseline_score": r["baseline_score"],
+                      ~^^^^^^^^^^^^^^^^^^
+KeyError: 'baseline_score'

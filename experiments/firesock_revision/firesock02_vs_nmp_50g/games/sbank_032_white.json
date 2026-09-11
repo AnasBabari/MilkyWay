@@ -1,0 +1,7 @@
+{
+  "start_fen": "rnbq1rk1/ppp1bppp/5n2/3p2B1/3P4/2NBP3/PP3PPP/R2QK1NR b KQ - 2 7",
+  "candidate_color": "white",
+  "result": "draw",
+  "termination": "threefold_repetition",
+  "pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"search_v2_firesock_02\"]\n[Black \"search_v2_nmp_01\"]\n[Result \"1/2-1/2\"]\n[FEN \"rnbq1rk1/ppp1bppp/5n2/3p2B1/3P4/2NBP3/PP3PPP/R2QK1NR b KQ - 2 7\"]\n[SetUp \"1\"]\n[Termination \"threefold_repetition\"]\n\n7... Nc6 { [%clk 0:00:11.162] } 8. h4 { [%clk 0:00:10.741] } 8... Bg4 { [%clk 0:00:09.934] } 9. Qb3 { [%clk 0:00:09.95] } 9... Na5 { [%clk 0:00:08.925] } 10. Qa4 { [%clk 0:00:09.331] } 10... Nc4 { [%clk 0:00:08.166] } 11. Qb3 { [%clk 0:00:08.54] } 11... Na5 { [%clk 0:00:07.469] } 12. Qa4 { [%clk 0:00:07.828] } 12... Nc4 { [%clk 0:00:06.709] } 13. Qb3 { [%clk 0:00:07.116] } 13... Na5 { [%clk 0:00:05.778] } 1/2-1/2"
+}

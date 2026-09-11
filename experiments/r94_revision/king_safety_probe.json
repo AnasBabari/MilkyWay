@@ -1,0 +1,147 @@
+{
+  "runtime": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\r94_king_safety_01",
+  "import_s": 25.656423500040546,
+  "runtime_sha256": {
+    "agent.py": "37aad1c192d5ecf5494679a54b1337e01d7adf55c71bcce56719636abb6aee23",
+    "combined_search.py": "c9e4806ff7eac071e1bbe43c8f5dffe7ff63c1a94a973dbbf9c5e89e052a779f",
+    "compact_value.py": "88b029e1bc463fa9767d7c16bca802f918818b571518b9f8ad697e6d3046a5e1",
+    "compiled_eval.py": "af53285702e976c06654e998844ca6eeef94873a6649bf0a72d7d45ae642e7d4",
+    "compiled_search.py": "2898ea0523042045c8ff75c0d6a78a026c0ca88c8ba9292b89d5d558b6bc6193",
+    "constants.py": "1feb0bc0b6d4cd1f9b44cdcad2e4d9107b34f527ff9acd0466025f614b36cc68",
+    "core.py": "5536cb3beb0cac12d125cd544810f8e08c0727fd26daf5d3d85455341e1c24fd",
+    "evaluation.py": "4d5c6f2b8f51f445a787f78be4d60a9bc14be9283de9acb28e018da988c413d4",
+    "fast_eval.py": "f3034da83221502f412d17dfa87fb06af09108cc3c008794826662893f22098a",
+    "ordered_search.py": "2584713fcbbfe92f74b2b136255ccc6db2730d09f2e88e03e69d7d94f6c718b1",
+    "time_manager.py": "a160b0fec65e406d4e8b3a33bc5332956e0369914c3823ee6bc7aea91b8786dc"
+  },
+  "rows": [
+    {
+      "ply": 18,
+      "fen": "r1b2rk1/pp3ppp/2n1pn2/2qp4/8/2P1PN1P/PP1N1PP1/R2QKB1R w KQ - 0 10",
+      "played": "g2g4",
+      "probe": {
+        "move": "f1e2",
+        "depth": 8,
+        "nodes": 1402345,
+        "score": -23,
+        "elapsed_s": 3.6116249000187963,
+        "aborted": false,
+        "tt_hits": 23912,
+        "reductions": 37369,
+        "reduction_researches": 155
+      }
+    },
+    {
+      "ply": 26,
+      "fen": "r4rk1/pp3ppp/2n5/2q1pbP1/4p3/2P1P2P/PP1N1P2/R2QKB1R w KQ - 2 14",
+      "played": "d1c2",
+      "probe": {
+        "move": "d1c2",
+        "depth": 7,
+        "nodes": 1604993,
+        "score": -36,
+        "elapsed_s": 4.000347499968484,
+        "aborted": true,
+        "tt_hits": 17324,
+        "reductions": 31592,
+        "reduction_researches": 130
+      }
+    },
+    {
+      "ply": 34,
+      "fen": "3r1rk1/pp3pp1/2n1q2p/4pbP1/4N2P/2P1P3/PPQ2PB1/R3K2R w KQ - 0 18",
+      "played": "h1g1",
+      "probe": {
+        "move": "e1g1",
+        "depth": 7,
+        "nodes": 1567361,
+        "score": 58,
+        "elapsed_s": 4.0002042999258265,
+        "aborted": true,
+        "tt_hits": 17402,
+        "reductions": 31497,
+        "reduction_researches": 64
+      }
+    },
+    {
+      "ply": 38,
+      "fen": "3r1rk1/1p3pp1/2n1q3/p3pbP1/4N3/2P1P3/PPQ2PB1/R3K1R1 w Q - 0 20",
+      "played": "c2b3",
+      "probe": {
+        "move": "c2b3",
+        "depth": 8,
+        "nodes": 1652353,
+        "score": 77,
+        "elapsed_s": 4.000296899932437,
+        "aborted": true,
+        "tt_hits": 28959,
+        "reductions": 52069,
+        "reduction_researches": 87
+      }
+    },
+    {
+      "ply": 40,
+      "fen": "3r1rk1/1p3pp1/2n3q1/p3pbP1/4N3/1QP1P3/PP3PB1/R3K1R1 w Q - 2 21",
+      "played": "e4c5",
+      "probe": {
+        "move": "e4c5",
+        "depth": 8,
+        "nodes": 1519472,
+        "score": 67,
+        "elapsed_s": 3.6997883999720216,
+        "aborted": false,
+        "tt_hits": 23531,
+        "reductions": 41026,
+        "reduction_researches": 115
+      }
+    },
+    {
+      "ply": 42,
+      "fen": "3r1rk1/1p3pp1/2n5/p1N1pbq1/8/1QP1P3/PP3PB1/R3K1R1 w Q - 0 22",
+      "played": "b3b7",
+      "probe": {
+        "move": "b3b7",
+        "depth": 8,
+        "nodes": 1481153,
+        "score": 78,
+        "elapsed_s": 3.649102000053972,
+        "aborted": false,
+        "tt_hits": 17996,
+        "reductions": 31590,
+        "reduction_researches": 56
+      }
+    },
+    {
+      "ply": 50,
+      "fen": "5rk1/3Q1pp1/2n3r1/p5q1/4p3/2P1P3/PP3PB1/R3K1R1 w Q - 0 26",
+      "played": "d7d2",
+      "probe": {
+        "move": "e1c1",
+        "depth": 8,
+        "nodes": 1667457,
+        "score": -8,
+        "elapsed_s": 4.000114299939014,
+        "aborted": true,
+        "tt_hits": 27607,
+        "reductions": 54925,
+        "reduction_researches": 110
+      }
+    },
+    {
+      "ply": 54,
+      "fen": "6k1/5pp1/2n3r1/p5q1/4p3/2PrP3/PPQ2PB1/R3K1R1 w Q - 4 28",
+      "played": "e1e2",
+      "probe": {
+        "move": "e1e2",
+        "depth": 8,
+        "nodes": 1171160,
+        "score": -4,
+        "elapsed_s": 2.830724100000225,
+        "aborted": false,
+        "tt_hits": 16172,
+        "reductions": 26285,
+        "reduction_researches": 43
+      }
+    }
+  ]
+}

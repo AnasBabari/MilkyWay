@@ -1,0 +1,8 @@
+{
+  "reason": "User revised planned sample to50games and initial clock to60seconds",
+  "status": "intentionally stopped; preserve completed120second games separately",
+  "replacement": "experiments\\compiled_pvs_01_sf7_60s_50g",
+  "replacement_base_ms": 60000,
+  "replacement_increment_ms": 500,
+  "replacement_pairs": 25
+}

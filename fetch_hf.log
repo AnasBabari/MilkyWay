@@ -1,0 +1,27 @@
+fetching lichess_200k_elo_bins.zip ...
+httpx.HTTPStatusError: Client error '401 Unauthorized' for url 'https://huggingface.co/adamkarvonen/chess_games/resolve/main/lichess_200k_elo_bins.zip'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Babar\Documents\Coding\Projects\chess_bot\MilkyWay\fetch_tmp.py", line 15, in <module>
+    path = hf_hub_download(REPO, name, local_dir=OUT)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Babar\Documents\Coding\Projects\chess_bot\MilkyWay\training\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py", line 88, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Babar\Documents\Coding\Projects\chess_bot\MilkyWay\training\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 1007, in hf_hub_download
+    return _hf_hub_download_to_local_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Babar\Documents\Coding\Projects\chess_bot\MilkyWay\training\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 1381, in _hf_hub_download_to_local_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "C:\Users\Babar\Documents\Coding\Projects\chess_bot\MilkyWay\training\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 1915, in _raise_on_head_call_error
+    raise head_call_error
+huggingface_hub.errors.RepositoryNotFoundError: 401 Client Error. (Request ID: Root=1-6a9ea9ab-2d4e2b682b4dbaa211702699;be5a55d5-3be4-4050-87d1-b7629dcd2ba3)
+
+Repository Not Found for url: https://huggingface.co/adamkarvonen/chess_games/resolve/main/lichess_200k_elo_bins.zip.
+Please make sure you specified the correct `repo_id` and `repo_type`.
+If you are trying to access a private or gated repo, make sure you are authenticated and your token has the required permissions.
+For more details, see https://huggingface.co/docs/huggingface_hub/authentication
+Invalid username or password.

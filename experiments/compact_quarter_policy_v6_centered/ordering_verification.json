@@ -1,0 +1,10 @@
+{
+  "positions": 256,
+  "offsets": [
+    -100,
+    100
+  ],
+  "offset_invariance": true,
+  "tt_priority": true,
+  "legal_move_set_preserved": true
+}

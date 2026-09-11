@@ -1,0 +1,16 @@
+=======================================================
+Starting Stockfish Benchmark — Skill Level 6
+Pairs: 6 (2 games per pair = 12 games)
+Base: 120000ms, Inc: 500ms, Workers: 1
+=======================================================
+[1/6] Pair sbank_093: 0.5/2 (White: draw, Black: white)
+[2/6] Pair sbank_016: 0.0/2 (White: black, Black: white)
+[3/6] Pair sbank_051: 1.0/2 (White: white, Black: white)
+[4/6] Pair sbank_021: 1.0/2 (White: white, Black: white)
+[5/6] Pair sbank_019: 0.5/2 (White: black, Black: draw)
+[6/6] Pair sbank_059: 1.0/2 (White: white, Black: white)
+Computing full-strength oracle ACPL for all saved games...
+
+=======================================================
+Stockfish Benchmark Complete. Summary saved to experiments\astralix\sf6_r1policy_120s_ext2\benchmark_summary.json
+=======================================================

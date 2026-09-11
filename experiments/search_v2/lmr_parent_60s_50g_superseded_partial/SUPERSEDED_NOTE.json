@@ -1,0 +1,6 @@
+{
+    "games_at_stop":  4,
+    "reason":  "User directed faster games (~30s wall each); development clock changed 60s+0.5s to 12s+0.1s (1/5 scale). Partial 60s games preserved but never pooled with fast-clock games.",
+    "action":  "superseded_by_user_clock_change",
+    "stopped_utc":  "2026-09-08T15:38:51.0912871Z"
+}

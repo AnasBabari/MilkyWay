@@ -1,0 +1,54 @@
+{
+  "pairs": 50,
+  "games": 100,
+  "score": 0.71,
+  "record": "+64 =14 -22",
+  "white": {
+    "score": 0.71,
+    "record": "+31 =9 -10"
+  },
+  "black": {
+    "score": 0.71,
+    "record": "+33 =5 -12"
+  },
+  "phases": {
+    "opening": {
+      "pairs": 50,
+      "games": 100,
+      "score": 0.71,
+      "wins": 64,
+      "draws": 14,
+      "losses": 22
+    }
+  },
+  "terminations": {
+    "checkmate": 86,
+    "threefold_repetition": 11,
+    "fifty_moves": 2,
+    "insufficient_material": 1
+  },
+  "bootstrap": {
+    "pairs_count": 50,
+    "games_count": 100,
+    "point_score": 0.71,
+    "score_95_ci": [
+      0.63,
+      0.785
+    ],
+    "point_elo": 155.54414032804763,
+    "elo_95_ci": [
+      92.45553015463472,
+      224.9724787318589
+    ],
+    "pair_distribution": {
+      "2.0": 20,
+      "1.5": 8,
+      "1.0": 18,
+      "0.5": 2,
+      "0.0": 2
+    },
+    "supportive": true,
+    "strong": true
+  },
+  "failed_terminations": {}
+}

@@ -2,20 +2,28 @@
 
 A from-scratch chess engine built for the 2026 AI Chessathon.
 
-**Current competition build: MW-0.2 — platform validated**
+**Current competition build: search_v2_tm_01 — packaged, awaiting full confirmation.
+Builds are locked; see evidence reports before changing anything below.**
 
 ## Competition status
 
-**MilkyWay MW-0.2** — validated for AI Chessathon on 5 September 2026.
+**search_v2_tm_01** (root `agent.zip`) — packaged 11 September 2026.
 
-- Platform validation: passed
-- Init time: 0.5–0.7 s
-- Validation smoke games: passed as White and Black
-- Submission size: 71,835 bytes uncompressed
-- Search: iterative deepening PVS/alpha-beta with TT, quiescence,
-  aspiration windows, LMR, null-move pruning and futility pruning
-- Evaluation: tapered handcrafted evaluation
-- Runtime: Python 3.12 / single CPU core
+- Submission SHA256:
+  `3A829E4EA66FD897A54216FB9CF992460B3996674DE408507C24C6AB7F839F2D`
+  (also in `agent_tm_20260911.sha256`)
+- Lineage: classical MW-0.2 → speed build (silky-snow) → search_v2 tournament
+  winner (combined: staged generation + LMR) → null-move pruning →
+  middlegame pawn-attack fix → healthy-clock time-ceiling raise.
+- Evidence: 88% vs silky-snow at 12s+0.1s (50 games, audited); 59.4% pooled
+  at 120s+0.5s; 16.0/20 full-clock trial for the TM step (audited).
+- Not yet done: 100-game independent confirmation (bank_02 frozen; overnight
+  runs need host sleep disabled first).
+- Submission size: 79,562 bytes zipped / 180,484 unzipped (cap 50 MB).
+- Previous builds preserved: `agent_prev_*.zip` chain in repo root.
+- Full reports: `experiments/search_v2/`, `experiments/nmp_revision/`,
+  `experiments/tm_revision/`, `experiments/PROMOTION_REPORT_silky_snow.md`.
+- Runtime: Python 3.12 / single CPU core / 120s + 0.5s.
 
 ## Architecture
 

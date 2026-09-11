@@ -1,0 +1,12 @@
+[
+  {
+    "ProcessId": 31880,
+    "ParentProcessId": 11780,
+    "CommandLine": "\"C:\\Users\\Babar\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\"   tools/candidate_screen.py --agent experiments/compiled_ordered_01 --opponent experiments/compiled_pvs_01 --out experiments/compiled_ordered_01_parent_60s_50g --pairs 25 --workers 1 --bank screen --base-ms 60000 --increment-ms 500 --record-games "
+  },
+  {
+    "ProcessId": 37948,
+    "ParentProcessId": 22416,
+    "CommandLine": "\"C:\\Users\\Babar\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\"   tools/candidate_screen.py --agent experiments/compiled_sf7_rl_01 --opponent experiments/compiled_pvs_01 --out experiments/compiled_sf7_rl_01_parent_60s_50g --pairs 25 --workers 1 --bank screen --base-ms 60000 --increment-ms 500 --record-games "
+  }
+]

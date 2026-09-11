@@ -1,0 +1,6 @@
+{
+ "status": "REJECTED + ROLLED BACK 2026-09-10",
+ "screen": "mg_vs_nmp_50g_r2, 50/50, +23 =9 -18 = 27.5/50 (need 30), zero failures",
+ "action": "root agent.zip restored to NMP build 07EA0855; mg build retained as agent_nmp_mg_20260910.zip (344D4010) for evidence",
+ "note": "genuine eval-bug fix, zero game value at 12s TC; seventh straight 23.5-29 result vs NMP lineage"
+}

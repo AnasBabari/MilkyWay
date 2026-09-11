@@ -1,0 +1,36 @@
+{
+  "base": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\compiled_pvs_01",
+  "base_sha256": {
+    "agent.py": "0222ee65c01aedc89565bc4125113e8df75d5e1b73656fee2baa16ac55495ef3",
+    "compact_value.py": "88b029e1bc463fa9767d7c16bca802f918818b571518b9f8ad697e6d3046a5e1",
+    "compiled_eval.py": "7f0f2f25f689abb3a3052d54784c7cad35fe29d3e89848f6ee36d70f8bcb8519",
+    "compiled_search.py": "2898ea0523042045c8ff75c0d6a78a026c0ca88c8ba9292b89d5d558b6bc6193",
+    "constants.py": "1feb0bc0b6d4cd1f9b44cdcad2e4d9107b34f527ff9acd0466025f614b36cc68",
+    "core.py": "a32c0bd9c898a4e8292b954620d5fd362147b2d4551a3221f8cd9bce07ac2fd9",
+    "evaluation.py": "4d5c6f2b8f51f445a787f78be4d60a9bc14be9283de9acb28e018da988c413d4",
+    "fast_eval.py": "f3034da83221502f412d17dfa87fb06af09108cc3c008794826662893f22098a",
+    "pvs_search.py": "0270978916d179ab143d704a4704458b6662dc787f92778b841b24cd2be81d06",
+    "time_manager.py": "a160b0fec65e406d4e8b3a33bc5332956e0369914c3823ee6bc7aea91b8786dc",
+    "weights\\compact_value.npz": "465ef2c4da390a359ec6e4741709093159700160a5c785b0e4b4adc53e453eca"
+  },
+  "weights_source": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\training\\checkpoints\\compact_sf7_fullclock_outcomes_01\\compact_value.npz",
+  "sha256": {
+    "agent.py": "0222ee65c01aedc89565bc4125113e8df75d5e1b73656fee2baa16ac55495ef3",
+    "compact_value.py": "88b029e1bc463fa9767d7c16bca802f918818b571518b9f8ad697e6d3046a5e1",
+    "compiled_eval.py": "7f0f2f25f689abb3a3052d54784c7cad35fe29d3e89848f6ee36d70f8bcb8519",
+    "compiled_search.py": "2898ea0523042045c8ff75c0d6a78a026c0ca88c8ba9292b89d5d558b6bc6193",
+    "constants.py": "1feb0bc0b6d4cd1f9b44cdcad2e4d9107b34f527ff9acd0466025f614b36cc68",
+    "core.py": "a32c0bd9c898a4e8292b954620d5fd362147b2d4551a3221f8cd9bce07ac2fd9",
+    "evaluation.py": "4d5c6f2b8f51f445a787f78be4d60a9bc14be9283de9acb28e018da988c413d4",
+    "fast_eval.py": "f3034da83221502f412d17dfa87fb06af09108cc3c008794826662893f22098a",
+    "pvs_search.py": "0270978916d179ab143d704a4704458b6662dc787f92778b841b24cd2be81d06",
+    "time_manager.py": "a160b0fec65e406d4e8b3a33bc5332956e0369914c3823ee6bc7aea91b8786dc",
+    "weights\\compact_value.npz": "3573973f080c94e23e518d26a8a64ac40baaae3c1db05b412d1ada6cd16362fa"
+  },
+  "mechanism": "weights only; source, coefficient and time allocation unchanged",
+  "status": "experimental; unpromoted",
+  "changed_files": [
+    "weights\\compact_value.npz"
+  ],
+  "freezer_sha256": "dce35d6f63c2733818694cbbb933ea2195f31eadd9a06ed6f9da7c43851b0a64"
+}

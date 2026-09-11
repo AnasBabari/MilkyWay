@@ -1,0 +1,20 @@
+{
+  "candidate": "search_v2_mg_delta_01",
+  "base": "search_v2_nmp_mg_01",
+  "change": "Conservative quiescence delta pruning only; 250cp margin",
+  "qualified": false,
+  "sha256": {
+    "agent.py": "37aad1c192d5ecf5494679a54b1337e01d7adf55c71bcce56719636abb6aee23",
+    "combined_search.py": "7f53846b7c6a02b1cd3e3ff2c875a705d755dacd7fe848e8a57c92724faf8323",
+    "compact_value.py": "88b029e1bc463fa9767d7c16bca802f918818b571518b9f8ad697e6d3046a5e1",
+    "compiled_eval.py": "7f0f2f25f689abb3a3052d54784c7cad35fe29d3e89848f6ee36d70f8bcb8519",
+    "compiled_search.py": "2898ea0523042045c8ff75c0d6a78a026c0ca88c8ba9292b89d5d558b6bc6193",
+    "constants.py": "1feb0bc0b6d4cd1f9b44cdcad2e4d9107b34f527ff9acd0466025f614b36cc68",
+    "core.py": "5536cb3beb0cac12d125cd544810f8e08c0727fd26daf5d3d85455341e1c24fd",
+    "evaluation.py": "62877e93726bd821d8184e317cc81c44d2aea4f359a98597777f493d1843e123",
+    "fast_eval.py": "599f758b721f52b6c2e30958d3e51b04283df951225c29574ba718edbbc6630f",
+    "ordered_search.py": "2584713fcbbfe92f74b2b136255ccc6db2730d09f2e88e03e69d7d94f6c718b1",
+    "time_manager.py": "a160b0fec65e406d4e8b3a33bc5332956e0369914c3823ee6bc7aea91b8786dc",
+    "weights/compact_value.npz": "465ef2c4da390a359ec6e4741709093159700160a5c785b0e4b4adc53e453eca"
+  }
+}

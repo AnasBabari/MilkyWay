@@ -1,0 +1,7 @@
+{
+  "start_fen": "8/1K6/1P6/8/4k3/p7/8/8 w - - 12 24",
+  "candidate_color": "black",
+  "result": "draw",
+  "termination": "insufficient_material",
+  "pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"silky_snow\"]\n[Black \"compact_quarter_policy_v6\"]\n[Result \"1/2-1/2\"]\n[FEN \"8/1K6/1P6/8/4k3/p7/8/8 w - - 12 24\"]\n[SetUp \"1\"]\n[Termination \"insufficient_material\"]\n\n24. Kc6 { [%clk 0:00:09.506] } 24... a2 { [%clk 0:00:09.335] } 25. b7 { [%clk 0:00:07.949] } 25... a1=Q { [%clk 0:00:08.014] } 26. b8=Q { [%clk 0:00:06.486] } 26... Qc1+ { [%clk 0:00:07.411] } 27. Kd7 { [%clk 0:00:05.711] } 27... Qg1 { [%clk 0:00:05.98] } 28. Qd6 { [%clk 0:00:05.686] } 28... Qa7+ { [%clk 0:00:06.033] } 29. Ke6 { [%clk 0:00:05.739] } 29... Qa2+ { [%clk 0:00:05.649] } 30. Kd7 { [%clk 0:00:05.792] } 30... Qc4 { [%clk 0:00:05.717] } 31. Qc6+ { [%clk 0:00:05.877] } 31... Qxc6+ { [%clk 0:00:05.801] } 32. Kxc6 { [%clk 0:00:05.977] } 1/2-1/2"
+}

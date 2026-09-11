@@ -1,0 +1,31 @@
+binary: C:\Users\Babar\AppData\Local\Temp\opencode\sf\stockfish\stockfish-windows-x86-64-universal.exe
+train: labelling 58553 positions ...
+  workers done 1/8
+  workers done 2/8
+  workers done 3/8
+  workers done 4/8
+  workers done 5/8
+  workers done 6/8
+  workers done 7/8
+  workers done 8/8
+train: 58553 labelled -> 8 shards
+val: labelling 7725 positions ...
+  workers done 1/8
+  workers done 2/8
+  workers done 3/8
+  workers done 4/8
+  workers done 5/8
+  workers done 6/8
+  workers done 7/8
+  workers done 8/8
+val: 7725 labelled -> 1 shards
+test: labelling 3722 positions ...
+  workers done 1/8
+  workers done 2/8
+  workers done 3/8
+  workers done 4/8
+  workers done 5/8
+  workers done 6/8
+  workers done 7/8
+  workers done 8/8
+test: 3722 labelled -> 1 shards

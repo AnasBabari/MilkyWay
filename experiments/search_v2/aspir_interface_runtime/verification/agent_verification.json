@@ -1,0 +1,37 @@
+{
+  "import_s": 24.323761499952525,
+  "low_clock_moves": 80,
+  "max_250ms_clock_move_s": 0.05247489991597831,
+  "full_clock_probe_s": 6.502559100044891,
+  "full_clock_search": {
+    "move": "e2e3",
+    "depth": 7,
+    "nodes": 1356289,
+    "score": 31,
+    "elapsed_s": 6.50055659993086,
+    "aborted": true,
+    "tt_hits": 32035
+  },
+  "history_extension_and_reset": true,
+  "sha256": {
+    "agent.py": "ad73c2f8f5eba0f85ebf13b157dfdcf53d861cfe9c428f22fff55e163f43e5fd",
+    "compact_value.py": "88b029e1bc463fa9767d7c16bca802f918818b571518b9f8ad697e6d3046a5e1",
+    "compiled_eval.py": "7f0f2f25f689abb3a3052d54784c7cad35fe29d3e89848f6ee36d70f8bcb8519",
+    "compiled_search.py": "2898ea0523042045c8ff75c0d6a78a026c0ca88c8ba9292b89d5d558b6bc6193",
+    "constants.py": "1feb0bc0b6d4cd1f9b44cdcad2e4d9107b34f527ff9acd0466025f614b36cc68",
+    "core.py": "a32c0bd9c898a4e8292b954620d5fd362147b2d4551a3221f8cd9bce07ac2fd9",
+    "evaluation.py": "4d5c6f2b8f51f445a787f78be4d60a9bc14be9283de9acb28e018da988c413d4",
+    "fast_eval.py": "f3034da83221502f412d17dfa87fb06af09108cc3c008794826662893f22098a",
+    "ordered_search.py": "2584713fcbbfe92f74b2b136255ccc6db2730d09f2e88e03e69d7d94f6c718b1",
+    "pvs_search.py": "0270978916d179ab143d704a4704458b6662dc787f92778b841b24cd2be81d06",
+    "time_manager.py": "a160b0fec65e406d4e8b3a33bc5332956e0369914c3823ee6bc7aea91b8786dc",
+    "tt_search.py": "a181d723d89c43dd69067b6fcfd221ad70485f6161bb01eebf65f1ed69779d68",
+    "verify.py": "95ee46b1d3b2de3ecbc239f9ccb7f89bc3c05dd71d047b54ad6811c7e906a1f0",
+    "verify_agent.py": "4666dc69a35cf4614d33b520aa3733814dfbd5647b6a2fcedf3e37bc68c6e61f",
+    "verify_eval.py": "5cae539c24202edca09f487e942a5a338574a05bf5d7c135bd66ecae9bdefcbf",
+    "verify_ordering.py": "e83a27c47ea2a640927adb5db266387d439eba665da8bdcadda18dc2bb3d6130",
+    "verify_pvs.py": "f97e67ca6c830fa092dfec8dbf9097cde90b180d1eac06eb835941d5c84f402c",
+    "verify_search.py": "cc37d4db41a6205f483aefd4622e15fc1ee932382734c757d3389e3bdbe11a63",
+    "verify_tt.py": "59999ab771f5df2329d3633d342ccba6b055c7e16a2243d650654d1f9111dc1f"
+  }
+}

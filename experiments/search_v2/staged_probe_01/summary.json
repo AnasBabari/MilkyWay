@@ -1,0 +1,10 @@
+{
+  "positions": 240,
+  "completed_score_parity": 240,
+  "legal_capture_and_promotion_sets_match": true,
+  "reference_s": 40.418209498981014,
+  "staged_s": 23.66802999912761,
+  "reference_nodes": 10134358,
+  "staged_nodes": 10134445,
+  "timing_caveat": "Concurrent parent games; diagnostic timing only"
+}

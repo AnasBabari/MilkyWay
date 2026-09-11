@@ -1,0 +1,374 @@
+{
+  "source_mapping_checks": 256,
+  "isolated_kernel_checks": 480,
+  "original_mapping_errors": {
+    "evaluation.py": [
+      {
+        "color": true,
+        "square": "a1",
+        "actual": 128,
+        "expected": 512
+      },
+      {
+        "color": true,
+        "square": "h1",
+        "actual": 65536,
+        "expected": 16384
+      },
+      {
+        "color": true,
+        "square": "a2",
+        "actual": 32768,
+        "expected": 131072
+      },
+      {
+        "color": true,
+        "square": "h2",
+        "actual": 16777216,
+        "expected": 4194304
+      },
+      {
+        "color": true,
+        "square": "a3",
+        "actual": 8388608,
+        "expected": 33554432
+      },
+      {
+        "color": true,
+        "square": "h3",
+        "actual": 4294967296,
+        "expected": 1073741824
+      },
+      {
+        "color": true,
+        "square": "a4",
+        "actual": 2147483648,
+        "expected": 8589934592
+      },
+      {
+        "color": true,
+        "square": "h4",
+        "actual": 1099511627776,
+        "expected": 274877906944
+      },
+      {
+        "color": true,
+        "square": "a5",
+        "actual": 549755813888,
+        "expected": 2199023255552
+      },
+      {
+        "color": true,
+        "square": "h5",
+        "actual": 281474976710656,
+        "expected": 70368744177664
+      },
+      {
+        "color": true,
+        "square": "a6",
+        "actual": 140737488355328,
+        "expected": 562949953421312
+      },
+      {
+        "color": true,
+        "square": "h6",
+        "actual": 72057594037927936,
+        "expected": 18014398509481984
+      },
+      {
+        "color": true,
+        "square": "a7",
+        "actual": 36028797018963968,
+        "expected": 144115188075855872
+      },
+      {
+        "color": true,
+        "square": "h7",
+        "actual": 0,
+        "expected": 4611686018427387904
+      },
+      {
+        "color": true,
+        "square": "a8",
+        "actual": 9223372036854775808,
+        "expected": 0
+      },
+      {
+        "color": false,
+        "square": "h1",
+        "actual": 1,
+        "expected": 0
+      },
+      {
+        "color": false,
+        "square": "a2",
+        "actual": 0,
+        "expected": 2
+      },
+      {
+        "color": false,
+        "square": "h2",
+        "actual": 256,
+        "expected": 64
+      },
+      {
+        "color": false,
+        "square": "a3",
+        "actual": 128,
+        "expected": 512
+      },
+      {
+        "color": false,
+        "square": "h3",
+        "actual": 65536,
+        "expected": 16384
+      },
+      {
+        "color": false,
+        "square": "a4",
+        "actual": 32768,
+        "expected": 131072
+      },
+      {
+        "color": false,
+        "square": "h4",
+        "actual": 16777216,
+        "expected": 4194304
+      },
+      {
+        "color": false,
+        "square": "a5",
+        "actual": 8388608,
+        "expected": 33554432
+      },
+      {
+        "color": false,
+        "square": "h5",
+        "actual": 4294967296,
+        "expected": 1073741824
+      },
+      {
+        "color": false,
+        "square": "a6",
+        "actual": 2147483648,
+        "expected": 8589934592
+      },
+      {
+        "color": false,
+        "square": "h6",
+        "actual": 1099511627776,
+        "expected": 274877906944
+      },
+      {
+        "color": false,
+        "square": "a7",
+        "actual": 549755813888,
+        "expected": 2199023255552
+      },
+      {
+        "color": false,
+        "square": "h7",
+        "actual": 281474976710656,
+        "expected": 70368744177664
+      },
+      {
+        "color": false,
+        "square": "a8",
+        "actual": 140737488355328,
+        "expected": 562949953421312
+      },
+      {
+        "color": false,
+        "square": "h8",
+        "actual": 72057594037927936,
+        "expected": 18014398509481984
+      }
+    ],
+    "fast_eval.py": [
+      {
+        "color": true,
+        "square": "a1",
+        "actual": 128,
+        "expected": 512
+      },
+      {
+        "color": true,
+        "square": "h1",
+        "actual": 65536,
+        "expected": 16384
+      },
+      {
+        "color": true,
+        "square": "a2",
+        "actual": 32768,
+        "expected": 131072
+      },
+      {
+        "color": true,
+        "square": "h2",
+        "actual": 16777216,
+        "expected": 4194304
+      },
+      {
+        "color": true,
+        "square": "a3",
+        "actual": 8388608,
+        "expected": 33554432
+      },
+      {
+        "color": true,
+        "square": "h3",
+        "actual": 4294967296,
+        "expected": 1073741824
+      },
+      {
+        "color": true,
+        "square": "a4",
+        "actual": 2147483648,
+        "expected": 8589934592
+      },
+      {
+        "color": true,
+        "square": "h4",
+        "actual": 1099511627776,
+        "expected": 274877906944
+      },
+      {
+        "color": true,
+        "square": "a5",
+        "actual": 549755813888,
+        "expected": 2199023255552
+      },
+      {
+        "color": true,
+        "square": "h5",
+        "actual": 281474976710656,
+        "expected": 70368744177664
+      },
+      {
+        "color": true,
+        "square": "a6",
+        "actual": 140737488355328,
+        "expected": 562949953421312
+      },
+      {
+        "color": true,
+        "square": "h6",
+        "actual": 72057594037927936,
+        "expected": 18014398509481984
+      },
+      {
+        "color": true,
+        "square": "a7",
+        "actual": 36028797018963968,
+        "expected": 144115188075855872
+      },
+      {
+        "color": true,
+        "square": "h7",
+        "actual": 0,
+        "expected": 4611686018427387904
+      },
+      {
+        "color": true,
+        "square": "a8",
+        "actual": 9223372036854775808,
+        "expected": 0
+      },
+      {
+        "color": false,
+        "square": "h1",
+        "actual": 1,
+        "expected": 0
+      },
+      {
+        "color": false,
+        "square": "a2",
+        "actual": 0,
+        "expected": 2
+      },
+      {
+        "color": false,
+        "square": "h2",
+        "actual": 256,
+        "expected": 64
+      },
+      {
+        "color": false,
+        "square": "a3",
+        "actual": 128,
+        "expected": 512
+      },
+      {
+        "color": false,
+        "square": "h3",
+        "actual": 65536,
+        "expected": 16384
+      },
+      {
+        "color": false,
+        "square": "a4",
+        "actual": 32768,
+        "expected": 131072
+      },
+      {
+        "color": false,
+        "square": "h4",
+        "actual": 16777216,
+        "expected": 4194304
+      },
+      {
+        "color": false,
+        "square": "a5",
+        "actual": 8388608,
+        "expected": 33554432
+      },
+      {
+        "color": false,
+        "square": "h5",
+        "actual": 4294967296,
+        "expected": 1073741824
+      },
+      {
+        "color": false,
+        "square": "a6",
+        "actual": 2147483648,
+        "expected": 8589934592
+      },
+      {
+        "color": false,
+        "square": "h6",
+        "actual": 1099511627776,
+        "expected": 274877906944
+      },
+      {
+        "color": false,
+        "square": "a7",
+        "actual": 549755813888,
+        "expected": 2199023255552
+      },
+      {
+        "color": false,
+        "square": "h7",
+        "actual": 281474976710656,
+        "expected": 70368744177664
+      },
+      {
+        "color": false,
+        "square": "a8",
+        "actual": 140737488355328,
+        "expected": 562949953421312
+      },
+      {
+        "color": false,
+        "square": "h8",
+        "actual": 72057594037927936,
+        "expected": 18014398509481984
+      }
+    ]
+  },
+  "corrected_mapping_errors": {
+    "evaluation.py": [],
+    "fast_eval.py": []
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "status": "disqualified_on_reliability_failure_do_not_resume",
+  "candidate": "search_v2_staged_01",
+  "live_required_score": 0.6,
+  "active_run": "experiments\\search_v2\\confirm_staged_live_120s_100g",
+  "session_id": 78043,
+  "writer_pid": 6512,
+  "games_per_opponent": 100,
+  "clock": [
+    120000,
+    500
+  ],
+  "bank_sha256": "f87d33b5d55fa01d4abe59f62b9fcbf32641c5b9b020ba66a0306bc3ebd0b867",
+  "remaining_opponents_after_live_pass": [
+    "search_v2_lmr_01",
+    "compiled_ordered_01",
+    "compiled_pvs_01",
+    "compiled_sf7_rl_01",
+    "search_v2_aspir_01"
+  ],
+  "other_gate": "paired-bootstrap95%lower score bound>0.5",
+  "maximum_parallel_remaining_comparisons": 2,
+  "no_training_or_development_compilation_during_confirmation": true,
+  "no_qualification_or_zip_yet": true,
+  "disqualification_record": "experiments/search_v2/confirm_staged_live_120s_100g/futility_decision.json"
+}

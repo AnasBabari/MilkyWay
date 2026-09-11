@@ -1,0 +1,17 @@
+{
+ "action": "resume same out dir with --pairs 25 (tool skips 10 completed pairs, plays positions 10-24, writes report_50 at end). Dir name 20g is historical; do not rename evidence.",
+ "conditions": "identical: 120s+0.5s, 1 worker, screen bank seed 20260906, positions 10-24 (fresh, poolable with first 10 pairs)",
+ "cost_estimate": "~30 full-clock games, ~10-15h background, 1 worker",
+ "diagnostic_stop_rules": [
+  "Same reliability rule: STOP on any candidate flag/crash/illegal; preserve, diagnose.",
+  "No score-based early stopping; all 50 games complete."
+ ],
+ "fixed_total_games": 50,
+ "fixed_total_pairs": 25,
+ "interpretation_pooled_50": "NO promotion gate (dev test). >=31/50: transfer holds strongly -> bank + confirmation planning. 27.5-30.5/50: meets user bar, statistically marginal -> user decides. <=27/50: below user bar -> diagnose, do not confirm.",
+ "prior_result": "10.0/20 (50%, ambiguous), zero failures; hashes matched",
+ "purpose": "Resolve the pre-declared ambiguous reading (9-11.5/20) with a 50-game pooled sample.",
+ "run": "experiments/search_v2/combined_live_120s_20g",
+ "user_bar_20260909": "ok if >=5% better than silky, i.e. >=27.5/50 pooled score",
+ "timebox_amendment_20260909": "User-capped wall time: hard stop at 20:53 (2.5h from amendment). Scheduled verified stop kills ONLY the confirmed run tree; stands down if run already finished. Partial pooled sample audited as-is; no completion claims."
+}

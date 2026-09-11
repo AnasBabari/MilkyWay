@@ -6,6 +6,7 @@ submission.zip
 agent.zip
 *.pgn
 training/datasets/
+training/data/
 training/output/
 training/checkpoints/
 training/.venv/
@@ -14,3 +15,7 @@ training/.venv/
 *.pt
 stockfish*
 scratch/
+
+!baselines/stockfish/
+!baselines/stockfish/*.py
+!docs/STOCKFISH_BENCHMARKS.md

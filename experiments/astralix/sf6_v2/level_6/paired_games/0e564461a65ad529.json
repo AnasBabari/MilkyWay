@@ -1,0 +1,17 @@
+{
+  "record": {
+    "pos_id": "sbank_062",
+    "category": "opening",
+    "start_fen": "r1bqk2r/ppp1ppbp/2np1np1/8/3PPP2/2N1B2P/PPP3P1/R2QKBNR b KQkq - 0 6",
+    "starting_ply": 11,
+    "white_result": "black",
+    "white_term": "crash",
+    "white_score": 0.0,
+    "black_result": "white",
+    "black_term": "crash",
+    "black_score": 0.0,
+    "pair_score": 0.0
+  },
+  "white_pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"v2\"]\n[Black \"stockfish\"]\n[Result \"0-1\"]\n[FEN \"r1bqk2r/ppp1ppbp/2np1np1/8/3PPP2/2N1B2P/PPP3P1/R2QKBNR b KQkq - 0 6\"]\n[SetUp \"1\"]\n[Termination \"crash\"]\n\n6... Nh5 { [%clk 0:00:29.284] } 7. Qxh5 { [%clk 0:00:29.66] } 7... gxh5 { [%clk 0:00:28.584] } 8. Rb1 { [%clk 0:00:29.694] } 8... O-O { [%clk 0:00:27.869] } 9. a3 { [%clk 0:00:29.572] } 9... Kh8 { [%clk 0:00:27.169] } 10. a4 { [%clk 0:00:29.465] } 10... e5 { [%clk 0:00:26.469] } 0-1",
+  "black_pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"stockfish\"]\n[Black \"v2\"]\n[Result \"1-0\"]\n[FEN \"r1bqk2r/ppp1ppbp/2np1np1/8/3PPP2/2N1B2P/PPP3P1/R2QKBNR b KQkq - 0 6\"]\n[SetUp \"1\"]\n[Termination \"crash\"]\n\n6... Nxd4 { [%clk 0:00:29.91] } 7. Bxd4 { [%clk 0:00:29.284] } 7... Bxh3 { [%clk 0:00:29.882] } 8. gxh3 { [%clk 0:00:28.584] } 8... Nxe4 { [%clk 0:00:29.713] } 9. Bxg7 { [%clk 0:00:27.884] } 1-0"
+}
