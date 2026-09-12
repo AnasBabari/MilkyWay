@@ -1,7 +1,0 @@
-{
-  "start_fen": "r1bqk2r/ppp1ppbp/2np1np1/8/3PPP2/2N1B2P/PPP3P1/R2QKBNR b KQkq - 0 6",
-  "candidate_color": "white",
-  "result": "draw",
-  "termination": "threefold_repetition",
-  "pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"compiled_ordered_01\"]\n[Black \"silky_snow\"]\n[Result \"1/2-1/2\"]\n[FEN \"r1bqk2r/ppp1ppbp/2np1np1/8/3PPP2/2N1B2P/PPP3P1/R2QKBNR b KQkq - 0 6\"]\n[SetUp \"1\"]\n[Termination \"threefold_repetition\"]\n\n6... e6 { [%clk 0:00:57.422] } 7. Nf3 { [%clk 0:00:56.515] } 7... d5 { [%clk 0:00:55.782] } 8. e5 { [%clk 0:00:54.624] } 8... Ne4 { [%clk 0:00:54.61] } 9. Nxe4 { [%clk 0:00:50.577] } 9... dxe4 { [%clk 0:00:53.329] } 10. Ng5 { [%clk 0:00:49.218] } 10... f5 { [%clk 0:00:52.188] } 11. exf6 { [%clk 0:00:45.609] } 11... Bxf6 { [%clk 0:00:50.375] } 12. Bb5 { [%clk 0:00:43.515] } 12... Bxg5 { [%clk 0:00:48.047] } 13. Bxc6+ { [%clk 0:00:40.203] } 13... bxc6 { [%clk 0:00:46.906] } 14. fxg5 { [%clk 0:00:37.609] } 14... O-O { [%clk 0:00:43.578] } 15. Qg4 { [%clk 0:00:35.265] } 15... Qd5 { [%clk 0:00:41.125] } 16. O-O-O { [%clk 0:00:32.453] } 16... Qxa2 { [%clk 0:00:37.953] } 17. Qxe4 { [%clk 0:00:30.922] } 17... Rb8 { [%clk 0:00:36.468] } 18. b3 { [%clk 0:00:28.407] } 18... Qa1+ { [%clk 0:00:35.374] } 19. Kd2 { [%clk 0:00:28.907] } 19... Qa5+ { [%clk 0:00:34.249] } 20. Kc1 { [%clk 0:00:27.579] } 20... Qa1+ { [%clk 0:00:32.124] } 21. Kd2 { [%clk 0:00:28.063] } 21... Qa5+ { [%clk 0:00:31.343] } 22. Kc1 { [%clk 0:00:26.782] } 22... Qa1+ { [%clk 0:00:28.983] } 1/2-1/2"
-}

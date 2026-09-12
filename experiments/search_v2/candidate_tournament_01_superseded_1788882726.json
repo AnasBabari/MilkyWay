@@ -1,9 +1,0 @@
-{
-  "status": "attention_required",
-  "results": [],
-  "candidates": {
-    "lmr": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\search_v2_lmr_01",
-    "staged": "C:\\Users\\Babar\\Documents\\Coding\\Projects\\chess_bot\\MilkyWay\\experiments\\search_v2_staged_01"
-  },
-  "error": "AssertionError((WindowsPath('C:/Users/Babar/Documents/Coding/Projects/chess_bot/MilkyWay/experiments/search_v2/lmr_parent_12s_50g'), 1, WindowsPath('C:/Users/Babar/Documents/Coding/Projects/chess_bot/MilkyWay/experiments/search_v2/lmr_parent_12s_50g.log')))"
-}

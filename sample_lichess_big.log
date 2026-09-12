@@ -1,3 +1,0 @@
-kept 40966 games (scanned candidates 40977)
-per_bin: {'[2000, 2100)': 5917, '[2100, 2200)': 5940, '[2200, 2300)': 7000, '[2300, 2400)': 6000, '[2400, 2500)': 5000, '[2500, 2600)': 4000, '[2600, 2700)': 3000, '[2700, 2800)': 2500, '[2800, 2900)': 881, '[2900, 3000)': 357, '[3000, 3100)': 258, '[3100, 3200)': 113}
-wrote C:\Users\Babar\Documents\Coding\Projects\chess_bot\MilkyWay\training\data\raw_pgn\LichessBig.pgn (27832841 bytes)

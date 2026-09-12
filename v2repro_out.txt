@@ -1,4 +1,0 @@
-r5k1/1b3rp1/5b2/pp5p/4q3/PP4P1 -> f1f3 legal=True 560ms
-r1bqkbnr/pppp1ppp/2n5/4p3/2B1P -> f3f7 legal=True expected=f3f7 match=True 271ms
-4k3/8/8/8/8/8/4R3/4K3 b - - 0  -> e8d7 legal=True 37ms
-rnbqkbnr/pppppppp/8/8/8/8/PPPP -> b1c3 legal=True 380ms

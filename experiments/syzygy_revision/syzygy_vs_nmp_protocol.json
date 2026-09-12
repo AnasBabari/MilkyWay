@@ -1,1 +1,0 @@
-{"bank":"screen","base_ms":12000,"candidate":"experiments/search_v2_syzygy_01","games":50,"increment_ms":100,"no_positive_early_stop":true,"opponent":"experiments/search_v2_nmp_01","pairs":25,"purpose":"direct development comparison: Syzygy 3-man root probe vs NMP parent","required_score":0.6,"seed":20260906,"workers":3,"zero_reliability_failures":true}

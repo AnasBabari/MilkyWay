@@ -1,1 +1,0 @@
-{"bank":"screen","base_ms":12000,"candidate":"experiments/search_v2_mg_delta_01","games":50,"increment_ms":100,"no_positive_early_stop":true,"opponent":"experiments/search_v2_nmp_mg_01","pairs":25,"purpose":"full development confirmation of the 20g pass; packaging only on 60% + zero failures","required_score":0.6,"seed":20260906,"workers":3,"zero_reliability_failures":true}

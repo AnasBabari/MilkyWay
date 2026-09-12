@@ -1,8 +1,0 @@
-{
-  "candidate_color": "black",
-  "result": "white",
-  "termination": "checkmate",
-  "start_fen": "r2qkbnr/pp1n1ppp/4p3/1BppPb2/3P4/5N2/PPPN1PPP/R1BQ1RK1 b kq - 3 7",
-  "pgn": "[Event \"AI Chessathon Rated\"]\n[Site \"aichessathon.com\"]\n[Date \"2026.09.06\"]\n[Round \"31\"]\n[White \"Rook Bottom\"]\n[Black \"Zero Elo\"]\n[Result \"0-1\"]\n[FEN \"r2qkbnr/pp1n1ppp/4p3/1BppPb2/3P4/5N2/PPPN1PPP/R1BQ1RK1 b kq - 3 7\"]\n[SetUp \"1\"]\n[Termination \"checkmate\"]\n\n7... Qb6 { [%clk 0:01:53.97] } 8. Nb1 { [%clk 0:02:00.499] } 8... Qxb5 { [%clk 0:01:50.1] } 9. Qd3 { [%clk 0:02:00.997] } 9... Bxd3 { [%clk 0:01:44.092] } 10. Na3 { [%clk 0:02:01.496] } 10... Bxf1 { [%clk 0:01:40.443] } 11. Be3 { [%clk 0:02:01.994] } 11... Qxb2 { [%clk 0:01:37.695] } 12. Nc4 { [%clk 0:02:02.493] } 12... Qxa1 { [%clk 0:01:35.357] } 13. Nb6 { [%clk 0:02:02.992] } 13... Be2+ { [%clk 0:01:35.54] } 14. Ne1 { [%clk 0:02:03.49] } 14... Qxe1# { [%clk 0:01:35.856] } 0-1",
-  "source_sha256": "96813ca5c45d93de43efb0f516cbf1669453847402ddba421a26eb87a647c949"
-}

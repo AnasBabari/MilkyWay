@@ -1,7 +1,0 @@
-{
-  "start_fen": "rnb1kb1r/pp1p1ppp/1q2pn2/8/2PN4/2N3P1/PP2PP1P/R1BQKB1R b KQkq - 0 6",
-  "candidate_color": "white",
-  "result": "white",
-  "termination": "checkmate",
-  "pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"compiled_sf7_rl_01\"]\n[Black \"stockfish\"]\n[Result \"1-0\"]\n[FEN \"rnb1kb1r/pp1p1ppp/1q2pn2/8/2PN4/2N3P1/PP2PP1P/R1BQKB1R b KQkq - 0 6\"]\n[SetUp \"1\"]\n[Termination \"checkmate\"]\n\n6... Bb4 { [%clk 0:00:59.5] } 7. Bg2 { [%clk 0:00:58.25] } 7... d5 { [%clk 0:00:59] } 8. cxd5 { [%clk 0:00:53.969] } 8... exd5 { [%clk 0:00:58.5] } 9. O-O { [%clk 0:00:50.86] } 9... Bg4 { [%clk 0:00:58] } 10. Nxd5 { [%clk 0:00:47.672] } 10... Nxd5 { [%clk 0:00:57.5] } 11. Bxd5 { [%clk 0:00:44.344] } 11... Nc6 { [%clk 0:00:57] } 12. Be3 { [%clk 0:00:42.438] } 12... Ne5 { [%clk 0:00:56.5] } 13. Nc6 { [%clk 0:00:39.172] } 13... Qc7 { [%clk 0:00:56] } 14. Nxb4 { [%clk 0:00:36.719] } 14... Rd8 { [%clk 0:00:55.5] } 15. Bxa7 { [%clk 0:00:33.828] } 15... O-O { [%clk 0:00:55] } 16. Rc1 { [%clk 0:00:31.985] } 16... Qd7 { [%clk 0:00:54.5] } 17. Bc5 { [%clk 0:00:31.203] } 17... Qf5 { [%clk 0:00:53.985] } 18. Bxf8 { [%clk 0:00:28.687] } 18... Qh5 { [%clk 0:00:53.485] } 19. Be7 { [%clk 0:00:26.89] } 19... Bxe2 { [%clk 0:00:52.97] } 20. Qc2 { [%clk 0:00:25.14] } 20... Kh8 { [%clk 0:00:52.47] } 21. Qc8 { [%clk 0:00:22.983] } 21... Rg8 { [%clk 0:00:51.97] } 22. Qxg8+ { [%clk 0:00:23.452] } 22... Kxg8 { [%clk 0:00:52.47] } 23. Rc8# { [%clk 0:00:23.937] } 1-0"
-}

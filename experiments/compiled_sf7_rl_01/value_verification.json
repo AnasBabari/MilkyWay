@@ -1,8 +1,0 @@
-{
-  "positions": 500,
-  "max_dense_sparse_cp": 0.00024161272122569244,
-  "compiled_integer_parity": true,
-  "symmetry_bounds": true,
-  "weights_sha256": "3573973f080c94e23e518d26a8a64ac40baaae3c1db05b412d1ada6cd16362fa",
-  "checker_sha256": "15f1600d27c8915fd2132ad1caab06ba8751f9e3b312c163cebe15c81dce2140"
-}

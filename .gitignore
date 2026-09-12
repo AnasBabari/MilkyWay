@@ -19,3 +19,12 @@ scratch/
 !baselines/stockfish/
 !baselines/stockfish/*.py
 !docs/STOCKFISH_BENCHMARKS.md
+
+# Generated builds and local diagnostics; release assets are explicitly tracked.
+agent*.zip
+submission*.zip
+*.sha256
+*.log
+*.err
+*.out
+*.bak

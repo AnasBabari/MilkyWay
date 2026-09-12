@@ -1,7 +1,0 @@
-{
-  "start_fen": "rnb1k2r/ppppqppp/4pn2/8/1bPP4/P4N2/1P1BPPPP/RN1QKB1R b KQkq - 0 5",
-  "candidate_color": "white",
-  "result": "void",
-  "termination": "both_failed",
-  "pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"search_v2_combined_01\"]\n[Black \"silky_snow\"]\n[Result \"*\"]\n[FEN \"rnb1k2r/ppppqppp/4pn2/8/1bPP4/P4N2/1P1BPPPP/RN1QKB1R b KQkq - 0 5\"]\n[SetUp \"1\"]\n[Termination \"both_failed\"]\n\n*"
-}

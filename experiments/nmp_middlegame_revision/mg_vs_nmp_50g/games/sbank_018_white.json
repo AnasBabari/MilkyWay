@@ -1,7 +1,0 @@
-{
-  "start_fen": "r1bqkbnr/1pp2ppp/p1np4/4p3/B3P3/5N2/PPPP1PPP/RNBQ1RK1 b kq - 1 5",
-  "candidate_color": "white",
-  "result": "white",
-  "termination": "crash",
-  "pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"search_v2_nmp_mg_01\"]\n[Black \"search_v2_nmp_01\"]\n[Result \"1-0\"]\n[FEN \"r1bqkbnr/1pp2ppp/p1np4/4p3/B3P3/5N2/PPPP1PPP/RNBQ1RK1 b kq - 1 5\"]\n[SetUp \"1\"]\n[Termination \"crash\"]\n\n1-0"
-}

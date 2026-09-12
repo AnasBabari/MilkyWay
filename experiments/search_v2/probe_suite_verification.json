@@ -1,8 +1,0 @@
-{
-  "positions": 240,
-  "unique_fens": 240,
-  "legal_histories_replayed": true,
-  "source_hashes_match": true,
-  "suite_sha256": "b8bf9134c965521324c9cf7231c16c0fdaf079376f8d25249bb0a314f169aa01",
-  "instrumented_search_run": false
-}
