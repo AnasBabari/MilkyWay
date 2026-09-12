@@ -296,7 +296,9 @@ def main() -> None:
     parser.add_argument("--positions", type=int, default=100)
     parser.add_argument("--eval-time", type=float, default=0.1, help="Oracle time per position (seconds)")
     parser.add_argument("--time-budget-ms", type=int, default=5000, help="Agent time_left_ms budget")
-    parser.add_argument("--out", type=Path, default=Path("experiments/r34/stockfish_benchmark/acpl_report.json"))
+    parser.add_argument(
+        "--out", type=Path, default=Path("scratch/stockfish_benchmark/acpl_report.json")
+    )
     args = parser.parse_args()
     if not 1 <= args.positions <= len(ACPL_TEST_SUITE):
         parser.error(f"--positions must be between 1 and {len(ACPL_TEST_SUITE)}")

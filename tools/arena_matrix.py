@@ -1,4 +1,4 @@
-"""Arena matrix helper: record MilkyWay vs named opponents (appends BENCHMARKS.md)."""
+"""Arena matrix helper: record MilkyWay vs named opponents for benchmark analysis."""
 
 from __future__ import annotations
 

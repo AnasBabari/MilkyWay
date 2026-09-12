@@ -6,8 +6,11 @@ Useful entry points include `benchmark_eval`, `benchmark_search`, `diff_eval`,
 `recorded_pair`, and the rated-game analysis tools.
 
 M18/M19 and confirmation utilities preserve historical experimental protocols;
-they do not imply an active promotion campaign. Supply explicit agent and output
-paths. Historical candidate inputs live in the archive snapshot. Offline Stockfish
+they do not imply an active promotion campaign. Full M18/M19 runs and M19 replay
+require `versions/rc1_variants`, available only in the archive worktree. Their
+shared statistics helpers remain imported by current measurement tools and tests.
+Supply explicit agent and output paths. Historical candidate inputs live in the
+archive snapshot. Offline Stockfish
 calibration tools require a separately installed executable and never ship it.
 
 One-off launchers and probes tied to removed experiment directories are preserved

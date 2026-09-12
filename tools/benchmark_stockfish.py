@@ -286,7 +286,7 @@ def main() -> None:
     parser.add_argument(
         "--out",
         type=Path,
-        default=Path("experiments/r34/stockfish_benchmark"),
+        default=Path("scratch/stockfish_benchmark"),
     )
     parser.add_argument("--no-acpl", action="store_true", help="Skip ACPL post-processing")
     args = parser.parse_args()
