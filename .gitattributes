@@ -1,0 +1,2 @@
+# Preserve exact historical package member hashes on every platform.
+versions/final_packaged/** -text
