@@ -28,10 +28,10 @@ def main() -> None:
     sys.path.insert(0, str(ROOT / "experiments/silky_snow"))
     evaluation = importlib.import_module("evaluation")
     representation = importlib.import_module("root_policy")
-    records = {"train": [], "val": []}
-    game_ids = {"train": [], "val": []}
+    records: dict[str, list[tuple[np.ndarray, float, float]]] = {"train": [], "val": []}
+    game_ids: dict[str, list[int]] = {"train": [], "val": []}
     hashes = {}
-    terminations = {}
+    terminations: dict[str, int] = {}
     for path in sorted(args.games.glob("game_*.json")):
         record = json.loads(path.read_text())
         hashes[path.name] = hashlib.sha256(path.read_bytes()).hexdigest()

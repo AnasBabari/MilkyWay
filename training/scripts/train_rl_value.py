@@ -30,8 +30,8 @@ from pathlib import Path
 
 import numpy as np
 import torch
-import torch.nn.functional as F
-from torch.utils.data import DataLoader, Dataset, TensorDataset
+import torch.nn.functional as functional
+from torch.utils.data import DataLoader, TensorDataset
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 if str(ROOT) not in sys.path:
@@ -113,8 +113,12 @@ def build_tensors(
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--selfplay", type=Path, required=True)
-    ap.add_argument("--supervised", type=Path, default=None,
-                    help="optional Stockfish-labelled dir to anchor absolute strength")
+    ap.add_argument(
+        "--supervised",
+        type=Path,
+        default=None,
+        help="optional Stockfish-labelled dir to anchor absolute strength",
+    )
     ap.add_argument("--sup-cap", type=int, default=400_000)
     ap.add_argument("--checkpoint", type=Path, required=True)
     ap.add_argument("--out", type=Path, required=True)
@@ -132,8 +136,10 @@ def main() -> None:
     print(f"device: {device}")
 
     X_sp, y_sp = load_selfplay(args.selfplay)
-    print(f"self-play: {len(X_sp)} positions "
-          f"(decisive={float((np.abs(y_sp - 0.5) > 0.25).mean()):.2f})")
+    print(
+        f"self-play: {len(X_sp)} positions "
+        f"(decisive={float((np.abs(y_sp - 0.5) > 0.25).mean()):.2f})"
+    )
 
     sup = None
     if args.supervised is not None:
@@ -157,15 +163,16 @@ def main() -> None:
     print(f"init from {args.checkpoint}")
 
     for name, p in model.named_parameters():
-        if name.startswith("policy_head"):
-            p.requires_grad = False
-        elif args.freeze_trunk and (name.startswith("stem") or name.startswith("tower")):
+        if name.startswith("policy_head") or (
+            args.freeze_trunk and (name.startswith("stem") or name.startswith("tower"))
+        ):
             p.requires_grad = False
     n_tr = sum(p.numel() for p in model.parameters() if p.requires_grad)
     print(f"trainable: {n_tr:,}")
 
-    opt = torch.optim.AdamW([p for p in model.parameters() if p.requires_grad],
-                            lr=args.lr, weight_decay=1e-4)
+    opt = torch.optim.AdamW(
+        [p for p in model.parameters() if p.requires_grad], lr=args.lr, weight_decay=1e-4
+    )
     sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, T_max=args.epochs * len(train_loader))
 
     args.out.mkdir(parents=True, exist_ok=True)
@@ -181,7 +188,7 @@ def main() -> None:
             opt.zero_grad(set_to_none=True)
             _, logits = model(xb)
             smooth = wb * 0.9 + 0.1 / 3.0
-            loss = -(smooth * F.log_softmax(logits, dim=-1)).sum(dim=1).mean()
+            loss = -(smooth * functional.log_softmax(logits, dim=-1)).sum(dim=1).mean()
             loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
             opt.step()
@@ -194,7 +201,7 @@ def main() -> None:
             for xb, wb in val_loader:
                 xb, wb = xb.to(device), wb.to(device)
                 _, logits = model(xb)
-                vwce += float(-(wb * F.log_softmax(logits, dim=-1)).sum(dim=1).sum())
+                vwce += float(-(wb * functional.log_softmax(logits, dim=-1)).sum(dim=1).sum())
                 vn += xb.size(0)
         vwce /= max(1, vn)
         run /= max(1, len(train_loader))
@@ -204,8 +211,10 @@ def main() -> None:
 
         if vwce < best - 1e-4:
             best, stale = vwce, 0
-            torch.save({"model_state_dict": model.state_dict(),
-                        "val_wce": vwce, "epoch": ep}, args.out / "best_flagship.pt")
+            torch.save(
+                {"model_state_dict": model.state_dict(), "val_wce": vwce, "epoch": ep},
+                args.out / "best_flagship.pt",
+            )
         else:
             stale += 1
             if stale >= args.patience:

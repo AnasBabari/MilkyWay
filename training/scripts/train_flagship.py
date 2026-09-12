@@ -125,9 +125,11 @@ def train(args: argparse.Namespace) -> Path:
     warmup = min(200, total_steps // 10)
     sched = torch.optim.lr_scheduler.LambdaLR(
         opt,
-        lambda s: min(1.0, (s + 1) / max(1, warmup))
-        * 0.5
-        * (1.0 + math.cos(math.pi * s / max(1, total_steps))),
+        lambda s: (
+            min(1.0, (s + 1) / max(1, warmup))
+            * 0.5
+            * (1.0 + math.cos(math.pi * s / max(1, total_steps)))
+        ),
     )
     scaler = GradScaler("cuda", enabled=(device.type == "cuda"))
 
@@ -150,8 +152,9 @@ def train(args: argparse.Namespace) -> Path:
             s_mask = batch["soft_mask"].to(device)
 
             opt.zero_grad(set_to_none=True)
-            with autocast(device_type=device.type, dtype=torch.float16,
-                          enabled=(device.type == "cuda")):
+            with autocast(
+                device_type=device.type, dtype=torch.float16, enabled=(device.type == "cuda")
+            ):
                 s_logits, s_wdl = model(boards)
                 ce = masked_mean(F.cross_entropy(s_logits, p_idx, reduction="none"), p_mask)
                 kd = masked_mean(
@@ -224,7 +227,9 @@ def main() -> None:
     parser.add_argument("--lr", type=float, default=3e-4)
     parser.add_argument("--patience", type=int, default=8)
     parser.add_argument("--full-warm-start", action="store_true")
-    parser.add_argument("--cold", action="store_true", help="fresh pretrain: skip warm start entirely")
+    parser.add_argument(
+        "--cold", action="store_true", help="fresh pretrain: skip warm start entirely"
+    )
     parser.add_argument("--seed", type=int, default=7)
     train(parser.parse_args())
 

@@ -546,7 +546,7 @@ def main() -> None:
     elif args.pgn and args.pgn.exists():
         positions = parse_positions_from_pgn(args.pgn, args.log, args.color)
     else:
-        default_pos = Path("rated_games/round_25_neomatica/positions.jsonl")
+        default_pos = Path("docs/rated_games/round_25_neomatica/positions.jsonl")
         if default_pos.exists():
             print(f"[INFO] Defaulting to {default_pos}")
             with open(default_pos, encoding="utf-8") as f:

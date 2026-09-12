@@ -37,7 +37,7 @@ def main() -> None:
     torch.manual_seed(args.seed)
     checkpoint = torch.load(args.checkpoint, map_location="cpu", weights_only=True)
     width = checkpoint["hidden"]
-    permutation = np.arange(768).reshape(12, 8, 8)
+    permutation: np.ndarray = np.arange(768).reshape(12, 8, 8)
     permutation = np.concatenate((permutation[6:], permutation[:6]))[:, ::-1, :].reshape(768)
     mirror = torch.tensor(permutation.copy(), device="cuda")
 

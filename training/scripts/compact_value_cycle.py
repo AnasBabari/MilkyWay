@@ -12,6 +12,7 @@ import importlib
 import json
 import sys
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 
@@ -28,7 +29,7 @@ def prepare(args: argparse.Namespace) -> None:
     if args.out.exists():
         raise SystemExit("Use a fresh output directory; existing evidence is immutable")
     args.out.mkdir(parents=True)
-    manifest = {"baseline": str(args.baseline.resolve()), "sources": {},
+    manifest: dict[str, Any] = {"baseline": str(args.baseline.resolve()), "sources": {},
                 "baseline_hashes": {p.name: hashlib.sha256(p.read_bytes()).hexdigest()
                                     for p in args.baseline.glob("*.py")},
                 "purpose": "supervised initialization; no strength or RL success claim"}
@@ -70,7 +71,7 @@ def train(args: argparse.Namespace) -> None:
     torch.manual_seed(args.seed)
     torch.set_num_threads(1)
     device = torch.device("cuda")
-    permutation = np.arange(768).reshape(12, 8, 8)
+    permutation: np.ndarray = np.arange(768).reshape(12, 8, 8)
     permutation = np.concatenate((permutation[6:], permutation[:6]))[:, ::-1, :].reshape(768)
     mirror = torch.tensor(permutation.copy(), device=device)
 
@@ -104,12 +105,13 @@ def train(args: argparse.Namespace) -> None:
     for epoch in range(args.epochs):
         model.train()
         order = torch.randperm(len(x), device=device)
-        for indices in order.split(args.batch):
+        # The pinned PyTorch stubs omit annotations on these tensor methods.
+        for indices in order.split(args.batch):  # type: ignore[no-untyped-call]
             predicted = anchor[indices] + model(x[indices])
             error = (predicted - target[indices]) / 400.0
             loss = torch.nn.functional.huber_loss(error, torch.zeros_like(error), delta=0.5)
             optimizer.zero_grad(set_to_none=True)
-            loss.backward()
+            loss.backward()  # type: ignore[no-untyped-call]
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
             optimizer.step()
         model.eval()

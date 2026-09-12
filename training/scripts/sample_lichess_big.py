@@ -151,7 +151,9 @@ def cap_reached(bin_str: str, per_bin: dict[str, int], bounds: tuple[int, int]) 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--zip", type=Path, default=ROOT / "training/data/hf_raw/lichess_200k_elo_bins.zip")
+    parser.add_argument(
+        "--zip", type=Path, default=ROOT / "training/data/hf_raw/lichess_200k_elo_bins.zip"
+    )
     parser.add_argument("--out", type=Path, default=ROOT / "training/data/raw_pgn/LichessBig.pgn")
     parser.add_argument("--max-games", type=int, default=50000)
     parser.add_argument(

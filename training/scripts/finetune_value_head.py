@@ -21,7 +21,7 @@ from pathlib import Path
 
 import numpy as np
 import torch
-import torch.nn.functional as F
+import torch.nn.functional as functional
 from torch.utils.data import DataLoader, Dataset
 
 ROOT = Path(__file__).resolve().parent.parent.parent
@@ -41,7 +41,7 @@ def score_to_wdl(cp: float) -> list[float]:
     return [float(p_win_adj / total), float(p_draw / total), float(p_loss_adj / total)]
 
 
-class EvalDataset(Dataset):
+class EvalDataset(Dataset[dict[str, torch.Tensor]]):
     """Dataset from NPZ shards with board tensors and cp values."""
 
     def __init__(self, shard_paths: list[Path]) -> None:
@@ -65,7 +65,11 @@ class EvalDataset(Dataset):
         }
 
 
-def evaluate(model: ChessFlagshipNet, loader: DataLoader, device: torch.device) -> dict[str, float]:
+def evaluate(
+    model: ChessFlagshipNet,
+    loader: DataLoader[dict[str, torch.Tensor]],
+    device: torch.device,
+) -> dict[str, float]:
     model.eval()
     tot_wce = tot_n = 0.0
     abs_err = abs_n = 0.0
@@ -74,12 +78,12 @@ def evaluate(model: ChessFlagshipNet, loader: DataLoader, device: torch.device) 
             boards = batch["board"].to(device)
             wdl_t = batch["wdl"].to(device)
             _, s_wdl = model(boards)
-            wdl_logp = F.log_softmax(s_wdl, dim=-1)
+            wdl_logp = functional.log_softmax(s_wdl, dim=-1)
             wce = -(wdl_t * wdl_logp).sum(dim=1)
             tot_wce += float(wce.sum())
             tot_n += boards.size(0)
 
-            pred_wdl = F.softmax(s_wdl, dim=-1)
+            pred_wdl = functional.softmax(s_wdl, dim=-1)
             pred_e = (pred_wdl[:, 0] + 0.5 * pred_wdl[:, 1]).clamp(0.001, 0.999)
             pred_cp = 400.0 * (pred_e / (1.0 - pred_e)).log10()
             true_e = (wdl_t[:, 0] + 0.5 * wdl_t[:, 1]).clamp(0.001, 0.999)
@@ -108,9 +112,9 @@ def train(args: argparse.Namespace) -> Path:
 
     # Freeze policy head and optionally trunk
     for name, param in model.named_parameters():
-        if name.startswith("policy_head"):
-            param.requires_grad = False
-        elif args.freeze_trunk and (name.startswith("stem") or name.startswith("tower")):
+        if name.startswith("policy_head") or (
+            args.freeze_trunk and (name.startswith("stem") or name.startswith("tower"))
+        ):
             param.requires_grad = False
 
     trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
@@ -161,7 +165,7 @@ def train(args: argparse.Namespace) -> Path:
 
             opt.zero_grad(set_to_none=True)
             _, s_wdl = model(boards)
-            wdl_logp = F.log_softmax(s_wdl, dim=-1)
+            wdl_logp = functional.log_softmax(s_wdl, dim=-1)
             # Label smoothing
             wdl_smooth = wdl_t * 0.9 + 0.1 / 3.0
             loss = -(wdl_smooth * wdl_logp).sum(dim=1).mean()

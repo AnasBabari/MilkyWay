@@ -29,7 +29,7 @@ def main() -> None:
     color = record['candidate_color'] == 'white'
     clock_ms = 120000
     board = game.board()
-    requests = []
+    requests: list[tuple[str, int, str | None]] = []
     for node in game.mainline():
         if board.turn == color:
             requests.append((board.fen(), clock_ms, node.move.uci()))

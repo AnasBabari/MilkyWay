@@ -10,9 +10,10 @@ streams them in chunks, filters for quality, and exports to NPZ shards.
 from __future__ import annotations
 
 import argparse
-import os
 import sys
+from collections.abc import Iterator
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 import pyarrow.parquet as pq
@@ -22,9 +23,9 @@ ROOT = Path(__file__).resolve().parent.parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from training.data.representation import board_to_tensor  # noqa: E402
-
 import chess  # noqa: E402
+
+from training.data.representation import board_to_tensor  # noqa: E402
 
 HF_REPO = "Lichess/chess-position-evaluations"
 HF_SUBDIR = "data"
@@ -55,14 +56,15 @@ def download_parquet(file_idx: int, cache_dir: Path) -> Path | None:
         return None
 
 
-def stream_parquet_local(path: Path, batch_size: int = 65536):
+def stream_parquet_local(path: Path, batch_size: int = 65536) -> Iterator[Any]:
     """Yield record batches from a local parquet file."""
     pf = pq.ParquetFile(path)
-    for batch in pf.iter_batches(batch_size=batch_size):
-        yield batch
+    yield from pf.iter_batches(batch_size=batch_size)
 
 
-def process_batch(batch, collected_fens, collected_values, target_count):
+def process_batch(
+    batch: Any, collected_fens: list[str], collected_values: list[int], target_count: int
+) -> None:
     """Filter a pyarrow batch and append valid (fen, cp) pairs."""
     fens = batch.column("fen").to_pylist()
     cps = batch.column("cp").to_pylist()
@@ -76,7 +78,7 @@ def process_batch(batch, collected_fens, collected_values, target_count):
 
     valid_fens = []
     valid_values = []
-    for fen, cp, mate, depth, kn in zip(fens, cps, mates, depths, knodes):
+    for fen, cp, mate, depth, kn in zip(fens, cps, mates, depths, knodes, strict=False):
         if mate is not None:
             continue
         if depth < 20:
@@ -97,11 +99,11 @@ def process_batch(batch, collected_fens, collected_values, target_count):
     collected_values.extend(valid_values)
 
 
-def encode_and_save(fens, values, out_dir: Path, shard_idx: int):
+def encode_and_save(fens: list[str], values: list[int], out_dir: Path, shard_idx: int) -> bool:
     """Convert FENs to tensors and save as NPZ."""
     tensors = []
     valid_values = []
-    for fen, cp in zip(fens, values):
+    for fen, cp in zip(fens, values, strict=False):
         try:
             board = chess.Board(fen)
             if board.is_check():

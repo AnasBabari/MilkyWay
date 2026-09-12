@@ -15,6 +15,8 @@ jobs:
           enable-cache: true
       - run: uv sync
       - run: make gate
+      - run: uv run python -m unittest discover tests
+      - run: make zip
 
   harness:
     strategy:

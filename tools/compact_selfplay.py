@@ -10,8 +10,10 @@ import os
 import random
 import sys
 from pathlib import Path
+from typing import Any, cast
 
 import chess
+import chess.engine
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
@@ -54,23 +56,36 @@ def main() -> None:
         assert binary
         engine = get_stockfish_engine()
         assert engine is not None
-        assert engine.protocol.config["Skill Level"] == args.stockfish_level
+        assert (
+            cast(chess.engine.UciProtocol, engine.protocol).config["Skill Level"]
+            == args.stockfish_level
+        )
         close_stockfish_engine()
         opponent = ROOT / "baselines/stockfish"
-        stockfish_spec = {"level": args.stockfish_level, "threads": 1, "hash": 16,
-                          "binary_sha256": hashlib.sha256(Path(binary).read_bytes()).hexdigest(),
-                          "adapter_sha256": hashlib.sha256(
-                              (opponent / "agent.py").read_bytes()).hexdigest(),
-                          "budget": "unchanged clock-fraction adapter; no fixed-movetime override"}
+        stockfish_spec = {
+            "level": args.stockfish_level,
+            "threads": 1,
+            "hash": 16,
+            "binary_sha256": hashlib.sha256(Path(binary).read_bytes()).hexdigest(),
+            "adapter_sha256": hashlib.sha256((opponent / "agent.py").read_bytes()).hexdigest(),
+            "budget": "unchanged clock-fraction adapter; no fixed-movetime override",
+        }
     args.out.mkdir(parents=True, exist_ok=True)
-    manifest = {"agent": str(args.agent.resolve()), "seed": args.seed,
-                "base_ms": args.base_ms, "increment_ms": args.increment_ms,
-                "source_hashes": {str(p.relative_to(args.agent)):
-                                  hashlib.sha256(p.read_bytes()).hexdigest()
-                                  for p in args.agent.rglob("*")
-                                  if p.is_file() and p.suffix in (".py", ".onnx", ".npz")},
-                "harness_hashes": {p.name: hashlib.sha256(p.read_bytes()).hexdigest()
-                                   for p in (ROOT / "harness").glob("*.py")}}
+    manifest = {
+        "agent": str(args.agent.resolve()),
+        "seed": args.seed,
+        "base_ms": args.base_ms,
+        "increment_ms": args.increment_ms,
+        "source_hashes": {
+            str(p.relative_to(args.agent)): hashlib.sha256(p.read_bytes()).hexdigest()
+            for p in args.agent.rglob("*")
+            if p.is_file() and p.suffix in (".py", ".onnx", ".npz")
+        },
+        "harness_hashes": {
+            p.name: hashlib.sha256(p.read_bytes()).hexdigest()
+            for p in (ROOT / "harness").glob("*.py")
+        },
+    }
     if stockfish_spec is not None:
         manifest["stockfish"] = stockfish_spec
         manifest["generator_sha256"] = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
@@ -85,7 +100,7 @@ def main() -> None:
     with lock.open("x") as stream:
         stream.write(str(os.getpid()))
 
-    def play(index: int) -> dict:
+    def play(index: int) -> dict[str, Any]:
         opening_index = index if stockfish_spec is None else index // 2
         rng = random.Random(args.seed + opening_index)
         if openings is not None:
@@ -96,16 +111,26 @@ def main() -> None:
                 board.push(rng.choice(list(board.legal_moves)))
                 if board.is_game_over():
                     board = chess.Board()
-        white, black = ((args.agent, opponent) if index % 2 == 0 else (opponent, args.agent))
-        outcome = play_match(local(white, index * 2), local(black, index * 2 + 1),
-                             args.base_ms, args.increment_ms, start_fen=board.fen())
+        white, black = (args.agent, opponent) if index % 2 == 0 else (opponent, args.agent)
+        outcome = play_match(
+            local(white, index * 2),
+            local(black, index * 2 + 1),
+            args.base_ms,
+            args.increment_ms,
+            start_fen=board.fen(),
+        )
         if outcome.termination in FAILED_TERMINATIONS or outcome.result == "void":
             raise RuntimeError(f"Self-play reliability failure: {outcome.termination}")
-        return {"game_id": index, "seed": args.seed + opening_index, "start_fen": board.fen(),
-                "result": outcome.result, "termination": outcome.termination,
-                "pgn": outcome.pgn,
-                "candidate_color": "white" if index % 2 == 0 else "black",
-                "split": "val" if opening_index % 5 == 0 else "train"}
+        return {
+            "game_id": index,
+            "seed": args.seed + opening_index,
+            "start_fen": board.fen(),
+            "result": outcome.result,
+            "termination": outcome.termination,
+            "pgn": outcome.pgn,
+            "candidate_color": "white" if index % 2 == 0 else "black",
+            "split": "val" if opening_index % 5 == 0 else "train",
+        }
 
     try:
         pending = [i for i in range(args.games) if not (args.out / f"game_{i:05d}.json").exists()]
@@ -114,8 +139,11 @@ def main() -> None:
             for future in concurrent.futures.as_completed(futures):
                 record = future.result()
                 atomic_save_json(args.out / f"game_{record['game_id']:05d}.json", record)
-                print(f"game={record['game_id']} result={record['result']} "
-                      f"termination={record['termination']}", flush=True)
+                print(
+                    f"game={record['game_id']} result={record['result']} "
+                    f"termination={record['termination']}",
+                    flush=True,
+                )
     finally:
         lock.unlink()
 

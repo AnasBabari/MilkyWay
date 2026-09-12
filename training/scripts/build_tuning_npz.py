@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import sys
 from pathlib import Path
+from typing import Any, cast
 
 import numpy as np
 
@@ -19,10 +20,10 @@ ROOT = Path(__file__).resolve().parent.parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-import chess  # noqa: E402
+import chess
 
-from training.data.representation import tensor_to_board  # noqa: E402
-from training.scripts.extract_features import extract_features_white  # noqa: E402
+from training.data.representation import tensor_to_board
+from training.scripts.extract_features import extract_features_white
 
 SRC = Path("training/datasets/master_value_v2")
 OUT = Path("training/datasets/tuning_master_value_v2.npz")
@@ -75,7 +76,8 @@ def main() -> None:
         payload[f"X_{split}"] = x
         payload[f"y_{split}"] = y
         payload[f"fixed_{split}"] = f
-    np.savez_compressed(OUT, **payload)
+    # Dynamic array keys never include NumPy's separately typed allow_pickle option.
+    np.savez_compressed(OUT, **cast(dict[str, Any], payload))
     print(f"wrote {OUT} ({OUT.stat().st_size / 1024:.0f} KB)")
 
 

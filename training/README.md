@@ -1,17 +1,23 @@
-# MilkyWay M17 — Offline GPU Training Infrastructure
+# Offline training source
 
-This directory contains offline training and dataset infrastructure for MilkyWay M17.
+This directory preserves team-developed data collection, representations, dataset
+splitting, model definitions, training, evaluation and export code from the event.
 
-## Structure
-- `configs/`: Experiment configuration files
-- `data/`: Board representations, move vocabulary, dataset schemas, sharding, and PGN loaders
-- `models/`: Teacher ResNet models, student distillation models, loss functions
-- `scripts/`: GPU benchmark, training, distillation, and ONNX export scripts
-- `metrics/`: Validation metrics, benchmark evaluation suites, failure position suites
-- `tests/`: Isolated unit and integration tests for training pipeline
+- `data/`: board representation, game collection and dataset loading.
+- `models/`: teacher/student and flagship architectures and losses.
+- `scripts/`: collection, offline labeling, fitting, training and export entry points.
+- `metrics/` and `tests/`: model evaluation and training-pipeline checks.
 
-## Isolation
-This infrastructure is strictly offline. Training dependencies and intermediate artifacts
-(checkpoints, large raw datasets, external binaries) are isolated and gitignored.
-Only validated, exported runtime weights (`weights/milkyway_policy.onnx`) and the
-single-core CPU ONNX inference wrapper are eligible to ship.
+Training runs offline from the competition process. GPU training produced model
+exports for CPU inference; external engines were used only for offline labels and
+calibration. No third-party engine or published chess network is shipped.
+
+The original large datasets, checkpoints and some external tooling are not included.
+Scripts are research source, not a promise to reproduce training with only `uv sync`.
+Use explicit input paths and inspect each script's help. Compact outcome scripts
+that depend on `experiments/silky_snow` require the full historical worktree; restore
+it using [the archive instructions](../docs/BUILD_PROVENANCE.md).
+
+The root runtime retains `weights/milkyway_policy.onnx`. The separately preserved
+last packaged compiled engine uses `weights/compact_value.npz`. Model roles and
+the limits of the tournament evidence are covered in [experiments](../docs/EXPERIMENTS.md).
