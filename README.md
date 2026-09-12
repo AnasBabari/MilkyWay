@@ -2,12 +2,13 @@
 
 A from-scratch chess engine built for the 2026 AI Chessathon.
 
-**Current competition build: search_v2_tm_01 — packaged, awaiting full confirmation.
-Builds are locked; see evidence reports before changing anything below.**
+**Season over: finished 162 of 334 — did not make the finals.
+Builds are locked as historical record; see evidence reports before changing anything below.**
 
 ## Competition status
 
-**search_v2_tm_01** (root `agent.zip`) — packaged 11 September 2026.
+**Final standing: 162 / 334 (2026 AI Chessathon).**
+Last packaged build: **search_v2_tm_01** (root `agent.zip`) — 11 September 2026.
 
 - Submission SHA256:
   `3A829E4EA66FD897A54216FB9CF992460B3996674DE408507C24C6AB7F839F2D`
@@ -15,10 +16,10 @@ Builds are locked; see evidence reports before changing anything below.**
 - Lineage: classical MW-0.2 → speed build (silky-snow) → search_v2 tournament
   winner (combined: staged generation + LMR) → null-move pruning →
   middlegame pawn-attack fix → healthy-clock time-ceiling raise.
-- Evidence: 88% vs silky-snow at 12s+0.1s (50 games, audited); 59.4% pooled
-  at 120s+0.5s; 16.0/20 full-clock trial for the TM step (audited).
-- Not yet done: 100-game independent confirmation (bank_02 frozen; overnight
-  runs need host sleep disabled first).
+- Best measured evidence: 88% vs silky-snow at 12s+0.1s (50 games, audited);
+  59.4% pooled at 120s+0.5s; 16.0/20 full-clock trial for the TM step (audited).
+- Never completed: 100-game independent confirmation (bank_02 frozen; blocked
+  on host sleep policy for overnight runs).
 - Submission size: 79,562 bytes zipped / 180,484 unzipped (cap 50 MB).
 - Previous builds preserved: `agent_prev_*.zip` chain in repo root.
 - Full reports: `experiments/search_v2/`, `experiments/nmp_revision/`,
