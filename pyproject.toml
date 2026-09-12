@@ -1,6 +1,6 @@
 [project]
-name = "aichessathon-starter"
-version = "0.1.0"
+name = "milkyway-chess-engine"
+version = "1.0.0"
 requires-python = "==3.12.*"
 dependencies = [
     "chess==1.11.2",
@@ -27,6 +27,8 @@ dev = ["mypy>=1.18", "ruff>=0.14"]
 [tool.ruff]
 line-length = 100
 target-version = "py312"
+# Historical competition snapshots are immutable evidence, not maintained source.
+extend-exclude = ["versions/final_packaged"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "N", "UP", "B", "SIM", "RUF"]
@@ -34,6 +36,8 @@ ignore = ["N818", "N803", "N806"]
 
 [tool.mypy]
 strict = true
+# Type-check the Linux competition target; Windows harness behavior is game-tested in CI.
+platform = "linux"
 files = [
     "agent.py",
     "constants.py",
@@ -49,3 +53,8 @@ files = [
     "tools",
     "training",
 ]
+
+[[tool.mypy.overrides]]
+# Optional offline ingestion dependencies, never part of the competition runtime.
+module = ["pyarrow.*", "huggingface_hub", "tqdm"]
+ignore_missing_imports = true
