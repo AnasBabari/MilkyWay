@@ -1,165 +1,132 @@
-# MilkyWay ♜
+# MilkyWay
 
-A from-scratch chess engine built for the 2026 AI Chessathon.
+A Python chess engine developed for the 2026 AI Chessathon, combining classical
+alpha-beta search, handcrafted evaluation and experiments with learned evaluation
+and root policy.
 
-**Current competition build: search_v2_tm_01 — packaged, awaiting full confirmation.
-Builds are locked; see evidence reports before changing anything below.**
+**Final event record: 102 rated games · 47 wins · 12 draws · 43 losses**
 
-## Competition status
+**Peak event Elo: 1556** — final dashboard figures supplied by the project owner.
 
-**search_v2_tm_01** (root `agent.zip`) — packaged 11 September 2026.
+## What it does
 
-- Submission SHA256:
-  `3A829E4EA66FD897A54216FB9CF992460B3996674DE408507C24C6AB7F839F2D`
-  (also in `agent_tm_20260911.sha256`)
-- Lineage: classical MW-0.2 → speed build (silky-snow) → search_v2 tournament
-  winner (combined: staged generation + LMR) → null-move pruning →
-  middlegame pawn-attack fix → healthy-clock time-ceiling raise.
-- Evidence: 88% vs silky-snow at 12s+0.1s (50 games, audited); 59.4% pooled
-  at 120s+0.5s; 16.0/20 full-clock trial for the TM step (audited).
-- Not yet done: 100-game independent confirmation (bank_02 frozen; overnight
-  runs need host sleep disabled first).
-- Submission size: 79,562 bytes zipped / 180,484 unzipped (cap 50 MB).
-- Previous builds preserved: `agent_prev_*.zip` chain in repo root.
-- Full reports: `experiments/search_v2/`, `experiments/nmp_revision/`,
-  `experiments/tm_revision/`, `experiments/PROMOTION_REPORT_silky_snow.md`.
-- Runtime: Python 3.12 / single CPU core / 120s + 0.5s.
+Given a chess position and the time remaining, MilkyWay explores possible replies,
+scores the resulting positions and returns a legal move before its clock expires.
+It reuses earlier search results and spends less time on unlikely alternatives.
+
+The root source preserves the Python engine with ONNX root policy enabled by
+default when the model loads. The last documented packaged build uses a separate
+original Numba search engine and compact learned value model. The exact final
+successful platform upload is not established by the repository. See
+[build provenance](docs/BUILD_PROVENANCE.md) for the distinction and checksums.
 
 ## Architecture
 
-MilkyWay is a classical competition engine adhering to all platform constraints (1 CPU core, 2 GB RAM, 120s + 0.5s TC, 90s init budget, max 50 MB uncompressed zip at root, no network/GPU, no native binaries, readable Python source).
+| Module | Purpose |
+| --- | --- |
+| `agent.py` | FEN input, UCI output and final legality check |
+| `engine.py` | Persistent game state, fallback move and search orchestration |
+| `search.py` | Iterative deepening, PVS/alpha-beta, quiescence and pruning |
+| `evaluation.py` | Tapered handcrafted scoring of material, placement and structure |
+| `move_ordering.py` | Prioritize promising moves so pruning works earlier |
+| `transposition.py` | Cache positions reached through different move sequences |
+| `time_manager.py` | Allocate time, preserve reserves and handle emergencies |
+| `root_policy.py` | Optional single-core ONNX scores for root move ordering |
 
-```text
-agent.py            competition entrypoint (get_move)
-constants.py        scores, PSTs, tunable eval coefficients (EvalParameters)
-engine.py           persistent game state, fallback move, repetition avoidance
-engine_types.py     TTEntry, SearchStats, SearchTimeout
-evaluation.py       tapered handcrafted eval (centipawns, bitboard-optimized)
-move_ordering.py    TT move, promotions, MVV-LVA captures, killers, history
-search.py           iterative deepening + PVS alpha-beta + quiescence + pruning
-time_manager.py     soft/hard deadlines + emergency mode (time.monotonic)
-transposition.py    bounded TT with generations (EXACT/LOWER/UPPER)
-```
+**Iterative deepening** keeps the last completed answer while attempting a deeper
+search. **PVS/alpha-beta** skips branches that cannot improve that answer.
+**Quiescence** follows tactical exchanges beyond the nominal depth. **Late move
+reductions**, **null-move pruning** and **futility pruning** trade some completeness
+for greater useful depth. **Tapered evaluation** blends middlegame and endgame
+priorities. [Architecture details and move pipeline](docs/ARCHITECTURE.md).
 
-## Search & Evaluation Details
+## Performance work
 
-- **Search**: Negamax with mate-distance scores (`MATE - ply`), TT cutoffs with mate adjustments, null-move pruning, late move reductions (LMR) with re-search, futility and reverse futility pruning, check extensions, aspiration windows, quiescence search with delta pruning and evasions.
-- **Evaluation**: Tapered evaluation interpolating between middlegame and endgame phases across material, piece-square tables, pawn structure (doubled, isolated, backward, passed by rank, protected), rook activity (open files, 7th rank), mobility, king safety, and mop-up endgame positioning.
-- **Time Management**: Proportional safety margin with soft and hard deadlines, 64-node emergency polling, and instant legal fallback to prevent flag losses.
-- **Transposition Table**: Bounded memory footprint with $O(1)$ FIFO replacement policy and cross-move persistence.
+Historical local profiling of MW-0.1 to MW-0.2 documented:
 
-## Development & Verification
+| Measurement | Before | After | Change |
+| --- | ---: | ---: | ---: |
+| Evaluation calls/second | 5,225 | 14,774 | 2.83x |
+| Fixed-depth search nodes/second | 5,034 | 10,519 | 2.09x |
+
+Bitboard operations, fewer temporary objects, leaner ordering and bounded cache
+eviction reduced overhead. Changes were differential-tested and game-tested.
+These are historical host measurements, not a fresh benchmark or a direct Elo
+claim. [Benchmarks, methods and harness caveats](docs/BENCHMARKS.md).
+
+## Engineering methodology
+
+**PROFILE → HYPOTHESIS → CHANGE → MEASURE → ARENA → KEEP / REVERT**
+
+Frozen opponents, paired matches, confidence intervals, held-out banks,
+legal-position fuzzing, clock probes and rated-game regression positions provided
+different kinds of evidence. Faster code or lower training loss did not guarantee
+promotion. [Selected experiments and rejected candidates](docs/EXPERIMENTS.md).
+
+## Neural experiment
+
+Team-trained models were developed offline using GPUs and exported to ONNX for
+single-core CPU inference. The Python policy influences root ordering rather than
+replacing the handcrafted leaf evaluator. Its 40-game ON/OFF ablation scored 50%;
+the broader RC1 candidate failed its full-clock promotion gate. The later compiled
+build used a separate compact learned residual. Neither experiment justifies
+crediting the network with all engine strength or the event record.
+
+## Reliability
+
+The project targets Python 3.12 and a single-core competition runtime with strict
+wall-clock limits. Legal-move fallback, time-budget probes, fuzz/regression tests
+and extracted-package smoke games complement CI. The workflow runs the Linux
+gate and Windows/macOS harness jobs. See the [verification report](docs/cleanup/REPORT.md)
+for the actual cleanup checks and any limitations.
+
+## Running locally
+
+Install [uv](https://docs.astral.sh/uv/), then run from the repository root:
 
 ```bash
-# Setup dependencies
-make setup
-
-# Run test suites (39 unit tests)
-uv run python -m unittest discover -s tests
-
-# Quality gates
+uv sync
+uv run ruff check .
+uv run mypy
+uv run python -m unittest discover tests
+make play
+make arena
 make gate
-
-# Benchmarking & parity
-uv run python tools/diff_eval.py --positions 1000
-uv run python tools/time_probe.py
-uv run python tools/paired_arena.py --opponent versions/mw_0_2 --bank neutral
-
-# Build competition zip
-uv run python -m harness.package --out agent.zip
+make zip
 ```
 
-Milestones, benchmarking logs, and tuning experiments are documented in `IMPLEMENTATION_PLAN.md` and `BENCHMARKS.md`.
+On Windows without Make, use `uv run python -m harness.play --white . --black
+baselines/greedy` to play, `uv run python -m harness.arena --opponent
+baselines/greedy` for an arena, and `uv run python -m harness.package` to package
+and smoke-test the extracted build. The Makefile shows the exact gate commands.
+Building from the root packages the root Python engine, not the historical TM ZIP.
 
-## Upstream sync notes (2026-09-06)
+## Repository structure
 
-Synced with `advitrocks9/aichessathon-starter`: the harness now suspends
-agents while the opponent thinks, annotates PGNs with clocks and names,
-draws only on the actual third repetition / fifty moves / 600-ply cap, and
-local games start from eight curated openings. `make zip` now auto-includes
-imported local packages and plays two full-clock smoke games from the built
-zip, so packaging failures surface locally instead of on the platform.
-
-`agent.py` is the whole submission. One function.
-
-```python
-def get_move(fen: str, time_left_ms: int) -> str:
-    return "e2e4"
+```text
+agent.py + engine modules   maintained Python implementation
+baselines/  harness/        local opponents and competition protocol
+docs/                      architecture, benchmarks and postmortem
+experiments/               selected historical result records
+tests/  tools/             regression tests and measurement utilities
+training/                  offline data, training and export source
+versions/                  frozen milestones and exact last packaged source
+weights/                   root runtime ONNX model
+artifacts/final/           last documented competition ZIP and checksum
 ```
 
-The fork ships a legal random-mover, so the loop works before you write anything. Replace the body.
+## Competition
 
-```
-make play                                          # one game, real time control
-make arena                                         # 16 fast games, prints a score
-make play FEN="<fen>"                              # start from a given position
-uv run python -m harness.play --black baselines/minimax --pgn game.pgn
-uv run python -m harness.arena --opponent ../my-old-version --games 200
-uv run python -m harness.arena --pgn-dir games
-```
+[AI Chessathon](https://aichessathon.com/) challenged participants to build chess
+agents under constrained runtime and packaging conditions. The event is complete.
+Read the [engineering postmortem](docs/POSTMORTEM.md) for the development journey,
+final result and lessons. The full research workspace remains available at the
+[archive tag](https://github.com/AnasBabari/MilkyWay/tree/aichessathon-2026-final-workspace).
 
-- Anything your agent prints shows up under the result, so `print` debugging works. The platform
-  keeps the first 4 KB and the last 4 KB, and so does the harness.
-- Every rated game leaves a log on your dashboard beside the PGN with your output, your init time,
-  your move times and your clock. Only your team can read it.
-- Games replay. The opening and the baseline's seed both come from the game number, so a
-  deterministic agent plays the same games every run and a score change is a change you made. The
-  random mover it ships with is not deterministic, so `make arena` wanders until you replace it.
+## Acknowledgements
 
-## The ladder
-
-Measured with `harness/arena.py`. Beating greedy is a search. Beating minimax is a search plus an
-evaluation worth searching with.
-
-| Matchup | Games | Time control | Score |
-|---|---|---|---|
-| random vs greedy | 32 | 10 s + 0.1 s | 4.7% +- 5.1% (+0 =3 -29) |
-| greedy vs minimax | 16 | 120 s + 0.5 s | 0.0% (+0 =0 -16) |
-| numba vs minimax | 16 | 10 s + 0.5 s | 59.4% +- 16.1% (+5 =9 -2) |
-
-Read the third row twice. 59.4% looks like an edge, but the interval runs from -47 to +195 elo, so
-sixteen games have not found one. That is why `make arena` prints it.
-
-```
-uv run python -m harness.arena --agent baselines/random --opponent baselines/greedy --games 32
-uv run python -m harness.arena --agent baselines/greedy --opponent baselines/minimax --games 16 \
-  --base-ms 120000 --increment-ms 500
-uv run python -m harness.arena --agent baselines/numba --opponent baselines/minimax --games 16 \
-  --increment-ms 500
-```
-
-- `baselines/random` plays a uniformly random legal move. It is what `agent.py` starts as, minus
-  the seed the baselines take from the harness.
-- `baselines/greedy` searches one ply on material.
-- `baselines/minimax` searches two plies on material and mobility, with no time management.
-- `baselines/numba` is `minimax` with the evaluation jitted. It is barely stronger, which is the
-  point. Jitting a shallow search buys headroom, not depth. Read it for the warm-up call at the
-  bottom, which is how you keep compilation off your clock.
-
-## What's here
-
-```
-agent.py             your submission
-baselines/           random, greedy, minimax, numba; each is a directory with an agent.py
-harness/runner.py    the process the platform runs your agent in
-harness/referee.py   the clock, legality, draw and cap rules
-harness/rules.py     the event constants, and eight openings the rated ladder plays
-harness/sandbox.py   the one process, spoken to as the platform speaks to a container
-harness/play.py      one game between two agent directories
-harness/arena.py     many games, with a score and an interval
-harness/package.py   builds submission.zip and plays the platform's two smoke games from it
-docs/IDEAS.md        where the strength actually comes from
-```
-
-- `make zip` ships `agent.py`, every python file beside it, `weights/`, and any package you
-  import. Add the rest with `--include`.
-- It then plays the platform's two smoke games out of the zip it just built, so a file you never
-  packaged fails here in a minute instead of costing one of your ten daily uploads.
-- The platform decides acceptance and its validation log is the authority.
-- Local games start from one of the eight openings unless you pass `--fen`. Rated games draw from
-  the full set, which is not published. Treat the eight as a sample, not preparation.
-
-## The rules
-
-[aichessathon.com/docs](https://aichessathon.com/docs) is canonical and changes. Read it before
-you upload.
+This repository began as a fork of the
+[official AI Chessathon starter](https://github.com/advitrocks9/aichessathon-starter),
+which provided the local harness and baselines. The MilkyWay chess engine, search,
+evaluation, time management, experiments and learned-policy work were developed
+for the competition. License: [MIT](LICENSE).
