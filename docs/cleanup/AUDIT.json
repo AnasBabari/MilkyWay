@@ -1,0 +1,144 @@
+{
+  "tracked_worktree_before_bytes": 344152088,
+  "portfolio_source_snapshot_bytes": 7951481,
+  "portfolio_files": 210,
+  "archive_runtime_members_verified": 12,
+  "root_runtime_files_unchanged": 11,
+  "broken_relative_markdown_links": [],
+  "history_binary_groups": {
+    "zip": {
+      "unique_blobs": 9,
+      "bytes": 20510798,
+      "packed_bytes": 20234714
+    },
+    "onnx": {
+      "unique_blobs": 6,
+      "bytes": 34271027,
+      "packed_bytes": 24193515
+    }
+  },
+  "largest_history_blobs": [
+    {
+      "oid": "fe9e94ade7a66194266aeb03be7ebd0c9ce70dc0",
+      "bytes": 39149568,
+      "packed_bytes": 3792216,
+      "path": "experiments/search_v2/confirmation_exclusions_02.sqlite"
+    },
+    {
+      "oid": "5fbae744b1e22b11fa1e593e2ad6b758e145a8e7",
+      "bytes": 37543936,
+      "packed_bytes": 1420400,
+      "path": "experiments/search_v2/confirmation_exclusions_01.sqlite"
+    },
+    {
+      "oid": "8d9869479b55a0f28e9402e2c67eec0b4cea04c7",
+      "bytes": 37236736,
+      "packed_bytes": 32952836,
+      "path": "experiments/search_v2/confirmation_exclusions_01_superseded_20260909.sqlite"
+    },
+    {
+      "oid": "d0034e933e1cf7c9d28c059e1d0ed87832581bc7",
+      "bytes": 10260503,
+      "packed_bytes": 10263284,
+      "path": "agent_prev_root_20260907.zip"
+    },
+    {
+      "oid": "f8f4084c1d99c31e55a7383095d7bc550af3a547",
+      "bytes": 5800566,
+      "packed_bytes": 5370442,
+      "path": "experiments/silky_snow/weights/milkyway_flagship_silkysnow.onnx"
+    },
+    {
+      "oid": "1b67450db9f07f1914d4ffb733b9706bd16132b4",
+      "bytes": 5800566,
+      "packed_bytes": 1632076,
+      "path": "weights/milkyway_flagship_v7.onnx"
+    },
+    {
+      "oid": "a50bde10c0ff36c5ea96d18a611d955f5e665e30",
+      "bytes": 5800565,
+      "packed_bytes": 5334997,
+      "path": "experiments/astralix/r1_control/weights/milkyway_astralix.onnx"
+    },
+    {
+      "oid": "7b91f3ff6cd1de629c453af68cd8072d94c881eb",
+      "bytes": 5800565,
+      "packed_bytes": 1631849,
+      "path": "experiments/compact_quarter_policy_v6/weights/milkyway_policy.onnx"
+    },
+    {
+      "oid": "50a7080bf0083b98ff444086aa0dea873d4db3b1",
+      "bytes": 5799936,
+      "packed_bytes": 5365916,
+      "path": "weights/milkyway_flagship_v7.onnx.data"
+    },
+    {
+      "oid": "22ae6d806e98727bbc32369646a7dea953d7e4a7",
+      "bytes": 5268829,
+      "packed_bytes": 4858235,
+      "path": "experiments/compact_cycle_01/weights/milkyway_policy.onnx"
+    },
+    {
+      "oid": "05cb1e72236f5ed4050dbda53c5adec0e90255d4",
+      "bytes": 4892112,
+      "packed_bytes": 4893324,
+      "path": "agent_silky_snow.zip"
+    },
+    {
+      "oid": "4a5f0fbd7443870c00c6c6a8d7bb7a7eb8fe1216",
+      "bytes": 4881625,
+      "packed_bytes": 4882802,
+      "path": "artifacts/agent-tested-e7583f0a47e5.zip"
+    },
+    {
+      "oid": "75c88fafc15a9bc41a59d0ce71a0c065cffc3d70",
+      "bytes": 1796640,
+      "packed_bytes": 929743,
+      "path": "experiments/firesock_revision/firesock_book.bin"
+    },
+    {
+      "oid": "ae7f6d17638e3a2bd379ec7daead031358d7d7eb",
+      "bytes": 463995,
+      "packed_bytes": 71912,
+      "path": "experiments/search_v2/probe_suite_01.json"
+    },
+    {
+      "oid": "8a55a036c468a804113c52535159af64fb77833d",
+      "bytes": 434641,
+      "packed_bytes": 96238,
+      "path": "experiments/search_v2/confirmation_exclusions_02.json"
+    },
+    {
+      "oid": "93f63bd7100b31f4c93cc72436b8db44297192fd",
+      "bytes": 387216,
+      "packed_bytes": 35851,
+      "path": "docs/cleanup/INVENTORY_BEFORE.json"
+    },
+    {
+      "oid": "4735f002b53c3b629ba952813d962d92f2d8f87e",
+      "bytes": 379216,
+      "packed_bytes": 31689,
+      "path": "rated_games/round_25_neomatica/sf_policy_annotation.json"
+    },
+    {
+      "oid": "05c6f7eede11367870cdd96bebd4ac1b4d8dea63",
+      "bytes": 344883,
+      "packed_bytes": 76004,
+      "path": "experiments/search_v2/confirmation_exclusions_01.json"
+    },
+    {
+      "oid": "b72d4fe753b8e684fa7f2c3a73ee5ed268749af8",
+      "bytes": 328194,
+      "packed_bytes": 72255,
+      "path": "experiments/search_v2/confirmation_exclusions_01_superseded_20260909.json"
+    },
+    {
+      "oid": "b168f69b2743580ded4847102f33572759ec4989",
+      "bytes": 286312,
+      "packed_bytes": 48642,
+      "path": "experiments/compact_cycle_01/campaign_closeout_60s_01.json"
+    }
+  ],
+  "git_storage": "count: 70\nsize: 202.61 KiB\nin-pack: 3694\npacks: 1\nsize-pack: 84.00 MiB\nprune-packable: 0\ngarbage: 0\nsize-garbage: 0 bytes",
+  "notes": "Worktree excludes ignored environments, scratch, generated builds. Blob suffix attribution uses one historical path per unique Git object; packed disk sizes include delta representations and are not an exact clone-savings estimate."
+}
