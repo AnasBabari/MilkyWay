@@ -81,6 +81,10 @@ and the unestablished final successful upload identity.
   signal APIs against Windows stubs without modifying the harness. Optional
   offline ingestion libraries have scoped missing-stub configuration.
 - `uv run python -m unittest discover tests`: passed, 87 tests in 40.587 seconds.
+- Supplementary offline training tests: 13 passed in 26.28 seconds using
+  `uv run --with pytest python -m pytest training/tests -q`. Initial attempts with
+  unittest and the bare pytest executable exposed the optional runner/import-path
+  requirements; the documented module invocation passed without lockfile changes.
 - `make gate`: Make is unavailable on this Windows host. Its three exact commands
   were run directly: Ruff, mypy and two 5-second-base random-opponent games. Both
   games ended in checkmate wins; no failed terminations.
@@ -89,6 +93,13 @@ and the unestablished final successful upload identity.
   was 4,891,210 bytes compressed / 5,395,412 bytes uncompressed.
 - `uv lock --check`: passed; relative Markdown links and all eleven root-runtime
   hashes passed the cleanup audit.
+- Exact historical TM release archive: extracted-package smoke passed as both
+  colors, reaching the smoke ply cap without failed terminations. All twelve
+  original members match the ZIP, local extraction and committed Git blobs.
+- Hosted CI: [run 34725029935](https://github.com/AnasBabari/MilkyWay/actions/runs/34725029935)
+  passed all jobs at code commit `49f9c35`: Linux `make gate`, 87-test discovery
+  and `make zip`, plus Windows and macOS harness games on Python 3.12.
+  Later closeout edits only update documentation and audit results.
 
 These checks establish local reliability, not a new strength result or platform
 acceptance. The unchanged local harness still uses its own 90-second init budget;
@@ -102,6 +113,12 @@ The event homepage was retained. Topics: `python`, `chess`, `chess-engine`,
 `artificial-intelligence`, `alpha-beta`, `onnx`, `machine-learning`, `hackathon`,
 `search-algorithms`.
 
+Published [AI Chessathon 2026 Final Build](https://github.com/AnasBabari/MilkyWay/releases/tag/aichessathon-2026-final-build)
+with the exact ZIP and checksum. GitHub's uploaded-asset digest matches the local
+verified ZIP hash. Its annotated release tag points at the original pre-cleanup
+commit. Release notes explicitly distinguish the last documented package from the
+unestablished final platform upload.
+
 All three remote development tips were verified as ancestors of the archive:
 
 | Branch | Tip | Recommendation |
@@ -112,11 +129,13 @@ All three remote development tips were verified as ancestors of the archive:
 
 No remote branch was deleted. The Linux gate and Windows/macOS harness jobs remain
 configured for Python 3.12; Linux CI now also runs the full unit suite and package
-smoke. A workflow configuration is not itself evidence of a passing hosted run.
+smoke. Manual dispatch was added and used to obtain the successful hosted run.
+Two concurrent remote commits with no net tree change were merged normally before
+pushing; neither their history nor the cleanup history was rewritten.
 
 ## Size and narrative
 
-Tracked content fell from 344.2 MB to approximately 7.9 MB (about 97.7%). The
+Tracked content fell from 344.2 MB to approximately 7.7 MB (about 97.8%). The
 84.00 MiB historical Git pack remains: normal cleanup does not shrink clones.
 [HISTORY_SIZE.md](HISTORY_SIZE.md) details ZIP/ONNX storage, the largest objects
 and a separate, unexecuted history-rewrite proposal.

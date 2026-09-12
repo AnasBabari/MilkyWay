@@ -112,7 +112,7 @@ tests/  tools/             regression tests and measurement utilities
 training/                  offline data, training and export source
 versions/                  frozen milestones and exact last packaged source
 weights/                   root runtime ONNX model
-artifacts/final/           last documented competition ZIP and checksum
+artifacts/final/           release provenance and download link
 ```
 
 ## Competition

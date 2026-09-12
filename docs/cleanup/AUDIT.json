@@ -1,7 +1,7 @@
 {
   "tracked_worktree_before_bytes": 344152088,
-  "portfolio_source_snapshot_bytes": 7951481,
-  "portfolio_files": 210,
+  "portfolio_source_snapshot_bytes": 7725326,
+  "portfolio_files": 209,
   "archive_runtime_members_verified": 12,
   "root_runtime_files_unchanged": 11,
   "broken_relative_markdown_links": [],
@@ -139,6 +139,6 @@
       "path": "experiments/compact_cycle_01/campaign_closeout_60s_01.json"
     }
   ],
-  "git_storage": "count: 70\nsize: 202.61 KiB\nin-pack: 3694\npacks: 1\nsize-pack: 84.00 MiB\nprune-packable: 0\ngarbage: 0\nsize-garbage: 0 bytes",
+  "git_storage": "count: 117\nsize: 257.31 KiB\nin-pack: 3694\npacks: 1\nsize-pack: 84.00 MiB\nprune-packable: 0\ngarbage: 0\nsize-garbage: 0 bytes",
   "notes": "Worktree excludes ignored environments, scratch, generated builds. Blob suffix attribution uses one historical path per unique Git object; packed disk sizes include delta representations and are not an exact clone-savings estimate."
 }

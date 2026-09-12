@@ -21,3 +21,10 @@ it using [the archive instructions](../docs/BUILD_PROVENANCE.md).
 The root runtime retains `weights/milkyway_policy.onnx`. The separately preserved
 last packaged compiled engine uses `weights/compact_value.npz`. Model roles and
 the limits of the tournament evidence are covered in [experiments](../docs/EXPERIMENTS.md).
+
+Run the 13 training tests with a temporary test runner, leaving the project
+dependency lock unchanged:
+
+```bash
+uv run --with pytest python -m pytest training/tests -q
+```

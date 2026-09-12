@@ -25,6 +25,12 @@ Its compact model SHA-256 is
 The retained root ONNX model SHA-256 is
 `4d93818689914495e41c1241adab1529509beacabfc2e653ff629a9a2f41e9aa`.
 
+Download the exact ZIP and checksum from
+[AI Chessathon 2026 Final Build](https://github.com/AnasBabari/MilkyWay/releases/tag/aichessathon-2026-final-build).
+The source in `versions/final_packaged/` was extracted from that archive, and its
+manifest covers the original twelve members. Git attributes disable line-ending
+conversion for that snapshot so its hashes survive cross-platform checkout.
+
 The loose `experiments/search_v2_tm_01` directory is not an exact substitute:
 `compiled_eval.py` and `compiled_search.py` differ from the archive and its compact
 model was not tracked there. Reproduction of the packaged build must start with

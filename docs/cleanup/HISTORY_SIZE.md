@@ -1,8 +1,8 @@
 # Repository size and optional history cleanup
 
 The pre-cleanup tracked working tree occupied **344,152,088 bytes (328.2 MiB)**.
-The portfolio source is approximately **7.9 MB (7.6 MiB)**, excluding ignored
-environments, local scratch and generated archives. This is about a **97.7%**
+The portfolio source is approximately **7.7 MB (7.4 MiB)**, excluding ignored
+environments, local scratch and generated archives. This is about a **97.8%**
 reduction in checked-out tracked content, not in clone size.
 
 The existing Git pack is **84.00 MiB**. Normal commits add a small amount of loose
